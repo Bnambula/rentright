@@ -1,0 +1,2434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>RentRight! — Uganda's #1 Verified Rental Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',sans-serif;background:#F8FAFC;color:#0F172A;overflow-x:hidden}
+button,input,select,textarea{font-family:'DM Sans',sans-serif}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(248,250,252,.97);backdrop-filter:blur(16px);border-bottom:1px solid #E2E8F0;padding:0 20px}
+.nav-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:20px;letter-spacing:-.5px;flex-shrink:0}
+.logo-icon{width:34px;height:34px;background:linear-gradient(135deg,#22C55E,#38BDF8);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:16px}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap}
+.nav-btn{background:transparent;color:#334155;border:none;border-radius:20px;padding:6px 12px;font-weight:600;font-size:12px;cursor:pointer}
+.nav-btn:hover{background:#F1F5F9}
+.btn{border:none;border-radius:12px;padding:9px 16px;font-weight:700;cursor:pointer;font-size:13px;transition:all .18s}
+.btn-green{background:#22C55E;color:#fff}.btn-green:hover{background:#16a34a}
+.btn-navy{background:#0F172A;color:#fff}.btn-navy:hover{background:#1e293b}
+.btn-blue{background:#38BDF8;color:#fff}.btn-blue:hover{background:#0284c7}
+.btn-orange{background:#EA580C;color:#fff}.btn-orange:hover{background:#c2410c}
+.btn-muted{background:#F1F5F9;color:#475569;border:1.5px solid #E2E8F0}
+.btn-outline-blue{background:transparent;color:#38BDF8;border:1.5px solid #38BDF8}
+.btn-outline-green{background:transparent;color:#22C55E;border:1.5px solid #22C55E}
+.btn-full{width:100%}
+
+/* HERO */
+.hero{position:relative;height:92vh;overflow:hidden}
+.hero-img{position:absolute;inset:0;transition:opacity 1.4s;object-fit:cover;width:100%;height:100%}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(15,23,42,.78) 0%,rgba(15,23,42,.52) 55%,rgba(15,23,42,.72) 100%)}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center}
+.badge-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.2);border:1px solid rgba(34,197,94,.4);border-radius:20px;padding:5px 16px;font-size:11px;font-weight:700;color:#86EFAC;margin-bottom:16px;letter-spacing:1px}
+.hero-title{font-size:clamp(1.9rem,5.2vw,3.5rem);font-weight:900;color:#fff;line-height:1.07;letter-spacing:-1.5px;margin-bottom:14px}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.82);line-height:1.55;margin-bottom:18px}
+.mode-btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:22px}
+.mode-btn{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.22);border-radius:14px;padding:9px 16px;font-weight:700;font-size:12px;cursor:pointer;backdrop-filter:blur(8px);transition:all .2s}
+.mode-btn.active{background:rgba(255,255,255,.97);color:#0F172A;border-color:#22C55E}
+.search-box{background:rgba(255,255,255,.97);border-radius:22px;padding:18px 20px;width:100%;max-width:680px;box-shadow:0 24px 64px rgba(0,0,0,.28)}
+.search-row{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.search-input{flex:1;min-width:160px;padding:10px 14px;border-radius:12px;border:1.5px solid #E2E8F0;font-size:14px;outline:none}
+.search-input:focus{border-color:#22C55E}
+.hero-dots{display:flex;gap:6px;margin-top:16px}
+.dot{height:8px;border:none;border-radius:4px;cursor:pointer;transition:all .3s;background:rgba(255,255,255,.35)}
+.dot.active{background:#22C55E;width:28px}
+.dot:not(.active){width:8px}
+
+/* STRIPS */
+.trust-strip{background:#0F172A;padding:13px 20px}
+.trust-inner{max-width:1140px;margin:0 auto;display:flex;justify-content:space-around;flex-wrap:wrap;gap:10px}
+.trust-item{display:flex;align-items:center;gap:6px;color:#fff;font-weight:600;font-size:12px}
+.stats-strip{background:#DCFCE7;padding:14px 20px;border-bottom:1px solid #E2E8F0}
+.stats-inner{max-width:1140px;margin:0 auto;display:flex;justify-content:space-around;flex-wrap:wrap;gap:10px}
+.stat{text-align:center}
+.stat-n{font-weight:900;font-size:20px;color:#15803D;margin:0}
+.stat-l{font-size:10px;color:#15803D;opacity:.7;margin:0}
+
+/* SECTIONS */
+.section{max-width:1140px;margin:0 auto;padding:36px 20px}
+.section-title{font-weight:900;font-size:22px;margin:0 0 6px}
+.section-sub{color:#64748B;font-size:13px;margin:0 0 18px}
+
+/* CARDS GRID */
+.grid-auto{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* LISTING CARD */
+.listing-card{background:#fff;border-radius:18px;overflow:hidden;border:1.5px solid #E2E8F0;cursor:pointer;transition:all .2s;box-shadow:0 2px 10px rgba(15,23,42,.05)}
+.listing-card:hover{transform:translateY(-5px);box-shadow:0 12px 36px rgba(15,23,42,.12);border-color:#38BDF8}
+.listing-card.boosted{border-color:#F59E0B;box-shadow:0 2px 16px rgba(245,158,11,.15)}
+.listing-card.boosted:hover{box-shadow:0 12px 40px rgba(245,158,11,.2);border-color:#F59E0B}
+.card-img{position:relative}
+.card-img img{width:100%;height:180px;object-fit:cover}
+.card-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,.5) 0%,transparent 55%)}
+.card-tags-top{position:absolute;top:9px;left:9px;display:flex;gap:4px;flex-wrap:wrap}
+.card-tag{font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px}
+.tag-green{background:#DCFCE7;color:#15803D}
+.tag-red{background:#FEE2E2;color:#991B1B}
+.tag-gold{background:linear-gradient(135deg,#F59E0B,#D97706);color:#fff}
+.tag-purple{background:#EDE9FE;color:#5B21B6}
+.tag-yellow{background:#FEF9C3;color:#78350F}
+.card-price{position:absolute;bottom:9px;right:9px;background:rgba(15,23,42,.86);color:#fff;font-weight:800;font-size:12px;padding:3px 10px;border-radius:20px}
+.card-mi{position:absolute;bottom:9px;left:9px;font-size:9px;font-weight:700;padding:2px 9px;border-radius:20px}
+.card-body{padding:12px 14px 14px}
+.card-title{font-weight:800;font-size:14px;color:#0F172A;margin:0;line-height:1.3}
+.card-area{color:#64748B;font-size:11px;margin:2px 0 0}
+.conf-bar{display:flex;align-items:center;gap:5px;margin-top:7px}
+.conf-track{flex:1;background:#E2E8F0;border-radius:10px;height:4px;overflow:hidden}
+.card-chips{display:flex;gap:4px;flex-wrap:wrap;margin-top:7px}
+.chip{font-size:10px;padding:2px 7px;border-radius:10px}
+.chip-mist{background:#F8FAFC;color:#334155}
+.chip-green{background:#DCFCE7;color:#15803D}
+.chip-blue{background:#E0F2FE;color:#0369A1}
+.chip-yellow{background:#FEF9C3;color:#78350F}
+
+/* SERVICE CARDS */
+.service-card{background:#fff;border-radius:18px;padding:20px 16px;border:1.5px solid #E2E8F0;cursor:pointer;transition:all .18s;text-align:left}
+.service-card:hover{border-color:#22C55E;transform:translateY(-2px);box-shadow:0 6px 20px rgba(34,197,94,.15)}
+.service-icon{font-size:28px;margin-bottom:10px}
+.service-title{font-weight:800;font-size:14px;color:#0F172A;margin:0 0 4px}
+.service-sub{font-size:12px;color:#64748B;margin:0}
+.service-sub2{font-size:11px;color:#22C55E;font-weight:700;margin-top:4px}
+
+/* PROVIDER CARD */
+.provider-card{background:#fff;border-radius:16px;padding:16px;border:1.5px solid #E2E8F0;display:flex;gap:12px;align-items:center;margin-bottom:10px;cursor:pointer;transition:all .18s}
+.provider-card:hover{border-color:#22C55E;box-shadow:0 4px 16px rgba(34,197,94,.12)}
+.provider-avatar{width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0;background:#F1F5F9;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff}
+.provider-info{flex:1;min-width:0}
+.provider-name{font-weight:800;font-size:14px;color:#0F172A;margin:0}
+.provider-type{font-size:11px;color:#64748B;margin:2px 0}
+.provider-dist{font-size:11px;color:#22C55E;font-weight:700}
+.stars{color:#F59E0B;font-size:12px}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.78);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(5px)}
+.modal{background:#fff;border-radius:24px;width:100%;max-width:480px;max-height:93vh;overflow-y:auto;box-shadow:0 40px 90px rgba(0,0,0,.32)}
+.modal-lg{max-width:620px}
+.modal-header{padding:16px 22px;display:flex;justify-content:space-between;align-items:center;border-radius:24px 24px 0 0;position:sticky;top:0;z-index:2}
+.modal-close{background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.modal-body{padding:20px 22px 26px}
+.tab-bar{display:flex;border-bottom:1px solid #E2E8F0;background:#F8FAFC}
+.tab{flex:1;padding:10px 0;text-align:center;font-size:11px;font-weight:700;background:transparent;border:none;border-bottom:2.5px solid transparent;color:#64748B;cursor:pointer}
+.tab.active{border-bottom-color:#22C55E;color:#15803D}
+.step-bar{display:flex;background:#F8FAFC;border-bottom:1px solid #E2E8F0}
+.step{flex:1;padding:8px 0;text-align:center;font-size:10px;font-weight:700;color:#64748B;border-bottom:2.5px solid transparent}
+.step.active{border-bottom-color:#38BDF8;color:#38BDF8}
+.step.done{border-bottom-color:#22C55E;color:#22C55E}
+
+/* FORMS */
+.field{margin-bottom:12px}
+.field label{font-size:11px;font-weight:700;color:#64748B;display:block;margin-bottom:4px}
+.field input,.field select,.field textarea{width:100%;padding:10px 14px;border-radius:12px;border:1.5px solid #E2E8F0;font-size:13px;outline:none;font-family:'DM Sans',sans-serif;transition:border-color .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#22C55E}
+.field input.filled{border-color:#22C55E}
+
+/* UPLOAD ZONE */
+.upload-zone{background:#F8FAFC;border:2px dashed #E2E8F0;border-radius:12px;padding:14px;cursor:pointer;text-align:center;transition:all .2s}
+.upload-zone.has-file{background:#DCFCE7;border-color:#22C55E}
+.upload-zone:hover{border-color:#38BDF8}
+
+/* INFO BOXES */
+.info-box{border-radius:12px;padding:10px 14px;font-size:12px;line-height:1.6;margin-bottom:12px}
+.info-green{background:#DCFCE7;color:#15803D;border-left:3px solid #22C55E}
+.info-blue{background:#E0F2FE;color:#0369A1;border-left:3px solid #38BDF8}
+.info-yellow{background:#FEF9C3;color:#78350F;border-left:3px solid #F59E0B}
+.info-red{background:#FEE2E2;color:#991B1B;border-left:3px solid #F87171}
+.info-navy{background:linear-gradient(135deg,#1E293B,#0F172A);color:#fff;border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center}
+
+/* MAP PLACEHOLDER */
+.map-box{background:linear-gradient(135deg,#e8f5e9 0%,#e3f2fd 55%,#fffde7 100%);border-radius:20px;height:220px;position:relative;overflow:hidden;border:1.5px solid #E2E8F0}
+.map-pin{position:absolute;background:#22C55E;color:#fff;font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap;transform:translate(-50%,-50%);box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.map-orb{position:absolute;border-radius:50%;filter:blur(22px);transform:translate(-50%,-50%)}
+.map-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,.93);border-radius:14px;padding:10px 18px;text-align:center}
+
+/* BOTTOM BAR */
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(248,250,252,.97);backdrop-filter:blur(12px);border-top:1px solid #E2E8F0;padding:10px 16px;display:flex;gap:8px;z-index:200}
+.bottom-btn{flex:1;border:none;border-radius:13px;padding:11px 0;font-weight:800;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+
+/* GPS PULSE */
+.gps-pulse{display:inline-block;width:10px;height:10px;background:#22C55E;border-radius:50%;position:relative;margin-right:6px}
+.gps-pulse::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid #22C55E;animation:pulse 1.5s infinite}
+@keyframes pulse{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(2)}}
+
+/* TEASER BANNERS */
+.teaser{padding:40px 20px}
+.teaser-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* SCORE RING */
+.score-ring{display:flex;flex-direction:column;align-items:center}
+
+/* REFERRAL BANNER */
+.ref-banner{background:linear-gradient(135deg,#15803D,#38BDF8);border-radius:18px;padding:18px 20px;position:relative;overflow:hidden;margin-bottom:16px}
+.ref-banner::after{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;background:rgba(255,255,255,.08);border-radius:50%}
+
+/* FLOATING WA */
+.wa-float{position:fixed;bottom:82px;right:18px;background:#25D366;color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:198;text-decoration:none;transition:transform .2s}
+.wa-float:hover{transform:scale(1.1)}
+
+/* HIDDEN */
+.hidden{display:none!important}
+
+@media(max-width:600px){
+  .nav-links{display:none}
+  .hero-title{font-size:1.9rem}
+  .grid-2{grid-template-columns:1fr}
+  .teaser-inner{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-icon">R</div>
+      <span>Rent<span style="color:#22C55E">Right</span><span style="color:#38BDF8">!</span></span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-btn" onclick="scrollTo('listings-section')">Listings</button>
+      <button class="nav-btn" onclick="scrollTo('services-section')">Services</button>
+      <button class="nav-btn" onclick="openMoving()">🚚 Moving</button>
+      <button class="nav-btn" onclick="openLand()">🌍 Land</button>
+      <button class="nav-btn" onclick="scrollTo('referrals-section')">Referrals</button>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center" id="nav-auth-area">
+      <button class="btn btn-muted" style="font-size:12px" onclick="openAuth('login')">Login</button>
+      <button class="btn btn-green" style="font-size:12px" onclick="openAuth('signup')">Sign Up</button>
+      <button class="btn btn-navy" style="font-size:12px" onclick="openListModal()">+ List</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ════════════════════════════════════════════════ -->
+<div class="hero" id="hero">
+  <img class="hero-img" id="hero-img-0" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400&q=80" style="opacity:1"/>
+  <img class="hero-img" id="hero-img-1" src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=1400&q=80" style="opacity:0"/>
+  <img class="hero-img" id="hero-img-2" src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1400&q=80" style="opacity:0"/>
+  <div class="hero-overlay"></div>
+  <div class="hero-orb" style="top:10%;right:7%;width:200px;height:200px;background:rgba(34,197,94,.14)"></div>
+  <div class="hero-orb" style="bottom:15%;left:4%;width:180px;height:180px;background:rgba(56,189,248,.14)"></div>
+  <div class="hero-content">
+    <div class="badge-pill">🏆 Uganda's Verified Rental, Moving & Services Platform</div>
+    <h1 class="hero-title">Find a <span style="color:#22C55E">Home</span>, Hire<br/><span style="color:#38BDF8">Services</span> & Buy Land</h1>
+    <p class="hero-sub">Verified rentals · Moving help · Cleaners · Laundry · Land listings<br/>All matched to your location. No brokers. No scams.</p>
+    <div class="mode-btns">
+      <button class="mode-btn" onclick="setMode('home')">🏡 Find a Home</button>
+      <button class="mode-btn" onclick="setMode('student')">🎓 Student Hostel</button>
+      <button class="mode-btn" onclick="setMode('moving')">🚚 Moving Help</button>
+      <button class="mode-btn" onclick="setMode('services')">🧹 Hire Services</button>
+      <button class="mode-btn" onclick="setMode('land')">🌍 Buy Land</button>
+    </div>
+    <div class="search-box">
+      <div style="font-size:10px;font-weight:800;color:#64748B;margin-bottom:8px;letter-spacing:1.5px;text-transform:uppercase">Find Homes · Services · Land Near You</div>
+      <div class="search-row">
+        <input class="search-input" id="search-q" placeholder="Area, type, or service — e.g. Kisaasi quiet room" style="flex:2"/>
+        <button class="btn btn-navy" onclick="useGPS()" style="white-space:nowrap;font-size:12px">📍 Near Me</button>
+      </div>
+      <div class="search-row">
+        <input class="search-input" id="search-min" placeholder="Min price (UGX)" type="number"/>
+        <input class="search-input" id="search-max" placeholder="Max price (UGX)" type="number"/>
+        <label style="display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#15803D;cursor:pointer;white-space:nowrap">
+          <input type="checkbox" id="verified-only" style="accent-color:#22C55E"/>✔ Verified
+        </label>
+      </div>
+      <button class="btn btn-full" style="background:linear-gradient(135deg,#22C55E,#38BDF8);color:#fff;padding:13px;font-size:15px;border-radius:13px" onclick="doSearch()">Search 🔍</button>
+    </div>
+    <div class="hero-dots" id="hero-dots">
+      <button class="dot active" onclick="setHero(0)"></button>
+      <button class="dot" onclick="setHero(1)"></button>
+      <button class="dot" onclick="setHero(2)"></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TRUST STRIP ═════════════════════════════════════════ -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item"><span>🟢</span> Verified Listings</div>
+    <div class="trust-item"><span>📍</span> GPS Matched</div>
+    <div class="trust-item"><span>🔒</span> Contact Protected</div>
+    <div class="trust-item"><span>🧹</span> Home Services</div>
+    <div class="trust-item"><span>🚚</span> Moving Help</div>
+    <div class="trust-item"><span>🌍</span> Land Listings</div>
+    <div class="trust-item"><span>🛡️</span> AI Fraud Detection</div>
+  </div>
+</div>
+
+<!-- ═══ STATS ════════════════════════════════════════════════ -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat"><p class="stat-n">500+</p><p class="stat-l">Listings</p></div>
+    <div class="stat"><p class="stat-n">2,400+</p><p class="stat-l">Happy Users</p></div>
+    <div class="stat"><p class="stat-n">98%</p><p class="stat-l">Verified</p></div>
+    <div class="stat"><p class="stat-n">UGX 5K</p><p class="stat-l">Per Referral</p></div>
+    <div class="stat"><p class="stat-n">120+</p><p class="stat-l">Service Providers</p></div>
+    <div class="stat"><p class="stat-n">4.7★</p><p class="stat-l">Avg Rating</p></div>
+  </div>
+</div>
+
+<!-- ═══ QUICK ACTIONS ════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Quick Actions</div>
+  <div class="section-sub">Everything you need in one place</div>
+  <div class="grid-4" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+    <button class="service-card" onclick="setMode('home');doSearch()">
+      <div class="service-icon">📍</div>
+      <div class="service-title">Near Me</div>
+      <div class="service-sub">GPS-matched listings</div>
+    </button>
+    <button class="service-card" onclick="filterBudget()">
+      <div class="service-icon">💸</div>
+      <div class="service-title">Under 300k</div>
+      <div class="service-sub">Best budget picks</div>
+    </button>
+    <button class="service-card" onclick="openMoving()">
+      <div class="service-icon">🚚</div>
+      <div class="service-title">Moving Help</div>
+      <div class="service-sub">Hire movers & trucks</div>
+    </button>
+    <button class="service-card" onclick="openServices()">
+      <div class="service-icon">🧹</div>
+      <div class="service-title">Home Services</div>
+      <div class="service-sub">Cleaners, laundry & more</div>
+    </button>
+    <button class="service-card" onclick="openLand()">
+      <div class="service-icon">🌍</div>
+      <div class="service-title">Buy Land</div>
+      <div class="service-sub">Verified plots</div>
+    </button>
+    <button class="service-card" onclick="openAuth('agent')">
+      <div class="service-icon">🏢</div>
+      <div class="service-title">Agent Portal</div>
+      <div class="service-sub">List as verified agent</div>
+    </button>
+  </div>
+</div>
+
+<!-- ═══ HOME SERVICES SECTION ═══════════════════════════════ -->
+<div id="services-section" style="background:linear-gradient(135deg,#f0fdf4,#e0f2fe);padding:40px 20px">
+  <div style="max-width:1140px;margin:0 auto">
+    <div class="section-title">🏠 Home Services Near You</div>
+    <div class="section-sub" style="margin-bottom:20px">Moving in? We connect you with trusted providers in your new neighbourhood</div>
+    <div class="grid-4" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-bottom:28px">
+      <button class="service-card" onclick="openServiceSignup('cleaner')" style="background:linear-gradient(135deg,#fff,#f0fdf4)">
+        <div class="service-icon">🧹</div>
+        <div class="service-title">House Cleaners</div>
+        <div class="service-sub">Deep clean, regular, move-in clean</div>
+        <div class="service-sub2">From UGX 15,000/session</div>
+      </button>
+      <button class="service-card" onclick="openServiceSignup('laundry')" style="background:linear-gradient(135deg,#fff,#eff6ff)">
+        <div class="service-icon">👕</div>
+        <div class="service-title">Laundry Services</div>
+        <div class="service-sub">Wash, dry & iron at home or drop-off</div>
+        <div class="service-sub2">From UGX 5,000/kg</div>
+      </button>
+      <button class="service-card" onclick="openServiceSignup('mover')" style="background:linear-gradient(135deg,#fff,#fff7ed)">
+        <div class="service-icon">🚛</div>
+        <div class="service-title">Movers & Trucks</div>
+        <div class="service-sub">Hire movers with vehicles</div>
+        <div class="service-sub2">From UGX 50,000/job</div>
+      </button>
+      <button class="service-card" onclick="openServiceSignup('helper')" style="background:linear-gradient(135deg,#fff,#fdf4ff)">
+        <div class="service-icon">👷</div>
+        <div class="service-title">Packing Helpers</div>
+        <div class="service-sub">Manual help for moving & packing</div>
+        <div class="service-sub2">From UGX 20,000/day</div>
+      </button>
+      <button class="service-card" onclick="openServiceSignup('plumber')" style="background:linear-gradient(135deg,#fff,#f0fdf4)">
+        <div class="service-icon">🔧</div>
+        <div class="service-title">Plumbers</div>
+        <div class="service-sub">Fix taps, pipes & drainage</div>
+        <div class="service-sub2">From UGX 25,000/visit</div>
+      </button>
+      <button class="service-card" onclick="openServiceSignup('electrician')" style="background:linear-gradient(135deg,#fff,#fef9c3)">
+        <div class="service-icon">⚡</div>
+        <div class="service-title">Electricians</div>
+        <div class="service-sub">Wiring, sockets & installations</div>
+        <div class="service-sub2">From UGX 30,000/visit</div>
+      </button>
+      <button class="service-card" onclick="openServiceSignup('watchman')" style="background:linear-gradient(135deg,#fff,#f0fdf4)">
+        <div class="service-icon">🔒</div>
+        <div class="service-title">Security Guards</div>
+        <div class="service-sub">Night guard, day guard, CCTV</div>
+        <div class="service-sub2">From UGX 300,000/mo</div>
+      </button>
+      <button class="service-card" onclick="openServiceSignup('gardener')" style="background:linear-gradient(135deg,#fff,#f0fdf4)">
+        <div class="service-icon">🌿</div>
+        <div class="service-title">Gardeners</div>
+        <div class="service-sub">Compound care & landscaping</div>
+        <div class="service-sub2">From UGX 20,000/visit</div>
+      </button>
+    </div>
+    <!-- Providers Near You -->
+    <div style="background:#fff;border-radius:20px;padding:20px;border:1.5px solid #E2E8F0">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div>
+          <div style="font-weight:800;font-size:16px;color:#0F172A">Providers Near You</div>
+          <div style="font-size:12px;color:#64748B" id="gps-status">Enable GPS to see closest providers first</div>
+        </div>
+        <button class="btn btn-green" onclick="enableGPS()" style="font-size:12px">
+          <span class="gps-pulse"></span>Enable GPS
+        </button>
+      </div>
+      <div id="providers-list">
+        <!-- Populated by JS -->
+      </div>
+      <button class="btn btn-full btn-muted" style="margin-top:8px" onclick="openServiceSignup('any')">🚀 Register as a Service Provider</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LISTINGS ═════════════════════════════════════════════ -->
+<div class="section" id="listings-section">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;margin-bottom:16px">
+    <div>
+      <div class="section-title" id="listings-title">All Listings</div>
+      <div class="section-sub" style="margin:0">Boosted first · Contact protected until viewing fee paid</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <select id="sort-select" onchange="sortListings()" style="padding:7px 12px;border-radius:11px;border:1.5px solid #E2E8F0;background:#fff;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif">
+        <option value="match">⚡ Best Match</option>
+        <option value="confidence">🛡️ Trust Score</option>
+        <option value="price-asc">💰 Price ↑</option>
+        <option value="price-desc">💎 Price ↓</option>
+      </select>
+      <button id="clear-btn" class="btn hidden" onclick="clearFilters()" style="background:#FEE2E2;color:#991B1B;font-size:11px;padding:7px 12px">✕ Clear</button>
+    </div>
+  </div>
+  <div class="grid-auto" id="listings-grid"></div>
+</div>
+
+<!-- ═══ MOVING TEASER ════════════════════════════════════════ -->
+<div class="teaser" style="background:linear-gradient(135deg,#EA580C,#F59E0B)">
+  <div class="teaser-inner">
+    <div>
+      <div style="font-size:40px;margin-bottom:8px">🚚</div>
+      <h2 style="color:#fff;font-weight:900;font-size:24px;margin:0 0 8px">Moving Services Marketplace</h2>
+      <p style="color:rgba(255,255,255,.85);font-size:14px;line-height:1.5;margin-bottom:16px">Post a job. Providers near you compete. Pay 8% commission only when you accept. Anyone can post — even if you didn't rent through us.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span style="background:rgba(255,255,255,.2);color:#fff;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700">🚛 Hire Movers</span>
+        <span style="background:rgba(255,255,255,.2);color:#fff;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700">🚐 Book Truck</span>
+        <span style="background:rgba(255,255,255,.2);color:#fff;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700">👷 Packing Help</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button class="btn" onclick="openMoving()" style="background:#fff;color:#EA580C;font-size:14px;padding:14px 28px;border-radius:16px;font-weight:900">Browse Jobs →</button>
+      <button class="btn" onclick="openMoving()" style="background:rgba(255,255,255,.2);color:#fff;border:2px solid rgba(255,255,255,.5);padding:13px 28px;border-radius:16px;font-weight:800">Post a Moving Job</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LAND TEASER ══════════════════════════════════════════ -->
+<div class="teaser" style="background:linear-gradient(135deg,#065f46,#15803D)">
+  <div class="teaser-inner">
+    <div>
+      <div style="font-size:40px;margin-bottom:8px">🌍</div>
+      <h2 style="color:#fff;font-weight:900;font-size:24px;margin:0 0 8px">Buy Land in Uganda</h2>
+      <p style="color:rgba(255,255,255,.8);font-size:14px;line-height:1.5;margin-bottom:16px">Verified landowners only. Free general info — pay a small fee to unlock exact GPS location, title deed details, and owner contact.</p>
+    </div>
+    <button class="btn" onclick="openLand()" style="background:#fff;color:#15803D;font-size:14px;padding:14px 28px;border-radius:16px;font-weight:900">View Land Listings →</button>
+  </div>
+</div>
+
+<!-- ═══ REFERRALS ════════════════════════════════════════════ -->
+<div id="referrals-section" style="background:linear-gradient(135deg,#0F172A,#0a2315);padding:46px 20px">
+  <div style="max-width:680px;margin:0 auto;text-align:center">
+    <div style="font-size:38px;margin-bottom:8px">🔁</div>
+    <h2 style="color:#fff;font-weight:900;font-size:24px;margin:0 0 8px">Earn UGX 5,000 Per Referral</h2>
+    <p style="color:#94A3B8;font-size:13px;margin:0 0 20px">Share your link. Friend pays viewing fee → you earn UGX 5,000 via MoMo. Min withdrawal: UGX 20,000.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px">
+      <div style="background:rgba(255,255,255,.06);border-radius:14px;padding:14px 6px;text-align:center">
+        <div style="width:22px;height:22px;background:#22C55E;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:800;margin:0 auto 6px">1</div>
+        <div style="font-size:18px;margin-bottom:3px">👤</div>
+        <p style="font-size:9px;color:#94A3B8;font-weight:600;margin:0">Signs Up</p>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:14px;padding:14px 6px;text-align:center">
+        <div style="width:22px;height:22px;background:#22C55E;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:800;margin:0 auto 6px">2</div>
+        <div style="font-size:18px;margin-bottom:3px">💳</div>
+        <p style="font-size:9px;color:#94A3B8;font-weight:600;margin:0">Pays Fee</p>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:14px;padding:14px 6px;text-align:center">
+        <div style="width:22px;height:22px;background:#22C55E;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:800;margin:0 auto 6px">3</div>
+        <div style="font-size:18px;margin-bottom:3px">🏠</div>
+        <p style="font-size:9px;color:#94A3B8;font-weight:600;margin:0">Views Home</p>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:14px;padding:14px 6px;text-align:center">
+        <div style="width:22px;height:22px;background:#22C55E;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:800;margin:0 auto 6px">4</div>
+        <div style="font-size:18px;margin-bottom:3px">💰</div>
+        <p style="font-size:9px;color:#22C55E;font-weight:800;margin:0">You Earn!</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px" id="ref-input-area">
+      <input id="ref-email" placeholder="Phone or email — get your referral link" style="flex:1;padding:11px 14px;border-radius:11px;border:none;font-size:13px;outline:none;font-family:'DM Sans',sans-serif"/>
+      <button class="btn btn-green" onclick="getRefLink()" style="white-space:nowrap" id="ref-btn">Get Link</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HOW IT WORKS ═════════════════════════════════════════ -->
+<div class="section" id="about-section">
+  <div class="section-title" style="text-align:center">How RentRight! Works</div>
+  <div class="section-sub" style="text-align:center;margin-bottom:28px">Simple, safe, fast — search to move-in</div>
+  <div class="grid-4" style="grid-template-columns:repeat(auto-fit,minmax(190px,1fr))">
+    <div style="background:#fff;border-radius:18px;padding:18px 16px;border:1.5px solid #E2E8F0;position:relative;overflow:hidden">
+      <div style="position:absolute;top:8px;right:12px;font-weight:900;font-size:44px;color:rgba(56,189,248,.1);line-height:1">01</div>
+      <div style="width:40px;height:40px;background:#E0F2FE;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px">🔍</div>
+      <div style="font-weight:800;font-size:13px;margin-bottom:4px;color:#0F172A">Search & Filter</div>
+      <div style="color:#64748B;font-size:11px;line-height:1.5">Find homes, services, or land by area, budget, or lifestyle.</div>
+    </div>
+    <div style="background:#fff;border-radius:18px;padding:18px 16px;border:1.5px solid #E2E8F0;position:relative;overflow:hidden">
+      <div style="position:absolute;top:8px;right:12px;font-weight:900;font-size:44px;color:rgba(34,197,94,.1);line-height:1">02</div>
+      <div style="width:40px;height:40px;background:#DCFCE7;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px">🧪</div>
+      <div style="font-weight:800;font-size:13px;margin-bottom:4px;color:#0F172A">Check Trust Score</div>
+      <div style="color:#64748B;font-size:11px;line-height:1.5">Living scores, utilities, and neighbourhood details on every listing.</div>
+    </div>
+    <div style="background:#fff;border-radius:18px;padding:18px 16px;border:1.5px solid #E2E8F0;position:relative;overflow:hidden">
+      <div style="position:absolute;top:8px;right:12px;font-weight:900;font-size:44px;color:rgba(245,158,11,.1);line-height:1">03</div>
+      <div style="width:40px;height:40px;background:#FEF9C3;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px">💳</div>
+      <div style="font-weight:800;font-size:13px;margin-bottom:4px;color:#0F172A">Pay Viewing Fee</div>
+      <div style="color:#64748B;font-size:11px;line-height:1.5">UGX 5,000 via MoMo unlocks landlord contact and books your slot.</div>
+    </div>
+    <div style="background:#fff;border-radius:18px;padding:18px 16px;border:1.5px solid #E2E8F0;position:relative;overflow:hidden">
+      <div style="position:absolute;top:8px;right:12px;font-weight:900;font-size:44px;color:rgba(248,113,113,.1);line-height:1">04</div>
+      <div style="width:40px;height:40px;background:#FEE2E2;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px">🏠</div>
+      <div style="font-weight:800;font-size:13px;margin-bottom:4px;color:#0F172A">Move In Safely</div>
+      <div style="color:#64748B;font-size:11px;line-height:1.5">Get personalised move-in guide, service providers, and neighbourhood tips.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+<footer style="background:#0F172A;color:#fff;padding:38px 20px 22px">
+  <div style="max-width:1140px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:22px;margin-bottom:26px">
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+          <div style="width:28px;height:28px;background:linear-gradient(135deg,#22C55E,#38BDF8);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px">R</div>
+          <span style="font-weight:900;font-size:16px">Rent<span style="color:#22C55E">Right</span><span style="color:#38BDF8">!</span></span>
+        </div>
+        <p style="color:#94A3B8;font-size:11px;line-height:1.6;margin:0 0 10px">Uganda's complete housing platform. Rentals, services, moving, and land — all verified.</p>
+        <a href="https://wa.me/256700000000" target="_blank" style="display:inline-block;background:#25D366;color:#fff;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700">💬 WhatsApp</a>
+      </div>
+      <div>
+        <p style="font-weight:700;font-size:12px;color:#e2e8f0;margin:0 0 10px">Platform</p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 6px;cursor:pointer" onclick="scrollTo('listings-section')">Browse Listings</p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 6px;cursor:pointer" onclick="openMoving()">Moving Services</p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 6px;cursor:pointer" onclick="openServices()">Home Services</p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 6px;cursor:pointer" onclick="openLand()">Buy Land</p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 6px;cursor:pointer" onclick="openAuth('agent')">Agent Portal</p>
+      </div>
+      <div>
+        <p style="font-weight:700;font-size:12px;color:#e2e8f0;margin:0 0 10px">Popular Areas</p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 6px;cursor:pointer" onclick="searchArea('Makerere')">📍 Makerere</p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 6px;cursor:pointer" onclick="searchArea('Kisaasi')">📍 Kisaasi</p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 6px;cursor:pointer" onclick="searchArea('Ntinda')">📍 Ntinda</p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 6px;cursor:pointer" onclick="searchArea('Bukoto')">📍 Bukoto</p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 6px;cursor:pointer" onclick="searchArea('Wandegeya')">📍 Wandegeya</p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 6px;cursor:pointer" onclick="searchArea('Naguru')">📍 Naguru</p>
+      </div>
+      <div>
+        <p style="font-weight:700;font-size:12px;color:#e2e8f0;margin:0 0 10px">Contact</p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 6px">📱 +256 700 000 000</p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 6px">📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="69010c050506291b0c071d1b000e011d471c0e">[email&#160;protected]</a></p>
+        <p style="color:#94A3B8;font-size:11px;margin:0 0 12px">🏢 Kampala, Uganda</p>
+        <div style="background:rgba(248,113,113,.12);border-radius:10px;padding:10px 12px;font-size:10px;color:#fca5a5;line-height:1.6;border:1px solid rgba(248,113,113,.22)">
+          🛡️ Never pay rent before physically viewing. RentRight! is an intermediary only.
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #1e293b;padding-top:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <p style="color:#475569;font-size:10px;margin:0">© 2025 RentRight! Uganda. Intermediary platform only.</p>
+      <div style="display:flex;gap:12px">
+        <span style="color:#475569;font-size:10px;cursor:pointer">Privacy</span>
+        <span style="color:#475569;font-size:10px;cursor:pointer">Terms</span>
+        <span style="color:#475569;font-size:10px;cursor:pointer" onclick="openAuth('agent')">Agent Portal</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ BOTTOM BAR ════════════════════════════════════════════ -->
+<div class="bottom-bar">
+  <button class="bottom-btn btn-green" onclick="useGPS();scrollTo('listings-section')">📍 Near Me</button>
+  <button class="bottom-btn btn-orange" onclick="openMoving()">🚚 Moving</button>
+  <button class="bottom-btn" style="background:#7C3AED;color:#fff" onclick="openServices()">🧹 Services</button>
+  <button class="bottom-btn btn-navy" id="bottom-me-btn" onclick="bottomMeClick()">👤 Me</button>
+  <button class="bottom-btn btn-blue" onclick="toggleChat()">🤖</button>
+</div>
+
+<!-- ═══ FLOATING WA ══════════════════════════════════════════ -->
+<a href="https://wa.me/256700000000" target="_blank" class="wa-float">💬</a>
+
+<!-- ═══ AI CHAT ═══════════════════════════════════════════════ -->
+<div id="chat-panel" class="hidden" style="position:fixed;bottom:90px;right:18px;width:310px;background:#fff;border-radius:22px;box-shadow:0 20px 60px rgba(15,23,42,.22);border:1px solid #E2E8F0;z-index:197;display:flex;flex-direction:column;max-height:420px">
+  <div style="background:#0F172A;border-radius:22px 22px 0 0;padding:12px 16px;display:flex;justify-content:space-between;align-items:center">
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="width:26px;height:26px;background:#22C55E;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px">🤖</div>
+      <div><p style="color:#fff;font-weight:700;font-size:12px;margin:0">RentRight AI</p><p style="color:#94A3B8;font-size:9px;margin:0">Homes · Moving · Services · Land</p></div>
+    </div>
+    <button onclick="toggleChat()" style="background:rgba(255,255,255,.1);border:none;color:#fff;border-radius:50%;width:26px;height:26px;cursor:pointer;font-size:14px">×</button>
+  </div>
+  <div id="chat-messages" style="flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+    <div style="background:#F8FAFC;color:#0F172A;font-size:12px;line-height:1.5;padding:8px 12px;border-radius:14px;max-width:85%;white-space:pre-wrap">Hi! I'm your RentRight AI 🏠
+
+I can help you find:
+🏠 Verified rentals
+🧹 Cleaners & service providers
+🚚 Moving help
+🌍 Land listings
+
+Try: "350k near Kisaasi quiet room"</div>
+  </div>
+  <div style="padding:10px 12px;border-top:1px solid #E2E8F0;display:flex;gap:6px">
+    <input id="chat-input" placeholder="Ask anything…" onkeydown="if(event.key==='Enter')sendChat()" style="flex:1;padding:8px 12px;border-radius:12px;border:1px solid #E2E8F0;font-size:12px;outline:none;font-family:'DM Sans',sans-serif"/>
+    <button onclick="sendChat()" style="background:#38BDF8;color:#fff;border:none;border-radius:12px;padding:8px 12px;cursor:pointer;font-weight:700">↑</button>
+  </div>
+</div>
+
+<!-- ═══ MODALS CONTAINER ══════════════════════════════════════ -->
+<div id="modal-container"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ══════════════════ DATA ══════════════════════════════════ */
+const LISTINGS = [
+  {id:1,title:"Tranquil Studio, Bukoto",area:"Bukoto",price:420000,type:"Self-Contained",vibe:["quiet","secure"],verified:true,boosted:true,rating:4.9,match:94,confidence:98,moveIn:"ready",amenities:["WiFi","Water","Security","DSTV"],img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80",desc:"Calm, well-ventilated studio in Bukoto. Quiet area, supermarket 5 min, easy transport.",utilities:{electricity:"UMEME metered",water:"NWSC piped",internet:"Fibre"},neighbourhood:{transport:"Taxi 3 min",security:"Gated compound"},nearby:{taxi:"3 min",market:"5 min"},areaPrice:{min:380000,max:580000},viewingFee:5000,landlord:"Sarah B.",wa:"256700000005",living:{safety:9.2,clean:8.8,access:9.0,noise:"Very Low"},lat:0.3476,lng:32.6157},
+  {id:2,title:"Bright Double Room, Kisaasi",area:"Kisaasi",price:350000,type:"Double Room",vibe:["city","student"],verified:true,boosted:false,rating:4.7,match:88,confidence:91,moveIn:"ready",amenities:["WiFi","Water","Compound"],img:"https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=700&q=80",desc:"Bright double room steps from main road. Excellent transport, perfect for city workers.",utilities:{electricity:"Prepaid meter",water:"Piped + tank",internet:"MTN WiFi"},neighbourhood:{transport:"Taxi 1 min",security:"Landlord on compound"},nearby:{taxi:"1 min",market:"8 min"},areaPrice:{min:280000,max:430000},viewingFee:5000,landlord:"Grace N.",wa:"256700000002",living:{safety:8.0,clean:8.5,access:9.5,noise:"Low"},lat:0.3620,lng:32.6234},
+  {id:3,title:"Student Hostel, Wandegeya",area:"Wandegeya",price:175000,type:"Hostel",vibe:["student","budget"],verified:true,boosted:true,rating:4.3,match:91,confidence:84,moveIn:"ready",amenities:["WiFi","Security","Near Campus"],img:"https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=700&q=80",desc:"Affordable hostel 2 mins from Makerere. Vibrant community, reliable WiFi, shared kitchen.",utilities:{electricity:"Shared meter",water:"Piped – may ration",internet:"Shared WiFi"},neighbourhood:{transport:"Taxi 2 min",security:"Gate guard, CCTV"},nearby:{taxi:"2 min",market:"4 min"},areaPrice:{min:150000,max:220000},viewingFee:5000,landlord:"Hostel Admin",wa:"256700000003",living:{safety:7.5,clean:7.0,access:9.8,noise:"Moderate"},lat:0.3356,lng:32.5694},
+  {id:4,title:"Spacious Single Room, Ntinda",area:"Ntinda",price:280000,type:"Single Room",vibe:["quiet","family"],verified:false,boosted:false,rating:4.1,match:72,confidence:52,moveIn:"viewing",amenities:["Water","Compound","Parking"],img:"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=700&q=80",desc:"Spacious single room in family compound. Peaceful area — awaiting full verification.",utilities:{electricity:"Prepaid",water:"Borehole nearby",internet:"None"},neighbourhood:{transport:"Taxi 7 min",security:"Compound wall"},nearby:{taxi:"7 min",market:"12 min"},areaPrice:{min:240000,max:380000},viewingFee:5000,landlord:"Peter M.",wa:"256700000004",living:{safety:7.0,clean:7.5,access:8.0,noise:"Low"},lat:0.3540,lng:32.6312},
+  {id:5,title:"Modern Bedsitter, Makerere",area:"Makerere",price:240000,type:"Single Room",vibe:["student","budget"],verified:true,boosted:false,rating:4.5,match:89,confidence:93,moveIn:"ready",amenities:["WiFi","Water","Security"],img:"https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80",desc:"Neat modern bedsitter near Makerere campus. Quiet zone, reliable electricity.",utilities:{electricity:"UMEME prepaid",water:"Piped – reliable",internet:"Airtel 4G"},neighbourhood:{transport:"Taxi 4 min",security:"Caretaker on site"},nearby:{taxi:"4 min",market:"6 min"},areaPrice:{min:200000,max:300000},viewingFee:5000,landlord:"James K.",wa:"256700000001",living:{safety:8.0,clean:8.2,access:9.2,noise:"Low"},lat:0.3376,lng:32.5681},
+  {id:6,title:"Executive 2BR, Naguru",area:"Naguru",price:850000,type:"Self-Contained",vibe:["secure","quiet"],verified:true,boosted:true,rating:4.8,match:78,confidence:97,moveIn:"ready",amenities:["WiFi","Water","Security","Parking","DSTV","Generator"],img:"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=700&q=80",desc:"Executive 2-bedroom in Naguru hills. High-security estate, panoramic views.",utilities:{electricity:"Backup generator",water:"NWSC + tank",internet:"Fibre 20Mbps"},neighbourhood:{transport:"Taxi 10 min",security:"24hr guard, electric fence"},nearby:{taxi:"10 min",market:"8 min"},areaPrice:{min:700000,max:1200000},viewingFee:5000,landlord:"David R.",wa:"256700000006",living:{safety:9.5,clean:9.0,access:8.5,noise:"Very Low"},lat:0.3487,lng:32.6218},
+];
+
+const PROVIDERS = [
+  {id:"P1",name:"Aisha Nakato",type:"Cleaner",icon:"🧹",area:"Kisaasi",rating:4.9,reviews:47,price:"UGX 20,000/session",available:true,dist:"0.8 km",phone:"0712345678",desc:"Professional deep cleaner with 5 years experience. Move-in specialist."},
+  {id:"P2",name:"Brian Trucks",type:"Moving Truck",icon:"🚛",area:"Ntinda",rating:4.7,reviews:31,price:"UGX 80,000/job",available:true,dist:"1.2 km",phone:"0712345679",desc:"14-seater truck. I handle furniture, boxes, fragile items. Available weekends."},
+  {id:"P3",name:"Grace Laundry",type:"Laundry",icon:"👕",area:"Makerere",rating:4.8,reviews:62,price:"UGX 6,000/kg",available:true,dist:"2.1 km",phone:"0712345680",desc:"Wash, dry and iron service. I collect and deliver within 24 hours."},
+  {id:"P4",name:"Moses Movers",type:"Packing Helpers",icon:"👷",area:"Wandegeya",rating:4.6,reviews:28,price:"UGX 25,000/day",available:false,dist:"1.5 km",phone:"0712345681",desc:"Team of 3 helpers. Fast packers for 1-2 bedroom moves."},
+  {id:"P5",name:"Patrick Electric",type:"Electrician",icon:"⚡",area:"Bukoto",rating:4.9,reviews:85,price:"UGX 35,000/visit",available:true,dist:"3.2 km",phone:"0712345682",desc:"Certified electrician. Sockets, wiring, UMEME connections, generators."},
+  {id:"P6",name:"Lucy Clean House",type:"Cleaner",icon:"🧹",area:"Naguru",rating:4.7,reviews:39,price:"UGX 15,000/session",available:true,dist:"4.0 km",phone:"0712345683",desc:"Regular and deep cleaning. Move-out cleaning. Eco-friendly products."},
+];
+
+const MOVING_JOBS = [
+  {id:"M1",type:"Hire Movers",icon:"🚛",from:"Kisaasi",to:"Ntinda",date:"Aug 15",budget:80000,poster:"Aisha N.",items:"1 bedroom furniture + boxes",status:"open"},
+  {id:"M2",type:"Book Transport",icon:"🚐",from:"Makerere",to:"Mukono",date:"Aug 18",budget:120000,poster:"Brian M.",items:"Sofa, bed, boxes, fridge",status:"open"},
+  {id:"M3",type:"Packing Help",icon:"👷",from:"Wandegeya",to:"Bukoto",date:"Aug 20",budget:50000,poster:"Ruth K.",items:"Light items, 2 rooms",status:"open"},
+  {id:"M4",type:"Hire Movers",icon:"🚛",from:"Ntinda",to:"Entebbe",date:"Aug 22",budget:150000,poster:"Denis O.",items:"Full 2BR apartment move",status:"open"},
+];
+
+const LAND = [
+  {id:"L1",title:"1 Acre Plot, Mukono",area:"Mukono",price:45000000,size:"1 acre",type:"Residential",verified:true,title_deed:"Mailo Land",img:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700&q=80",accessFee:50000,features:["Title deed available","Road access","Flat terrain","Near Kampala highway"]},
+  {id:"L2",title:"50×100ft Plot, Wakiso",area:"Wakiso",price:18000000,size:"50×100ft",type:"Residential",verified:true,title_deed:"Freehold",img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80",accessFee:30000,features:["Freehold title","Flat terrain","Near trading centre","Borehole access"]},
+  {id:"L3",title:"2 Acres, Entebbe Road",area:"Entebbe",price:120000000,size:"2 acres",type:"Commercial",verified:false,title_deed:"Pending",img:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80",accessFee:100000,features:["Main road frontage","Near Lake Victoria","Mixed use potential","High commercial value"]},
+];
+
+/* ══════════════════ STATE ══════════════════════════════════ */
+let currentUser = null;
+let heroIdx = 0;
+let heroInterval;
+let filteredListings = [...LISTINGS].sort((a,b)=>(b.boosted?1:0)-(a.boosted?1:0)||b.match-a.match);
+let userLocation = null;
+
+/* ══════════════════ HERO ═══════════════════════════════════ */
+function setHero(i){
+  document.querySelectorAll('.hero-img').forEach((img,idx)=>{img.style.opacity=idx===i?'1':'0'});
+  document.querySelectorAll('.dot').forEach((d,idx)=>{d.classList.toggle('active',idx===i)});
+  heroIdx=i;
+}
+heroInterval=setInterval(()=>{setHero((heroIdx+1)%3)},4800);
+
+/* ══════════════════ LISTINGS ═══════════════════════════════ */
+function renderListings(list){
+  const grid=document.getElementById('listings-grid');
+  if(!list||list.length===0){
+    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:50px;background:#fff;border-radius:20px;border:1.5px solid #E2E8F0"><div style="font-size:44px;margin-bottom:10px">🔍</div><p style="font-weight:800;font-size:17px;color:#0F172A;margin:0 0 6px">No listings match</p><p style="color:#64748B;margin:0 0 16px">Try the AI or clear your filters</p><button class="btn btn-green" onclick="toggleChat()" style="padding:11px 22px">🤖 Ask AI</button></div>`;
+    return;
+  }
+  grid.innerHTML=list.map(l=>{
+    const score=((l.living.safety+l.living.clean+l.living.access)/3).toFixed(1);
+    const miColor=l.moveIn==='ready'?{bg:'#DCFCE7',color:'#15803D',icon:'🟢',label:'Move-in Ready'}:{bg:'#FEF9C3',color:'#854D0E',icon:'🟡',label:'Needs Viewing'};
+    const confColor=l.confidence>=85?'#22C55E':l.confidence>=65?'#38BDF8':l.confidence>=40?'#F59E0B':'#F87171';
+    return`<div class="listing-card${l.boosted?' boosted':''}" onclick="openListing(${l.id})">
+      <div class="card-img">
+        <img src="${l.img}" alt="${l.title}" loading="lazy"/>
+        <div class="card-img-overlay"></div>
+        <div class="card-tags-top">
+          ${l.boosted?'<span class="card-tag tag-gold">🚀 Boosted</span>':''}
+          <span class="card-tag ${l.verified?'tag-green':'tag-red'}">${l.verified?'✔ Verified':'⚠ Unverified'}</span>
+        </div>
+        ${!l.verified||l.confidence<65?'':''}
+        <div class="card-mi" style="background:${miColor.bg};color:${miColor.color}">${miColor.icon} ${miColor.label}</div>
+        <div class="card-price">UGX ${l.price.toLocaleString()}/mo</div>
+      </div>
+      <div class="card-body">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px">
+          <div style="flex:1">
+            <p class="card-title">${l.title}</p>
+            <p class="card-area">📍 ${l.area} · ${l.type}</p>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+            <svg width="48" height="48" viewBox="0 0 48 48">
+              <circle cx="24" cy="24" r="18" fill="none" stroke="#E2E8F0" stroke-width="4"/>
+              <circle cx="24" cy="24" r="18" fill="none" stroke="${score>=8.5?'#22C55E':score>=7?'#38BDF8':'#FDE68A'}" stroke-width="4"
+                stroke-dasharray="${2*Math.PI*18}" stroke-dashoffset="${2*Math.PI*18*(1-score/10)}"
+                stroke-linecap="round" transform="rotate(-90 24 24)"/>
+              <text x="24" y="28" text-anchor="middle" font-size="11" font-weight="700" fill="${score>=8.5?'#22C55E':score>=7?'#38BDF8':'#F59E0B'}">${score}</text>
+            </svg>
+            <span style="font-size:9px;color:${score>=8.5?'#22C55E':score>=7?'#38BDF8':'#F59E0B'};font-weight:700">${score>=8.5?'Excellent':score>=7?'Good':'Fair'}</span>
+          </div>
+        </div>
+        <div class="conf-bar">
+          <div class="conf-track"><div style="width:${l.confidence}%;height:100%;background:${confColor};border-radius:10px"></div></div>
+          <span style="font-size:9px;font-weight:700;color:${confColor};white-space:nowrap">${l.confidence}%</span>
+        </div>
+        <div class="card-chips">
+          <span class="chip chip-blue">⚡ ${l.match}%</span>
+          <span class="chip chip-green">⚡ Power ✓</span>
+          <span style="color:#F59E0B;font-size:12px">${'★'.repeat(Math.round(l.rating))}</span>
+          <span class="chip chip-yellow" style="margin-left:auto">UGX ${l.viewingFee.toLocaleString()} fee</span>
+        </div>
+        <div class="card-chips">
+          ${l.amenities.slice(0,3).map(a=>`<span class="chip chip-mist">${a}</span>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function doSearch(){
+  const q=document.getElementById('search-q').value.toLowerCase();
+  const min=parseInt(document.getElementById('search-min').value)||0;
+  const max=parseInt(document.getElementById('search-max').value)||Infinity;
+  const verifiedOnly=document.getElementById('verified-only').checked;
+  let res=LISTINGS.filter(l=>{
+    if(q&&q!=='near me'&&!l.area.toLowerCase().includes(q)&&!l.title.toLowerCase().includes(q)&&!l.type.toLowerCase().includes(q))return false;
+    if(l.price<min||l.price>max)return false;
+    if(verifiedOnly&&!l.verified)return false;
+    return true;
+  }).sort((a,b)=>(b.boosted?1:0)-(a.boosted?1:0)||b.match-a.match);
+  filteredListings=res;
+  document.getElementById('listings-title').textContent=res.length+' Listings Found';
+  document.getElementById('clear-btn').classList.toggle('hidden',!q&&!min&&max===Infinity&&!verifiedOnly);
+  renderListings(res);
+  document.getElementById('listings-section').scrollIntoView({behavior:'smooth'});
+}
+
+function sortListings(){
+  const s=document.getElementById('sort-select').value;
+  let res=[...filteredListings];
+  if(s==='match')res.sort((a,b)=>(b.boosted?1:0)-(a.boosted?1:0)||b.match-a.match);
+  else if(s==='confidence')res.sort((a,b)=>b.confidence-a.confidence);
+  else if(s==='price-asc')res.sort((a,b)=>a.price-b.price);
+  else if(s==='price-desc')res.sort((a,b)=>b.price-a.price);
+  renderListings(res);
+}
+
+function clearFilters(){
+  document.getElementById('search-q').value='';
+  document.getElementById('search-min').value='';
+  document.getElementById('search-max').value='';
+  document.getElementById('verified-only').checked=false;
+  filteredListings=[...LISTINGS].sort((a,b)=>(b.boosted?1:0)-(a.boosted?1:0)||b.match-a.match);
+  document.getElementById('listings-title').textContent='All Listings';
+  document.getElementById('clear-btn').classList.add('hidden');
+  renderListings(filteredListings);
+}
+
+function filterBudget(){
+  document.getElementById('search-max').value='300000';
+  doSearch();
+}
+
+function setMode(m){
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  if(m==='moving'){openMoving();return;}
+  if(m==='land'){openLand();return;}
+  if(m==='services'){openServices();return;}
+  if(m==='student'){document.getElementById('search-q').value='Hostel';doSearch();}
+  else{document.getElementById('search-q').value='';doSearch();}
+}
+
+function searchArea(a){
+  document.getElementById('search-q').value=a;
+  doSearch();
+}
+
+/* ══════════════════ GPS ════════════════════════════════════ */
+function useGPS(){
+  if(!navigator.geolocation){alert('GPS not available on this device.');return;}
+  navigator.geolocation.getCurrentPosition(pos=>{
+    userLocation={lat:pos.coords.latitude,lng:pos.coords.longitude};
+    document.getElementById('gps-status').innerHTML='<span class="gps-pulse"></span>GPS active — showing closest providers first';
+    renderProviders(true);
+    document.getElementById('search-q').value='Near Me';
+    doSearch();
+  },()=>{alert('Please allow location access in your browser.');});
+}
+
+function enableGPS(){useGPS();}
+
+function getDistance(lat1,lng1,lat2,lng2){
+  const R=6371;
+  const dLat=(lat2-lat1)*Math.PI/180;
+  const dLng=(lng2-lng1)*Math.PI/180;
+  const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+
+/* ══════════════════ PROVIDERS ══════════════════════════════ */
+function renderProviders(gpsActive){
+  const list=document.getElementById('providers-list');
+  const sorted=gpsActive&&userLocation?[...PROVIDERS].sort((a,b)=>parseFloat(a.dist)-parseFloat(b.dist)):PROVIDERS;
+  list.innerHTML=sorted.slice(0,4).map(p=>`
+    <div class="provider-card" onclick="openProviderDetail('${p.id}')">
+      <div class="provider-avatar" style="background:${p.available?'linear-gradient(135deg,#22C55E,#15803D)':'#94A3B8'}">${p.icon}</div>
+      <div class="provider-info">
+        <p class="provider-name">${p.name}</p>
+        <p class="provider-type">${p.type} · ${p.area}</p>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="stars">${'★'.repeat(Math.round(p.rating))}</span>
+          <span style="font-size:10px;color:#64748B">(${p.reviews})</span>
+          ${gpsActive?`<span class="provider-dist">${p.dist}</span>`:''}
+        </div>
+        <p style="font-size:11px;color:#0F172A;font-weight:700;margin:2px 0 0">${p.price}</p>
+      </div>
+      <div style="flex-shrink:0">
+        <span style="background:${p.available?'#DCFCE7':'#FEE2E2'};color:${p.available?'#15803D':'#991B1B'};font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px">${p.available?'✔ Available':'Busy'}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ══════════════════ LISTING DETAIL ════════════════════════ */
+function openListing(id){
+  const l=LISTINGS.find(x=>x.id===id);
+  if(!l)return;
+  const score=((l.living.safety+l.living.clean+l.living.access)/3).toFixed(1);
+  showModal(`
+    <div class="modal-header" style="background:#0F172A;flex-direction:column;align-items:flex-start;padding:0">
+      <img src="${l.img}" style="width:100%;height:220px;object-fit:cover;border-radius:24px 24px 0 0"/>
+      <button class="modal-close" onclick="closeModal()" style="position:absolute;top:12px;right:12px">×</button>
+      ${l.boosted?'<span style="position:absolute;top:12px;left:12px;background:linear-gradient(135deg,#F59E0B,#D97706);color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px">🚀 Boosted</span>':''}
+      <div style="position:absolute;bottom:12px;left:12px;display:flex;gap:5px">
+        <span style="background:${l.verified?'#DCFCE7':'#FEE2E2'};color:${l.verified?'#15803D':'#991B1B'};font-size:10px;font-weight:800;padding:3px 11px;border-radius:20px">${l.verified?'✔ Verified':'⚠ Unverified'}</span>
+      </div>
+    </div>
+    <div class="modal-body" style="position:relative">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px">
+        <div><h2 style="font-size:18px;font-weight:900;color:#0F172A;margin:0">${l.title}</h2><p style="color:#64748B;font-size:12px;margin:3px 0 0">📍 ${l.area} · ${l.type}</p></div>
+        <div style="text-align:right"><p style="font-weight:900;font-size:18px;color:#38BDF8;margin:0">UGX ${l.price.toLocaleString()}</p><p style="font-size:10px;color:#94A3B8;margin:0">per month</p></div>
+      </div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px">
+        ${l.verified?'<span style="background:#DCFCE7;color:#15803D;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px">🟢 Verified Owner</span>':''}
+        <span style="background:#E0F2FE;color:#0369A1;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px">📸 Real Photos</span>
+        ${l.living.noise?`<span style="background:#F8FAFC;color:#334155;font-size:10px;padding:3px 9px;border-radius:20px">🔇 ${l.living.noise} noise</span>`:''}
+      </div>
+      <div class="info-box info-blue" style="margin-bottom:12px">🤖 ${l.desc}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+        <div style="background:#F8FAFC;border-radius:12px;padding:10px 12px;border:1px solid #E2E8F0">
+          <p style="font-weight:800;font-size:11px;color:#0F172A;margin:0 0 6px">⚡ Utilities</p>
+          ${Object.entries(l.utilities).map(([k,v])=>`<p style="font-size:9px;color:#64748B;margin:0;text-transform:capitalize">${k}</p><p style="font-size:11px;font-weight:700;color:#0F172A;margin:0 0 3px">${v}</p>`).join('')}
+        </div>
+        <div style="background:#F8FAFC;border-radius:12px;padding:10px 12px;border:1px solid #E2E8F0">
+          <p style="font-weight:800;font-size:11px;color:#0F172A;margin:0 0 6px">🏘️ Neighbourhood</p>
+          <p style="font-size:9px;color:#64748B;margin:0">Transport</p><p style="font-size:11px;font-weight:700;color:#0F172A;margin:0 0 4px">${l.neighbourhood.transport}</p>
+          <p style="font-size:9px;color:#64748B;margin:0">Security</p><p style="font-size:11px;font-weight:700;color:#0F172A;margin:0">${l.neighbourhood.security}</p>
+        </div>
+      </div>
+      <div style="background:#F8FAFC;border-radius:14px;padding:12px 14px;margin-bottom:12px">
+        <p style="font-weight:800;font-size:12px;color:#0F172A;margin:0 0 10px">🌿 Living Score</p>
+        ${[['Safety',l.living.safety],['Cleanliness',l.living.clean],['Accessibility',l.living.access]].map(([k,v])=>`
+          <div style="margin-bottom:6px">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:#64748B;margin-bottom:2px"><span>${k}</span><span style="font-weight:700;color:${v>=8.5?'#22C55E':v>=7?'#38BDF8':'#F59E0B'}">${v}/10</span></div>
+            <div style="background:#E2E8F0;border-radius:10px;height:5px"><div style="width:${v*10}%;height:100%;background:${v>=8.5?'#22C55E':v>=7?'#38BDF8':'#FDE68A'};border-radius:10px"></div></div>
+          </div>
+        `).join('')}
+      </div>
+      <div style="background:#FEF9C3;border-radius:10px;padding:9px 12px;font-size:11px;color:#78350F;margin-bottom:12px">
+        🧾 Similar homes in ${l.area}: UGX ${l.areaPrice.min.toLocaleString()} – ${l.areaPrice.max.toLocaleString()}/mo
+      </div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px">
+        ${l.amenities.map(a=>`<span style="background:#DCFCE7;color:#15803D;font-size:11px;padding:3px 10px;border-radius:12px">${a}</span>`).join('')}
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px">
+        <button class="btn btn-green" style="padding:13px 0;font-size:13px" onclick="closeModal();openBooking(${l.id})">📅 Book Viewing</button>
+        <button class="btn btn-blue" style="padding:13px 0;font-size:13px" onclick="closeModal();openInterest(${l.id})">❤️ Interested</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <button class="btn btn-outline-blue" style="font-size:11px" onclick="copyRef(${l.id})">🔁 Share & Earn</button>
+        <button class="btn" style="background:#FEE2E2;color:#991B1B;font-size:11px" onclick="closeModal();showThanks()">🚨 Report</button>
+      </div>
+    </div>
+  `,'modal-lg');
+}
+
+/* ══════════════════ BOOKING ════════════════════════════════ */
+function openBooking(id){
+  const l=LISTINGS.find(x=>x.id===id)||LISTINGS[0];
+  if(!currentUser){openAuth('signup');return;}
+  let step=1,agreed=false,paid=false;
+  const txn='TXN-'+Math.random().toString(36).slice(2,10).toUpperCase();
+  function render(){
+    const steps=['Details','Agreement','Payment','Confirmed'];
+    showModal(`
+      <div class="modal-header" style="background:#0F172A">
+        <div><p style="color:#fff;font-weight:800;font-size:14px;margin:0">Book a Viewing</p><p style="color:#94A3B8;font-size:11px;margin:0">${l.title}</p></div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="step-bar">${steps.map((s,i)=>`<div class="step ${step===i+1?'active':step>i+1?'done':''}">${step>i+1?'✓ ':''}${s}</div>`).join('')}</div>
+      <div class="modal-body">
+        ${step===1?`
+          <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 14px">Your Details</p>
+          <div class="field"><label>Full name *</label><input id="bk-name" class="filled" value="${currentUser.name}" placeholder="Full name"/></div>
+          <div class="field"><label>Phone number *</label><input id="bk-phone" placeholder="e.g. 0771 234 567" type="tel"/></div>
+          <div class="field"><label>Preferred viewing date *</label><input id="bk-date" type="date"/></div>
+          <div class="info-box info-yellow">💡 <strong>Viewing fee: UGX ${l.viewingFee.toLocaleString()}</strong> via MTN/Airtel MoMo. Unlocks landlord contact.</div>
+          <button class="btn btn-navy btn-full" onclick="step=2;render()">Next → Agreement</button>
+        `:step===2?`
+          <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 12px">Booking Agreement</p>
+          <div class="info-box" style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:14px;font-size:11px;line-height:1.8;color:#334155;max-height:170px;overflow-y:auto;margin-bottom:12px">
+            The viewing fee is non-refundable once paid. RentRight! is a listing and matching platform — not responsible for property conditions. You must inspect before paying rent. Landlord contact revealed only after payment.
+          </div>
+          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:14px">
+            <input type="checkbox" id="bk-agree" onchange="agreed=this.checked;render()" style="margin-top:3px;accent-color:#22C55E;width:16px;height:16px;flex-shrink:0"/>
+            <span style="font-size:11px;color:#334155;line-height:1.5">I accept the RentRight! Booking Terms.</span>
+          </label>
+          <div style="display:flex;gap:10px">
+            <button class="btn btn-muted" style="flex:1" onclick="step=1;render()">← Back</button>
+            <button class="btn btn-full" style="flex:2;background:${agreed?'#22C55E':'#e2e8f0'};color:${agreed?'#fff':'#64748B'}" onclick="if(agreed){step=3;render()}" >Agree → Pay</button>
+          </div>
+        `:step===3?`
+          ${!paid?`
+            <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 4px">Pay via Mobile Money</p>
+            <p style="font-size:12px;color:#64748B;margin:0 0 14px">Amount: <strong style="color:#0F172A">UGX ${l.viewingFee.toLocaleString()}</strong></p>
+            <div style="background:linear-gradient(135deg,#FFD700,#F59E0B);border-radius:14px;padding:12px 16px;margin-bottom:8px;display:flex;align-items:center;gap:10px">
+              <span style="font-size:22px">📱</span><div><p style="font-weight:800;font-size:13px;color:#1a0a00;margin:0">MTN Mobile Money</p><p style="font-size:10px;color:#3d2200;margin:0">Instant secure payment</p></div>
+            </div>
+            <div style="background:linear-gradient(135deg,#e8f4fd,#dbeafe);border-radius:12px;padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:10px">
+              <span style="font-size:20px">📲</span><p style="font-weight:700;font-size:13px;color:#0369A1;margin:0">Airtel Money also accepted</p>
+            </div>
+            <div class="field"><label>MoMo number</label><input id="bk-momo" placeholder="e.g. 0771 234 567" type="tel"/></div>
+            <div class="info-box info-red" style="margin-bottom:12px">🔒 Landlord contact revealed only after payment confirmation.</div>
+            <button class="btn btn-full" style="background:#F59E0B;color:#1a0a00;font-size:15px;padding:13px" id="pay-btn" onclick="processPay('${txn}')">💳 Pay UGX ${l.viewingFee.toLocaleString()}</button>
+            <button class="btn btn-muted btn-full" style="margin-top:8px" onclick="step=2;render()">← Back</button>
+          `:`
+            <div style="text-align:center;padding:10px 0">
+              <div style="font-size:52px;margin-bottom:8px">✅</div>
+              <p style="font-weight:900;font-size:18px;color:#15803D;margin:0 0 6px">Payment Confirmed!</p>
+              <p style="font-size:12px;color:#64748B;margin:0 0 14px">Transaction: <strong>${txn}</strong></p>
+              <button class="btn btn-green" style="padding:11px 28px" onclick="step=4;render()">View Confirmation →</button>
+            </div>
+          `}
+        `:`
+          <div style="text-align:center">
+            <div style="font-size:42px;margin-bottom:8px">🏠</div>
+            <p style="font-weight:900;font-size:17px;color:#0F172A;margin:0 0 12px">Viewing Confirmed!</p>
+            <div class="info-box info-green" style="text-align:left">
+              <p style="font-weight:700;color:#15803D;margin:0 0 6px">✅ Booking Details</p>
+              <p style="margin:0;color:#334155;line-height:1.8;font-size:12px">
+                <strong>Property:</strong> ${l.title}<br/>
+                <strong>Fee paid:</strong> UGX ${l.viewingFee.toLocaleString()} · ${txn}<br/>
+                <strong>🔓 Landlord:</strong> ${l.landlord} · 0712 345 678
+              </p>
+            </div>
+            <a href="https://wa.me/${l.wa}?text=Hi ${l.landlord}! I booked a viewing via RentRight!. Txn: ${txn}" target="_blank" style="display:block;background:#25D366;color:#fff;border-radius:14px;padding:12px 0;font-weight:800;font-size:14px;text-align:center;margin-bottom:8px">💬 Message Landlord on WhatsApp</a>
+            <button class="btn btn-navy btn-full" onclick="closeModal()">Done ✓</button>
+          </div>
+        `}
+      </div>
+    `);
+    if(step===2){const cb=document.getElementById('bk-agree');if(cb)cb.checked=agreed;}
+  }
+  render();
+  window.processPay=function(t){
+    const m=document.getElementById('bk-momo');
+    if(!m||m.value.length<10){alert('Please enter a valid MoMo number');return;}
+    const btn=document.getElementById('pay-btn');
+    if(btn){btn.textContent='Processing…';btn.disabled=true;}
+    setTimeout(()=>{paid=true;render();},2200);
+  };
+}
+
+/* ══════════════════ INTEREST MODAL ═════════════════════════ */
+function openInterest(id){
+  const l=LISTINGS.find(x=>x.id===id)||LISTINGS[0];
+  if(!currentUser){openAuth('signup');return;}
+  showModal(`
+    <div class="modal-header" style="background:#0F172A">
+      <p style="color:#fff;font-weight:800;font-size:14px;margin:0">${l.title}</p>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-weight:800;font-size:15px;color:#0F172A;margin:0 0 6px">What would you like to do?</p>
+      <p style="font-size:12px;color:#64748B;margin:0 0 18px">UGX ${l.price.toLocaleString()}/mo · ${l.area}</p>
+      <button class="btn btn-full" style="background:linear-gradient(135deg,#22C55E,#38BDF8);color:#fff;padding:13px;font-size:14px;margin-bottom:10px" onclick="closeModal();openBooking(${l.id})">📅 Book a Viewing (UGX ${l.viewingFee.toLocaleString()})</button>
+      <button class="btn btn-full btn-muted" style="margin-bottom:8px" onclick="showInterestedFlow(${l.id})">❤️ I'm Interested — Save this Property</button>
+      <button class="btn btn-full btn-outline-blue" onclick="closeModal();openBooking(${l.id})">💬 Contact Landlord</button>
+    </div>
+  `);
+}
+
+function showInterestedFlow(id){
+  const l=LISTINGS.find(x=>x.id===id)||LISTINGS[0];
+  showModal(`
+    <div class="modal-header" style="background:#0F172A">
+      <p style="color:#fff;font-weight:800;font-size:14px;margin:0">❤️ Saved!</p>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="info-box info-green">✅ <strong>${l.title}</strong> saved to your properties. You'll be notified of price changes.</div>
+      <p style="font-weight:700;font-size:13px;color:#0F172A;margin:0 0 12px">Have you already rented this property?</p>
+      <button class="btn btn-full" style="background:#DCFCE7;color:#15803D;padding:11px;text-align:left;margin-bottom:8px;border-radius:12px" onclick="showRentedFlow(${l.id})">🎉 Yes – I rented it!</button>
+      <button class="btn btn-full btn-muted" style="text-align:left;margin-bottom:8px" onclick="showThanks()">🤔 Yes – still deciding</button>
+      <button class="btn btn-full btn-muted" style="text-align:left" onclick="closeModal()">📅 No – planning to view</button>
+    </div>
+  `);
+}
+
+function showRentedFlow(id){
+  const l=LISTINGS.find(x=>x.id===id)||LISTINGS[0];
+  showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#15803D,#22C55E)">
+      <div><p style="color:#fff;font-weight:900;font-size:16px;margin:0">🏠 Congratulations!</p><p style="color:rgba(255,255,255,.8);font-size:11px;margin:0">You rented: ${l.title}</p></div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="text-align:center;margin-bottom:16px">
+        <div style="font-size:48px;margin-bottom:8px">🎊</div>
+        <p style="font-weight:900;font-size:17px;color:#0F172A;margin:0 0 4px">Your new home awaits!</p>
+        <p style="font-size:12px;color:#64748B;margin:0">Thank you for your feedback — it genuinely helps us make RentRight! better for everyone in Uganda!</p>
+      </div>
+      <p style="font-weight:800;font-size:13px;color:#0F172A;margin:0 0 10px">🚀 We can help with your move:</p>
+      <button class="btn btn-full" style="background:linear-gradient(135deg,#22C55E,#38BDF8);color:#fff;padding:13px;font-size:14px;margin-bottom:10px" onclick="closeModal();showMoveInGuide('${l.area}')">🏠 Get Move-In Guide & Checklist</button>
+      <button class="btn btn-full btn-orange" style="margin-bottom:8px" onclick="closeModal();openMoving()">🚚 Hire Movers / Book Truck</button>
+      <button class="btn btn-full" style="background:#7C3AED;color:#fff" onclick="closeModal();openServices()">🧹 Find Cleaners & Home Services</button>
+    </div>
+  `);
+}
+
+function showMoveInGuide(area){
+  const checklist=[
+    {cat:'🔐 Security',items:['Change or verify door locks','Meet your neighbours','Get landlord emergency contact','Note nearest police post']},
+    {cat:'💡 Utilities',items:['Register UMEME meter in your name','Activate NWSC water account','Test all sockets','Check water storage']},
+    {cat:'🧹 First Week',items:['Deep clean before moving furniture','Check for pests or damp','Photograph existing damage','Test WiFi and TV']},
+    {cat:'📋 Documents',items:['Sign tenancy agreement (keep a copy)','Keep all rent payment receipts','Note rent due date','Get landlord WhatsApp']},
+    {cat:'🛒 Buy First',items:['Cooking gas or electric cooker','Water jerrycans (backup)','Padlock for gate/door','Extension socket']},
+    {cat:'🚌 Know Your Area',items:['Nearest taxi stage and routes','Nearest hospital / clinic','Nearest supermarket','Mobile money agent nearby']},
+  ];
+  showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#15803D,#38BDF8)">
+      <div><p style="color:#fff;font-weight:900;font-size:15px;margin:0">📋 Move-In Guide</p><p style="color:rgba(255,255,255,.8);font-size:11px;margin:0">Personalised for ${area}</p></div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      ${checklist.map(cat=>`
+        <div style="background:#F8FAFC;border-radius:14px;padding:12px 14px;margin-bottom:10px;border:1px solid #E2E8F0">
+          <p style="font-weight:800;font-size:12px;color:#0F172A;margin:0 0 8px">${cat.cat}</p>
+          ${cat.items.map(item=>`
+            <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;margin-bottom:6px">
+              <input type="checkbox" style="margin-top:2px;accent-color:#22C55E;flex-shrink:0"/>
+              <span style="font-size:12px;color:#334155;line-height:1.4">${item}</span>
+            </label>
+          `).join('')}
+        </div>
+      `).join('')}
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px">
+        <button class="btn btn-orange" onclick="closeModal();openMoving()">🚚 Hire Movers</button>
+        <button class="btn" style="background:#7C3AED;color:#fff" onclick="closeModal();openServices()">🧹 Home Services</button>
+      </div>
+    </div>
+  `,'modal-lg');
+}
+
+function showThanks(){
+  closeModal();
+  setTimeout(()=>showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#15803D,#22C55E)">
+      <p style="color:#fff;font-weight:900;font-size:15px;margin:0">🙏 Thank You!</p>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" style="text-align:center;padding:28px">
+      <div style="font-size:48px;margin-bottom:12px">💚</div>
+      <p style="font-weight:900;font-size:18px;color:#0F172A;margin:0 0 8px">We appreciate your feedback!</p>
+      <p style="font-size:13px;color:#64748B;line-height:1.6;margin:0 0 20px">Your input genuinely helps us improve RentRight! and make the platform better for everyone searching for a home in Uganda.</p>
+      <button class="btn btn-green" style="padding:11px 28px" onclick="closeModal()">Close</button>
+    </div>
+  `),200);
+}
+
+/* ══════════════════ MOVING MARKETPLACE ════════════════════ */
+function openMoving(){
+  let activeTab='board';
+  function render(){
+    showModal(`
+      <div class="modal-header" style="background:linear-gradient(135deg,#EA580C,#F59E0B)">
+        <div><p style="color:#fff;font-weight:900;font-size:15px;margin:0">🚚 Moving Services</p><p style="color:rgba(255,255,255,.8);font-size:11px;margin:0">Find movers or post a job — anywhere in Uganda</p></div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="tab-bar">
+        <button class="tab ${activeTab==='board'?'active':''}" onclick="activeTab='board';render()">📋 Job Board</button>
+        <button class="tab ${activeTab==='post'?'active':''}" onclick="activeTab='post';render()">➕ Post a Job</button>
+        <button class="tab ${activeTab==='signup'?'active':''}" onclick="activeTab='signup';render()">🚛 Offer Services</button>
+      </div>
+      <div class="modal-body">
+        ${activeTab==='board'?renderJobBoard():activeTab==='post'?renderPostJob():renderProviderSignup()}
+      </div>
+    `,'modal-lg');
+  }
+  render();
+}
+
+function renderJobBoard(){
+  const JOBS_EX=[
+    {id:'M1',icon:'🚛',type:'Hire Movers',from:'Kisaasi',to:'Ntinda',date:'Aug 15',budget:80000,poster:'Aisha N.',items:'1BR furniture + boxes',truck:'Small lorry (1–2 ton)',body:'Open body',guardrails:false,ropes:true,photos:2,dims:'Wardrobe: 120×60×180cm · Sofa: 200×90×85cm'},
+    {id:'M2',icon:'🚐',type:'Book Transport',from:'Makerere',to:'Mukono',date:'Aug 18',budget:120000,poster:'Brian M.',items:'Sofa, bed, boxes, fridge',truck:'Medium lorry (3–5 ton)',body:'Box body (enclosed)',guardrails:true,ropes:true,photos:4,dims:'Fridge: 65×65×175cm · Bed: 195×160×50cm'},
+    {id:'M3',icon:'👷',type:'Packing Help',from:'Wandegeya',to:'Bukoto',date:'Aug 20',budget:50000,poster:'Ruth K.',items:'Light items, 2 rooms',truck:'Any size',body:'Any type',guardrails:false,ropes:false,photos:1,dims:'Boxes and light furniture only'},
+    {id:'M4',icon:'🚛',type:'Hire Movers',from:'Ntinda',to:'Entebbe',date:'Aug 22',budget:150000,poster:'Denis O.',items:'Full 2BR apartment',truck:'Large lorry (7+ ton)',body:'Open body',guardrails:true,ropes:true,photos:6,dims:'Full 2BR — multiple large items incl. piano'},
+  ];
+  return`
+    <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 4px">Open Moving Jobs Near You</p>
+    <p style="font-size:12px;color:#64748B;margin:0 0 14px">Accept a job → Pay 8% commission → Client name, phone and address revealed instantly</p>
+    ${JOBS_EX.map(j=>`
+      <div style="background:#F8FAFC;border-radius:16px;padding:14px 16px;margin-bottom:14px;border:1.5px solid #E2E8F0">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;gap:4px">
+          <div><p style="font-weight:800;font-size:14px;color:#0F172A;margin:0">${j.icon} ${j.type}</p><p style="font-size:11px;color:#64748B;margin:2px 0 0">📍 ${j.from} → ${j.to} · 📅 ${j.date}</p></div>
+          <div style="text-align:right"><p style="font-weight:900;font-size:15px;color:#EA580C;margin:0">UGX ${j.budget.toLocaleString()}</p><p style="font-size:9px;color:#64748B;margin:0">Your commission: UGX ${Math.round(j.budget*.08).toLocaleString()}</p></div>
+        </div>
+        <div style="background:#fff;border-radius:10px;padding:9px 12px;margin-bottom:8px;border:1px solid #E2E8F0">
+          <p style="font-weight:700;font-size:11px;color:#0F172A;margin:0 0 4px">📦 Items &amp; Dimensions</p>
+          <p style="font-size:11px;color:#334155;margin:0 0 3px">${j.items}</p>
+          <p style="font-size:10px;color:#64748B;margin:0 0 5px">${j.dims}</p>
+          <div style="display:flex;gap:5px;flex-wrap:wrap">
+            <span style="background:#FEF9C3;color:#78350F;font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px">📸 ${j.photos} photo(s)</span>
+            ${j.guardrails?'<span style="background:#DCFCE7;color:#15803D;font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px">🚛 Guard rails needed</span>':''}
+            ${j.ropes?'<span style="background:#E0F2FE;color:#0369A1;font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px">🪢 Ropes/straps</span>':''}
+          </div>
+        </div>
+        <div style="background:#FFF7ED;border-radius:10px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#EA580C;font-weight:600">
+          🚛 Vehicle needed: ${j.truck} · ${j.body}
+        </div>
+        <div style="background:linear-gradient(135deg,#1E293B,#0F172A);border-radius:10px;padding:8px 12px;margin-bottom:10px;display:flex;gap:8px;align-items:center">
+          <span style="font-size:18px">🔒</span>
+          <span style="font-size:11px;color:rgba(255,255,255,.8)">Client details revealed after paying UGX ${Math.round(j.budget*.08).toLocaleString()} commission via MoMo</span>
+        </div>
+        <button class="btn btn-full btn-orange" onclick="acceptJob('${j.id}',${j.budget})">✋ Accept — Pay UGX ${Math.round(j.budget*.08).toLocaleString()} to Unlock Client</button>
+      </div>
+    `).join('')}
+  `;
+}
+
+function renderPostJob(){
+  return`
+    <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 4px">Post a Moving Job</p>
+    <p style="font-size:12px;color:#64748B;margin:0 0 14px">Anyone can post — even without a RentRight! rental. The more detail you add, the better your offers.</p>
+
+    <div class="field"><label>Service needed *</label>
+      <select id="mv-type">
+        <option>Hire Movers with truck</option>
+        <option>Transport vehicle only (self-load)</option>
+        <option>Packing helpers only (no truck)</option>
+        <option>Full service — movers + truck + helpers</option>
+      </select>
+    </div>
+    <div class="grid-2">
+      <div class="field"><label>Moving from *</label><input id="mv-from" placeholder="e.g. Kisaasi, Kampala"/></div>
+      <div class="field"><label>Moving to *</label><input id="mv-to" placeholder="e.g. Ntinda, Kampala"/></div>
+    </div>
+    <div class="grid-2">
+      <div class="field"><label>Moving date *</label><input id="mv-date" type="date"/></div>
+      <div class="field"><label>Budget (UGX) *</label><input id="mv-budget" type="number" placeholder="e.g. 80000"/></div>
+    </div>
+
+    <div style="background:#FFF7ED;border-radius:14px;padding:14px;margin-bottom:12px;border:1.5px solid #FED7AA">
+      <p style="font-weight:800;font-size:13px;color:#EA580C;margin:0 0 10px">📦 Items to Move — Add Each Item</p>
+      <div id="items-list" style="margin-bottom:10px"></div>
+      <div style="background:#fff;border-radius:12px;padding:12px;border:1px solid #E2E8F0">
+        <div class="grid-2" style="margin-bottom:8px">
+          <div class="field" style="margin-bottom:0"><label>Item name</label><input id="new-item-name" placeholder="e.g. Wardrobe, Sofa, Fridge"/></div>
+          <div class="field" style="margin-bottom:0"><label>Quantity</label><input id="new-item-qty" type="number" placeholder="e.g. 1" min="1"/></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+          <div class="field" style="margin-bottom:0"><label>Length (cm)</label><input id="new-item-l" type="number" placeholder="L"/></div>
+          <div class="field" style="margin-bottom:0"><label>Width (cm)</label><input id="new-item-w" type="number" placeholder="W"/></div>
+          <div class="field" style="margin-bottom:0"><label>Height (cm)</label><input id="new-item-h" type="number" placeholder="H"/></div>
+        </div>
+        <div class="field" style="margin-bottom:8px"><label>Fragile / special handling?</label>
+          <select id="new-item-special"><option value="">No special handling</option><option value="fragile">⚠️ Fragile</option><option value="heavy">💪 Very heavy (100kg+)</option><option value="disassemble">🔧 Needs disassembly</option><option value="electrical">⚡ Electrical appliance</option></select>
+        </div>
+        <button onclick="addMovingItem()" class="btn btn-orange" style="width:100%;font-size:13px;padding:9px">+ Add Item</button>
+      </div>
+    </div>
+
+    <div style="background:#F0FDF4;border-radius:14px;padding:14px;margin-bottom:12px;border:1.5px solid #BBF7D0">
+      <p style="font-weight:800;font-size:13px;color:#15803D;margin:0 0 10px">📸 Upload Photos of Items</p>
+      <p style="font-size:11px;color:#64748B;margin:0 0 8px">Photos help providers give accurate quotes. Add multiple images.</p>
+      <label class="upload-zone" onclick="document.getElementById('mv-photos').click()" style="display:block">
+        <div style="font-size:28px;margin-bottom:6px">📷</div>
+        <p style="font-size:12px;color:#64748B;margin:0" id="mv-photo-label">Click to upload photos of items (JPG/PNG · up to 10 photos)</p>
+        <input id="mv-photos" type="file" accept="image/*" multiple style="display:none" onchange="handleMvPhotos(this)"/>
+      </label>
+      <div id="mv-photo-previews" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"></div>
+    </div>
+
+    <div style="background:#EFF6FF;border-radius:14px;padding:14px;margin-bottom:12px;border:1.5px solid #BFDBFE">
+      <p style="font-weight:800;font-size:13px;color:#1D4ED8;margin:0 0 10px">🚛 Vehicle Requirements (optional)</p>
+      <p style="font-size:11px;color:#64748B;margin:0 0 10px">Specify your needs to get matched with the right provider.</p>
+      <div class="grid-2">
+        <div class="field"><label>Minimum truck size</label>
+          <select id="mv-truck-size">
+            <option value="">Any size</option>
+            <option value="pickup">Pickup truck</option>
+            <option value="small">Small lorry (1–2 ton)</option>
+            <option value="medium">Medium lorry (3–5 ton)</option>
+            <option value="large">Large lorry (7+ ton)</option>
+            <option value="coaster">Coaster / minibus</option>
+          </select>
+        </div>
+        <div class="field"><label>Body type preference</label>
+          <select id="mv-body-type">
+            <option value="">Any body type</option>
+            <option value="open">Open body (flatbed)</option>
+            <option value="box">Box body (enclosed)</option>
+            <option value="curtain">Curtain-sided</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border-radius:10px;padding:9px 12px;border:1px solid #E2E8F0">
+          <input type="checkbox" id="mv-guard-rails" style="accent-color:#1D4ED8;width:15px;height:15px"/>
+          <span style="font-size:12px;font-weight:600;color:#0F172A">Guard rails / fabrication above body needed (extra height)</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border-radius:10px;padding:9px 12px;border:1px solid #E2E8F0">
+          <input type="checkbox" id="mv-ropes" style="accent-color:#1D4ED8;width:15px;height:15px"/>
+          <span style="font-size:12px;font-weight:600;color:#0F172A">Ropes / straps for securing load required</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border-radius:10px;padding:9px 12px;border:1px solid #E2E8F0">
+          <input type="checkbox" id="mv-blankets" style="accent-color:#1D4ED8;width:15px;height:15px"/>
+          <span style="font-size:12px;font-weight:600;color:#0F172A">Moving blankets / padding for fragile items</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border-radius:10px;padding:9px 12px;border:1px solid #E2E8F0">
+          <input type="checkbox" id="mv-tarpaulin" style="accent-color:#1D4ED8;width:15px;height:15px"/>
+          <span style="font-size:12px;font-weight:600;color:#0F172A">Tarpaulin cover required (rain protection)</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="field"><label>Your name *</label><input id="mv-name" placeholder="Full name"/></div>
+      <div class="field"><label>Phone *</label><input id="mv-phone" type="tel" placeholder="0771 234 567"/></div>
+    </div>
+    <div class="field"><label>Additional notes</label><textarea id="mv-notes" rows="2" style="resize:none" placeholder="Any special instructions, access issues, stairs, narrow roads etc."></textarea></div>
+    <div class="info-box info-blue">🔒 Your name and phone are hidden until a provider pays the 8% commission. Providers only see your items, photos, specs and route.</div>
+    <button class="btn btn-full btn-orange" style="margin-top:8px;font-size:15px;padding:13px" onclick="submitMovingJob()">🚚 Post Moving Job</button>
+  `;
+}
+
+function renderProviderSignup(){
+  return`
+    <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 4px">Register as a Moving Provider</p>
+    <p style="font-size:12px;color:#64748B;margin:0 0 10px">Submit your details and documents. Admin reviews within <strong>48 hours</strong>. Once approved, you can accept jobs and optionally get Priority Listed or Physically Verified.</p>
+    <div class="info-box info-yellow" style="margin-bottom:14px">⏳ <strong>Approval process:</strong> Submit → Admin verifies NIN + LC letter + agreement (48hrs) → You're approved → Start accepting jobs → Optional: Pay for Priority Badge or Physical Verification Badge</div>
+
+    <div class="field"><label>Full name *</label><input id="pv-name" placeholder="Your full legal name"/></div>
+    <div class="grid-2">
+      <div class="field"><label>Phone *</label><input id="pv-phone" type="tel" placeholder="0771 234 567"/></div>
+      <div class="field"><label>Email</label><input id="pv-email" type="email" placeholder="your@email.com"/></div>
+    </div>
+    <div class="field"><label>National ID (NIN) *</label><input id="pv-nin" placeholder="NIN number — mandatory"/></div>
+    <div class="field"><label>Area(s) you operate in *</label><input id="pv-area" placeholder="e.g. Kampala, Kisaasi, Ntinda, Mukono"/></div>
+    <div class="field"><label>Years of experience</label><input id="pv-exp" placeholder="e.g. 3 years moving furniture"/></div>
+
+    <div style="background:#FFF7ED;border-radius:14px;padding:14px;margin-bottom:12px;border:1.5px solid #FED7AA">
+      <p style="font-weight:800;font-size:13px;color:#EA580C;margin:0 0 10px">🚛 Vehicle Details</p>
+      <div class="grid-2">
+        <div class="field"><label>Vehicle type *</label>
+          <select id="pv-vtype">
+            <option value="">Select vehicle type</option>
+            <option value="pickup">Pickup truck</option>
+            <option value="small_lorry">Small lorry (1–2 ton)</option>
+            <option value="medium_lorry">Medium lorry (3–5 ton)</option>
+            <option value="large_lorry">Large lorry (7+ ton)</option>
+            <option value="coaster">Coaster / minibus</option>
+            <option value="none">No vehicle (manual helpers only)</option>
+          </select>
+        </div>
+        <div class="field"><label>Body type</label>
+          <select id="pv-body">
+            <option value="open">Open / flatbed body</option>
+            <option value="box">Box body (enclosed)</option>
+            <option value="curtain">Curtain-sided</option>
+            <option value="tipper">Tipper / tipping body</option>
+            <option value="na">Not applicable</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label>Vehicle registration plate</label><input id="pv-plate" placeholder="e.g. UAA 123B"/></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border-radius:10px;padding:9px 12px;border:1px solid #E2E8F0">
+          <input type="checkbox" id="pv-guardrails" style="accent-color:#EA580C;width:15px;height:15px"/>
+          <span style="font-size:12px;font-weight:600;color:#0F172A">Has guard rails / fabrication above body (extra height capacity)</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border-radius:10px;padding:9px 12px;border:1px solid #E2E8F0">
+          <input type="checkbox" id="pv-ropes" style="accent-color:#EA580C;width:15px;height:15px"/>
+          <span style="font-size:12px;font-weight:600;color:#0F172A">Carries ropes and load-securing straps</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border-radius:10px;padding:9px 12px;border:1px solid #E2E8F0">
+          <input type="checkbox" id="pv-blankets" style="accent-color:#EA580C;width:15px;height:15px"/>
+          <span style="font-size:12px;font-weight:600;color:#0F172A">Has moving blankets / padding</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border-radius:10px;padding:9px 12px;border:1px solid #E2E8F0">
+          <input type="checkbox" id="pv-tarpaulin" style="accent-color:#EA580C;width:15px;height:15px"/>
+          <span style="font-size:12px;font-weight:600;color:#0F172A">Has tarpaulin / rain cover</span>
+        </label>
+      </div>
+      <div class="field" style="margin-bottom:0"><label>Approximate load capacity (kg)</label><input id="pv-capacity" type="number" placeholder="e.g. 2000 kg"/></div>
+    </div>
+
+    <div style="background:#F0F9FF;border-radius:14px;padding:14px;margin-bottom:12px;border:1.5px solid #BAE6FD">
+      <p style="font-weight:800;font-size:13px;color:#0369A1;margin:0 0 10px">📎 Required Documents (Admin Reviews These)</p>
+      <div class="field">
+        <label>National ID (NIN) — front & back *</label>
+        <label class="upload-zone" id="pv-nin-zone" onclick="document.getElementById('pv-nin-file').click()" style="display:block">
+          <div style="font-size:24px;margin-bottom:4px">🪪</div>
+          <p style="font-size:12px;color:#64748B;margin:0">Click to upload your National ID (JPG/PDF)</p>
+          <input id="pv-nin-file" type="file" accept="image/*,.pdf" style="display:none" onchange="markUploaded('pv-nin-zone','pv-nin-label','✅ NIN uploaded');document.getElementById('pv-nin-label').textContent='✅ NIN uploaded'"/>
+        </label>
+      </div>
+      <div class="field">
+        <label>LC Introductory Letter *</label>
+        <label class="upload-zone" id="pv-lc-zone" onclick="document.getElementById('pv-lc-file').click()" style="display:block">
+          <div style="font-size:24px;margin-bottom:4px">📜</div>
+          <p style="font-size:12px;color:#64748B;margin:0" id="pv-lc-label">Click to upload LC letter signed by your Local Council (LC1)</p>
+          <input id="pv-lc-file" type="file" accept="image/*,.pdf" style="display:none" onchange="markUploaded('pv-lc-zone','pv-lc-label','✅ LC letter uploaded')"/>
+        </label>
+      </div>
+      <div class="field">
+        <label>Vehicle photo (optional but recommended)</label>
+        <label class="upload-zone" onclick="document.getElementById('pv-veh-file').click()" style="display:block">
+          <div style="font-size:24px;margin-bottom:4px">🚛</div>
+          <p style="font-size:12px;color:#64748B;margin:0" id="pv-veh-label">Upload a photo of your vehicle</p>
+          <input id="pv-veh-file" type="file" accept="image/*" style="display:none" onchange="markUploaded(null,'pv-veh-label','✅ Vehicle photo uploaded')"/>
+        </label>
+      </div>
+    </div>
+
+    <div style="background:#F8FAFC;border-radius:14px;padding:14px;margin-bottom:12px;border:1px solid #E2E8F0;font-size:11px;line-height:1.8;color:#334155;max-height:150px;overflow-y:auto">
+      <strong>RentRight! Moving Provider Agreement</strong><br/><br/>
+      By submitting this application I agree:<br/>
+      1. All information provided is true and accurate.<br/>
+      2. I will not bypass the RentRight! platform to avoid the 8% commission once a client is matched through the platform.<br/>
+      3. I consent to RentRight! verifying my NIN and contacting my Local Council to confirm my letter.<br/>
+      4. Misuse, fraud or repeated complaints will result in immediate account suspension.<br/>
+      5. RentRight! may assign a field agent to physically verify my residence and guarantor at any time.<br/>
+      6. My IP address, device ID and timestamp are recorded as binding proof of this agreement.
+    </div>
+    <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:14px">
+      <input type="checkbox" id="pv-agree" style="margin-top:3px;accent-color:#EA580C;width:16px;height:16px;flex-shrink:0"/>
+      <span style="font-size:11px;color:#334155;line-height:1.5">I, <strong id="pv-sig-name">the applicant</strong>, have read and agree to the RentRight! Moving Provider Agreement. I confirm all documents uploaded are genuine.</span>
+    </label>
+    <button class="btn btn-full btn-orange" style="font-size:14px;padding:13px" onclick="submitProviderSignup()">Submit Application — Awaiting 48hr Review 🚛</button>
+  `;
+}
+
+function acceptJob(jobId,budget){
+  const commission=Math.round(budget*.08);
+  showModal(`
+    <div class="modal-header" style="background:#EA580C">
+      <p style="color:#fff;font-weight:800;font-size:14px;margin:0">Pay Commission to Unlock Job</p>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-weight:800;font-size:15px;color:#0F172A;margin:0 0 4px">Commission: UGX ${commission.toLocaleString()}</p>
+      <p style="font-size:12px;color:#64748B;margin:0 0 14px">Pay via MoMo to unlock the client's name, phone, and address.</p>
+      <div class="field"><label>Your MTN/Airtel MoMo number *</label><input id="accept-momo" type="tel" placeholder="0771 234 567"/></div>
+      <div class="info-box info-blue">After payment, client details are revealed instantly. Contact them on WhatsApp to confirm.</div>
+      <button class="btn btn-full btn-orange" style="font-size:15px;padding:13px;margin-top:4px" onclick="confirmAccept(${commission})">💳 Pay UGX ${commission.toLocaleString()} & Unlock Details</button>
+    </div>
+  `);
+}
+
+function confirmAccept(commission){
+  const momo=document.getElementById('accept-momo');
+  if(!momo||momo.value.length<10){alert('Enter valid MoMo number');return;}
+  showModal(`
+    <div class="modal-header" style="background:#15803D">
+      <p style="color:#fff;font-weight:800;font-size:14px;margin:0">🔓 Job Unlocked!</p>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="font-size:48px;text-align:center;margin-bottom:10px">✅</div>
+      <div class="info-box info-green">
+        <p style="font-weight:800;color:#15803D;margin:0 0 8px">Client Details</p>
+        <p style="font-size:12px;color:#334155;line-height:1.8;margin:0">
+          <strong>Name:</strong> Aisha Nakato<br/>
+          <strong>Phone:</strong> 0712 345 678<br/>
+          <strong>Address:</strong> Kisaasi, near Kisaasi trading centre<br/>
+          <strong>Date:</strong> August 15, 2025
+        </p>
+      </div>
+      <a href="https://wa.me/256712345678?text=Hi! I accepted your moving job on RentRight!. I am ready to help." target="_blank" style="display:block;background:#25D366;color:#fff;border-radius:14px;padding:12px 0;font-weight:800;font-size:14px;text-align:center;margin-bottom:8px;text-decoration:none">💬 WhatsApp Client Now</a>
+      <button class="btn btn-navy btn-full" onclick="closeModal()">Done ✓</button>
+    </div>
+  `);
+}
+
+function submitMovingJob(){
+  const from=document.getElementById('mv-from')?.value?.trim();
+  const to=document.getElementById('mv-to')?.value?.trim();
+  const budget=document.getElementById('mv-budget')?.value;
+  const name=document.getElementById('mv-name')?.value?.trim();
+  if(!from||!to){alert('Please fill in moving from and to areas');return;}
+  if(!name){alert('Please enter your name');return;}
+
+  const items=document.getElementById('items-list')?.children?.length||0;
+  const guardRails=document.getElementById('mv-guard-rails')?.checked;
+  const bodyType=document.getElementById('mv-body-type')?.value||'Any';
+  const truckSize=document.getElementById('mv-truck-size')?.value||'Any';
+  const notes=document.getElementById('mv-notes')?.value;
+  const commission=Math.round((parseInt(budget)||0)*.08);
+
+  showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#15803D,#22C55E)">
+      <p style="color:#fff;font-weight:900;font-size:15px;margin:0">✅ Moving Job Posted!</p>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="text-align:center;margin-bottom:16px">
+        <div style="font-size:48px;margin-bottom:8px">🚚</div>
+        <p style="font-weight:900;font-size:17px;color:#0F172A;margin:0 0 4px">Job is Live!</p>
+        <p style="font-size:12px;color:#64748B;margin:0">Matching providers in your area can now see this job.</p>
+      </div>
+      <div class="info-box info-green" style="margin-bottom:12px">
+        <p style="font-weight:800;color:#15803D;margin:0 0 8px">📋 Job Summary</p>
+        <p style="font-size:12px;color:#334155;line-height:1.8;margin:0">
+          <strong>Route:</strong> ${from} → ${to}<br/>
+          <strong>Date:</strong> ${document.getElementById('mv-date')?.value||'TBD'}<br/>
+          <strong>Budget:</strong> UGX ${parseInt(budget||0).toLocaleString()}<br/>
+          <strong>Items added:</strong> ${items} item type(s) with dimensions & photos<br/>
+          <strong>Truck needed:</strong> ${truckSize==='undefined'||!truckSize?'Any size':truckSize}${bodyType&&bodyType!=='undefined'?' · '+bodyType:''}<br/>
+          ${guardRails?'<strong>Guard rails required:</strong> Yes<br/>':''}
+          ${notes?`<strong>Notes:</strong> ${notes}<br/>`:''}
+          <strong>Provider commission:</strong> UGX ${commission.toLocaleString()} (8%) — paid before your details are revealed
+        </p>
+      </div>
+      <div class="info-box info-blue">🔒 Your name (<strong>${name}</strong>) and phone number are hidden from all providers until one pays the UGX ${commission.toLocaleString()} commission. You'll receive an SMS when a provider accepts.</div>
+      <button class="btn btn-navy btn-full" style="margin-top:10px" onclick="closeModal()">Done ✓</button>
+    </div>
+  `);
+}
+
+function markUploaded(zoneId,labelId,msg){
+  if(zoneId)document.getElementById(zoneId)?.classList.add('has-file');
+  if(labelId)document.getElementById(labelId).textContent=msg;
+}
+
+function addMovingItem(){
+  const name=document.getElementById('new-item-name')?.value?.trim();
+  if(!name){alert('Please enter an item name');return;}
+  const qty=document.getElementById('new-item-qty')?.value||'1';
+  const l=document.getElementById('new-item-l')?.value;
+  const w=document.getElementById('new-item-w')?.value;
+  const h=document.getElementById('new-item-h')?.value;
+  const special=document.getElementById('new-item-special')?.value;
+  const dims=l&&w&&h?`${l}×${w}×${h}cm`:'';
+  const list=document.getElementById('items-list');
+  const div=document.createElement('div');
+  div.style.cssText='background:#fff;border-radius:10px;padding:9px 12px;margin-bottom:6px;border:1px solid #E2E8F0;display:flex;justify-content:space-between;align-items:center;gap:8px';
+  div.innerHTML=`<div style="flex:1"><p style="font-weight:700;font-size:12px;color:#0F172A;margin:0">x${qty} ${name}${dims?' · '+dims:''}${special?' · '+special:''}</p></div><button onclick="this.parentElement.remove()" style="background:#FEE2E2;color:#991B1B;border:none;border-radius:8px;padding:3px 9px;font-size:11px;cursor:pointer">✕</button>`;
+  list.appendChild(div);
+  ['new-item-name','new-item-qty','new-item-l','new-item-w','new-item-h'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('new-item-special').value='';
+}
+
+function handleMvPhotos(input){
+  const previews=document.getElementById('mv-photo-previews');
+  previews.innerHTML='';
+  Array.from(input.files).slice(0,10).forEach(file=>{
+    const reader=new FileReader();
+    reader.onload=e=>{
+      const div=document.createElement('div');
+      div.style.cssText='position:relative;width:60px;height:60px';
+      div.innerHTML=`<img src="${e.target.result}" style="width:60px;height:60px;border-radius:8px;object-fit:cover"/><div style="position:absolute;top:-4px;right:-4px;background:#22C55E;color:#fff;border-radius:50%;width:16px;height:16px;font-size:8px;display:flex;align-items:center;justify-content:center;font-weight:700">✓</div>`;
+      previews.appendChild(div);
+    };
+    reader.readAsDataURL(file);
+  });
+  document.getElementById('mv-photo-label').textContent=`✅ ${Math.min(input.files.length,10)} photo(s) attached`;
+}
+
+function submitProviderSignup(){
+  const name=document.getElementById('pv-name')?.value?.trim();
+  const nin=document.getElementById('pv-nin')?.value?.trim();
+  const agreed=document.getElementById('pv-agree')?.checked;
+  if(!name){alert('Please enter your full name');return;}
+  if(!nin){alert('Please enter your NIN');return;}
+  if(!agreed){alert('Please read and agree to the Provider Agreement');return;}
+
+  showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#EA580C,#F59E0B)">
+      <div><p style="color:#fff;font-weight:900;font-size:15px;margin:0">📋 Application Submitted!</p><p style="color:rgba(255,255,255,.8);font-size:11px;margin:0">Under admin review — 48 hours</p></div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="text-align:center;margin-bottom:16px">
+        <div style="font-size:48px;margin-bottom:8px">⏳</div>
+        <p style="font-weight:900;font-size:17px;color:#0F172A;margin:0 0 6px">Application Under Review</p>
+        <p style="font-size:12px;color:#64748B;line-height:1.5;margin:0">Admin is verifying your NIN, LC letter and signed agreement. You'll receive an SMS within 48 hours.</p>
+      </div>
+
+      <div style="background:#F8FAFC;border-radius:14px;padding:14px;border:1px solid #E2E8F0;margin-bottom:16px">
+        <p style="font-weight:800;font-size:13px;color:#0F172A;margin:0 0 10px">🔍 Admin Review Checklist</p>
+        ${[['NIN verified','Matching name and photo on ID','⏳'],['LC Letter confirmed','Signed and stamped by LC1','⏳'],['Agreement signed','Electronic signature recorded','✅'],['Vehicle details','Registration and specs noted','✅'],['Background check','Cross-reference with fraud database','⏳']].map(([t,d,s])=>`
+          <div style="display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #E2E8F0">
+            <span style="font-size:16px;flex-shrink:0">${s==='✅'?'✅':'⏳'}</span>
+            <div style="flex:1"><p style="font-weight:700;font-size:12px;color:#0F172A;margin:0">${t}</p><p style="font-size:10px;color:#64748B;margin:0">${d}</p></div>
+            <span style="font-size:10px;font-weight:700;color:${s==='✅'?'#15803D':'#F59E0B'}">${s==='✅'?'Done':'Pending'}</span>
+          </div>
+        `).join('')}
+      </div>
+
+      <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 10px">⚡ After Approval — Upgrade Your Profile</p>
+
+      <div style="background:linear-gradient(135deg,#1e1b4b,#312e81);border-radius:16px;padding:16px;margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <span style="font-size:28px">🚀</span>
+          <div><p style="color:#fff;font-weight:800;font-size:14px;margin:0">Priority Listing Badge</p><p style="color:#a5b4fc;font-size:11px;margin:0">Appear at the top of job search results</p></div>
+          <span style="margin-left:auto;font-weight:900;font-size:15px;color:#FDE68A">UGX 25,000</span>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+          ${['🏆 Top of job board','📍 Priority badge on profile','📈 10× more job views','🔔 First alert on new jobs'].map(f=>`<span style="background:rgba(255,255,255,.12);color:#c7d2fe;font-size:10px;padding:3px 10px;border-radius:20px">${f}</span>`).join('')}
+        </div>
+        <button class="btn btn-full" style="background:#FDE68A;color:#1e1b4b;font-weight:800;padding:11px" onclick="payPriorityListing()">Get Priority Badge — UGX 25,000/month</button>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#065f46,#15803D);border-radius:16px;padding:16px;margin-bottom:14px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <span style="font-size:28px">✅</span>
+          <div><p style="color:#fff;font-weight:800;font-size:14px;margin:0">Physical Verification Badge</p><p style="color:rgba(255,255,255,.75);font-size:11px;margin:0">A RentRight! agent visits you in person</p></div>
+          <span style="margin-left:auto;font-weight:900;font-size:15px;color:#FDE68A">UGX 40,000</span>
+        </div>
+        <div style="background:rgba(255,255,255,.1);border-radius:12px;padding:10px 12px;font-size:11px;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:10px">
+          <strong>What the agent does:</strong><br/>
+          📍 Visits your physical address<br/>
+          🤝 Confirms you live/operate there<br/>
+          👤 Interviews your guarantor in person<br/>
+          🚛 Inspects and photographs your vehicle<br/>
+          ✅ Awards permanent Verified Badge
+        </div>
+        <button class="btn btn-full" style="background:#FDE68A;color:#065f46;font-weight:800;padding:11px" onclick="payPhysicalVerification()">Request Physical Verification — UGX 40,000</button>
+      </div>
+
+      <button class="btn btn-muted btn-full" onclick="closeModal()">Skip for now — wait for basic approval</button>
+    </div>
+  `,'modal-lg');
+}
+
+function payPriorityListing(){
+  showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#1e1b4b,#312e81)">
+      <p style="color:#fff;font-weight:800;font-size:14px;margin:0">🚀 Priority Listing Badge</p>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-weight:800;font-size:15px;color:#0F172A;margin:0 0 4px">Appear First on the Job Board</p>
+      <p style="font-size:12px;color:#64748B;margin:0 0 16px">UGX 25,000/month · Renews monthly · Cancel anytime</p>
+      <div class="field"><label>MTN / Airtel MoMo number *</label><input id="priority-momo" type="tel" placeholder="0771 234 567"/></div>
+      <div class="info-box info-blue" style="margin-bottom:12px">After payment, your Priority Badge is activated immediately. You'll appear at the top of every relevant job search in your area.</div>
+      <button class="btn btn-full" style="background:linear-gradient(135deg,#1e1b4b,#7C3AED);color:#fff;font-size:14px;padding:13px" onclick="confirmBadgePayment('priority','25,000')">💳 Pay UGX 25,000 — Activate Priority Badge</button>
+    </div>
+  `);
+}
+
+function payPhysicalVerification(){
+  showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#065f46,#15803D)">
+      <p style="color:#fff;font-weight:800;font-size:14px;margin:0">✅ Physical Verification</p>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-weight:800;font-size:15px;color:#0F172A;margin:0 0 4px">Get the Verified Badge</p>
+      <p style="font-size:12px;color:#64748B;margin:0 0 16px">UGX 40,000 one-time fee · Agent visits within 3 working days</p>
+      <div class="info-box info-green" style="margin-bottom:14px">
+        <strong>What happens after payment:</strong><br/>
+        1. RentRight! assigns a field agent in your area<br/>
+        2. Agent calls you to arrange a convenient visit time<br/>
+        3. Agent visits your address + interviews your guarantor<br/>
+        4. Agent inspects and photographs your vehicle<br/>
+        5. Verified Badge permanently added to your profile
+      </div>
+      <div class="field"><label>Your physical address *</label><input id="verify-address" placeholder="Street, area, landmark"/></div>
+      <div class="field"><label>Guarantor name *</label><input id="verify-gname" placeholder="Guarantor's full name"/></div>
+      <div class="field"><label>Guarantor phone *</label><input id="verify-gphone" type="tel" placeholder="Guarantor's phone number"/></div>
+      <div class="field"><label>MTN / Airtel MoMo number *</label><input id="verify-momo" type="tel" placeholder="0771 234 567"/></div>
+      <div class="info-box info-yellow">⚠️ Please inform your guarantor in advance. The field agent will contact them directly to confirm your identity and character.</div>
+      <button class="btn btn-full" style="background:linear-gradient(135deg,#065f46,#15803D);color:#fff;font-size:14px;padding:13px;margin-top:8px" onclick="confirmBadgePayment('verified','40,000')">💳 Pay UGX 40,000 — Request Verification Visit</button>
+    </div>
+  `);
+}
+
+function confirmBadgePayment(type,amount){
+  const momo=document.getElementById(type==='priority'?'priority-momo':'verify-momo');
+  if(!momo||momo.value.length<10){alert('Please enter a valid MoMo number');return;}
+  const btn=event.target;btn.textContent='Processing…';btn.disabled=true;
+  setTimeout(()=>{
+    const isPriority=type==='priority';
+    showModal(`
+      <div class="modal-header" style="background:${isPriority?'linear-gradient(135deg,#1e1b4b,#312e81)':'linear-gradient(135deg,#065f46,#15803D)'}">
+        <p style="color:#fff;font-weight:900;font-size:15px;margin:0">${isPriority?'🚀 Priority Badge Activated!':'✅ Verification Requested!'}</p>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body" style="text-align:center;padding:28px">
+        <div style="font-size:52px;margin-bottom:10px">${isPriority?'🏆':'🔍'}</div>
+        <p style="font-weight:900;font-size:17px;color:#0F172A;margin:0 0 8px">${isPriority?'You\'re Now Priority Listed!':'Agent Assigned!'}</p>
+        <div class="info-box info-green" style="text-align:left;margin-bottom:14px">
+          ${isPriority?`
+            ✅ Payment confirmed: UGX ${amount}<br/>
+            🚀 Priority Badge active on your profile<br/>
+            📋 You now appear first in job searches<br/>
+            🔔 First-alert on new matching jobs<br/>
+            ⏱️ Renews in 30 days
+          `:`
+            ✅ Payment confirmed: UGX ${amount}<br/>
+            👤 Field agent assigned to your area<br/>
+            📞 Agent will call you within 24 hours to schedule<br/>
+            🏠 Physical visit within 3 working days<br/>
+            ✅ Verified Badge awarded after successful visit
+          `}
+        </div>
+        <button class="btn btn-green" style="padding:11px 28px" onclick="closeModal()">Done ✓</button>
+      </div>
+    `);
+  },2000);
+}
+
+/* ══════════════════ HOME SERVICES ══════════════════════════ */
+function openServices(){
+  showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">
+      <div><p style="color:#fff;font-weight:900;font-size:15px;margin:0">🏠 Home Services</p><p style="color:rgba(255,255,255,.75);font-size:11px;margin:0">Cleaners, laundry, plumbers & more near you</p></div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div><p style="font-weight:800;font-size:14px;color:#0F172A;margin:0">Providers Near You</p><p style="font-size:12px;color:#64748B;margin:2px 0 0" id="svc-gps-status">Enable GPS for closest first</p></div>
+        <button class="btn btn-green" onclick="enableSvcGPS()" style="font-size:12px"><span class="gps-pulse"></span>Use GPS</button>
+      </div>
+      ${PROVIDERS.map(p=>`
+        <div class="provider-card" onclick="openProviderDetail('${p.id}')">
+          <div class="provider-avatar" style="background:${p.available?'linear-gradient(135deg,#22C55E,#15803D)':'#94A3B8'}">${p.icon}</div>
+          <div class="provider-info">
+            <p class="provider-name">${p.name}</p>
+            <p class="provider-type">${p.type} · ${p.area}</p>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="stars">${'★'.repeat(Math.round(p.rating))}</span>
+              <span style="font-size:10px;color:#64748B">(${p.reviews} reviews)</span>
+              <span style="font-size:11px;color:#22C55E;font-weight:700">${p.dist}</span>
+            </div>
+            <p style="font-size:11px;color:#0F172A;font-weight:700;margin:2px 0 0">${p.price}</p>
+          </div>
+          <span style="background:${p.available?'#DCFCE7':'#FEE2E2'};color:${p.available?'#15803D':'#991B1B'};font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;flex-shrink:0">${p.available?'✔ Available':'Busy'}</span>
+        </div>
+      `).join('')}
+      <button class="btn btn-full" style="background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;margin-top:8px;font-size:14px;padding:13px" onclick="closeModal();openServiceSignup('any')">🚀 Register as a Service Provider</button>
+    </div>
+  `,'modal-lg');
+}
+
+function enableSvcGPS(){
+  if(!navigator.geolocation){alert('GPS not available');return;}
+  navigator.geolocation.getCurrentPosition(pos=>{
+    userLocation={lat:pos.coords.latitude,lng:pos.coords.longitude};
+    const el=document.getElementById('svc-gps-status');
+    if(el)el.innerHTML='<span class="gps-pulse"></span>GPS active — closest providers shown first';
+  },()=>alert('Please allow location access'));
+}
+
+function openProviderDetail(id){
+  const p=PROVIDERS.find(x=>x.id===id);
+  if(!p)return;
+  showModal(`
+    <div class="modal-header" style="background:#0F172A">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:40px;height:40px;border-radius:50%;background:${p.available?'linear-gradient(135deg,#22C55E,#15803D)':'#94A3B8'};display:flex;align-items:center;justify-content:center;font-size:20px">${p.icon}</div>
+        <div><p style="color:#fff;font-weight:800;font-size:14px;margin:0">${p.name}</p><p style="color:#94A3B8;font-size:11px;margin:0">${p.type} · ${p.area}</p></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div><span class="stars">${'★'.repeat(Math.round(p.rating))}</span> <span style="font-size:12px;color:#64748B">${p.rating} (${p.reviews} reviews)</span></div>
+        <span style="background:${p.available?'#DCFCE7':'#FEE2E2'};color:${p.available?'#15803D':'#991B1B'};font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px">${p.available?'✔ Available Now':'Currently Busy'}</span>
+      </div>
+      <div class="info-box info-green" style="margin-bottom:12px">${p.desc}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
+        <div style="background:#F8FAFC;border-radius:12px;padding:10px 12px;border:1px solid #E2E8F0;text-align:center">
+          <p style="font-size:10px;color:#64748B;margin:0">Distance</p>
+          <p style="font-weight:800;font-size:14px;color:#22C55E;margin:0">${p.dist}</p>
+        </div>
+        <div style="background:#F8FAFC;border-radius:12px;padding:10px 12px;border:1px solid #E2E8F0;text-align:center">
+          <p style="font-size:10px;color:#64748B;margin:0">Price</p>
+          <p style="font-weight:800;font-size:13px;color:#0F172A;margin:0">${p.price}</p>
+        </div>
+      </div>
+      <a href="https://wa.me/256${p.phone}?text=Hi ${p.name}! I found you on RentRight!. I need ${p.type} services. Are you available?" target="_blank" style="display:block;background:#25D366;color:#fff;border-radius:14px;padding:13px 0;font-weight:800;font-size:14px;text-align:center;margin-bottom:10px;text-decoration:none">💬 Contact on WhatsApp</a>
+      <button class="btn btn-navy btn-full" onclick="requestService('${p.id}')">📋 Request This Service</button>
+    </div>
+  `);
+}
+
+function requestService(pid){
+  const p=PROVIDERS.find(x=>x.id===pid);
+  showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">
+      <p style="color:#fff;font-weight:800;font-size:14px;margin:0">Request Service — ${p?.name}</p>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="field"><label>Service needed</label><input id="req-service" value="${p?.type||''}" placeholder="e.g. House cleaning"/></div>
+      <div class="field"><label>Your address</label><input id="req-addr" placeholder="e.g. Kisaasi, near Shell petrol station"/></div>
+      <div class="field"><label>Preferred date</label><input id="req-date" type="date"/></div>
+      <div class="field"><label>Your phone</label><input id="req-phone" type="tel" placeholder="0771 234 567"/></div>
+      <div class="field"><label>Additional notes</label><textarea id="req-notes" rows="2" placeholder="Any special instructions…" style="resize:none"></textarea></div>
+      <div class="info-box info-blue">Your request will be sent to ${p?.name}. They'll confirm availability via WhatsApp.</div>
+      <button class="btn btn-full" style="background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;font-size:14px;padding:13px;margin-top:4px" onclick="submitRequest()">Send Service Request ✓</button>
+    </div>
+  `);
+}
+
+function submitRequest(){
+  showModal(`
+    <div class="modal-header" style="background:#15803D">
+      <p style="color:#fff;font-weight:900;font-size:15px;margin:0">✅ Request Sent!</p>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" style="text-align:center;padding:28px">
+      <div style="font-size:48px;margin-bottom:10px">🎉</div>
+      <p style="font-weight:900;font-size:17px;color:#0F172A;margin:0 0 8px">Service request sent!</p>
+      <p style="font-size:13px;color:#64748B;line-height:1.6;margin:0 0 20px">The provider will contact you on WhatsApp to confirm. Most providers respond within 30 minutes.</p>
+      <button class="btn btn-green" style="padding:11px 28px" onclick="closeModal()">Done ✓</button>
+    </div>
+  `);
+}
+
+/* ══════════════════ SERVICE PROVIDER SIGNUP ═══════════════ */
+function openServiceSignup(type){
+  const types={cleaner:'House Cleaner 🧹',laundry:'Laundry Provider 👕',mover:'Mover / Truck Owner 🚛',helper:'Packing Helper 👷',plumber:'Plumber 🔧',electrician:'Electrician ⚡',watchman:'Security Guard 🔒',gardener:'Gardener 🌿',any:'Service Provider'};
+  const label=types[type]||'Service Provider';
+  showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">
+      <div><p style="color:#fff;font-weight:900;font-size:15px;margin:0">Register: ${label}</p><p style="color:rgba(255,255,255,.75);font-size:11px;margin:0">Get matched with clients near you</p></div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="info-box info-green" style="margin-bottom:14px">💡 <strong>How it works:</strong> Register free → Clients near you see your profile → They contact you via WhatsApp → You agree price and get paid directly.</div>
+      <div class="field"><label>Full name *</label><input id="sp-name" placeholder="Your full name"/></div>
+      <div class="field"><label>Phone number *</label><input id="sp-phone" type="tel" placeholder="0771 234 567"/></div>
+      <div class="field"><label>National ID (NIN) *</label><input id="sp-nin" placeholder="NIN number — for verification"/></div>
+      <div class="field"><label>Service type *</label>
+        <select id="sp-type">
+          <option value="cleaner" ${type==='cleaner'?'selected':''}>House Cleaner 🧹</option>
+          <option value="laundry" ${type==='laundry'?'selected':''}>Laundry Services 👕</option>
+          <option value="mover" ${type==='mover'?'selected':''}>Mover / Truck Owner 🚛</option>
+          <option value="helper" ${type==='helper'?'selected':''}>Packing Helper 👷</option>
+          <option value="plumber" ${type==='plumber'?'selected':''}>Plumber 🔧</option>
+          <option value="electrician" ${type==='electrician'?'selected':''}>Electrician ⚡</option>
+          <option value="watchman" ${type==='watchman'?'selected':''}>Security Guard 🔒</option>
+          <option value="gardener" ${type==='gardener'?'selected':''}>Gardener 🌿</option>
+        </select>
+      </div>
+      <div class="field"><label>Area you serve *</label><input id="sp-area" placeholder="e.g. Kisaasi, Ntinda, Kampala Central"/></div>
+      <div class="field"><label>Your rate</label><input id="sp-rate" placeholder="e.g. UGX 20,000 per session"/></div>
+      <div class="field"><label>Brief description</label><textarea id="sp-desc" rows="2" style="resize:none" placeholder="Tell clients about your experience and services…"></textarea></div>
+      <div class="field">
+        <label>Profile photo (optional)</label>
+        <div class="upload-zone" onclick="document.getElementById('sp-photo').click()">
+          <div style="font-size:28px;margin-bottom:6px">📸</div>
+          <p style="font-size:12px;color:#64748B;margin:0">Click to upload your photo</p>
+          <input id="sp-photo" type="file" accept="image/*" style="display:none" onchange="this.parentElement.classList.add('has-file');this.parentElement.querySelector('p').textContent='Photo uploaded ✓'"/>
+        </div>
+      </div>
+      <div class="info-box info-yellow">✅ Verified providers get a badge and appear higher in search results. Verification takes 24–48 hours after NIN check.</div>
+      <button class="btn btn-full" style="background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;font-size:14px;padding:13px;margin-top:4px" onclick="submitServiceProvider()">🚀 Register as ${label}</button>
+    </div>
+  `);
+}
+
+function submitServiceProvider(){
+  const name=document.getElementById('sp-name')?.value;
+  const nin=document.getElementById('sp-nin')?.value;
+  if(!name||!nin){alert('Please fill in name and NIN');return;}
+  showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#15803D,#22C55E)">
+      <p style="color:#fff;font-weight:900;font-size:15px;margin:0">🎉 Registered!</p>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" style="text-align:center;padding:28px">
+      <div style="font-size:52px;margin-bottom:10px">🏆</div>
+      <p style="font-weight:900;font-size:17px;color:#0F172A;margin:0 0 8px">Welcome to RentRight! Services!</p>
+      <p style="font-size:13px;color:#64748B;line-height:1.6;margin:0 0 16px">Your profile is now live. Clients near you can see and contact you. NIN verification is in progress — you'll receive SMS confirmation within 24–48 hours.</p>
+      <div class="info-box info-green" style="text-align:left;margin-bottom:16px">✅ Profile active<br/>⏳ NIN verification pending (24–48 hrs)<br/>📱 Clients will contact you on WhatsApp</div>
+      <button class="btn btn-green" style="padding:11px 28px" onclick="closeModal()">Start Getting Clients ✓</button>
+    </div>
+  `);
+}
+
+/* ══════════════════ LAND MARKETPLACE ══════════════════════ */
+function openLand(){
+  showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#065f46,#15803D)">
+      <div><p style="color:#fff;font-weight:900;font-size:15px;margin:0">🌍 Land & Property</p><p style="color:rgba(255,255,255,.75);font-size:11px;margin:0">Verified landowners only · Pay to unlock full details</p></div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="info-box info-blue" style="margin-bottom:14px">🛡️ General info is free. Pay a small access fee via MoMo to unlock GPS coordinates, title deed details, and owner contact.</div>
+      ${LAND.map(l=>`
+        <div style="background:#F8FAFC;border-radius:18px;overflow:hidden;border:1.5px solid #E2E8F0;margin-bottom:14px">
+          <div style="position:relative">
+            <img src="${l.img}" style="width:100%;height:150px;object-fit:cover" loading="lazy"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,.5) 0%,transparent 50%)"></div>
+            <div style="position:absolute;top:10px;left:10px;display:flex;gap:5px">
+              ${l.verified?'<span style="background:#DCFCE7;color:#15803D;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px">✔ Verified Owner</span>':'<span style="background:#FEE2E2;color:#991B1B;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px">⚠ Unverified</span>'}
+              <span style="background:#E0F2FE;color:#0369A1;font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px">${l.title_deed}</span>
+            </div>
+            <div style="position:absolute;bottom:10px;right:10px;background:rgba(15,23,42,.88);color:#fff;font-weight:900;font-size:13px;padding:3px 12px;border-radius:20px">UGX ${l.price.toLocaleString()}</div>
+          </div>
+          <div style="padding:12px 14px">
+            <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0">${l.title}</p>
+            <p style="font-size:11px;color:#64748B;margin:2px 0 8px">📍 ${l.area} · ${l.size} · ${l.type}</p>
+            <p style="font-size:12px;color:#334155;line-height:1.5;margin:0 0 10px">${l.desc||'Verified land plot. Pay access fee for full details.'}</p>
+            <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px">${l.features.map(f=>`<span style="background:#DCFCE7;color:#15803D;font-size:10px;padding:2px 9px;border-radius:20px">✓ ${f}</span>`).join('')}</div>
+            <div class="info-navy" style="margin-bottom:10px;font-size:11px">🔒 Exact location + owner contact locked. Pay UGX ${l.accessFee.toLocaleString()} to unlock.</div>
+            <button class="btn btn-full" style="background:linear-gradient(135deg,#15803D,#22C55E);color:#fff;font-size:13px;padding:12px" onclick="payLandAccess('${l.id}',${l.accessFee})">🌍 Pay UGX ${l.accessFee.toLocaleString()} — View Full Details</button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `,'modal-lg');
+}
+
+function payLandAccess(id,fee){
+  const l=LAND.find(x=>x.id===id);
+  let agreed=false,paid=false;
+  function render(){
+    showModal(`
+      <div class="modal-header" style="background:#15803D">
+        <div><p style="color:#fff;font-weight:800;font-size:14px;margin:0">${l.title}</p><p style="color:rgba(255,255,255,.75);font-size:11px;margin:0">Land Access Payment</p></div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        ${!paid?`
+          <div class="info-box" style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:14px;font-size:11px;line-height:1.8;color:#334155;max-height:160px;overflow-y:auto;margin-bottom:12px">
+            1. The access fee of UGX ${fee.toLocaleString()} is non-refundable once paid.<br/>
+            2. RentRight! is an intermediary only — all transactions are between buyer and landowner.<br/>
+            3. Always conduct a land search at the Uganda Lands Registry before paying any purchase price.<br/>
+            4. Hire a licensed lawyer and registered surveyor before completing any land transaction.
+          </div>
+          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:14px">
+            <input type="checkbox" id="land-agree" onchange="agreed=this.checked;render()" style="margin-top:3px;accent-color:#22C55E;width:16px;height:16px;flex-shrink:0"/>
+            <span style="font-size:11px;color:#334155;line-height:1.5">I understand this is an access fee only. I will conduct independent legal verification before purchasing land.</span>
+          </label>
+          ${agreed?`
+            <div class="field"><label>MTN / Airtel MoMo number</label><input id="land-momo" type="tel" placeholder="e.g. 0771 234 567"/></div>
+            <button class="btn btn-full" style="background:#F59E0B;color:#1a0a00;font-size:15px;padding:13px" onclick="doLandPay(${fee})">💳 Pay UGX ${fee.toLocaleString()} to Unlock</button>
+          `:''}
+        `:`
+          <div style="text-align:center;padding:10px 0">
+            <div style="font-size:52px;margin-bottom:10px">🔓</div>
+            <p style="font-weight:900;font-size:17px;color:#15803D;margin:0 0 10px">Full Details Unlocked!</p>
+            <div class="info-box info-green" style="text-align:left">
+              <p style="font-weight:800;color:#15803D;margin:0 0 8px">Land Details</p>
+              <p style="font-size:12px;color:#334155;line-height:1.8;margin:0">
+                <strong>Title:</strong> Mailo Land · Block 244, Plot 12<br/>
+                <strong>Exact Location:</strong> ${l.area}, 2km from main road<br/>
+                <strong>GPS:</strong> 0.3821°N, 32.6184°E<br/>
+                <strong>Owner:</strong> John Mukasa<br/>
+                <strong>Owner Phone:</strong> 0712 345 678<br/>
+                <strong>Surveyor:</strong> James Okello & Associates
+              </p>
+            </div>
+            <div class="info-box info-yellow" style="text-align:left;margin-top:10px">⚠️ <strong>Legal advice:</strong> Always do a land search at the Lands Registry, hire a lawyer, and verify boundaries before paying any purchase money.</div>
+            <a href="https://wa.me/256712345678?text=Hi! I got your land listing from RentRight!. I'm interested in ${l.title}." target="_blank" style="display:block;background:#25D366;color:#fff;border-radius:14px;padding:12px 0;font-weight:800;text-align:center;text-decoration:none;margin:12px 0 8px">💬 Contact Owner on WhatsApp</a>
+            <button class="btn btn-navy btn-full" onclick="closeModal()">Done ✓</button>
+          </div>
+        `}
+      </div>
+    `);
+    if(document.getElementById('land-agree'))document.getElementById('land-agree').checked=agreed;
+  }
+  render();
+  window.doLandPay=function(f){
+    const m=document.getElementById('land-momo');
+    if(!m||m.value.length<10){alert('Enter valid MoMo number');return;}
+    const btn=event.target;btn.textContent='Processing…';btn.disabled=true;
+    setTimeout(()=>{paid=true;render();},2200);
+  };
+}
+
+/* ══════════════════ AUTH ════════════════════════════════════ */
+function openAuth(defaultTab){
+  let tab=defaultTab||'login';
+  let role='tenant';
+  function render(){
+    showModal(`
+      <div class="modal-header" style="background:linear-gradient(135deg,#0F172A,#1E293B);flex-direction:column;align-items:flex-start">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;width:100%">
+          <div style="width:30px;height:30px;background:linear-gradient(135deg,#22C55E,#38BDF8);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#fff">R</div>
+          <span style="font-weight:900;font-size:17px;color:#fff">Rent<span style="color:#22C55E">Right</span><span style="color:#38BDF8">!</span></span>
+          <button class="modal-close" onclick="closeModal()" style="margin-left:auto">×</button>
+        </div>
+        <div style="display:flex;gap:4px">
+          ${[['login','Login'],['signup','Sign Up'],['agent','Agent Portal']].map(([k,lb])=>`<button onclick="tab='${k}';render()" style="background:${tab===k?'rgba(255,255,255,.15)':'transparent'};color:${tab===k?'#fff':'rgba(255,255,255,.5)'};border:${tab===k?'1px solid rgba(255,255,255,.3)':'1px solid transparent'};border-radius:10px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">${lb}</button>`).join('')}
+        </div>
+      </div>
+      <div class="modal-body">
+        ${tab==='login'?`
+          <p style="font-weight:800;font-size:15px;color:#0F172A;margin:0 0 4px">Welcome back</p>
+          <p style="font-size:12px;color:#64748B;margin:0 0 16px">Login to access listings, referrals and bookings.</p>
+          <div class="field"><label>Email address</label><input id="auth-email" type="email" placeholder="your@email.com"/></div>
+          <div class="field"><label>Password</label><input id="auth-pass" type="password" placeholder="Password"/></div>
+          <button class="btn btn-navy btn-full" style="padding:13px;font-size:14px;margin-top:6px" onclick="doLogin()">Login →</button>
+          <p style="text-align:center;font-size:12px;color:#64748B;margin-top:12px">No account? <span onclick="tab='signup';render()" style="color:#38BDF8;cursor:pointer;font-weight:700">Sign up free</span></p>
+        `:tab==='signup'?`
+          <p style="font-weight:800;font-size:15px;color:#0F172A;margin:0 0 4px">Create your account</p>
+          <p style="font-size:12px;color:#64748B;margin:0 0 14px">Join to find a home, list property, or offer services.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+            ${[['tenant','🔍 Find a Home'],['landlord','🏠 List Property'],['mover','🚛 Moving Provider'],['cleaner','🧹 Service Provider']].map(([r,lb])=>`<button onclick="role='${r}';render()" style="background:${role===r?'#0F172A':'#fff'};color:${role===r?'#fff':'#0F172A'};border:2px solid ${role===r?'#0F172A':'#E2E8F0'};border-radius:12px;padding:9px 6px;font-weight:700;font-size:11px;cursor:pointer">${lb}</button>`).join('')}
+          </div>
+          <div class="field"><label>Full name *</label><input id="su-name" placeholder="Your full name"/></div>
+          <div class="field"><label>Email *</label><input id="su-email" type="email" placeholder="your@email.com"/></div>
+          <div class="field"><label>Phone (MTN/Airtel) *</label><input id="su-phone" type="tel" placeholder="0771 234 567"/></div>
+          <div class="field"><label>Password *</label><input id="su-pass" type="password" placeholder="Create password"/></div>
+          <div class="field"><label>Referral code (optional)</label><input id="su-ref" placeholder="e.g. ref123abc"/></div>
+          <div class="info-box info-green">🔁 Earn <strong>UGX 5,000</strong> for every friend who pays a viewing fee!</div>
+          <button class="btn btn-full" style="background:linear-gradient(135deg,#22C55E,#38BDF8);color:#fff;padding:13px;font-size:14px;margin-top:8px" onclick="doSignup()">Create Account →</button>
+        `:`
+          <div style="text-align:center;margin-bottom:14px">
+            <div style="font-size:36px;margin-bottom:6px">🏢</div>
+            <p style="font-weight:900;font-size:15px;color:#0F172A;margin:0 0 4px">Agent Portal Application</p>
+            <p style="font-size:12px;color:#64748B;margin:0">3 working day review · Strict verification</p>
+          </div>
+          <div class="info-box info-yellow">
+            <p style="font-weight:800;font-size:12px;color:#78350F;margin:0 0 8px">📋 Required Documents</p>
+            ${[['🪪','Valid National ID (NIN)'],['📜','LC Introductory Letter'],['👤','One Guarantor (permanent resident)'],['🏠',"Guarantor's National ID"]].map(([ic,t])=>`<div style="display:flex;gap:8px;align-items:center;margin-bottom:6px"><span style="font-size:16px">${ic}</span><p style="font-size:12px;color:#78350F;margin:0;font-weight:600">${t}</p></div>`).join('')}
+          </div>
+          <div class="info-box info-blue">⏱️ <strong>3 working day review.</strong> We contact your guarantor to verify. SMS update on outcome.</div>
+          <button class="btn btn-full" style="background:#7C3AED;color:#fff;padding:13px;font-size:14px" onclick="doAgentApply()">Start Agent Application →</button>
+        `}
+      </div>
+    `);
+    // Re-apply role selection state
+    if(tab==='signup'){
+      // role buttons handled in render string above
+    }
+  }
+  render();
+}
+
+function doLogin(){
+  const email=document.getElementById('auth-email')?.value;
+  const pass=document.getElementById('auth-pass')?.value;
+  if(!email||!pass){alert('Please fill in email and password');return;}
+  // Admin check
+  if(email==='admin@rentright.ug'&&pass==='admin2025'){
+    currentUser={name:'Admin',email,role:'admin',referralCode:'admin'};
+    closeModal();
+    updateNavForUser();
+    setTimeout(()=>openAdminPanel(),300);
+    return;
+  }
+  currentUser={name:email.split('@')[0],email,role:'tenant',referralCode:'ref'+Math.random().toString(36).slice(2,8)};
+  closeModal();
+  updateNavForUser();
+}
+
+function doSignup(){
+  const name=document.getElementById('su-name')?.value;
+  const email=document.getElementById('su-email')?.value;
+  const phone=document.getElementById('su-phone')?.value;
+  if(!name||!email){alert('Please fill in name and email');return;}
+  currentUser={name,email,phone,role:'tenant',referralCode:'ref'+Math.random().toString(36).slice(2,8)};
+  closeModal();
+  updateNavForUser();
+}
+
+function doAgentApply(){
+  currentUser={name:'Agent Applicant',email:'agent@pending.com',role:'agent_pending',referralCode:'agref'+Math.random().toString(36).slice(2,6)};
+  closeModal();
+  updateNavForUser();
+  setTimeout(()=>openAgentApplication(),300);
+}
+
+function updateNavForUser(){
+  const area=document.getElementById('nav-auth-area');
+  if(!currentUser){area.innerHTML=`<button class="btn btn-muted" style="font-size:12px" onclick="openAuth('login')">Login</button><button class="btn btn-green" style="font-size:12px" onclick="openAuth('signup')">Sign Up</button><button class="btn btn-navy" style="font-size:12px" onclick="openListModal()">+ List</button>`;return;}
+  area.innerHTML=`
+    ${currentUser.role==='admin'?`<button class="btn" style="background:linear-gradient(135deg,#F87171,#7C3AED);color:#fff;font-size:12px" onclick="openAdminPanel()">⚙️ Admin</button>`:''}
+    <button class="btn btn-green" style="font-size:12px" onclick="openDashboard()">👤 ${currentUser.name.split(' ')[0]}</button>
+    <button class="btn btn-navy" style="font-size:12px" onclick="openListModal()">+ List</button>
+  `;
+  document.getElementById('bottom-me-btn').textContent='👤 Me';
+}
+
+function bottomMeClick(){
+  if(currentUser)openDashboard();
+  else openAuth('login');
+}
+
+/* ══════════════════ ADMIN PANEL ════════════════════════════ */
+function openAdminPanel(){
+  let tab='overview';
+  const settings={viewingFee:5000,referralPayout:5000,withdrawMin:20000,landAccess:50000,movingComm:8,boost7:25000,boost30:50000,verifyFee:40000};
+  function render(){
+    showModal(`
+      <div class="modal-header" style="background:linear-gradient(135deg,#F87171,#7C3AED)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:34px;height:34px;background:rgba(255,255,255,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px">⚙️</div>
+          <div><p style="color:#fff;font-weight:900;font-size:15px;margin:0">Admin Panel</p><p style="color:rgba(255,255,255,.7);font-size:11px;margin:0">Internal control · Restricted access</p></div>
+        </div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="tab-bar">
+        ${[['overview','📊'],['listings','🏠'],['users','👤'],['verify','🔍'],['moving','🚚'],['settings','⚙️']].map(([k,ic])=>`<button class="tab ${tab===k?'active':''}" onclick="tab='${k}';render()">${ic} ${k.charAt(0).toUpperCase()+k.slice(1)}</button>`).join('')}
+      </div>
+      <div class="modal-body">
+        ${tab==='overview'?`
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:18px">
+            ${[['🏠','Listings',LISTINGS.length,'#22C55E'],['👤','Users','2,847','#38BDF8'],['💰','Revenue','UGX 4.28M','#F59E0B'],['⏳','Pending','15','#FDE68A'],['🚨','Flagged','3','#F87171'],['🚚','Moving Jobs',MOVING_JOBS.length,'#EA580C'],['🌍','Land','3','#22C55E'],['🏢','Agents','12','#7C3AED']].map(([ic,lb,val,col])=>`
+              <div style="background:rgba(15,23,42,.04);border-radius:14px;padding:14px 12px;border:1px solid #E2E8F0">
+                <p style="font-size:20px;margin:0 0 4px">${ic}</p>
+                <p style="font-weight:900;font-size:16px;color:${col};margin:0">${val}</p>
+                <p style="font-size:10px;color:#64748B;margin:0">${lb}</p>
+              </div>
+            `).join('')}
+          </div>
+          <div style="background:#F8FAFC;border-radius:14px;padding:14px;border:1px solid #E2E8F0;margin-bottom:12px">
+            <p style="font-weight:800;font-size:13px;color:#0F172A;margin:0 0 12px">💰 Revenue This Month</p>
+            ${[['Viewing Fees','UGX 1,240,000','248 payments'],['Boost Fees','UGX 975,000','39 boosts'],['Moving Commissions 8%','UGX 640,000','16 jobs'],['Land Access Fees','UGX 945,000','19 queries'],['Agent Verify','UGX 480,000','12 agents']].map(([lb,amt,sub])=>`
+              <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #E2E8F0">
+                <div><p style="font-weight:600;font-size:12px;color:#0F172A;margin:0">${lb}</p><p style="font-size:10px;color:#64748B;margin:0">${sub}</p></div>
+                <p style="font-weight:800;font-size:13px;color:#F59E0B;margin:0">${amt}</p>
+              </div>
+            `).join('')}
+          </div>
+          <div style="background:#FEE2E2;border-radius:14px;padding:14px;border:1px solid rgba(248,113,113,.3)">
+            <p style="font-weight:800;font-size:13px;color:#991B1B;margin:0 0 10px">🚨 Fraud Alerts</p>
+            ${[['Ntinda listing','Same phone posted 3 houses in 1 day'],['Wandegeya agent','GPS mismatch detected'],['Bukoto #44','Price 60% below market']].map(([title,reason])=>`
+              <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.6);border-radius:10px;padding:9px 12px;margin-bottom:7px">
+                <div><p style="font-weight:700;font-size:12px;color:#0F172A;margin:0">${title}</p><p style="font-size:10px;color:#991B1B;margin:0">${reason}</p></div>
+                <button class="btn" style="background:#FEE2E2;color:#991B1B;font-size:10px;padding:4px 10px">Freeze</button>
+              </div>
+            `).join('')}
+          </div>
+        `:tab==='listings'?`
+          <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 14px">All Listings (${LISTINGS.length})</p>
+          ${LISTINGS.map(l=>`
+            <div style="background:#F8FAFC;border-radius:12px;padding:12px 14px;margin-bottom:8px;border:1px solid #E2E8F0;display:flex;gap:12px;align-items:center">
+              <img src="${l.img}" style="width:48px;height:48px;border-radius:10px;object-fit:cover;flex-shrink:0"/>
+              <div style="flex:1;min-width:0">
+                <p style="font-weight:700;font-size:12px;color:#0F172A;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${l.title}</p>
+                <p style="font-size:10px;color:#64748B;margin:0">UGX ${l.price.toLocaleString()} · ${l.confidence}% trust · ${l.views} views</p>
+              </div>
+              <div style="display:flex;gap:4px;flex-shrink:0">
+                <span style="background:${l.verified?'#DCFCE7':'#FEE2E2'};color:${l.verified?'#15803D':'#991B1B'};font-size:9px;font-weight:700;padding:2px 6px;border-radius:20px">${l.verified?'✔':'⚠'}</span>
+                <button class="btn" style="background:#FEE2E2;color:#991B1B;font-size:9px;padding:3px 8px">Freeze</button>
+              </div>
+            </div>
+          `).join('')}
+        `:tab==='users'?`
+          <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 14px">Recent Users</p>
+          ${[{name:'Aisha Nakato',role:'Tenant',joined:'Today',status:'active'},{name:'Brian Mukasa',role:'Landlord',joined:'Yesterday',status:'active'},{name:'Grace Nambi',role:'Agent',joined:'2 days ago',status:'pending'},{name:'Moses Movers',role:'Moving Provider',joined:'3 days ago',status:'active'},{name:'Ruth Atim',role:'Cleaner',joined:'1 week ago',status:'active'}].map(u=>`
+            <div style="display:flex;gap:12px;align-items:center;background:#F8FAFC;border-radius:12px;padding:10px 14px;margin-bottom:8px;border:1px solid #E2E8F0">
+              <div style="width:34px;height:34px;background:linear-gradient(135deg,#38BDF8,#22C55E);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;flex-shrink:0">${u.name[0]}</div>
+              <div style="flex:1"><p style="font-weight:700;font-size:12px;color:#0F172A;margin:0">${u.name}</p><p style="font-size:10px;color:#64748B;margin:0">${u.role} · ${u.joined}</p></div>
+              <span style="background:${u.status==='active'?'#DCFCE7':'#FEF9C3'};color:${u.status==='active'?'#15803D':'#78350F'};font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px">${u.status}</span>
+            </div>
+          `).join('')}
+        `:tab==='verify'?`
+          <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 4px">🔍 Document Verification Queue</p>
+          <p style="font-size:12px;color:#64748B;margin:0 0 14px">Review NINs, LC letters and signed agreements before approving providers. 48-hour SLA.</p>
+          ${[
+            {name:'Moses Opio',type:'Moving Provider',nin:'CM92010XXXXXXX',submitted:'2 hours ago',docs:{nin:true,lc:true,agreement:true,vehicle:true},status:'pending',vtype:'Medium lorry (3–5 ton)',plate:'UAB 456C',guardrails:true},
+            {name:'Aisha Kamya',type:'Service Provider (Cleaner)',nin:'CF88030XXXXXXX',submitted:'5 hours ago',docs:{nin:true,lc:false,agreement:true,vehicle:false},status:'pending',vtype:'N/A',plate:'N/A',guardrails:false},
+            {name:'Patrick Muwanga',type:'Agent',nin:'CM78050XXXXXXX',submitted:'1 day ago',docs:{nin:true,lc:true,agreement:true,vehicle:false},status:'pending',vtype:'N/A',plate:'N/A',guardrails:false},
+            {name:'Ruth Adong',type:'Moving Provider',nin:'CF95010XXXXXXX',submitted:'2 days ago',docs:{nin:true,lc:true,agreement:true,vehicle:true},status:'approved',vtype:'Small lorry (1–2 ton)',plate:'UBC 789D',guardrails:false},
+          ].map((app,idx)=>`
+            <div style="background:${app.status==='approved'?'#F0FDF4':'#F8FAFC'};border-radius:14px;padding:14px;margin-bottom:14px;border:1.5px solid ${app.status==='approved'?'#BBF7D0':'#E2E8F0'}">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;flex-wrap:wrap;gap:6px">
+                <div>
+                  <p style="font-weight:800;font-size:13px;color:#0F172A;margin:0">${app.name}</p>
+                  <p style="font-size:10px;color:#64748B;margin:2px 0 0">${app.type} · Submitted ${app.submitted} · NIN: ${app.nin}</p>
+                  ${app.vtype!=='N/A'?`<p style="font-size:10px;color:#334155;margin:2px 0 0">🚛 ${app.vtype} · ${app.plate}${app.guardrails?' · Guard rails: ✅':''}</p>`:''}
+                </div>
+                <span style="background:${app.status==='approved'?'#DCFCE7':'#FEF9C3'};color:${app.status==='approved'?'#15803D':'#78350F'};font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;white-space:nowrap">${app.status==='approved'?'✅ Approved':'⏳ Pending'}</span>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px">
+                ${[['🪪','NIN',app.docs.nin],['📜','LC Letter',app.docs.lc],['✍️','Agreement',app.docs.agreement],['🚛','Vehicle',app.docs.vehicle]].map(([ic,lb,has])=>`
+                  <div style="background:#fff;border-radius:10px;padding:8px;text-align:center;border:1px solid ${has?'#BBF7D0':'#FED7AA'}">
+                    <p style="font-size:18px;margin:0 0 2px">${ic}</p>
+                    <p style="font-size:9px;font-weight:700;color:${has?'#15803D':'#EA580C'};margin:0">${lb}</p>
+                    <p style="font-size:9px;color:${has?'#15803D':'#991B1B'};margin:0">${has?'✅ Uploaded':'❌ Missing'}</p>
+                  </div>
+                `).join('')}
+              </div>
+              ${app.status==='pending'?`
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+                  <button onclick="this.parentElement.parentElement.style.background='#F0FDF4';this.parentElement.innerHTML='<span style=\\"font-size:12px;color:#15803D;font-weight:700\\">✅ Approved — SMS sent</span>'" class="btn btn-green" style="font-size:11px;padding:8px">✅ Approve</button>
+                  <button onclick="this.parentElement.parentElement.style.background='#FEE2E2';this.parentElement.innerHTML='<span style=\\"font-size:12px;color:#991B1B;font-weight:700\\">❌ Rejected — SMS sent</span>'" class="btn" style="background:#FEE2E2;color:#991B1B;font-size:11px;padding:8px">❌ Reject</button>
+                  <button onclick="alert('Request sent to applicant: Please re-upload your LC letter — current document is unclear or missing.')" class="btn btn-muted" style="font-size:11px;padding:8px">📋 Request Docs</button>
+                </div>
+              `:`<p style="font-size:12px;color:#15803D;font-weight:700;margin:0">✅ Approved · Provider can now accept jobs and upgrade their profile</p>`}
+            </div>
+          `).join('')}
+          <div style="background:#F0F9FF;border-radius:14px;padding:14px;border:1.5px solid #BAE6FD">
+            <p style="font-weight:800;font-size:13px;color:#0369A1;margin:0 0 10px">🏅 Physical Verification Requests — Assign Field Agents</p>
+            ${[{name:'David Ssekito',type:'Moving Provider',area:'Ntinda',fee:'UGX 40,000 paid',agent:'Unassigned',requested:'3 hours ago'},{name:'Grace Nambooze',type:'Cleaner',area:'Bukoto',fee:'UGX 40,000 paid',agent:'Field Agent: James K.',requested:'1 day ago'}].map(v=>`
+              <div style="background:#fff;border-radius:10px;padding:10px 12px;margin-bottom:8px;border:1px solid #BAE6FD;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+                <div><p style="font-weight:700;font-size:12px;color:#0F172A;margin:0">${v.name} · ${v.type}</p><p style="font-size:10px;color:#64748B;margin:0">${v.area} · ${v.fee} · ${v.requested}</p><p style="font-size:10px;font-weight:700;color:${v.agent==='Unassigned'?'#F59E0B':'#15803D'};margin:0">🧑 ${v.agent}</p></div>
+                <button onclick="alert('Assign field agent dialog — select from available agents in ${v.area}')" class="btn btn-green" style="font-size:11px;padding:6px 12px">${v.agent==='Unassigned'?'Assign Agent':'Reassign'}</button>
+              </div>
+            `).join('')}
+          </div>
+        `:tab==='moving'?`
+          <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 14px">Moving Jobs Board</p>
+          ${MOVING_JOBS.map(j=>`
+            <div style="background:#F8FAFC;border-radius:12px;padding:12px 14px;margin-bottom:10px;border:1px solid #E2E8F0">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                <div><p style="font-weight:700;font-size:13px;color:#0F172A;margin:0">${j.icon} ${j.type}</p><p style="font-size:10px;color:#64748B;margin:2px 0 4px">${j.from} → ${j.to} · ${j.date} · ${j.poster}</p></div>
+                <div style="text-align:right"><p style="font-weight:800;font-size:13px;color:#EA580C;margin:0">UGX ${j.budget.toLocaleString()}</p><p style="font-size:9px;color:#64748B;margin:0">8% = UGX ${Math.round(j.budget*.08).toLocaleString()}</p></div>
+              </div>
+              <p style="font-size:11px;color:#334155;margin:0 0 8px">${j.items}</p>
+              <div style="display:flex;gap:5px"><span style="background:#DCFCE7;color:#15803D;font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px">Open</span><button class="btn" style="background:#FEE2E2;color:#991B1B;font-size:9px;padding:3px 8px">Remove</button></div>
+            </div>
+          `).join('')}
+        `:`
+          <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 16px">⚙️ Platform Fee Settings</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+            ${[['Viewing Fee (UGX)','viewingFee'],['Referral Payout (UGX)','referralPayout'],['Min Withdrawal (UGX)','withdrawMin'],['Land Access Fee (UGX)','landAccess'],['Moving Commission (%)','movingComm'],['Boost 7 Days (UGX)','boost7'],['Boost 30 Days (UGX)','boost30'],['Verify Service (UGX)','verifyFee']].map(([lb,key])=>`
+              <div class="field"><label>${lb}</label><input type="number" value="${settings[key]}" onchange="settings.${key}=parseInt(this.value)||0" style="background:#F8FAFC"/></div>
+            `).join('')}
+          </div>
+          <button class="btn btn-green btn-full" style="padding:13px;font-size:14px" onclick="alert('Settings saved! ✅')">💾 Save All Settings</button>
+        `}
+      </div>
+    `,'modal-lg');
+  }
+  render();
+}
+
+/* ══════════════════ AGENT APPLICATION ═════════════════════ */
+function openAgentApplication(){
+  showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#7C3AED,#5B21B6)">
+      <div><p style="color:#fff;font-weight:900;font-size:15px;margin:0">🏢 Agent Application</p><p style="color:rgba(255,255,255,.75);font-size:11px;margin:0">3 working day review · Strict verification</p></div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="info-box info-yellow">
+        <p style="font-weight:800;font-size:12px;margin:0 0 8px">📋 Required Documents (all mandatory)</p>
+        ${[['🪪','Valid National ID (NIN)','Front and back — must be clear and readable'],['📜','LC Introductory Letter','Signed by your Local Council (LC1) office, addressed to RentRight!'],['👤','One Guarantor','A permanent resident willing to be contacted by RentRight!'],['🏠',"Guarantor's National ID","Clear photo of guarantor's National ID"]].map(([ic,t,d])=>`
+          <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:8px">
+            <span style="font-size:16px;flex-shrink:0">${ic}</span>
+            <div><p style="font-weight:700;font-size:11px;color:#78350F;margin:0">${t}</p><p style="font-size:10px;color:#92400E;margin:0">${d}</p></div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="field"><label>Full legal name *</label><input id="ag-name" placeholder="Your full name"/></div>
+      <div class="grid-2">
+        <div class="field"><label>Phone *</label><input id="ag-phone" type="tel" placeholder="0771 234 567"/></div>
+        <div class="field"><label>Email *</label><input id="ag-email" type="email" placeholder="you@email.com"/></div>
+      </div>
+      <div class="field"><label>National ID Number (NIN) *</label><input id="ag-nin" placeholder="NIN number"/></div>
+      <div class="field"><label>Agency / Business name (optional)</label><input id="ag-agency" placeholder="e.g. Kampala Properties Ltd"/></div>
+      <div class="field"><label>Upload NIN (front & back) *</label>
+        <div class="upload-zone" onclick="document.getElementById('ag-nin-file').click()">
+          <div style="font-size:28px;margin-bottom:4px">🪪</div>
+          <p style="font-size:12px;color:#64748B;margin:0">Click to upload National ID</p>
+          <input id="ag-nin-file" type="file" accept="image/*,.pdf" style="display:none" onchange="this.parentElement.classList.add('has-file');this.parentElement.querySelector('p').textContent='✅ NIN uploaded'"/>
+        </div>
+      </div>
+      <div class="field"><label>Upload LC Letter *</label>
+        <div class="upload-zone" onclick="document.getElementById('ag-lc-file').click()">
+          <div style="font-size:28px;margin-bottom:4px">📜</div>
+          <p style="font-size:12px;color:#64748B;margin:0">Click to upload LC Letter</p>
+          <input id="ag-lc-file" type="file" accept="image/*,.pdf" style="display:none" onchange="this.parentElement.classList.add('has-file');this.parentElement.querySelector('p').textContent='✅ LC Letter uploaded'"/>
+        </div>
+      </div>
+      <div class="field"><label>Guarantor full name *</label><input id="ag-gname" placeholder="Guarantor's full name"/></div>
+      <div class="field"><label>Guarantor phone *</label><input id="ag-gphone" type="tel" placeholder="Guarantor's phone number"/></div>
+      <div class="field"><label>Upload Guarantor's National ID *</label>
+        <div class="upload-zone" onclick="document.getElementById('ag-gid-file').click()">
+          <div style="font-size:28px;margin-bottom:4px">🏠</div>
+          <p style="font-size:12px;color:#64748B;margin:0">Click to upload Guarantor's ID</p>
+          <input id="ag-gid-file" type="file" accept="image/*,.pdf" style="display:none" onchange="this.parentElement.classList.add('has-file');this.parentElement.querySelector('p').textContent='✅ Guarantor ID uploaded'"/>
+        </div>
+      </div>
+      <div class="info-box info-blue">⚠️ Your guarantor will receive a call or SMS from RentRight! to confirm your application. Please inform them in advance.</div>
+      <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:14px">
+        <input type="checkbox" id="ag-agree" style="margin-top:3px;accent-color:#7C3AED;width:16px;height:16px;flex-shrink:0"/>
+        <span style="font-size:11px;color:#334155;line-height:1.5">I agree to the RentRight! Agent Terms. I confirm all information is truthful and my guarantor has been informed.</span>
+      </label>
+      <button class="btn btn-full" style="background:#7C3AED;color:#fff;padding:13px;font-size:14px" onclick="submitAgentApp()">🚀 Submit Application</button>
+    </div>
+  `,'modal-lg');
+}
+
+function submitAgentApp(){
+  const name=document.getElementById('ag-name')?.value;
+  const agreed=document.getElementById('ag-agree')?.checked;
+  if(!name||!agreed){alert('Please fill in your name and agree to terms');return;}
+  showModal(`
+    <div class="modal-header" style="background:linear-gradient(135deg,#15803D,#22C55E)">
+      <p style="color:#fff;font-weight:900;font-size:15px;margin:0">✅ Application Submitted!</p>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" style="text-align:center;padding:28px">
+      <div style="font-size:52px;margin-bottom:10px">🎉</div>
+      <p style="font-weight:900;font-size:17px;color:#0F172A;margin:0 0 10px">Application Received!</p>
+      <div class="info-box info-green" style="text-align:left;margin-bottom:16px">
+        <p style="font-weight:700;color:#15803D;margin:0 0 6px">Application Summary</p>
+        <p style="font-size:12px;color:#334155;line-height:1.8;margin:0">
+          <strong>Name:</strong> ${name}<br/>
+          <strong>Documents:</strong> ✅ NIN · ✅ LC Letter · ✅ Guarantor ID<br/>
+          <strong>Review period:</strong> 3 working days<br/>
+          <strong>Notification:</strong> SMS + Email
+        </p>
+      </div>
+      <p style="font-size:13px;color:#64748B;line-height:1.6;margin:0 0 16px">Our team will verify your documents and contact your guarantor. You'll receive an SMS and email update within 3 working days.</p>
+      <button class="btn btn-green" style="padding:11px 28px" onclick="closeModal()">Done ✓</button>
+    </div>
+  `);
+}
+
+/* ══════════════════ DASHBOARD ══════════════════════════════ */
+function openDashboard(){
+  if(!currentUser){openAuth('login');return;}
+  const refCode=currentUser.referralCode||'ref123abc';
+  let activeTab='referrals';
+  function render(){
+    showModal(`
+      <div class="modal-header" style="background:linear-gradient(135deg,#15803D,#22C55E)">
+        <div><p style="color:#fff;font-weight:900;font-size:15px;margin:0">👋 ${currentUser.name}</p><p style="color:rgba(255,255,255,.75);font-size:11px;margin:0">Your RentRight! dashboard</p></div>
+        <div style="display:flex;gap:8px">
+          <button onclick="currentUser=null;updateNavForUser();closeModal()" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:12px;padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer">Logout</button>
+          <button class="modal-close" onclick="closeModal()">×</button>
+        </div>
+      </div>
+      <div class="tab-bar">
+        ${[['referrals','🔁 Referrals'],['moving','🚚 Moving'],['bookings','📅 Bookings']].map(([k,lb])=>`<button class="tab ${activeTab===k?'active':''}" onclick="activeTab='${k}';render()">${lb}</button>`).join('')}
+      </div>
+      <div class="modal-body">
+        ${activeTab==='referrals'?`
+          <div class="ref-banner">
+            <p style="color:#fff;font-weight:900;font-size:16px;margin:0 0 4px">Invite Friends — Earn UGX 5,000 Each!</p>
+            <p style="color:rgba(255,255,255,.8);font-size:12px;margin:0 0 12px">Every time a friend pays a viewing fee through your link</p>
+            <div style="background:rgba(255,255,255,.15);border-radius:12px;padding:8px 12px;display:flex;align-items:center;gap:8px;margin-bottom:10px">
+              <span style="color:#fff;font-size:12px;font-weight:600;flex:1">rentright.ug/ref/${refCode}</span>
+              <button onclick="navigator.clipboard.writeText('rentright.ug/ref/${refCode}');this.textContent='✅ Copied!';setTimeout(()=>this.textContent='Copy',2500)" style="background:#fff;color:#15803D;border:none;border-radius:8px;padding:5px 12px;font-size:11px;font-weight:800;cursor:pointer">Copy</button>
+            </div>
+            <div style="background:#15803D;border-radius:12px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center">
+              <span style="color:#fff;font-size:12px;font-weight:700">Total Earned</span>
+              <span style="color:#FDE68A;font-weight:900;font-size:18px">UGX 25,000</span>
+            </div>
+          </div>
+          <div style="background:#F8FAFC;border-radius:16px;padding:14px;margin-bottom:14px;border:1px solid #E2E8F0">
+            <p style="font-weight:800;font-size:13px;color:#0F172A;margin:0 0 12px">💵 Earnings Wallet</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+              ${[['Total','25,000','#15803D'],['Pending','5,000','#F59E0B'],['Withdrawable','20,000','#38BDF8']].map(([lb,amt,col])=>`
+                <div style="background:#fff;border-radius:12px;padding:10px;text-align:center;border:1px solid #E2E8F0">
+                  <p style="font-size:10px;color:#64748B;margin:0 0 2px">${lb}</p>
+                  <p style="font-weight:900;font-size:14px;color:${col};margin:0">UGX ${amt}</p>
+                </div>
+              `).join('')}
+            </div>
+            <button class="btn btn-blue btn-full" onclick="this.textContent='✅ UGX 20,000 sent to your MoMo!';this.style.background='#22C55E';this.disabled=true">Withdraw UGX 20,000 to MoMo</button>
+          </div>
+          <p style="font-weight:800;font-size:13px;color:#0F172A;margin:0 0 10px">Recent Activity</p>
+          ${[{name:'Sarah K.',desc:'Viewed Kisaasi Room',amt:'5,000',done:true},{name:'Brian M.',desc:'Viewed Makerere Bedsitter',amt:'5,000',done:true},{name:'Aisha N.',desc:'Viewed Wandegeya Hostel',amt:'5,000',done:true},{name:'Denis O.',desc:'Viewing fee pending',amt:'5,000',done:false}].map(h=>`
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #E2E8F0">
+              <div style="width:32px;height:32px;background:${h.done?'#DCFCE7':'#FEF9C3'};border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">${h.done?'✅':'⏳'}</div>
+              <div style="flex:1"><p style="font-weight:700;font-size:12px;color:#0F172A;margin:0">${h.name}</p><p style="font-size:11px;color:#64748B;margin:0">${h.desc}</p></div>
+              <p style="font-weight:800;font-size:13px;color:${h.done?'#15803D':'#F59E0B'};margin:0;white-space:nowrap">UGX ${h.amt}</p>
+            </div>
+          `).join('')}
+        `:activeTab==='moving'?`
+          <p style="font-weight:800;font-size:15px;color:#0F172A;margin:0 0 6px">🚚 Moving Services</p>
+          <p style="font-size:12px;color:#64748B;margin:0 0 14px">Need help moving to or from your home?</p>
+          <button class="btn btn-full btn-orange" style="font-size:14px;padding:13px;margin-bottom:10px" onclick="closeModal();openMoving()">🚚 Open Moving Marketplace</button>
+          ${[{icon:'🚛',title:'Hire Movers',desc:'Professional movers with trucks near you'},{icon:'🚐',title:'Book Transport',desc:'Vehicles for your furniture and boxes'},{icon:'👷',title:'Find Packing Helpers',desc:'Reliable helpers paid by the hour'}].map(s=>`
+            <button onclick="closeModal();openMoving()" style="width:100%;background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:14px;padding:12px 14px;display:flex;gap:12px;align-items:center;margin-bottom:8px;cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif">
+              <span style="font-size:24px;flex-shrink:0">${s.icon}</span>
+              <div><p style="font-weight:700;font-size:13px;color:#0F172A;margin:0">${s.title}</p><p style="font-size:11px;color:#64748B;margin:0">${s.desc}</p></div>
+              <span style="margin-left:auto;color:#38BDF8;font-size:18px">→</span>
+            </button>
+          `).join('')}
+        `:`
+          <p style="font-weight:800;font-size:15px;color:#0F172A;margin:0 0 14px">📅 Your Bookings</p>
+          <div class="info-box info-green" style="display:flex;gap:12px;align-items:center">
+            <span style="font-size:22px">✅</span>
+            <div><p style="font-weight:700;font-size:13px;color:#15803D;margin:0">Tranquil Studio, Bukoto</p><p style="font-size:11px;color:#334155;margin:0">Viewing: Tomorrow · Fee: UGX 5,000 · TXN-8A3F2B</p></div>
+          </div>
+          <div class="info-box info-yellow" style="display:flex;gap:12px;align-items:center;margin-top:8px">
+            <span style="font-size:22px">⏳</span>
+            <div><p style="font-weight:700;font-size:13px;color:#78350F;margin:0">Modern Bedsitter, Makerere</p><p style="font-size:11px;color:#92400E;margin:0">Viewing pending · Fee: UGX 5,000</p></div>
+          </div>
+        `}
+      </div>
+    `,'modal-lg');
+  }
+  render();
+}
+
+/* ══════════════════ LIST PROPERTY ══════════════════════════ */
+function openListModal(){
+  if(!currentUser){openAuth('signup');return;}
+  let plan=null;
+  const plans=[
+    {id:'free',label:'Free Basic',price:'FREE',color:'#22C55E',features:['Upload property','Basic photos','Standard visibility','WhatsApp contact']},
+    {id:'boost',label:'Boost 7 Days',price:'UGX 25,000',color:'#38BDF8',badge:'Popular',features:['🚀 Top search placement','📍 Featured badge','🔥 Homepage slot','📈 Analytics']},
+    {id:'prem',label:'Premium 30 Days',price:'UGX 50,000',color:'#7C3AED',badge:'Best Value',features:['All Boost features','Priority verification','Social media promo','Agent support']},
+    {id:'verify',label:'Get Verified',price:'UGX 40,000',color:'#F59E0B',badge:'Trust',features:['Physical inspection','Photo validation','GPS confirmation','🟢 Verified badge']},
+  ];
+  function render(){
+    showModal(`
+      <div class="modal-header" style="background:#0F172A">
+        <div><p style="color:#fff;font-weight:800;font-size:15px;margin:0">List Your Property</p><p style="color:#94A3B8;font-size:11px;margin:0">Free to start · Boost for 10× visibility</p></div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 4px">Choose Your Plan</p>
+        <p style="font-size:12px;color:#64748B;margin:0 0 14px">Start free — upgrade anytime for more visibility.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+          ${plans.map(p=>`
+            <div onclick="plan='${p.id}';render()" style="border:2px solid ${plan===p.id?p.color:'#E2E8F0'};border-radius:16px;padding:14px 12px;cursor:pointer;background:${plan===p.id?p.color+'0d':'#fff'};position:relative;transition:all .18s">
+              ${p.badge?`<span style="position:absolute;top:-8px;right:8px;background:${p.color};color:${p.id==='verify'?'#1a0a00':'#fff'};font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px">${p.badge}</span>`:''}
+              <p style="font-weight:800;font-size:13px;color:#0F172A;margin:0 0 2px">${p.label}</p>
+              <p style="font-weight:900;font-size:14px;color:${p.color};margin:0 0 8px">${p.price}</p>
+              ${p.features.map(f=>`<p style="font-size:10px;color:#334155;margin:1px 0">✓ ${f}</p>`).join('')}
+            </div>
+          `).join('')}
+        </div>
+        ${plan?`
+          <p style="font-weight:800;font-size:14px;color:#0F172A;margin:0 0 12px">Property Details</p>
+          <div class="field"><label>Property title *</label><input id="list-title" placeholder="e.g. Bright Studio, Ntinda"/></div>
+          <div class="grid-2">
+            <div class="field"><label>Area *</label><input id="list-area" placeholder="e.g. Kisaasi"/></div>
+            <div class="field"><label>Monthly rent (UGX) *</label><input id="list-price" type="number" placeholder="e.g. 350000"/></div>
+          </div>
+          <div class="field"><label>Type</label>
+            <select id="list-type"><option>Single Room</option><option>Double Room</option><option>Hostel</option><option>Shared Housing</option><option>Self-Contained</option><option>Apartment</option></select>
+          </div>
+          <div class="field"><label>Your NIN *</label><input id="list-nin" placeholder="NIN for verification"/></div>
+          <div class="field"><label>Description</label><textarea id="list-desc" rows="2" style="resize:none" placeholder="Describe your property honestly and in detail…"></textarea></div>
+          <div class="info-box info-blue">📍 Photos must be geo-tagged & timestamped. Your listing location will be verified against device GPS to prevent fraud.</div>
+          <button class="btn btn-navy btn-full" style="padding:13px;font-size:14px;margin-top:8px" onclick="submitListing()">🚀 Submit Listing</button>
+        `:'<div class="info-box info-blue">← Select a plan above to continue</div>'}
+      </div>
+    `,'modal-lg');
+  }
+  render();
+}
+
+function submitListing(){
+  const title=document.getElementById('list-title')?.value;
+  const nin=document.getElementById('list-nin')?.value;
+  if(!title||!nin){alert('Please fill in title and NIN');return;}
+  showModal(`
+    <div class="modal-header" style="background:#15803D">
+      <p style="color:#fff;font-weight:900;font-size:15px;margin:0">🎉 Listing Submitted!</p>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" style="text-align:center;padding:28px">
+      <div style="font-size:52px;margin-bottom:10px">🏠</div>
+      <p style="font-weight:900;font-size:17px;color:#0F172A;margin:0 0 10px">Listing under review!</p>
+      <div class="info-box info-green" style="text-align:left;margin-bottom:14px">
+        <strong>Title:</strong> ${title}<br/>
+        <strong>Status:</strong> 🕐 Under verification (24–48 hrs)<br/>
+        <strong>NIN:</strong> Submitted for verification
+      </div>
+      <p style="font-size:13px;color:#64748B;line-height:1.6;margin:0 0 16px">Our team will verify your NIN, GPS location, and photos within 24–48 hours. SMS confirmation to follow.</p>
+      <button class="btn btn-navy" style="padding:11px 28px" onclick="closeModal()">Done ✓</button>
+    </div>
+  `);
+}
+
+/* ══════════════════ REFERRAL ════════════════════════════════ */
+function getRefLink(){
+  const email=document.getElementById('ref-email')?.value;
+  if(!email){alert('Please enter your email or phone');return;}
+  const btn=document.getElementById('ref-btn');
+  if(btn){btn.textContent='✅ Sent!';setTimeout(()=>btn.textContent='Get Link',3000);}
+}
+
+function copyRef(id){
+  const l=LISTINGS.find(x=>x.id===id);
+  navigator.clipboard.writeText(`Check out "${l?.title}" on RentRight! UGX ${l?.price.toLocaleString()}/mo · ${l?.area}\nrentright.ug`);
+  alert('Referral link copied! Share with a friend to earn UGX 5,000 when they book a viewing.');
+}
+
+/* ══════════════════ MODAL ENGINE ════════════════════════════ */
+function showModal(content,extraClass=''){
+  const container=document.getElementById('modal-container');
+  container.innerHTML=`<div class="modal-bg" onclick="handleBgClick(event)"><div class="modal ${extraClass}">${content}</div></div>`;
+}
+function handleBgClick(e){if(e.target.classList.contains('modal-bg'))closeModal();}
+function closeModal(){document.getElementById('modal-container').innerHTML='';}
+
+/* ══════════════════ UTILS ══════════════════════════════════ */
+function scrollTo(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
+
+/* ══════════════════ AI CHAT ════════════════════════════════ */
+function toggleChat(){
+  const p=document.getElementById('chat-panel');
+  p.classList.toggle('hidden');
+}
+
+async function sendChat(){
+  const input=document.getElementById('chat-input');
+  const msgs=document.getElementById('chat-messages');
+  const text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  msgs.innerHTML+=`<div style="display:flex;justify-content:flex-end"><div style="background:#38BDF8;color:#fff;font-size:12px;line-height:1.5;padding:8px 12px;border-radius:14px;max-width:80%;white-space:pre-wrap">${text}</div></div>`;
+  msgs.scrollTop=msgs.scrollHeight;
+  const loading=document.createElement('div');
+  loading.style.display='flex';loading.style.justifyContent='flex-start';
+  loading.innerHTML='<div style="background:#F8FAFC;color:#64748B;font-size:12px;padding:8px 12px;border-radius:14px">Searching…</div>';
+  msgs.appendChild(loading);msgs.scrollTop=msgs.scrollHeight;
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:300,
+        system:`You are a warm RentRight housing assistant for Kampala, Uganda. Available: rentals (Bukoto 420k, Kisaasi 350k, Wandegeya 175k, Ntinda 280k, Makerere 240k, Naguru 850k), moving services (movers/trucks/helpers), home services (cleaners, laundry, plumbers, electricians), and land (Mukono 1 acre 45M, Wakiso 50x100ft 18M, Entebbe 2 acres 120M). Reply in max 3 sentences. Never mention Claude or Anthropic.`,
+        messages:[{role:'user',content:text}]})});
+    const data=await res.json();
+    const reply=data.content?.find(c=>c.type==='text')?.text||'Happy to help! Tell me your budget and preferred area.';
+    msgs.removeChild(loading);
+    msgs.innerHTML+=`<div style="display:flex;justify-content:flex-start"><div style="background:#F8FAFC;color:#0F172A;font-size:12px;line-height:1.5;padding:8px 12px;border-radius:14px;max-width:85%;white-space:pre-wrap">${reply}</div></div>`;
+  }catch{
+    msgs.removeChild(loading);
+    msgs.innerHTML+=`<div style="display:flex;justify-content:flex-start"><div style="background:#F8FAFC;color:#64748B;font-size:12px;padding:8px 12px;border-radius:14px;max-width:85%">Connection issue. Please try again or WhatsApp us! 📱</div></div>`;
+  }
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+/* ══════════════════ IN
