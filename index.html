@@ -1,0 +1,2220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>RentRight — Uganda's Trusted Housing Marketplace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ═══ RESET & BASE ═══════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:#fff;color:#1A1A1A;overflow-x:hidden;line-height:1.6}
+button,input,select,textarea{font-family:'DM Sans',system-ui,sans-serif}
+img{display:block;width:100%;object-fit:cover}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#E8E8E6;border-radius:4px}
+
+/* ═══ ANIMATIONS ═════════════════════════════════════ */
+@keyframes slideUp{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.anim-slide{animation:slideUp .5s cubic-bezier(.16,1,.3,1) both}
+.anim-fade{animation:fadeIn .6s ease both}
+
+/* ═══ TYPOGRAPHY ════════════════════════════════════ */
+.serif{font-family:'Playfair Display',Georgia,serif;font-weight:300}
+.hero-title{font-family:'Playfair Display',Georgia,serif;font-weight:300;font-size:clamp(2.8rem,5.5vw,5rem);line-height:1.06;letter-spacing:-.02em;color:#fff}
+.section-title{font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.12;color:#1A1A1A;letter-spacing:-.02em}
+
+/* ═══ NAV ════════════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:66px;display:flex;align-items:center;padding:0 40px;transition:all .3s}
+nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);box-shadow:0 1px 16px rgba(0,0,0,.06)}
+nav.at-top{background:transparent}
+.nav-inner{width:100%;max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:9px;cursor:pointer}
+.nav-logo-mark{width:32px;height:32px;background:#1A1A1A;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .3s}
+nav.at-top .nav-logo-mark{background:#fff}
+.nav-logo-mark svg{width:16px;height:16px;transition:fill .3s}
+nav.at-top .nav-logo-mark svg path{fill:#1A1A1A}
+.nav-logo-text{font-weight:800;font-size:1.05rem;letter-spacing:-.03em;color:#fff;transition:color .3s}
+nav.scrolled .nav-logo-text{color:#1A1A1A}
+nav.scrolled .nav-logo-mark{background:#1A1A1A}
+nav.scrolled .nav-logo-mark svg path{fill:#fff}
+.nav-links{display:flex;gap:2px;align-items:center}
+.nav-link{font-size:13px;font-weight:500;color:rgba(255,255,255,.78);padding:7px 12px;border-radius:6px;cursor:pointer;border:none;background:transparent;transition:color .2s;white-space:nowrap}
+nav.scrolled .nav-link{color:#3D3D3D}
+.nav-link:hover{color:#fff!important}
+nav.scrolled .nav-link:hover{color:#1A1A1A!important}
+.nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.btn-ghost-nav{font-size:12px;font-weight:600;padding:8px 16px;border-radius:6px;cursor:pointer;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:rgba(255,255,255,.9);transition:all .2s}
+nav.scrolled .btn-ghost-nav{border-color:#E8E8E6;background:transparent;color:#3D3D3D}
+.btn-dark-nav{font-size:12px;font-weight:700;padding:9px 18px;border-radius:6px;cursor:pointer;border:none;background:#fff;color:#0D0D0D;transition:all .2s}
+nav.scrolled .btn-dark-nav{background:#0D0D0D;color:#fff}
+.btn-dark-nav:hover{opacity:.88}
+
+/* ═══ HERO ═══════════════════════════════════════════ */
+.hero{position:relative;height:100vh;min-height:640px;overflow:hidden}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
+.hero-slide.active{opacity:1}
+.hero-slide img{width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.14) 0%,rgba(0,0,0,.50) 52%,rgba(0,0,0,.80) 100%)}
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 40px 72px;max-width:1280px;margin:0 auto;left:0;right:0}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);border-radius:24px;padding:5px 15px;font-size:11px;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px;width:fit-content}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:#5CB85C;animation:pulse 2s infinite}
+.hero-ctas{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.btn-hero-primary{font-size:13px;font-weight:700;color:#0D0D0D;background:#fff;border:none;padding:13px 26px;border-radius:6px;cursor:pointer;transition:all .2s;letter-spacing:-.01em}
+.btn-hero-primary:hover{background:#F5F5F3;transform:translateY(-1px)}
+.btn-hero-ghost{font-size:13px;font-weight:500;color:rgba(255,255,255,.85);background:transparent;border:1px solid rgba(255,255,255,.35);padding:12px 22px;border-radius:6px;cursor:pointer;transition:all .2s}
+.btn-hero-ghost:hover{background:rgba(255,255,255,.1);color:#fff}
+.hero-stats{display:flex;gap:28px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.14);flex-wrap:wrap}
+.hero-stat-n{font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-.04em}
+.hero-stat-l{font-size:10px;color:rgba(255,255,255,.52);font-weight:600;margin-top:2px;letter-spacing:.05em;text-transform:uppercase}
+.hero-progress{position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,.15)}
+.hero-progress-fill{height:100%;background:#fff;transition:none}
+.hero-controls{position:absolute;bottom:28px;right:40px;display:flex;gap:5px}
+.hero-ctrl-btn{width:7px;height:7px;border-radius:4px;border:none;background:rgba(255,255,255,.38);cursor:pointer;padding:0;transition:all .3s}
+.hero-ctrl-btn.active{width:22px;background:#fff}
+
+/* ═══ SEARCH PANEL ═══════════════════════════════════ */
+.search-wrap{background:#F5F5F3;padding:0 40px}
+.search-panel{max-width:1280px;margin:0 auto;background:#fff;border-radius:0 0 16px 16px;box-shadow:0 10px 40px rgba(0,0,0,.10);overflow:hidden}
+.search-tabs-row{display:flex;border-bottom:1px solid #E8E8E6;overflow-x:auto;scrollbar-width:none}
+.stab{flex:none;padding:15px 22px;font-size:12px;font-weight:600;color:#9B9B9B;border:none;border-bottom:2.5px solid transparent;background:transparent;cursor:pointer;transition:all .18s;white-space:nowrap;letter-spacing:.01em}
+.stab.active{color:#1A1A1A;border-bottom-color:#1A1A1A}
+.search-body{padding:18px 22px;display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.sf{flex:1;min-width:150px}
+.sf-label{font-size:10px;font-weight:700;color:#9B9B9B;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:5px}
+.sf-select,.sf-input{width:100%;padding:10px 14px;background:#F5F5F3;border:1px solid #E8E8E6;border-radius:8px;font-size:13px;color:#1A1A1A;font-family:'DM Sans',sans-serif;outline:none;appearance:none;transition:border-color .18s;cursor:pointer}
+.sf-select:focus,.sf-input:focus{border-color:#1A1A1A}
+.btn-search{background:#0D0D0D;color:#fff;border:none;border-radius:8px;padding:11px 24px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .18s;letter-spacing:-.01em}
+.btn-search:hover{background:#2C2C2C}
+
+/* ═══ TRUST STRIP ════════════════════════════════════ */
+.trust-strip{background:#F5F5F3;border-bottom:1px solid #E8E8E6;padding:20px 40px}
+.trust-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.trust-items{display:flex;gap:28px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:#3D3D3D}
+.trust-icon{color:#2C5F2E;font-size:13px}
+
+/* ═══ SHARED SECTION STYLES ══════════════════════════ */
+.section{padding:88px 40px;max-width:1280px;margin:0 auto}
+.section-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px;gap:20px;flex-wrap:wrap}
+.section-sub{font-size:.88rem;color:#9B9B9B;line-height:1.65;max-width:320px;margin-top:6px}
+.link-more{font-size:13px;font-weight:700;color:#1A1A1A;border:1.5px solid #E8E8E6;border-radius:6px;padding:10px 20px;cursor:pointer;transition:all .18s;background:#fff;white-space:nowrap;flex-shrink:0}
+.link-more:hover{border-color:#1A1A1A}
+
+/* ═══ FILTER CHIPS ════════════════════════════════════ */
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:24px}
+.chip{padding:7px 15px;background:#F5F5F3;border:1.5px solid #E8E8E6;border-radius:24px;font-size:12px;font-weight:600;color:#3D3D3D;cursor:pointer;transition:all .18s;letter-spacing:.01em}
+.chip:hover{background:#E8E8E6}
+.chip.active{background:#1A1A1A;color:#fff;border-color:#1A1A1A}
+
+/* ═══ PROPERTY CARDS ═════════════════════════════════ */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.prop-card{background:#fff;border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .22s,box-shadow .22s;box-shadow:0 2px 14px rgba(0,0,0,.07)}
+.prop-card:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(0,0,0,.13)}
+.card-img{position:relative;height:224px;overflow:hidden}
+.card-img img{height:100%;transition:transform .4s}
+.prop-card:hover .card-img img{transform:scale(1.04)}
+.card-badges{position:absolute;top:10px;left:10px;display:flex;gap:4px;z-index:2;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:4px;background:#fff;border-radius:24px;padding:3px 9px;font-size:9px;font-weight:700;letter-spacing:.04em;box-shadow:0 1px 6px rgba(0,0,0,.12)}
+.badge-green{color:#2C5F2E}.badge-red{color:#E8453C}.badge-gold{color:#B8960C}.badge-blue{color:#1A6DC0}.badge-purple{color:#7C3AED}
+.card-fav{position:absolute;top:10px;right:10px;width:32px;height:32px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;box-shadow:0 1px 6px rgba(0,0,0,.12);transition:all .18s;z-index:2}
+.card-fav:hover{background:#FFF0F0}
+.card-fav svg{width:15px;height:15px;stroke:#9B9B9B;fill:none;transition:all .18s}
+.card-fav.saved svg{stroke:#E8453C;fill:#E8453C}
+.card-body{padding:14px}
+.card-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:3px}
+.card-title{font-size:.95rem;font-weight:700;color:#1A1A1A;line-height:1.3}
+.card-price{font-size:1.05rem;font-weight:800;color:#1A1A1A;white-space:nowrap;letter-spacing:-.03em}
+.card-location{font-size:.73rem;color:#9B9B9B;margin-bottom:10px}
+.card-meta{display:flex;align-items:center;gap:0;border-top:1px solid #F0F0EE;padding-top:10px}
+.cmeta{display:flex;align-items:center;gap:3px;font-size:.68rem;color:#9B9B9B;font-weight:500;flex:1}
+.cmeta svg{width:12px;height:12px;stroke:#C0C0C0;fill:none;flex-shrink:0}
+.cmeta-sep{width:1px;height:12px;background:#F0F0EE;flex-shrink:0}
+.card-cta-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.btn-book-card{background:#1A6DC0;color:#fff;border:none;border-radius:24px;padding:7px 15px;font-size:11px;font-weight:700;cursor:pointer;transition:all .18s}
+.btn-book-card:hover{background:#1259A0}
+.trust-score{display:flex;align-items:center;gap:3px;font-size:10px;font-weight:700;color:#2C5F2E}
+.trust-score svg{width:10px;height:10px;fill:#2C5F2E}
+.conf-bar{margin-top:8px}
+.conf-track{background:#F0F0EE;border-radius:10px;height:3px;overflow:hidden}
+.conf-fill{height:100%;border-radius:10px}
+
+/* ═══ JOB BOARD CARDS ════════════════════════════════ */
+.job-card{background:#fff;border-radius:10px;border:1px solid #E8E8E6;padding:18px;cursor:pointer;transition:all .18s}
+.job-card:hover{border-color:#1A1A1A;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.job-cat{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.job-title{font-size:.95rem;font-weight:700;color:#1A1A1A;margin-bottom:4px;line-height:1.3}
+.job-loc{font-size:.75rem;color:#9B9B9B;margin-bottom:10px}
+.job-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.job-tag{font-size:9px;font-weight:600;padding:2px 8px;border-radius:20px;background:#F5F5F3;color:#3D3D3D}
+.job-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #F0F0EE;padding-top:10px}
+.job-budget{font-size:1rem;font-weight:800;color:#1A1A1A;letter-spacing:-.02em}
+.job-commission{font-size:10px;color:#9B9B9B}
+.btn-accept{background:#0D0D0D;color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:11px;font-weight:700;cursor:pointer;transition:all .18s}
+.btn-accept:hover{background:#2C2C2C}
+
+/* ═══ HOW IT WORKS ═══════════════════════════════════ */
+.how-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:72px;align-items:center}
+.how-steps{margin-top:36px;display:flex;flex-direction:column}
+.how-step{padding:15px 0;border-bottom:1px solid #E8E8E6;cursor:pointer;transition:all .18s}
+.how-step:first-child{border-top:1px solid #E8E8E6}
+.how-step-lbl{font-size:13px;font-weight:600;color:#9B9B9B;transition:color .18s}
+.how-step.active .how-step-lbl{color:#1A1A1A;font-weight:700}
+.how-photo-wrap{position:relative;border-radius:10px;overflow:hidden;height:500px}
+.how-photo-wrap img{height:100%;object-fit:cover}
+.how-float-card{position:absolute;bottom:20px;right:-16px;background:#fff;border-radius:10px;padding:14px 18px;box-shadow:0 8px 32px rgba(0,0,0,.13);min-width:170px}
+.hfc-label{font-size:9px;color:#9B9B9B;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+.hfc-val{font-size:.9rem;font-weight:700;color:#1A1A1A}
+
+/* ═══ STAT CARDS ═════════════════════════════════════ */
+.stat-card{background:#fff;border-radius:10px;padding:24px;border:1px solid #E8E8E6}
+.stat-lbl{font-size:10px;color:#9B9B9B;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px}
+.stat-num{font-size:2.6rem;font-weight:900;color:#1A1A1A;letter-spacing:-.06em;line-height:1;margin-bottom:14px}
+.mini-bars{display:flex;align-items:flex-end;gap:3px;height:26px}
+.mbar{flex:1;background:#E8E8E6;border-radius:2px 2px 0 0}
+.mbar.hi{background:#1A1A1A}
+
+/* ═══ PROVIDER ROW ═══════════════════════════════════ */
+.provider-list{border:1px solid #E8E8E6;border-radius:10px;overflow:hidden}
+.prov-row{display:flex;align-items:center;gap:14px;padding:16px 18px;border-bottom:1px solid #F0F0EE;cursor:pointer;transition:background .15s}
+.prov-row:last-child{border-bottom:none}
+.prov-row:hover{background:#F5F5F3}
+.prov-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;font-weight:700}
+.prov-info{flex:1;min-width:0}
+.prov-name{font-size:.88rem;font-weight:700;color:#1A1A1A}
+.prov-meta{font-size:.72rem;color:#9B9B9B;margin-top:1px}
+.prov-stars{color:#D4A853;font-size:10px}
+.avail-pill{font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px}
+.avail-yes{background:#DCFCE7;color:#15803D}
+.avail-no{background:#F0F0EE;color:#9B9B9B}
+
+/* ═══ REFERRAL SECTION ═══════════════════════════════ */
+.ref-section{background:#0D0D0D;padding:88px 40px}
+.ref-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.ref-eyebrow{font-size:10px;color:#5CB85C;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.ref-title{font-family:'Playfair Display',Georgia,serif;font-weight:300;font-size:clamp(1.8rem,3vw,2.6rem);color:#fff;line-height:1.1;margin-bottom:18px}
+.ref-body{font-size:.88rem;color:#7A7A7A;line-height:1.7;margin-bottom:28px;max-width:380px}
+.split-card{background:#1E1E1E;border-radius:10px;overflow:hidden;display:flex;margin-bottom:24px}
+.split-item{flex:1;padding:18px;text-align:center;border-right:1px solid #2A2A2A}
+.split-item:last-child{border-right:none}
+.split-num{font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-.04em}
+.split-lbl{font-size:9px;color:#7A7A7A;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-top:3px}
+.ref-right{background:#1E1E1E;border-radius:10px;padding:28px}
+.ref-input-group{display:flex;gap:8px;margin-bottom:20px}
+.ref-inp{flex:1;background:#2A2A2A;border:1px solid #3A3A3A;border-radius:6px;padding:10px 13px;font-size:13px;color:#E8E8E8;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .18s}
+.ref-inp:focus{border-color:#5CB85C}
+.ref-inp::placeholder{color:#5A5A5A}
+.btn-ref{background:#fff;color:#0D0D0D;border:none;border-radius:6px;padding:10px 18px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .18s}
+.btn-ref:hover{background:#E8E8E8}
+.ref-step-list{display:flex;flex-direction:column;gap:12px}
+.ref-step{display:flex;align-items:flex-start;gap:10px}
+.ref-step-num{width:24px;height:24px;border-radius:50%;background:#2A2A2A;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#E8E8E8;flex-shrink:0;margin-top:1px}
+.ref-step-txt{font-size:.82rem;color:#7A7A7A;line-height:1.5}
+.ref-step-txt strong{color:#E8E8E8}
+
+/* ═══ LAND SECTION ═══════════════════════════════════ */
+.land-card{border-radius:10px;overflow:hidden;cursor:pointer;border:1px solid #E8E8E6;background:#fff;transition:all .22s}
+.land-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.12)}
+.land-img{height:200px;overflow:hidden}
+.land-img img{height:100%;transition:transform .4s}
+.land-card:hover .land-img img{transform:scale(1.04)}
+.land-body{padding:16px}
+.land-type-pill{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#B8960C;background:#FEF3C7;border-radius:20px;padding:3px 9px;display:inline-block;margin-bottom:8px}
+.land-title{font-size:.95rem;font-weight:700;color:#1A1A1A;margin-bottom:3px}
+.land-loc{font-size:.73rem;color:#9B9B9B;margin-bottom:10px}
+.land-price{font-size:1.2rem;font-weight:800;color:#1A1A1A;letter-spacing:-.03em}
+.land-lock{background:#1A1A1A;border-radius:8px;padding:10px 13px;display:flex;gap:8px;align-items:center;margin-top:10px}
+.land-lock-txt{font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.4}
+.land-lock-txt strong{color:#fff}
+
+/* ═══ FOOTER ══════════════════════════════════════════ */
+footer{background:#F5F5F3;border-top:1px solid #E8E8E6;padding:56px 40px 36px}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px}
+.footer-logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:.95rem;color:#1A1A1A;margin-bottom:12px}
+.footer-lmark{width:26px;height:26px;background:#1A1A1A;border-radius:5px;display:flex;align-items:center;justify-content:center}
+.footer-lmark svg{width:13px;height:13px}
+.footer-tag{font-size:.8rem;color:#9B9B9B;line-height:1.65;max-width:220px;margin-bottom:16px}
+.footer-wa{display:inline-flex;align-items:center;gap:6px;background:#1A1A1A;color:#fff;border-radius:6px;padding:8px 14px;font-size:11px;font-weight:700;cursor:pointer;border:none;transition:background .18s}
+.footer-wa:hover{background:#2C2C2C}
+.footer-col-title{font-size:10px;font-weight:700;color:#1A1A1A;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.footer-links{display:flex;flex-direction:column;gap:9px}
+.footer-link{font-size:.8rem;color:#9B9B9B;cursor:pointer;transition:color .18s}
+.footer-link:hover{color:#1A1A1A}
+.footer-bottom{border-top:1px solid #E8E8E6;padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-copy{font-size:.72rem;color:#9B9B9B}
+.footer-legal{display:flex;gap:20px}
+.footer-legal a{font-size:.72rem;color:#9B9B9B;transition:color .18s}
+.footer-legal a:hover{color:#1A1A1A}
+
+/* ═══ BOTTOM TAB (MOBILE) ════════════════════════════ */
+.bottom-bar{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E8E8E6;padding:8px 0 max(8px,env(safe-area-inset-bottom));z-index:400}
+.btabs{display:flex}
+.btab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 0;cursor:pointer;border:none;background:transparent}
+.btab svg{width:21px;height:21px;stroke:#9B9B9B;fill:none;transition:stroke .18s}
+.btab span{font-size:9px;color:#9B9B9B;font-weight:600;transition:color .18s}
+.btab.active svg{stroke:#1A1A1A}
+.btab.active span{color:#1A1A1A;font-weight:800}
+
+/* ═══ MODAL SYSTEM ═══════════════════════════════════ */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.46);z-index:900;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(4px)}
+.modal-bg.open{display:flex}
+.modal-box{background:#fff;border-radius:14px;width:100%;max-width:500px;max-height:93vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.22);animation:slideUp .25s cubic-bezier(.16,1,.3,1)}
+.modal-lg{max-width:680px}
+.modal-xl{max-width:960px}
+.mhdr{padding:20px 24px 16px;border-bottom:1px solid #F0F0EE;display:flex;justify-content:space-between;align-items:flex-start;position:sticky;top:0;background:#fff;z-index:2;border-radius:14px 14px 0 0}
+.m-title{font-size:1.05rem;font-weight:800;color:#1A1A1A;letter-spacing:-.02em}
+.m-sub{font-size:.75rem;color:#9B9B9B;margin-top:2px}
+.m-close{width:28px;height:28px;border:none;background:#F5F5F3;border-radius:50%;cursor:pointer;font-size:15px;color:#3D3D3D;display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0;margin-left:12px}
+.m-close:hover{background:#E8E8E6}
+.mbody{padding:22px 24px 28px}
+.mtabs{display:flex;background:#F5F5F3;border-radius:8px;padding:3px;margin-bottom:20px}
+.mtab{flex:1;padding:8px;font-size:12px;font-weight:700;color:#9B9B9B;background:transparent;border:none;border-radius:6px;cursor:pointer;transition:all .18s;text-align:center}
+.mtab.active{background:#fff;color:#1A1A1A;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.step-bar{display:flex;border-bottom:1px solid #E8E8E6;margin:-22px -24px 22px}
+.sbar-item{flex:1;padding:12px 8px;text-align:center;font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#9B9B9B;border-bottom:2.5px solid transparent;transition:all .18s}
+.sbar-item.active{color:#1A1A1A;border-bottom-color:#1A1A1A}
+.sbar-item.done{color:#2C5F2E;border-bottom-color:#5CB85C}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11px;font-weight:700;color:#3D3D3D;margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;padding:10px 13px;border:1.5px solid #E8E8E6;border-radius:8px;font-size:13px;color:#1A1A1A;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .18s;background:#fff}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#1A1A1A}
+.field input::placeholder{color:#C0C0C0}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.info-note{border-radius:8px;padding:11px 13px;font-size:.78rem;line-height:1.6;margin-bottom:12px}
+.info-green{background:#F0FDF4;color:#2C5F2E;border-left:3px solid #5CB85C}
+.info-blue{background:#EFF6FF;color:#1A6DC0;border-left:3px solid #1A6DC0}
+.info-amber{background:#FFFBEB;color:#92400E;border-left:3px solid #D4A853}
+.info-red{background:#FEF2F2;color:#991B1B;border-left:3px solid #E8453C}
+.info-dark{background:#1A1A1A;color:#fff;border-radius:8px;padding:13px 15px;display:flex;gap:10px;align-items:center}
+.btn-primary{width:100%;padding:13px;background:#0D0D0D;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;letter-spacing:-.01em;margin-top:4px}
+.btn-primary:hover{background:#2C2C2C}
+.btn-primary:disabled{background:#E8E8E6;color:#9B9B9B;cursor:default}
+.btn-blue{width:100%;padding:13px;background:#1A6DC0;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;margin-top:4px}
+.btn-blue:hover{background:#1259A0}
+.btn-ghost{width:100%;padding:12px;background:transparent;color:#3D3D3D;border:1.5px solid #E8E8E6;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:all .18s;margin-top:8px}
+.btn-ghost:hover{border-color:#1A1A1A;color:#1A1A1A}
+.btn-green{width:100%;padding:13px;background:#2C5F2E;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;margin-top:4px}
+.social-div{display:flex;align-items:center;gap:12px;margin:16px 0;color:#9B9B9B;font-size:11px}
+.social-div::before,.social-div::after{content:'';flex:1;height:1px;background:#E8E8E6}
+.social-btn{width:100%;padding:10px;background:#fff;border:1.5px solid #E8E8E6;border-radius:8px;font-size:12px;font-weight:600;color:#3D3D3D;cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:7px}
+.social-btn:hover{border-color:#C0C0C0;background:#F5F5F3}
+.pw-rules{margin-top:5px}
+.pw-rule{display:flex;align-items:center;gap:5px;font-size:10px;color:#9B9B9B;margin-bottom:2px}
+.pw-rule.ok{color:#2C5F2E}
+.upload-zone{border:1.5px dashed #E8E8E6;border-radius:8px;padding:16px;text-align:center;cursor:pointer;transition:border-color .18s;background:#F5F5F3}
+.upload-zone:hover{border-color:#1A1A1A}
+.upload-zone-icon{font-size:1.4rem;margin-bottom:4px}
+.upload-zone-txt{font-size:.75rem;color:#9B9B9B}
+.pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.pay-method{border:1.5px solid #E8E8E6;border-radius:8px;padding:14px 12px;cursor:pointer;transition:all .18s;text-align:center}
+.pay-method.sel{border-color:#1A1A1A;background:#F5F5F3}
+.pay-method-icon{font-size:1.3rem;margin-bottom:3px}
+.pay-method-name{font-size:11px;font-weight:700;color:#1A1A1A}
+.pay-method-sub{font-size:9px;color:#9B9B9B}
+
+/* ═══ E-SIGN PANEL ═══════════════════════════════════ */
+.esign-box{background:#F5F5F3;border-radius:10px;border:1px solid #E8E8E6;padding:16px;margin:14px 0;font-size:.78rem;line-height:1.7;color:#3D3D3D;max-height:180px;overflow-y:auto}
+.esign-confirm{background:#0D0D0D;border-radius:10px;padding:16px;margin-top:14px}
+.esign-confirm-lbl{font-size:10px;color:#7A7A7A;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px}
+.esign-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.esign-field input{background:#1E1E1E;border:1px solid #3A3A3A;border-radius:6px;padding:9px 12px;font-size:12px;color:#E8E8E8;font-family:'DM Sans',sans-serif;outline:none;width:100%;transition:border-color .18s}
+.esign-field input:focus{border-color:#5CB85C}
+.esign-field input::placeholder{color:#5A5A5A}
+.esign-check{display:flex;align-items:flex-start;gap:8px;cursor:pointer;margin-bottom:10px;font-size:.78rem;color:#9B9B9B;line-height:1.5}
+.esign-check input{margin-top:2px;accent-color:#5CB85C;width:14px;height:14px;flex-shrink:0}
+.esign-timestamp{font-size:9px;color:#5A5A5A;text-align:right}
+.esign-badge{background:#1E293B;border:1px solid #2A3A2A;border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:8px;margin-top:8px}
+.esign-badge-icon{font-size:14px}
+.esign-badge-txt{font-size:10px;color:#5CB85C;font-weight:600}
+
+/* ═══ TRUST SCORE RING ═══════════════════════════════ */
+.trust-ring{display:flex;flex-direction:column;align-items:center}
+
+/* ═══ ADMIN DASHBOARD ════════════════════════════════ */
+.admin-layout{display:grid;grid-template-columns:220px 1fr;height:100vh;overflow:hidden}
+.admin-sidebar{background:#0D0D0D;display:flex;flex-direction:column;overflow-y:auto}
+.admin-logo{padding:20px 18px;border-bottom:1px solid #1E1E1E;display:flex;align-items:center;gap:8px;font-weight:800;font-size:.9rem;color:#fff}
+.admin-logo-mark{width:28px;height:28px;background:#2C5F2E;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.admin-nav{padding:12px 10px;flex:1}
+.admin-section-lbl{font-size:9px;font-weight:700;color:#5A5A5A;letter-spacing:.1em;text-transform:uppercase;padding:8px 8px 4px}
+.admin-nav-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:7px;cursor:pointer;transition:all .18s;margin-bottom:1px}
+.admin-nav-item:hover{background:#1A1A1A}
+.admin-nav-item.active{background:#1A1A1A;border-left:2px solid #5CB85C}
+.ani-icon{font-size:14px;flex-shrink:0}
+.ani-label{font-size:12px;font-weight:600;color:#7A7A7A;transition:color .18s;white-space:nowrap}
+.admin-nav-item.active .ani-label{color:#fff}
+.admin-nav-item:hover .ani-label{color:#E8E8E8}
+.ani-badge{margin-left:auto;background:#E8453C;color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:20px;min-width:18px;text-align:center}
+.ani-badge.amber{background:#D4A853}
+.admin-main{background:#F5F5F3;overflow-y:auto;display:flex;flex-direction:column}
+.admin-topbar{background:#fff;border-bottom:1px solid #E8E8E6;padding:0 28px;height:56px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:10}
+.admin-topbar-title{font-weight:800;font-size:1rem;color:#1A1A1A;letter-spacing:-.02em}
+.admin-topbar-actions{display:flex;align-items:center;gap:10px}
+.atb-btn{padding:7px 14px;font-size:11px;font-weight:700;border-radius:6px;cursor:pointer;transition:all .18s;border:none}
+.atb-btn-primary{background:#0D0D0D;color:#fff}
+.atb-btn-ghost{background:#F5F5F3;color:#3D3D3D;border:1px solid #E8E8E6}
+.atb-avatar{width:32px;height:32px;border-radius:50%;background:#1A1A1A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;cursor:pointer}
+.admin-content{padding:24px 28px;flex:1}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:24px}
+.kpi-card{background:#fff;border-radius:10px;padding:18px;border:1px solid #E8E8E6}
+.kpi-icon{font-size:1.4rem;margin-bottom:8px}
+.kpi-val{font-size:1.7rem;font-weight:900;color:#1A1A1A;letter-spacing:-.05em;line-height:1;margin-bottom:3px}
+.kpi-lbl{font-size:10px;color:#9B9B9B;font-weight:600}
+.kpi-trend{font-size:10px;font-weight:700;margin-top:4px}
+.trend-up{color:#2C5F2E}.trend-dn{color:#E8453C}
+.admin-row{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-bottom:16px}
+.admin-panel{background:#fff;border-radius:10px;border:1px solid #E8E8E6;overflow:hidden}
+.ap-header{padding:16px 20px;border-bottom:1px solid #E8E8E6;display:flex;justify-content:space-between;align-items:center}
+.ap-title{font-size:.88rem;font-weight:800;color:#1A1A1A}
+.ap-action{font-size:11px;font-weight:700;color:#1A6DC0;cursor:pointer;border:none;background:transparent}
+.ap-body{padding:0}
+.data-row{display:flex;align-items:center;gap:12px;padding:13px 20px;border-bottom:1px solid #F0F0EE;transition:background .15s}
+.data-row:last-child{border-bottom:none}
+.data-row:hover{background:#F5F5F3}
+.data-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;flex-shrink:0}
+.data-info{flex:1;min-width:0}
+.data-name{font-size:.82rem;font-weight:700;color:#1A1A1A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.data-meta{font-size:.68rem;color:#9B9B9B;margin-top:1px}
+.data-status{font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.ds-pending{background:#FFFBEB;color:#92400E}
+.ds-approved{background:#F0FDF4;color:#15803D}
+.ds-rejected{background:#FEF2F2;color:#991B1B}
+.ds-active{background:#EFF6FF;color:#1A6DC0}
+.data-actions{display:flex;gap:5px;flex-shrink:0}
+.da-btn{font-size:9px;font-weight:700;padding:4px 9px;border-radius:5px;cursor:pointer;border:none;transition:all .15s}
+.da-approve{background:#F0FDF4;color:#15803D}
+.da-approve:hover{background:#DCFCE7}
+.da-reject{background:#FEF2F2;color:#991B1B}
+.da-reject:hover{background:#FEE2E2}
+.da-view{background:#F5F5F3;color:#3D3D3D}
+.alert-row{display:flex;align-items:flex-start;gap:10px;padding:12px 18px;border-left:3px solid transparent;border-bottom:1px solid #F0F0EE;cursor:pointer;transition:background .15s}
+.alert-row:hover{background:#F5F5F3}
+.alert-row:last-child{border-bottom:none}
+.alert-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.alert-info{flex:1;min-width:0}
+.alert-title{font-size:.8rem;font-weight:700;color:#1A1A1A}
+.alert-desc{font-size:.7rem;color:#9B9B9B;margin-top:1px}
+.alert-time{font-size:.65rem;color:#C0C0C0;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.alert-critical{border-left-color:#E8453C}
+.alert-urgent{border-left-color:#D4A853}
+.alert-normal{border-left-color:#5CB85C}
+.rev-chart{padding:16px 20px}
+.rev-bars{display:flex;align-items:flex-end;gap:6px;height:100px;border-bottom:1px solid #E8E8E6}
+.rev-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.rev-bar{width:100%;border-radius:3px 3px 0 0;background:#E8E8E6;transition:background .18s;cursor:pointer}
+.rev-bar:hover{background:#1A1A1A}
+.rev-bar.hi{background:#1A1A1A}
+.rev-bar-lbl{font-size:8px;color:#9B9B9B;margin-top:4px}
+.rev-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.rev-sum-item{text-align:center}
+.rev-sum-n{font-size:.88rem;font-weight:800;color:#1A1A1A}
+.rev-sum-l{font-size:9px;color:#9B9B9B;margin-top:1px}
+.fee-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.fee-field{margin-bottom:0}
+.fee-field label{font-size:10px;font-weight:700;color:#9B9B9B;display:block;margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase}
+.fee-field input{width:100%;padding:9px 12px;border:1.5px solid #E8E8E6;border-radius:8px;font-size:13px;color:#1A1A1A;font-family:'DM Sans',sans-serif;outline:none;background:#F5F5F3;transition:border-color .18s}
+.fee-field input:focus{border-color:#1A1A1A;background:#fff}
+.verify-doc{background:#F5F5F3;border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:8px;margin-bottom:8px;border:1px solid #E8E8E6}
+.vd-icon{font-size:18px;flex-shrink:0}
+.vd-info{flex:1;min-width:0}
+.vd-name{font-size:.78rem;font-weight:700;color:#1A1A1A}
+.vd-status{font-size:.65rem;font-weight:600;margin-top:1px}
+.vd-status.ok{color:#2C5F2E}.vd-status.missing{color:#E8453C}.vd-status.pending{color:#D4A853}
+.vd-actions{display:flex;gap:5px}
+
+/* ═══ FABs ════════════════════════════════════════════ */
+.fab-group{position:fixed;bottom:22px;right:22px;display:flex;flex-direction:column;align-items:flex-end;gap:8px;z-index:298}
+.fab{width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.18);transition:all .18s;font-size:16px}
+.fab:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.22)}
+.fab-ai{background:#1A1A1A}
+.fab-wa{background:#25D366}
+.chat-panel{display:none;position:fixed;bottom:80px;right:22px;width:312px;background:#fff;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.16);border:1px solid #E8E8E6;z-index:297;flex-direction:column;max-height:430px}
+.chat-panel.open{display:flex;animation:slideUp .22s ease}
+.chat-hdr{background:#1A1A1A;border-radius:12px 12px 0 0;padding:13px 16px;display:flex;align-items:center;justify-content:space-between}
+.chat-hdr-left{display:flex;align-items:center;gap:9px}
+.chat-av{width:26px;height:26px;background:#2C5F2E;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px}
+.chat-title{color:#fff;font-weight:700;font-size:12px}
+.chat-sub{color:#7A7A7A;font-size:9px}
+.chat-close-btn{background:rgba(255,255,255,.1);border:none;color:#fff;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center}
+.chat-msgs{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.cmsg{max-width:82%;line-height:1.5;font-size:11px;padding:8px 11px;border-radius:11px;white-space:pre-wrap}
+.cmsg.ai{background:#F5F5F3;color:#1A1A1A;align-self:flex-start;border-radius:4px 11px 11px 11px}
+.cmsg.user{background:#1A1A1A;color:#fff;align-self:flex-end;border-radius:11px 4px 11px 11px}
+.chat-inp-row{padding:9px 11px;border-top:1px solid #E8E8E6;display:flex;gap:7px}
+.chat-inp{flex:1;padding:7px 11px;border:1.5px solid #E8E8E6;border-radius:20px;font-size:11px;outline:none;font-family:'DM Sans',sans-serif;transition:border-color .18s}
+.chat-inp:focus{border-color:#1A1A1A}
+.chat-send{background:#1A1A1A;color:#fff;border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;transition:background .18s}
+.chat-send:hover{background:#2C2C2C}
+
+/* ═══ TOAST ══════════════════════════════════════════ */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1A1A1A;color:#fff;padding:11px 20px;border-radius:8px;font-size:12px;font-weight:600;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.2);animation:slideUp .3s ease;white-space:nowrap;pointer-events:none}
+
+/* ═══ UTILITIES ══════════════════════════════════════ */
+.hidden{display:none!important}
+.spin{animation:spin .7s linear infinite}
+.green{color:#2C5F2E}.red{color:#E8453C}.amber{color:#D4A853}.blue{color:#1A6DC0}
+.text-center{text-align:center}
+.mt-4{margin-top:4px}.mt-8{margin-top:8px}.mt-16{margin-top:16px}
+
+/* ═══ RESPONSIVE ══════════════════════════════════════ */
+@media(max-width:1024px){
+  nav,nav .nav-inner,.hero-content,.trust-strip,.trust-inner,.search-wrap,.ref-section,.ref-inner,footer,.footer-inner{padding-left:22px;padding-right:22px}
+  .section{padding-left:22px;padding-right:22px}
+  .grid-3{grid-template-columns:repeat(2,1fr)}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .how-grid{grid-template-columns:1fr;gap:36px}
+  .how-photo-wrap{height:340px}
+  .how-float-card{right:0}
+  .ref-inner{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .admin-layout{grid-template-columns:1fr}
+  .admin-sidebar{display:none}
+  .admin-row{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  nav{padding:0 16px}
+  .nav-links{display:none}
+  .hero-content{padding:0 16px 68px}
+  .hero-stats{display:none}
+  .search-wrap{padding:0}
+  .search-body{flex-direction:column}
+  .sf{min-width:0;width:100%}
+  .btn-search{width:100%}
+  .grid-3,.grid-4{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .ref-inner{gap:36px}
+  .ref-section{padding:60px 16px}
+  .bottom-bar{display:block}
+  body{padding-bottom:62px}
+  .section{padding-top:56px;padding-bottom:56px}
+  .fab-group{bottom:76px}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .frow{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ══════════════════════════════════ -->
+<nav class="at-top" id="main-nav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('home')">
+      <div class="nav-logo-mark">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2L14 7V14H10V10H6V14H2V7L8 2Z" fill="white"/></svg>
+      </div>
+      <span class="nav-logo-text">RentRight</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link" onclick="scrollToId('listings-sec')">Properties</button>
+      <button class="nav-link" onclick="scrollToId('services-sec')">Services</button>
+      <button class="nav-link" onclick="scrollToId('jobs-sec')">Jobs</button>
+      <button class="nav-link" onclick="scrollToId('land-sec')">Land</button>
+      <button class="nav-link" onclick="scrollToId('ref-sec')">Earn</button>
+    </div>
+    <div class="nav-actions" id="nav-actions">
+      <button class="btn-ghost-nav" onclick="openModal('auth-modal','login')">Sign in</button>
+      <button class="btn-dark-nav" onclick="openModal('auth-modal','signup')">Post a property</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ MAIN SITE ═════════════════════════════ -->
+<div id="main-site">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=85" alt=""/></div>
+    <div class="hero-slide"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1600&q=85" alt=""/></div>
+    <div class="hero-slide"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600&q=85" alt=""/></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow anim-fade" style="animation-delay:.1s"><span class="hero-dot"></span>Uganda's trusted housing marketplace</div>
+    <h1 class="hero-title anim-slide" style="animation-delay:.2s">Find a place you<br/>will call home.</h1>
+    <p class="anim-fade" style="color:rgba(255,255,255,.72);font-size:.95rem;margin-top:12px;max-width:420px;line-height:1.65;animation-delay:.32s">Verified rentals, service jobs, moving help and premium land — all in one trusted place. No brokers. GPS-confirmed.</p>
+    <div class="hero-ctas anim-fade" style="animation-delay:.42s">
+      <button class="btn-hero-primary" onclick="scrollToId('listings-sec')">Find properties</button>
+      <button class="btn-hero-ghost" onclick="openModal('auth-modal','agent')">List your property →</button>
+    </div>
+    <div class="hero-stats anim-fade" style="animation-delay:.52s">
+      <div><div class="hero-stat-n">500+</div><div class="hero-stat-l">Listings</div></div>
+      <div><div class="hero-stat-n">2,400</div><div class="hero-stat-l">Verified tenants</div></div>
+      <div><div class="hero-stat-n">98%</div><div class="hero-stat-l">Verified</div></div>
+      <div><div class="hero-stat-n">UGX 2K</div><div class="hero-stat-l">Per referral</div></div>
+      <div><div class="hero-stat-n">120+</div><div class="hero-stat-l">Service providers</div></div>
+    </div>
+  </div>
+  <div class="hero-progress"><div class="hero-progress-fill" id="hero-prog" style="width:0%"></div></div>
+  <div class="hero-controls">
+    <button class="hero-ctrl-btn active" onclick="goSlide(0)" id="hctrl-0"></button>
+    <button class="hero-ctrl-btn" onclick="goSlide(1)" id="hctrl-1"></button>
+    <button class="hero-ctrl-btn" onclick="goSlide(2)" id="hctrl-2"></button>
+  </div>
+</section>
+
+<!-- SEARCH PANEL -->
+<div class="search-wrap">
+  <div class="search-panel">
+    <div class="search-tabs-row">
+      <button class="stab active" onclick="setStab(this,'rent')">Rent</button>
+      <button class="stab" onclick="setStab(this,'buy')">Buy</button>
+      <button class="stab" onclick="setStab(this,'hostel')">Student / Hostel</button>
+      <button class="stab" onclick="setStab(this,'shared')">Shared housing</button>
+      <button class="stab" onclick="setStab(this,'land')">Land &amp; Property</button>
+      <button class="stab" onclick="setStab(this,'jobs')">Service jobs</button>
+    </div>
+    <div class="search-body">
+      <div class="sf"><span class="sf-label">Area</span>
+        <select class="sf-select" id="s-area"><option value="">All areas</option><option>Bukoto</option><option>Kisaasi</option><option>Ntinda</option><option>Wandegeya</option><option>Makerere</option><option>Naguru</option><option>Kololo</option><option>Muyenga</option><option>Mukono</option><option>Wakiso</option></select>
+      </div>
+      <div class="sf"><span class="sf-label">Type</span>
+        <select class="sf-select" id="s-type"><option value="">All types</option><option>Self-Contained</option><option>Single Room</option><option>Double Room</option><option>Hostel</option><option>Shared Housing</option><option>Apartment</option></select>
+      </div>
+      <div class="sf"><span class="sf-label">Budget</span>
+        <select class="sf-select" id="s-budget"><option value="">Any price</option><option value="0-200000">Under UGX 200K</option><option value="0-300000">Under UGX 300K</option><option value="200000-500000">UGX 200K–500K</option><option value="500000+">Above UGX 500K</option></select>
+      </div>
+      <div class="sf"><span class="sf-label">Filter</span>
+        <select class="sf-select" id="s-filter"><option value="">All listings</option><option value="verified">Verified only</option><option value="moveready">Move-in ready</option><option value="boosted">Boosted</option></select>
+      </div>
+      <button class="btn-search" onclick="doSearch()">Show properties</button>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-items">
+      <div class="trust-item"><span class="trust-icon">✔</span> GPS-confirmed locations</div>
+      <div class="trust-item"><span class="trust-icon">🔒</span> Contact locked until payment</div>
+      <div class="trust-item"><span class="trust-icon">✍️</span> E-signed agreements</div>
+      <div class="trust-item"><span class="trust-icon">📱</span> MTN &amp; Airtel MoMo</div>
+      <div class="trust-item"><span class="trust-icon">🛡️</span> AI fraud detection</div>
+    </div>
+    <button onclick="enableGPS()" style="padding:9px 18px;background:#1A1A1A;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .18s">📍 Near me</button>
+  </div>
+</div>
+
+<!-- LISTINGS -->
+<div id="listings-sec" style="padding:80px 0 0">
+  <div class="section" style="padding-top:0">
+    <div class="section-hdr">
+      <div>
+        <div class="section-title" id="listings-title">New properties</div>
+        <p class="section-sub">Verified listings — GPS confirmed, real photos, transparent pricing</p>
+      </div>
+      <div style="display:flex;gap:8px;align-items:flex-start">
+        <select onchange="sortList(this.value)" style="padding:9px 13px;border:1.5px solid #E8E8E6;border-radius:7px;font-size:12px;font-family:'DM Sans',sans-serif;color:#3D3D3D;outline:none;background:#fff;cursor:pointer">
+          <option value="match">Best match</option>
+          <option value="price-asc">Price ↑</option>
+          <option value="price-desc">Price ↓</option>
+          <option value="confidence">Trust score</option>
+        </select>
+        <button id="clear-btn" onclick="clearSearch()" class="hidden" style="padding:9px 14px;background:#F5F5F3;border:1.5px solid #E8E8E6;border-radius:7px;font-size:11px;font-weight:700;color:#3D3D3D;cursor:pointer">Clear</button>
+      </div>
+    </div>
+    <div class="chips" id="chips">
+      <button class="chip active" onclick="filterChip(this,'all')">All</button>
+      <button class="chip" onclick="filterChip(this,'under300k')">Under 300k</button>
+      <button class="chip" onclick="filterChip(this,'student')">🎓 Student</button>
+      <button class="chip" onclick="filterChip(this,'hostel')">🏨 Hostel</button>
+      <button class="chip" onclick="filterChip(this,'shared')">🤝 Shared</button>
+      <button class="chip" onclick="filterChip(this,'verified')">✔ Verified</button>
+      <button class="chip" onclick="filterChip(this,'ready')">🟢 Move-in ready</button>
+      <button class="chip" onclick="filterChip(this,'boosted')">🚀 Boosted</button>
+    </div>
+    <div class="grid-3" id="listings-grid"></div>
+    <div style="text-align:center;margin-top:28px">
+      <button class="link-more" onclick="toast('More listings — connect your backend API to paginate.')">Load more properties</button>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div style="background:#F5F5F3;padding:88px 0">
+  <div class="section" style="padding-top:0;padding-bottom:0">
+    <div class="how-grid">
+      <div>
+        <div style="font-size:10px;color:#9B9B9B;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:10px">How it works</div>
+        <div class="section-title">Everything you need,<br/>step by step.</div>
+        <p class="section-sub mt-8">Virtual tours, verified listings, GPS matching, and e-signed agreements — built for Uganda.</p>
+        <div class="how-steps" id="how-steps">
+          <div class="how-step active" onclick="setHowStep(0,this)"><div class="how-step-lbl">Search &amp; filter properties</div></div>
+          <div class="how-step" onclick="setHowStep(1,this)"><div class="how-step-lbl">View trust score &amp; verification</div></div>
+          <div class="how-step" onclick="setHowStep(2,this)"><div class="how-step-lbl">Pay UGX 5,000 · Unlock contact</div></div>
+          <div class="how-step" onclick="setHowStep(3,this)"><div class="how-step-lbl">E-sign agreement · Move in safely</div></div>
+        </div>
+        <div style="margin-top:24px">
+          <button onclick="openModal('auth-modal','signup')" style="padding:12px 22px;background:#1A1A1A;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;transition:background .18s" onmouseover="this.style.background='#2C2C2C'" onmouseout="this.style.background='#1A1A1A'">Get started</button>
+        </div>
+      </div>
+      <div class="how-photo-wrap">
+        <img id="how-img" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=85" alt=""/>
+        <div class="how-float-card">
+          <div class="hfc-label" id="hfc-lbl">Current step</div>
+          <div class="hfc-val" id="hfc-val">Search & Filter</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div style="background:#F5F5F3;border-top:1px solid #E8E8E6;padding:60px 0">
+  <div class="section" style="padding-top:0;padding-bottom:0">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" id="stats-grid">
+      <div class="stat-card"><div class="stat-lbl">Listings verified</div><div class="stat-num">98%</div><div class="mini-bars" id="sb1"></div></div>
+      <div class="stat-card"><div class="stat-lbl">Total referral payouts</div><div class="stat-num">UGX 4.8M</div><div class="mini-bars" id="sb2"></div></div>
+      <div class="stat-card"><div class="stat-lbl">Avg. days to rent</div><div class="stat-num">3.2</div><div class="mini-bars" id="sb3"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE JOBS -->
+<div id="jobs-sec">
+  <div class="section">
+    <div class="section-hdr">
+      <div>
+        <div class="section-title">Service job board</div>
+        <p class="section-sub">Post a job or accept one. E-signed commission agreement before contact is revealed.</p>
+      </div>
+      <button class="link-more" onclick="openModal('post-job-modal')">Post a job</button>
+    </div>
+    <div class="grid-3" id="jobs-grid"></div>
+  </div>
+</div>
+
+<!-- SERVICES / PROVIDERS -->
+<div id="services-sec" style="background:#F5F5F3;border-top:1px solid #E8E8E6;padding:88px 0">
+  <div class="section" style="padding-top:0;padding-bottom:0">
+    <div class="section-hdr">
+      <div>
+        <div class="section-title">Home services<br/>near you</div>
+        <p class="section-sub">Moving in? GPS-matched cleaners, movers, electricians and more.</p>
+      </div>
+      <button class="link-more" onclick="openModal('provider-signup-modal')">Register as provider</button>
+    </div>
+    <div class="grid-4" style="margin-bottom:32px" id="services-grid"></div>
+    <div class="provider-list" id="providers-list"></div>
+  </div>
+</div>
+
+<!-- LAND & PROPERTY -->
+<div id="land-sec">
+  <div class="section">
+    <div class="section-hdr">
+      <div>
+        <div class="section-title">Land &amp; premium<br/>property sales</div>
+        <p class="section-sub">Verified landowners. Pay access fee → GPS, title deed and owner contact unlocked.</p>
+      </div>
+      <button class="link-more" onclick="openModal('land-modal')">View all plots</button>
+    </div>
+    <div class="grid-3" id="land-grid"></div>
+  </div>
+</div>
+
+<!-- REFERRAL -->
+<div class="ref-section" id="ref-sec">
+  <div class="ref-inner">
+    <div>
+      <div class="ref-eyebrow">Referral programme</div>
+      <h2 class="ref-title">Earn money every time<br/>a friend finds a home.</h2>
+      <p class="ref-body">Share your link. When a friend pays the UGX 5,000 viewing fee, you earn UGX 2,000 direct to Mobile Money. No cap. No limit.</p>
+      <div class="split-card">
+        <div class="split-item"><div class="split-num">UGX 5K</div><div class="split-lbl">Viewing fee</div></div>
+        <div class="split-item"><div class="split-num" style="color:#5CB85C">UGX 2K</div><div class="split-lbl">You earn → MoMo</div></div>
+        <div class="split-item"><div class="split-num" style="color:#D4A853">UGX 3K</div><div class="split-lbl">Platform keeps</div></div>
+      </div>
+      <div style="font-size:10px;color:#5A5A5A">Minimum withdrawal UGX 20,000 · MTN or Airtel MoMo</div>
+    </div>
+    <div class="ref-right">
+      <div style="font-size:10px;color:#7A7A7A;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px">Get your referral link</div>
+      <div class="ref-input-group">
+        <input class="ref-inp" id="ref-phone" placeholder="Phone or email address"/>
+        <button class="btn-ref" onclick="getRefLink()">Get link</button>
+      </div>
+      <div id="ref-result" class="hidden" style="background:#1A1A1A;border:1px solid #2A2A2A;border-radius:8px;padding:12px 14px;margin-bottom:16px">
+        <div style="font-size:9px;color:#7A7A7A;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px">Your referral link</div>
+        <div id="ref-link-txt" style="font-size:12px;color:#5CB85C;font-weight:700;word-break:break-all;margin-bottom:8px"></div>
+        <button onclick="copyRef()" style="background:#2A2A2A;color:#E8E8E8;border:none;border-radius:5px;padding:6px 12px;font-size:10px;font-weight:700;cursor:pointer">Copy link</button>
+      </div>
+      <div class="ref-step-list">
+        <div class="ref-step"><div class="ref-step-num">1</div><div class="ref-step-txt"><strong>Share your link</strong> with anyone looking for a home</div></div>
+        <div class="ref-step"><div class="ref-step-num">2</div><div class="ref-step-txt">Friend <strong>signs up &amp; pays</strong> UGX 5,000 viewing fee</div></div>
+        <div class="ref-step"><div class="ref-step-num">3</div><div class="ref-step-txt"><strong>UGX 2,000 credited</strong> instantly to your MoMo wallet</div></div>
+        <div class="ref-step"><div class="ref-step-num">4</div><div class="ref-step-txt">Withdraw <strong>above UGX 20,000</strong> anytime, instantly</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AGENT DELEGATION SECTION -->
+<div style="background:#fff;border-top:1px solid #E8E8E6;padding:88px 0">
+  <div class="section" style="padding-top:0;padding-bottom:0">
+    <div class="section-hdr">
+      <div>
+        <div class="section-title">Landlords — delegate to<br/>a verified agent.</div>
+        <p class="section-sub">Appoint a licensed agent through our platform to find tenants, manage viewings, and handle agreements on your behalf.</p>
+      </div>
+      <button class="link-more" onclick="openModal('delegate-modal')">Delegate my property →</button>
+    </div>
+    <div class="grid-3">
+      <div style="background:#F5F5F3;border-radius:10px;padding:24px;border:1px solid #E8E8E6">
+        <div style="font-size:1.6rem;margin-bottom:12px">🏠</div>
+        <div style="font-weight:800;font-size:.95rem;color:#1A1A1A;margin-bottom:5px">Landlord lists property</div>
+        <div style="font-size:.8rem;color:#9B9B9B;line-height:1.6">Upload photos, set price, specify agent requirements.</div>
+      </div>
+      <div style="background:#F5F5F3;border-radius:10px;padding:24px;border:1px solid #E8E8E6">
+        <div style="font-size:1.6rem;margin-bottom:12px">🤝</div>
+        <div style="font-weight:800;font-size:.95rem;color:#1A1A1A;margin-bottom:5px">Platform assigns verified agent</div>
+        <div style="font-size:.8rem;color:#9B9B9B;line-height:1.6">Agent undergoes strict NIN + LC + guarantor verification before any assignment.</div>
+      </div>
+      <div style="background:#F5F5F3;border-radius:10px;padding:24px;border:1px solid #E8E8E6">
+        <div style="font-size:1.6rem;margin-bottom:12px">💰</div>
+        <div style="font-weight:800;font-size:.95rem;color:#1A1A1A;margin-bottom:5px">Agent finds tenant · Both e-sign</div>
+        <div style="font-size:.8rem;color:#9B9B9B;line-height:1.6">Digital commission agreement signed by agent and landlord before work begins.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><div class="footer-lmark"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2L14 7V14H10V10H6V14H2V7L8 2Z" fill="white"/></svg></div>RentRight</div>
+        <p class="footer-tag">Uganda's verified rental and housing services marketplace. No brokers. No scams. GPS-confirmed.</p>
+        <button class="footer-wa" onclick="window.open('https://wa.me/256700000000','_blank')">💬 WhatsApp</button>
+      </div>
+      <div>
+        <div class="footer-col-title">Platform</div>
+        <div class="footer-links">
+          <div class="footer-link" onclick="scrollToId('listings-sec')">Browse listings</div>
+          <div class="footer-link" onclick="scrollToId('jobs-sec')">Service jobs</div>
+          <div class="footer-link" onclick="scrollToId('land-sec')">Land &amp; property</div>
+          <div class="footer-link" onclick="scrollToId('ref-sec')">Referral programme</div>
+          <div class="footer-link" onclick="openModal('auth-modal','agent')">Post a property</div>
+          <div class="footer-link" onclick="openModal('delegate-modal')">Delegate to agent</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Areas</div>
+        <div class="footer-links">
+          <div class="footer-link" onclick="areaSearch('Makerere')">📍 Makerere</div>
+          <div class="footer-link" onclick="areaSearch('Kisaasi')">📍 Kisaasi</div>
+          <div class="footer-link" onclick="areaSearch('Ntinda')">📍 Ntinda</div>
+          <div class="footer-link" onclick="areaSearch('Bukoto')">📍 Bukoto</div>
+          <div class="footer-link" onclick="areaSearch('Wandegeya')">📍 Wandegeya</div>
+          <div class="footer-link" onclick="areaSearch('Naguru')">📍 Naguru</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-links">
+          <div class="footer-link">+256 700 000 000</div>
+          <div class="footer-link"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2d45484141426d5f4843595f444a455903584a">[email&#160;protected]</a></div>
+          <div class="footer-link">Kampala, Uganda</div>
+        </div>
+        <div style="margin-top:18px;background:#FFFBEB;border-radius:8px;padding:11px;font-size:.7rem;color:#92400E;line-height:1.6;border-left:3px solid #D4A853">⚠ Never pay rent before physically viewing. RentRight is an intermediary platform only.</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 RentRight Uganda · UGX 5K viewing → UGX 3K platform + UGX 2K referrer · 8% job commission</div>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Report</a></div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- end main-site -->
+
+<!-- ═══════════ ADMIN DASHBOARD ═══════════════════════ -->
+<div id="admin-dashboard" class="hidden" style="height:100vh;overflow:hidden">
+  <div class="admin-layout">
+    <div class="admin-sidebar">
+      <div class="admin-logo"><div class="admin-logo-mark">⚙️</div>RentRight Admin</div>
+      <div class="admin-nav">
+        <div class="admin-section-lbl">Overview</div>
+        <div class="admin-nav-item active" onclick="setAdminTab('overview',this)"><span class="ani-icon">📊</span><span class="ani-label">Dashboard</span></div>
+        <div class="admin-nav-item" onclick="setAdminTab('alerts',this)"><span class="ani-icon">🚨</span><span class="ani-label">Alerts</span><span class="ani-badge" id="alert-badge">7</span></div>
+        <div class="admin-section-lbl">Verification</div>
+        <div class="admin-nav-item" onclick="setAdminTab('verify',this)"><span class="ani-icon">🔍</span><span class="ani-label">Verify Providers</span><span class="ani-badge amber" id="verify-badge">15</span></div>
+        <div class="admin-nav-item" onclick="setAdminTab('agents',this)"><span class="ani-icon">🏢</span><span class="ani-label">Agents</span></div>
+        <div class="admin-section-lbl">Content</div>
+        <div class="admin-nav-item" onclick="setAdminTab('listings',this)"><span class="ani-icon">🏠</span><span class="ani-label">Listings</span></div>
+        <div class="admin-nav-item" onclick="setAdminTab('jobs',this)"><span class="ani-icon">🔧</span><span class="ani-label">Job Board</span></div>
+        <div class="admin-nav-item" onclick="setAdminTab('land',this)"><span class="ani-icon">🌍</span><span class="ani-label">Land &amp; Property</span></div>
+        <div class="admin-section-lbl">Finance</div>
+        <div class="admin-nav-item" onclick="setAdminTab('payments',this)"><span class="ani-icon">💳</span><span class="ani-label">Payments</span></div>
+        <div class="admin-nav-item" onclick="setAdminTab('referrals',this)"><span class="ani-icon">🔁</span><span class="ani-label">Referrals</span></div>
+        <div class="admin-nav-item" onclick="setAdminTab('commissions',this)"><span class="ani-icon">💰</span><span class="ani-label">Commissions</span></div>
+        <div class="admin-section-lbl">Operations</div>
+        <div class="admin-nav-item" onclick="setAdminTab('users',this)"><span class="ani-icon">👤</span><span class="ani-label">Users</span></div>
+        <div class="admin-nav-item" onclick="setAdminTab('disputes',this)"><span class="ani-icon">⚖️</span><span class="ani-label">Disputes</span><span class="ani-badge" id="dispute-badge">3</span></div>
+        <div class="admin-nav-item" onclick="setAdminTab('esigns',this)"><span class="ani-icon">✍️</span><span class="ani-label">E-Signatures</span></div>
+        <div class="admin-nav-item" onclick="setAdminTab('settings',this)"><span class="ani-icon">⚙️</span><span class="ani-label">Settings</span></div>
+        <div style="padding:18px 10px;margin-top:auto;border-top:1px solid #1E1E1E;margin-top:20px">
+          <div class="admin-nav-item" onclick="exitAdmin()"><span class="ani-icon">🔙</span><span class="ani-label">Back to site</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <div class="admin-topbar-title" id="admin-page-title">Dashboard</div>
+        <div class="admin-topbar-actions">
+          <button class="atb-btn atb-btn-ghost" onclick="toast('Exporting report...')">Export report</button>
+          <button class="atb-btn atb-btn-primary" id="admin-primary-btn" onclick="toast('Action triggered')">Quick action</button>
+          <div class="atb-avatar" title="Admin">A</div>
+        </div>
+      </div>
+      <div class="admin-content" id="admin-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ MOBILE BOTTOM BAR ════════════════════ -->
+<div class="bottom-bar">
+  <div class="btabs">
+    <button class="btab active" onclick="btabClick(this,'listings-sec')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></button>
+    <button class="btab" onclick="btabClick(this,'listings-sec')"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>Search</span></button>
+    <button class="btab" onclick="openModal('auth-modal','signup')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>Saved</span></button>
+    <button class="btab" onclick="btabClick(this,'jobs-sec')"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg><span>Jobs</span></button>
+    <button class="btab" onclick="openModal('auth-modal','login')"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Me</span></button>
+  </div>
+</div>
+
+<!-- ═══════════ FABs ═══════════════════════════════════ -->
+<div class="fab-group">
+  <div class="fab fab-ai" onclick="toggleChat()" title="AI Assistant">🤖</div>
+  <a href="https://wa.me/256700000000" target="_blank" class="fab fab-wa" title="WhatsApp">💬</a>
+</div>
+
+<!-- AI CHAT -->
+<div class="chat-panel" id="chat-panel">
+  <div class="chat-hdr">
+    <div class="chat-hdr-left"><div class="chat-av">🤖</div><div><div class="chat-title">RentRight AI</div><div class="chat-sub">Homes · Jobs · Services · Land</div></div></div>
+    <button class="chat-close-btn" onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-msgs" id="chat-msgs">
+    <div class="cmsg ai">Hi! I'm your RentRight assistant 🏠
+
+I can help you:
+• Find verified rentals
+• Match service providers
+• Post &amp; accept jobs
+• Land listings &amp; pricing
+
+Tell me your budget and area!</div>
+  </div>
+  <div class="chat-inp-row">
+    <input class="chat-inp" id="chat-inp" placeholder="Ask anything…" onkeydown="if(event.key==='Enter')sendChat()"/>
+    <button class="chat-send" onclick="sendChat()">↑</button>
+  </div>
+</div>
+
+<!-- ═══════════ MODALS ════════════════════════════════ -->
+
+<!-- AUTH MODAL -->
+<div class="modal-bg" id="auth-modal" onclick="bgClose(event,'auth-modal')">
+  <div class="modal-box">
+    <div class="mhdr"><div><div class="m-title">Welcome to RentRight</div><div class="m-sub">Uganda's verified housing marketplace</div></div><button class="m-close" onclick="closeModal('auth-modal')">×</button></div>
+    <div class="mbody">
+      <div class="mtabs"><button class="mtab active" id="mtab-login" onclick="authTab('login')">Sign in</button><button class="mtab" id="mtab-signup" onclick="authTab('signup')">New account</button><button class="mtab" id="mtab-agent" onclick="authTab('agent')">Agent / Provider</button></div>
+      <!-- LOGIN -->
+      <div id="auth-login">
+        <div class="field"><label>Email address</label><input type="email" id="l-email" placeholder="your@email.com"/></div>
+        <div class="field"><label>Password</label><input type="password" id="l-pass" placeholder="Password"/></div>
+        <div style="font-size:11px;color:#9B9B9B;margin-bottom:10px">Admin: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6f0e0b0206012f1d0a011b1d0608071b411a08">[email&#160;protected]</a> / admin2025</div>
+        <button class="btn-primary" onclick="doLogin()">Sign in →</button>
+        <div class="social-div">Or sign in with</div>
+        <div class="social-btn" onclick="doLogin()">🍎 Continue with Apple</div>
+        <div class="social-btn" onclick="doLogin()">🔵 Continue with Google</div>
+      </div>
+      <!-- SIGNUP -->
+      <div id="auth-signup" class="hidden">
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px" id="role-btns">
+          <button id="role-seeker" onclick="setRole('seeker')" style="padding:9px;border:1.5px solid #1A1A1A;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;background:#1A1A1A;color:#fff">🔍 Find a home</button>
+          <button id="role-landlord" onclick="setRole('landlord')" style="padding:9px;border:1.5px solid #E8E8E6;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;background:#fff;color:#3D3D3D">🏠 Landlord</button>
+          <button id="role-provider" onclick="setRole('provider')" style="padding:9px;border:1.5px solid #E8E8E6;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;background:#fff;color:#3D3D3D">🔧 Service provider</button>
+          <button id="role-hostel" onclick="setRole('hostel')" style="padding:9px;border:1.5px solid #E8E8E6;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;background:#fff;color:#3D3D3D">🏨 Hostel owner</button>
+        </div>
+        <div class="frow"><div class="field"><label>First name *</label><input type="text" id="su-fn" placeholder="First name"/></div><div class="field"><label>Last name *</label><input type="text" id="su-ln" placeholder="Last name"/></div></div>
+        <div class="field"><label>Email *</label><input type="email" id="su-em" placeholder="your@email.com"/></div>
+        <div class="field"><label>Phone (MTN / Airtel) *</label>
+          <div style="display:flex;gap:8px"><input type="tel" id="su-ph" placeholder="0771 234 567" style="flex:1;padding:10px 13px;border:1.5px solid #E8E8E6;border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .18s"/><button id="otp-btn" onclick="sendOTP()" style="padding:9px 13px;background:#F5F5F3;border:1.5px solid #E8E8E6;border-radius:8px;font-size:11px;font-weight:700;color:#3D3D3D;cursor:pointer;white-space:nowrap;transition:all .18s">Send OTP</button></div>
+        </div>
+        <div id="otp-field" class="field hidden"><label>OTP Code *</label><input type="text" id="su-otp" placeholder="6-digit code" maxlength="6"/></div>
+        <div class="field"><label>Password *</label><input type="password" id="su-pw" placeholder="Create password" oninput="checkPW(this.value)"/></div>
+        <div class="pw-rules" id="pw-rules"><div class="pw-rule" id="pwr-len">○ At least 8 characters</div><div class="pw-rule" id="pwr-num">○ Mix letters &amp; numbers</div><div class="pw-rule" id="pwr-spec">○ Special character</div></div>
+        <div class="field mt-8"><label>Referral code (optional)</label><input type="text" id="su-ref" placeholder="e.g. ref123abc"/></div>
+        <div class="info-note info-green mt-8">🔁 Earn <strong>UGX 2,000</strong> for every friend who pays a viewing fee through your link.</div>
+        <button class="btn-primary" onclick="doSignup()">Create account →</button>
+        <div class="social-div">Or</div>
+        <div class="social-btn" onclick="doSignup()">🍎 Continue with Apple</div>
+        <div class="social-btn" onclick="doSignup()">🔵 Continue with Google</div>
+        <div style="font-size:10px;color:#9B9B9B;text-align:center;margin-top:10px">By submitting you accept our <a href="#" style="color:#1A6DC0">terms of use</a></div>
+      </div>
+      <!-- AGENT/PROVIDER -->
+      <div id="auth-agent" class="hidden">
+        <div class="info-note info-amber"><strong>📋 Required documents:</strong><br/>🪪 National ID (NIN) front &amp; back · 📜 LC Introductory Letter<br/>👤 Guarantor NID · 🤳 Selfie verification · ✍️ Digital agreement</div>
+        <div class="info-note info-blue">⏱️ <strong>24–48 hour admin review.</strong> Admin verifies NIN, contacts guarantor, may send field agent. SLA: &lt; 24 hours approval.</div>
+        <div class="frow"><div class="field"><label>Full legal name</label><input type="text" id="ag-name" placeholder="Your full name"/></div><div class="field"><label>Phone</label><input type="tel" id="ag-phone" placeholder="0771 234 567"/></div></div>
+        <div class="field"><label>NIN number</label><input type="text" id="ag-nin" placeholder="National ID number"/></div>
+        <div class="field"><label>Service type</label><select class="sf-select" style="background:#fff;border:1.5px solid #E8E8E6"><option>Agent (property)</option><option>Landlord</option><option>Hostel owner</option><option>Moving provider</option><option>Cleaner</option><option>Plumber</option><option>Electrician</option></select></div>
+        <div class="field"><label>Upload NIN (front &amp; back)</label><div class="upload-zone" onclick="document.getElementById('ag-nin-f').click()"><div class="upload-zone-icon">🪪</div><div class="upload-zone-txt" id="ag-nin-lbl">Click to upload</div><input id="ag-nin-f" type="file" accept="image/*,.pdf" style="display:none" onchange="document.getElementById('ag-nin-lbl').textContent='✅ Uploaded'"/></div></div>
+        <div class="field"><label>Upload LC Letter</label><div class="upload-zone" onclick="document.getElementById('ag-lc-f').click()"><div class="upload-zone-icon">📜</div><div class="upload-zone-txt" id="ag-lc-lbl">Click to upload</div><input id="ag-lc-f" type="file" accept="image/*,.pdf" style="display:none" onchange="document.getElementById('ag-lc-lbl').textContent='✅ Uploaded'"/></div></div>
+        <div class="frow"><div class="field"><label>Guarantor name</label><input type="text" id="ag-gname" placeholder="Guarantor's full name"/></div><div class="field"><label>Guarantor phone</label><input type="tel" id="ag-gph" placeholder="Guarantor's phone"/></div></div>
+        <!-- E-SIGN -->
+        <div class="esign-box" style="margin-top:14px">
+          <strong>RentRight Provider Agreement</strong><br/><br/>
+          1. I confirm all information provided is true and accurate.<br/>
+          2. I agree to pay the 8% platform commission on all jobs obtained through RentRight.<br/>
+          3. I consent to NIN verification and guarantor contact by RentRight admin.<br/>
+          4. Misuse, fraud, or bypassing the platform will result in immediate account suspension and legal action.<br/>
+          5. RentRight may assign a field agent to physically verify my address at any time.<br/>
+          6. This agreement is legally binding. My IP address, device ID and timestamp are recorded.
+        </div>
+        <div class="esign-confirm">
+          <div class="esign-confirm-lbl">Electronic Signature</div>
+          <div class="esign-fields"><div class="esign-field"><input type="text" id="esign-name" placeholder="Type your full name"/></div><div class="esign-field"><input type="text" id="esign-date" placeholder="Today's date" value="" readonly style="color:#7A7A7A"/></div></div>
+          <label class="esign-check"><input type="checkbox" id="esign-agree"/>I have read and agree to the Provider Agreement. This constitutes my legal digital signature.</label>
+          <div class="esign-timestamp" id="esign-ts"></div>
+          <div class="esign-badge"><span class="esign-badge-icon">🔐</span><span class="esign-badge-txt">Signature will be stored with IP, timestamp &amp; device fingerprint</span></div>
+        </div>
+        <button class="btn-primary mt-16" onclick="submitAgent()">Submit application →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LISTING DETAIL MODAL -->
+<div class="modal-bg modal-lg" id="listing-modal" onclick="bgClose(event,'listing-modal')">
+  <div class="modal-box modal-lg" id="listing-modal-content"></div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="modal-bg" id="booking-modal" onclick="bgClose(event,'booking-modal')">
+  <div class="modal-box" id="booking-modal-content"></div>
+</div>
+
+<!-- POST JOB MODAL -->
+<div class="modal-bg" id="post-job-modal" onclick="bgClose(event,'post-job-modal')">
+  <div class="modal-box modal-lg">
+    <div class="mhdr"><div><div class="m-title">Post a Service Job</div><div class="m-sub">Plumbing, moving, cleaning, electrical and more</div></div><button class="m-close" onclick="closeModal('post-job-modal')">×</button></div>
+    <div class="mbody">
+      <div class="info-note info-blue">Providers will e-sign a commission agreement before accessing your contact details. Your info stays private until a provider accepts.</div>
+      <div class="frow"><div class="field"><label>Service category *</label><select class="sf-select" style="background:#fff;border:1.5px solid #E8E8E6"><option>Moving &amp; transport</option><option>Plumbing</option><option>Electrical</option><option>Cleaning</option><option>Laundry</option><option>Security / Watchman</option><option>Gardening</option><option>Carpentry</option><option>Painting</option><option>Other</option></select></div><div class="field"><label>Area / Location *</label><input type="text" placeholder="e.g. Kisaasi, Ntinda"/></div></div>
+      <div class="field"><label>Job title *</label><input type="text" placeholder="e.g. Fix leaking pipe in kitchen"/></div>
+      <div class="field"><label>Description *</label><textarea rows="3" placeholder="Describe the job clearly — location, what needs doing, any urgency..." style="resize:none"></textarea></div>
+      <div class="frow"><div class="field"><label>Your budget (UGX)</label><input type="number" placeholder="e.g. 50000"/></div><div class="field"><label>Urgency</label><select class="sf-select" style="background:#fff;border:1.5px solid #E8E8E6"><option>Normal (within a week)</option><option>Urgent (within 48 hours)</option><option>Emergency (today)</option></select></div></div>
+      <div class="frow"><div class="field"><label>Your name *</label><input type="text" placeholder="Full name"/></div><div class="field"><label>Phone *</label><input type="tel" placeholder="0771 234 567"/></div></div>
+      <!-- Client E-sign -->
+      <div class="esign-box">
+        <strong>Job Posting Terms</strong><br/><br/>
+        1. I confirm that the job description is accurate and truthful.<br/>
+        2. I agree to be contacted by verified providers only.<br/>
+        3. Agreed price must be paid via RentRight MoMo — no off-platform transactions.<br/>
+        4. The 8% platform commission is paid by the service provider on acceptance.
+      </div>
+      <div class="esign-confirm">
+        <div class="esign-confirm-lbl">Client E-Signature</div>
+        <div class="esign-fields"><div class="esign-field"><input type="text" placeholder="Type your full name to sign"/></div><div class="esign-field"><input type="text" value="" placeholder="Timestamp" readonly style="color:#7A7A7A"/></div></div>
+        <label class="esign-check"><input type="checkbox"/>I confirm all job details are accurate and I accept the platform terms.</label>
+        <div class="esign-badge"><span class="esign-badge-icon">🔐</span><span class="esign-badge-txt">Signature secured with timestamp &amp; IP</span></div>
+      </div>
+      <button class="btn-primary" onclick="submitJob()">Post Job</button>
+    </div>
+  </div>
+</div>
+
+<!-- ACCEPT JOB MODAL (E-SIGN by provider) -->
+<div class="modal-bg" id="accept-job-modal" onclick="bgClose(event,'accept-job-modal')">
+  <div class="modal-box" id="accept-job-content"></div>
+</div>
+
+<!-- PROVIDER SIGNUP MODAL -->
+<div class="modal-bg" id="provider-signup-modal" onclick="bgClose(event,'provider-signup-modal')">
+  <div class="modal-box modal-lg">
+    <div class="mhdr"><div><div class="m-title">Register as Service Provider</div><div class="m-sub">Get verified · Accept jobs · Earn</div></div><button class="m-close" onclick="closeModal('provider-signup-modal')">×</button></div>
+    <div class="mbody">
+      <div class="info-note info-amber"><strong>Verification required.</strong> Providers are higher-risk. All applications reviewed within 24 hours. NIN + LC letter + guarantor mandatory.</div>
+      <div class="field"><label>Full name *</label><input type="text" placeholder="Your full name"/></div>
+      <div class="frow"><div class="field"><label>Phone *</label><input type="tel" placeholder="0771 234 567"/></div><div class="field"><label>NIN *</label><input type="text" placeholder="National ID number"/></div></div>
+      <div class="frow"><div class="field"><label>Service type *</label><select class="sf-select" style="background:#fff;border:1.5px solid #E8E8E6"><option>Cleaner</option><option>Laundry</option><option>Mover / Truck</option><option>Packing helper</option><option>Plumber</option><option>Electrician</option><option>Security guard</option><option>Gardener</option><option>Carpenter</option></select></div><div class="field"><label>Area(s) served *</label><input type="text" placeholder="e.g. Kisaasi, Ntinda"/></div></div>
+      <div class="field"><label>Your rate</label><input type="text" placeholder="e.g. UGX 20,000 per session"/></div>
+      <div class="field"><label>Upload NIN</label><div class="upload-zone" onclick="document.getElementById('prov-nin').click()"><div class="upload-zone-icon">🪪</div><div class="upload-zone-txt" id="prov-nin-lbl">Click to upload NIN</div><input id="prov-nin" type="file" accept="image/*,.pdf" style="display:none" onchange="document.getElementById('prov-nin-lbl').textContent='✅ NIN uploaded'"/></div></div>
+      <div class="field"><label>Upload LC Letter</label><div class="upload-zone" onclick="document.getElementById('prov-lc').click()"><div class="upload-zone-icon">📜</div><div class="upload-zone-txt" id="prov-lc-lbl">Click to upload LC letter</div><input id="prov-lc" type="file" accept="image/*,.pdf" style="display:none" onchange="document.getElementById('prov-lc-lbl').textContent='✅ LC letter uploaded'"/></div></div>
+      <div class="frow"><div class="field"><label>Guarantor name</label><input type="text" placeholder="Guarantor's full name"/></div><div class="field"><label>Guarantor phone</label><input type="tel" placeholder="0771 234 567"/></div></div>
+      <div class="esign-box">
+        <strong>Provider Agreement</strong><br/><br/>
+        I agree to pay 8% platform commission on all jobs accepted through RentRight. I confirm all documents are genuine. I understand that fraud or bypassing the platform will result in permanent ban and potential legal action.
+      </div>
+      <div class="esign-confirm">
+        <div class="esign-confirm-lbl">Electronic Signature</div>
+        <div class="esign-fields"><div class="esign-field"><input type="text" placeholder="Type your full name"/></div><div class="esign-field"><input type="text" placeholder="Today's date" readonly style="color:#7A7A7A"/></div></div>
+        <label class="esign-check"><input type="checkbox"/>I agree to the Provider Agreement. This is my legal digital signature.</label>
+        <div class="esign-badge"><span class="esign-badge-icon">🔐</span><span class="esign-badge-txt">IP + timestamp + device ID recorded</span></div>
+      </div>
+      <button class="btn-primary" onclick="submitProviderApp()">Submit Application</button>
+    </div>
+  </div>
+</div>
+
+<!-- LAND MODAL -->
+<div class="modal-bg" id="land-modal" onclick="bgClose(event,'land-modal')">
+  <div class="modal-box modal-lg" id="land-modal-content"></div>
+</div>
+
+<!-- DELEGATE MODAL -->
+<div class="modal-bg" id="delegate-modal" onclick="bgClose(event,'delegate-modal')">
+  <div class="modal-box">
+    <div class="mhdr"><div><div class="m-title">Delegate to an Agent</div><div class="m-sub">Appoint a verified agent to manage your property</div></div><button class="m-close" onclick="closeModal('delegate-modal')">×</button></div>
+    <div class="mbody">
+      <div class="info-note info-blue">Your property will only be assigned to fully verified agents (NIN + LC + guarantor + field verification complete).</div>
+      <div class="field"><label>Property address *</label><input type="text" placeholder="Full address of the property"/></div>
+      <div class="frow"><div class="field"><label>Monthly rent (UGX) *</label><input type="number" placeholder="e.g. 400000"/></div><div class="field"><label>Property type</label><select class="sf-select" style="background:#fff;border:1.5px solid #E8E8E6"><option>Self-Contained</option><option>Single Room</option><option>Double Room</option><option>Hostel</option><option>Apartment</option></select></div></div>
+      <div class="field"><label>Agent preference</label><select class="sf-select" style="background:#fff;border:1.5px solid #E8E8E6"><option>Assign best-rated agent in my area</option><option>I want to select from a list</option></select></div>
+      <div class="field"><label>Commission to agent (%)</label><input type="number" placeholder="e.g. 10" value="10"/></div>
+      <div class="field"><label>Your name *</label><input type="text" placeholder="Landlord full name"/></div>
+      <div class="field"><label>Phone *</label><input type="tel" placeholder="0771 234 567"/></div>
+      <div class="esign-box">
+        <strong>Delegation Agreement</strong><br/><br/>
+        1. I authorise RentRight to assign a verified agent to market and find tenants for my property.<br/>
+        2. The agent agrees to operate within RentRight platform rules and NOT bypass the payment system.<br/>
+        3. Viewing fees collected remain subject to the platform split (UGX 3,000 platform + UGX 2,000 referrer).<br/>
+        4. The agent's commission is agreed above and paid after successful tenant placement.<br/>
+        5. I can revoke this delegation at any time with 7 days' notice.
+      </div>
+      <div class="esign-confirm">
+        <div class="esign-confirm-lbl">Landlord E-Signature</div>
+        <div class="esign-fields"><div class="esign-field"><input type="text" placeholder="Landlord full name"/></div><div class="esign-field"><input type="text" placeholder="Date" readonly style="color:#7A7A7A"/></div></div>
+        <label class="esign-check"><input type="checkbox"/>I confirm this delegation and accept the agreement above.</label>
+        <div class="esign-badge"><span class="esign-badge-icon">🔐</span><span class="esign-badge-txt">Agreement stored with timestamp &amp; device proof</span></div>
+      </div>
+      <button class="btn-primary" onclick="submitDelegate()">Submit Delegation Request</button>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD MODAL (user) -->
+<div class="modal-bg" id="dashboard-modal" onclick="bgClose(event,'dashboard-modal')">
+  <div class="modal-box modal-lg" id="dashboard-content"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ══ DATA ══════════════════════════════════════════ */
+const LISTINGS = [
+  {id:1,title:"Tranquil Studio",area:"Bukoto",price:420000,type:"Self-Contained",verified:true,boosted:true,popular:false,rating:4.9,match:94,confidence:98,moveIn:"ready",beds:1,baths:1,sqm:32,img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80",desc:"Calm studio in Bukoto. Quiet area, supermarket 5 min, UMEME metered power.",landlord:"Sarah B.",wa:"256700000005",viewingFee:5000,agentManaged:false},
+  {id:2,title:"Bright Double Room",area:"Kisaasi",price:350000,type:"Double Room",verified:true,boosted:false,popular:true,rating:4.7,match:88,confidence:91,moveIn:"ready",beds:1,baths:1,sqm:24,img:"https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=700&q=80",desc:"Bright double room steps from main road. Taxi 1 min. Prepaid electricity.",landlord:"Grace N.",wa:"256700000002",viewingFee:5000,agentManaged:true,agent:"James K. (Agent)"},
+  {id:3,title:"Student Hostel — 12 Rooms",area:"Wandegeya",price:175000,type:"Hostel",verified:true,boosted:true,popular:false,rating:4.3,match:91,confidence:84,moveIn:"ready",beds:1,baths:1,sqm:14,img:"https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=700&q=80",desc:"Affordable hostel 2 mins from Makerere. 12 rooms, WiFi, shared kitchen, 24hr security.",landlord:"Hostel Admin",wa:"256700000003",viewingFee:5000,hostel:true,roomsAvail:4},
+  {id:4,title:"Family Compound Room",area:"Ntinda",price:280000,type:"Single Room",verified:false,boosted:false,popular:false,rating:4.1,match:72,confidence:52,moveIn:"viewing",beds:1,baths:1,sqm:20,img:"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=700&q=80",desc:"Spacious single in family compound. Awaiting full verification.",landlord:"Peter M.",wa:"256700000004",viewingFee:5000,agentManaged:false},
+  {id:5,title:"Modern Bedsitter",area:"Makerere",price:240000,type:"Single Room",verified:true,boosted:false,popular:true,rating:4.5,match:89,confidence:93,moveIn:"ready",beds:1,baths:1,sqm:18,img:"https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80",desc:"Neat modern bedsitter near Makerere. Quiet zone, reliable power.",landlord:"James K.",wa:"256700000001",viewingFee:5000,agentManaged:false},
+  {id:6,title:"Executive 2-Bedroom",area:"Naguru",price:850000,type:"Self-Contained",verified:true,boosted:true,popular:false,rating:4.8,match:78,confidence:97,moveIn:"ready",beds:2,baths:2,sqm:85,img:"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=700&q=80",desc:"Executive 2BR in Naguru hills. Generator, panoramic views, high security.",landlord:"David R.",wa:"256700000006",viewingFee:5000,agentManaged:true,agent:"Grace K. (Agent)"},
+];
+
+const JOBS = [
+  {id:"J1",cat:"Plumbing",color:"#1A6DC0",title:"Fix leaking pipe in kitchen",loc:"Kira, Wakiso",budget:45000,posted:"2h ago",urgency:"Urgent",tags:["Residential","ASAP"]},
+  {id:"J2",cat:"Moving",color:"#EA580C",title:"Move 1BR from Kisaasi to Ntinda",loc:"Kisaasi → Ntinda",budget:80000,posted:"5h ago",urgency:"Normal",tags:["Truck needed","Guard rails"]},
+  {id:"J3",cat:"Electrical",color:"#D4A853",title:"Install 3 sockets + wire fan",loc:"Wandegeya",budget:60000,posted:"1d ago",urgency:"Normal",tags:["Residential","Makerere area"]},
+  {id:"J4",cat:"Cleaning",color:"#2C5F2E",title:"Full house deep clean, 3 bedrooms",loc:"Naguru",budget:35000,posted:"3h ago",urgency:"Normal",tags:["Move-in clean","Chemical-free"]},
+  {id:"J5",cat:"Security",color:"#7C3AED",title:"Night guard needed, 3 months",loc:"Bukoto compound",budget:300000,posted:"1d ago",urgency:"Normal",tags:["Monthly","Gated compound"]},
+  {id:"J6",cat:"Carpentry",color:"#B8960C",title:"Build wardrobe and bed frame",loc:"Ntinda",budget:200000,posted:"6h ago",urgency:"Normal",tags:["Custom built","2-week project"]},
+];
+
+const SERVICES = [
+  {icon:"🧹",title:"Cleaners",price:"From UGX 15K"},
+  {icon:"👕",title:"Laundry",price:"From UGX 6K/kg"},
+  {icon:"🚛",title:"Movers",price:"From UGX 50K"},
+  {icon:"👷",title:"Packing help",price:"From UGX 20K/day"},
+  {icon:"🔧",title:"Plumbers",price:"From UGX 25K"},
+  {icon:"⚡",title:"Electricians",price:"From UGX 30K"},
+  {icon:"🔒",title:"Security",price:"From UGX 300K/mo"},
+  {icon:"🌿",title:"Gardeners",price:"From UGX 20K"},
+];
+
+const PROVIDERS = [
+  {id:"P1",name:"Aisha Nakato",type:"Cleaner",area:"Kisaasi",rating:4.9,reviews:47,price:"UGX 20,000/session",available:true,dist:"0.8km",verified:true,emoji:"🧹",trustScore:96},
+  {id:"P2",name:"Brian Trucks Ltd",type:"Moving Truck",area:"Ntinda",rating:4.7,reviews:31,price:"UGX 80,000/job",available:true,dist:"1.2km",verified:true,emoji:"🚛",trustScore:91},
+  {id:"P3",name:"Grace Laundry",type:"Laundry",area:"Makerere",rating:4.8,reviews:62,price:"UGX 6,000/kg",available:true,dist:"2.1km",verified:false,emoji:"👕",trustScore:74},
+  {id:"P4",name:"Moses &amp; Team",type:"Packing Help",area:"Wandegeya",rating:4.6,reviews:28,price:"UGX 25,000/day",available:false,dist:"1.5km",verified:true,emoji:"👷",trustScore:88},
+];
+
+const LAND = [
+  {id:"L1",title:"1 Acre Plot",area:"Mukono",price:45000000,size:"1 acre",type:"Residential",verified:true,titleDeed:"Mailo",img:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700&q=80",accessFee:50000,features:["Title deed","Road access","Flat terrain"]},
+  {id:"L2",title:"50×100ft Plot",area:"Wakiso",price:18000000,size:"50×100ft",type:"Residential",verified:true,titleDeed:"Freehold",img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80",accessFee:30000,features:["Freehold title","Near TC","Borehole"]},
+  {id:"L3",title:"Premium Villa Plot",area:"Kololo",price:280000000,size:"0.5 acres",type:"Premium / Commercial",verified:true,titleDeed:"Freehold",img:"https://images.unsplash.com/photo-1613977257363-707ba9348227?w=700&q=80",accessFee:100000,features:["Hilltop views","Kololo prime","Freehold","Ready to build"],premium:true},
+];
+
+const HOW_DATA = [
+  {lbl:"Search & discover",img:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=85",card:"Search & Discover",desc:"GPS-matched results"},
+  {lbl:"Trust score & verification",img:"https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=85",card:"Verification",desc:"98% verified listings"},
+  {lbl:"Pay UGX 5,000 · Unlock",img:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=900&q=85",card:"Pay UGX 5,000",desc:"Contact unlocked instantly"},
+  {lbl:"E-sign & move in",img:"https://images.unsplash.com/photo-1506146332389-18140dc7b2fb?w=900&q=85",card:"E-Sign Agreement",desc:"Legally protected"},
+];
+
+const TRANSACTIONS = [
+  {id:"TXN-8A3F2B",desc:"Viewing fee — Bukoto Studio",amount:5000,type:"in",split:"UGX 3K platform + UGX 2K referral",date:"Today 9:14am",user:"Aisha N."},
+  {id:"TXN-7C1E9A",desc:"Job commission 8% — Plumbing Kira",amount:3600,type:"in",split:"8% of UGX 45,000",date:"Yesterday 3:22pm",user:"Moses K."},
+  {id:"TXN-4B8D2F",desc:"Referral payout — Brian M. referred",amount:2000,type:"out",split:"Paid to referrer",date:"Yesterday 3:22pm",user:"Referrer"},
+  {id:"TXN-2F5A8C",desc:"Land access fee — Mukono plot",amount:50000,type:"in",split:"Full access fee — platform",date:"2d ago 11:05am",user:"Denis O."},
+  {id:"TXN-9E3B7D",desc:"Boost fee — 7-day listing boost",amount:25000,type:"in",split:"Boost fee",date:"3d ago 8:30am",user:"Sarah B."},
+];
+
+const DISPUTES = [
+  {id:"D001",title:"Provider didn't show up for job",user:"Aisha N.",provider:"Moses K.",amount:45000,status:"open",date:"Today"},
+  {id:"D002",title:"Listing photos don't match property",user:"Brian O.",provider:"Landlord Peter M.",amount:5000,status:"reviewing",date:"Yesterday"},
+  {id:"D003",title:"Commission not paid after job completion",user:"Grace L.",provider:"Ntinda Plumbing",amount:8000,status:"resolved",date:"3 days ago"},
+];
+
+/* ══ STATE ══════════════════════════════════════════ */
+let currentUser = null;
+let heroSlide = 0;
+let heroTimer;
+let heroProgTimer;
+let heroProgVal = 0;
+let savedListings = new Set();
+let filteredList = [...LISTINGS].sort((a,b)=>(b.boosted?1:0)-(a.boosted?1:0)||b.match-a.match);
+let payMethod = 'mtn';
+let bookingListing = null;
+let currentRole = 'seeker';
+let adminTab = 'overview';
+
+/* ══ INIT ══════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded',()=>{
+  renderListings(filteredList);
+  renderJobs();
+  renderServices();
+  renderProviders();
+  renderLand();
+  buildMiniBars();
+  startHero();
+  initEsignTimestamp();
+  window.addEventListener('scroll',handleScroll);
+});
+
+function handleScroll(){
+  const nav=document.getElementById('main-nav');
+  if(window.scrollY>40){nav.classList.remove('at-top');nav.classList.add('scrolled');}
+  else{nav.classList.add('at-top');nav.classList.remove('scrolled');}
+}
+
+/* ══ HERO ══════════════════════════════════════════ */
+function startHero(){
+  heroProgVal=0;
+  document.getElementById('hero-prog').style.transition='none';
+  document.getElementById('hero-prog').style.width='0%';
+  clearInterval(heroTimer);clearInterval(heroProgTimer);
+  heroProgTimer=setInterval(()=>{
+    heroProgVal+=100/50;
+    document.getElementById('hero-prog').style.transition='none';
+    document.getElementById('hero-prog').style.width=Math.min(heroProgVal,100)+'%';
+  },100);
+  heroTimer=setTimeout(()=>{
+    heroSlide=(heroSlide+1)%3;
+    goSlide(heroSlide);
+  },5000);
+}
+function goSlide(i){
+  document.querySelectorAll('.hero-slide').forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  document.querySelectorAll('.hero-ctrl-btn').forEach((b,idx)=>b.classList.toggle('active',idx===i));
+  heroSlide=i;startHero();
+}
+
+/* ══ SEARCH ════════════════════════════════════════ */
+function setStab(el,tab){
+  document.querySelectorAll('.stab').forEach(s=>s.classList.remove('active'));el.classList.add('active');
+  const map={hostel:'Hostel',shared:'Shared Housing',land:'land',jobs:'jobs'};
+  if(tab==='land'){scrollToId('land-sec');return;}
+  if(tab==='jobs'){scrollToId('jobs-sec');return;}
+  if(map[tab]){document.getElementById('s-type').value=map[tab];}
+  else{document.getElementById('s-type').value='';}
+  doSearch();
+}
+
+function doSearch(){
+  const area=document.getElementById('s-area').value;
+  const type=document.getElementById('s-type').value;
+  const budget=document.getElementById('s-budget').value;
+  const filter=document.getElementById('s-filter').value;
+  let res=[...LISTINGS].filter(l=>{
+    if(area&&l.area!==area)return false;
+    if(type&&l.type!==type)return false;
+    if(budget){const[mn,mx]=budget.replace('500000+','500000-99999999').split('-').map(Number);if(l.price<mn||l.price>mx)return false;}
+    if(filter==='verified'&&!l.verified)return false;
+    if(filter==='moveready'&&l.moveIn!=='ready')return false;
+    if(filter==='boosted'&&!l.boosted)return false;
+    return true;
+  }).sort((a,b)=>(b.boosted?1:0)-(a.boosted?1:0)||b.match-a.match);
+  filteredList=res;renderListings(res);
+  document.getElementById('listings-title').textContent=res.length+' properties found';
+  document.getElementById('clear-btn').classList.toggle('hidden',!area&&!type&&!budget&&!filter);
+  scrollToId('listings-sec');
+}
+
+function clearSearch(){
+  ['s-area','s-type','s-budget','s-filter'].forEach(id=>document.getElementById(id).value='');
+  filteredList=[...LISTINGS].sort((a,b)=>(b.boosted?1:0)-(a.boosted?1:0)||b.match-a.match);
+  renderListings(filteredList);document.getElementById('listings-title').textContent='New properties';
+  document.getElementById('clear-btn').classList.add('hidden');
+}
+
+function filterChip(el,f){
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');
+  let res=[...LISTINGS];
+  if(f==='under300k')res=res.filter(l=>l.price<=300000);
+  else if(f==='student')res=res.filter(l=>['Wandegeya','Makerere'].includes(l.area)||l.type==='Hostel');
+  else if(f==='hostel')res=res.filter(l=>l.hostel||l.type==='Hostel');
+  else if(f==='shared')res=res.filter(l=>l.type==='Shared Housing');
+  else if(f==='verified')res=res.filter(l=>l.verified);
+  else if(f==='ready')res=res.filter(l=>l.moveIn==='ready');
+  else if(f==='boosted')res=res.filter(l=>l.boosted);
+  filteredList=res.sort((a,b)=>(b.boosted?1:0)-(a.boosted?1:0)||b.match-a.match);
+  renderListings(filteredList);
+}
+
+function sortList(v){
+  let res=[...filteredList];
+  if(v==='price-asc')res.sort((a,b)=>a.price-b.price);
+  else if(v==='price-desc')res.sort((a,b)=>b.price-a.price);
+  else if(v==='confidence')res.sort((a,b)=>b.confidence-a.confidence);
+  else res.sort((a,b)=>(b.boosted?1:0)-(a.boosted?1:0)||b.match-a.match);
+  renderListings(res);
+}
+
+function areaSearch(a){document.getElementById('s-area').value=a;doSearch();}
+function enableGPS(){
+  if(!navigator.geolocation){toast('GPS not available');return;}
+  navigator.geolocation.getCurrentPosition(()=>{toast('📍 GPS enabled — showing nearest properties first');filteredList=[...LISTINGS].sort((a,b)=>a.id-b.id);renderListings(filteredList);scrollToId('listings-sec');},()=>toast('Please allow location access'));
+}
+
+/* ══ RENDER LISTINGS ════════════════════════════════ */
+function renderListings(list){
+  const g=document.getElementById('listings-grid');
+  if(!list.length){
+    g.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;background:#F5F5F3;border-radius:10px"><div style="font-size:2.4rem;margin-bottom:10px">🔍</div><div style="font-weight:800;font-size:1.05rem;color:#1A1A1A;margin-bottom:6px">No properties match</div><div style="font-size:.85rem;color:#9B9B9B;margin-bottom:18px">Try clearing your filters</div><button onclick="clearSearch()" style="padding:11px 22px;background:#1A1A1A;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer">Clear filters</button></div>`;return;
+  }
+  g.innerHTML=list.map(l=>{
+    const cc=l.confidence>=85?'#2C5F2E':l.confidence>=65?'#1A6DC0':l.confidence>=40?'#D4A853':'#E8453C';
+    return`<div class="prop-card" onclick="openListing(${l.id})">
+      <div class="card-img">
+        <img src="${l.img}" alt="${l.title}" loading="lazy"/>
+        <div class="card-badges">
+          ${l.boosted?`<div class="badge badge-gold">🚀 Boosted</div>`:''}
+          ${l.popular?`<div class="badge badge-red">✦ Popular</div>`:''}
+          ${l.verified?`<div class="badge badge-green">✔ Verified</div>`:`<div class="badge badge-red">⚠ Unverified</div>`}
+          ${l.hostel?`<div class="badge badge-blue">🏨 ${l.roomsAvail} rooms left</div>`:''}
+          ${l.agentManaged?`<div class="badge badge-purple">🏢 Agent</div>`:''}
+        </div>
+        <button class="card-fav ${savedListings.has(l.id)?'saved':''}" onclick="event.stopPropagation();toggleSave(${l.id},this)">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="card-title-row"><div class="card-title">${l.title}</div><div class="card-price">UGX ${l.price.toLocaleString()}</div></div>
+        <div class="card-location">📍 ${l.area} · ${l.type}${l.agentManaged?' · '+l.agent:''}</div>
+        <div class="conf-bar"><div class="conf-track"><div class="conf-fill" style="width:${l.confidence}%;background:${cc}"></div></div></div>
+        <div class="card-meta" style="margin-top:10px">
+          <div class="cmeta"><svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>${l.sqm}m²</div>
+          <div class="cmeta-sep"></div>
+          <div class="cmeta"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M2 20h20M3 20V8l9-5 9 5v12"/></svg>${l.beds}bd</div>
+          <div class="cmeta-sep"></div>
+          <div class="cmeta"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M4 12h16M4 12a8 8 0 1016 0"/></svg>${l.baths}ba</div>
+          <div class="cmeta-sep"></div>
+          <div class="cmeta" style="color:#D4A853">${'★'.repeat(Math.round(l.rating))} ${l.rating}</div>
+        </div>
+        <div class="card-cta-row">
+          <div class="trust-score"><svg viewBox="0 0 12 12"><path d="M6 1l1.5 3h3l-2.5 2 1 3L6 8l-3 1 1-3-2.5-2h3z"/></svg>${l.confidence}% trust</div>
+          <button class="btn-book-card" onclick="event.stopPropagation();openBooking(${l.id})">Book viewing</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleSave(id,btn){savedListings.has(id)?savedListings.delete(id):savedListings.add(id);btn.classList.toggle('saved');}
+
+/* ══ LISTING DETAIL ════════════════════════════════ */
+function openListing(id){
+  const l=LISTINGS.find(x=>x.id===id);if(!l)return;
+  const cc=l.confidence>=85?'#2C5F2E':l.confidence>=65?'#1A6DC0':'#D4A853';
+  document.getElementById('listing-modal-content').innerHTML=`
+    <div style="position:relative">
+      <img src="${l.img}" style="width:100%;height:260px;object-fit:cover;border-radius:14px 14px 0 0" alt="${l.title}"/>
+      <button class="m-close" onclick="closeModal('listing-modal')" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,.9)">×</button>
+      <div style="position:absolute;bottom:12px;left:12px;display:flex;gap:5px;flex-wrap:wrap">
+        ${l.verified?`<div class="badge badge-green">✔ Verified safe home</div>`:''} 
+        ${l.moveIn==='ready'?`<div class="badge badge-green">🟢 Move-in ready</div>`:`<div class="badge badge-gold">🟡 Needs viewing</div>`}
+        ${l.hostel?`<div class="badge badge-blue">🏨 ${l.roomsAvail} rooms available</div>`:''}
+        ${l.agentManaged?`<div class="badge badge-purple">🏢 Agent-managed</div>`:''}
+      </div>
+    </div>
+    <div style="padding:22px 24px 26px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:8px">
+        <div><div style="font-size:1.1rem;font-weight:800;color:#1A1A1A;letter-spacing:-.02em">${l.title}</div><div style="font-size:.75rem;color:#9B9B9B;margin-top:3px">📍 ${l.area} · ${l.type}</div></div>
+        <div style="text-align:right"><div style="font-size:1.4rem;font-weight:900;color:#1A1A1A;letter-spacing:-.04em">UGX ${l.price.toLocaleString()}</div><div style="font-size:10px;color:#9B9B9B">/month</div></div>
+      </div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px">
+        <div class="badge badge-blue">📸 Real photos</div><div class="badge badge-green">📍 GPS tagged</div><div class="badge badge-gold">🧾 Price verified</div><div class="badge badge-red">🔒 Contact locked</div>
+      </div>
+      <div style="background:#F5F5F3;border-radius:7px;height:4px;margin-bottom:4px"><div style="width:${l.confidence}%;height:100%;background:${cc};border-radius:7px"></div></div>
+      <div style="font-size:10px;color:${cc};font-weight:700;margin-bottom:12px">${l.confidence}% trust · ${l.confidence>=85?'High confidence':l.confidence>=65?'Good':'Moderate'}</div>
+      ${l.agentManaged?`<div class="info-note info-blue" style="margin-bottom:12px">🏢 <strong>Agent-managed by ${l.agent}</strong> — All viewings and communications go through the appointed agent. E-signed delegation agreement on file.</div>`:''}
+      ${l.hostel?`<div class="info-note info-green" style="margin-bottom:12px">🏨 <strong>Hostel listing</strong> — ${l.roomsAvail} rooms currently available. Pay one viewing fee to view all available rooms.</div>`:''}
+      <p style="font-size:.85rem;color:#3D3D3D;line-height:1.65;margin-bottom:14px">${l.desc}</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
+        ${[['📐',l.sqm+'m²','Area'],['🛏',l.beds+' bed','Beds'],['🚿',l.baths+' bath','Baths']].map(([ic,v,lb])=>`<div style="background:#F5F5F3;border-radius:8px;padding:10px;text-align:center;border:1px solid #E8E8E6"><div style="font-size:1rem;margin-bottom:2px">${ic}</div><div style="font-size:.85rem;font-weight:700;color:#1A1A1A">${v}</div><div style="font-size:9px;color:#9B9B9B">${lb}</div></div>`).join('')}
+      </div>
+      <div class="info-dark" style="margin-bottom:14px"><div style="font-size:1.4rem">🔒</div><div><div style="color:#fff;font-weight:700;font-size:.85rem">Landlord contact is hidden</div><div style="color:#7A7A7A;font-size:.72rem;margin-top:2px">Pay UGX ${l.viewingFee.toLocaleString()} → Platform UGX 3,000 + Referrer UGX 2,000</div></div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px">
+        <button class="btn-blue" onclick="closeModal('listing-modal');openBooking(${l.id})" style="margin-top:0">📅 Book viewing</button>
+        <button class="btn-primary" onclick="closeModal('listing-modal');openBooking(${l.id})" style="margin-top:0">🔓 Unlock contact</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <button class="btn-ghost" onclick="navigator.clipboard.writeText('rentright.ug/listing/${l.id}');this.textContent='✅ Copied!'" style="margin-top:0;font-size:12px">🔁 Share &amp; Earn</button>
+        <button class="btn-ghost" onclick="this.textContent='✅ Reported';this.style.color='#9B9B9B'" style="margin-top:0;font-size:12px;color:#E8453C;border-color:#E8E8E6">🚨 Report</button>
+      </div>
+    </div>`;
+  openModal('listing-modal');
+}
+
+/* ══ BOOKING ════════════════════════════════════════ */
+function openBooking(id){
+  if(!currentUser){openModal('auth-modal','login');return;}
+  bookingListing=LISTINGS.find(x=>x.id===id);
+  renderBookStep(1);openModal('booking-modal');
+}
+
+function renderBookStep(step){
+  const l=bookingListing;
+  const steps=['Details','Agreement','Payment','Done'];
+  const sb=steps.map((s,i)=>`<div class="sbar-item ${step===i+1?'active':step>i+1?'done':''}">${step>i+1?'✓ ':''}${s}</div>`).join('');
+  let body='';
+  if(step===1){body=`
+    <div class="field"><label>Full name *</label><input type="text" id="bk-name" value="${currentUser?.name||''}" placeholder="Full name"/></div>
+    <div class="field"><label>Phone *</label><input type="tel" id="bk-ph" placeholder="0771 234 567"/></div>
+    <div class="field"><label>Preferred viewing date *</label><input type="date" id="bk-date"/></div>
+    <div class="info-note info-amber">💡 <strong>Viewing fee: UGX ${l?.viewingFee?.toLocaleString()}</strong> — Platform UGX 3,000 · Referrer UGX 2,000. Filters out time-wasters.</div>
+    <button class="btn-primary" onclick="if(document.getElementById('bk-name').value&&document.getElementById('bk-ph').value&&document.getElementById('bk-date').value){renderBookStep(2)}else{toast('Please fill all fields')}">Next → Agreement</button>`;
+  }else if(step===2){body=`
+    <div class="esign-box">
+      <strong>RentRight Booking Terms</strong><br/><br/>
+      1. Viewing fee UGX ${l?.viewingFee?.toLocaleString()} is non-refundable once paid.<br/>
+      2. RentRight is an intermediary only — inspect property before paying rent.<br/>
+      3. Landlord contact revealed only after payment confirmation.<br/>
+      4. Never pay rent without a signed tenancy agreement.<br/>
+      5. Your IP address and timestamp (${new Date().toLocaleString()}) are recorded.
+    </div>
+    <div class="esign-confirm">
+      <div class="esign-confirm-lbl">Tenant E-Signature</div>
+      <div class="esign-fields"><div class="esign-field"><input type="text" id="bk-sign" placeholder="Type your full name"/></div><div class="esign-field"><input type="text" value="${new Date().toLocaleDateString()}" readonly style="color:#7A7A7A"/></div></div>
+      <label class="esign-check"><input type="checkbox" id="bk-agree"/>I accept all RentRight Booking Terms. This is my legal digital signature.</label>
+      <div class="esign-badge"><span class="esign-badge-icon">🔐</span><span class="esign-badge-txt">Signature secured with IP + timestamp</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+      <button class="btn-ghost" onclick="renderBookStep(1)" style="margin-top:0">← Back</button>
+      <button class="btn-primary" style="margin-top:0" onclick="if(document.getElementById('bk-agree').checked&&document.getElementById('bk-sign').value){renderBookStep(3)}else{toast('Please sign and accept terms')}">Agree → Pay</button>
+    </div>`;
+  }else if(step===3){body=`
+    <div style="font-weight:800;font-size:.95rem;color:#1A1A1A;margin-bottom:4px">Pay viewing fee</div>
+    <div style="font-size:.8rem;color:#9B9B9B;margin-bottom:16px">Amount: <strong style="color:#1A1A1A">UGX ${l?.viewingFee?.toLocaleString()}</strong></div>
+    <div class="pay-methods">
+      <div class="pay-method sel" id="pm-mtn" onclick="selPay('mtn')"><div class="pay-method-icon">📱</div><div class="pay-method-name">MTN MoMo</div><div class="pay-method-sub">Instant</div></div>
+      <div class="pay-method" id="pm-airtel" onclick="selPay('airtel')"><div class="pay-method-icon">📲</div><div class="pay-method-name">Airtel Money</div><div class="pay-method-sub">Instant</div></div>
+    </div>
+    <div class="field"><label>Your MoMo number *</label><input type="tel" id="bk-momo" placeholder="0771 234 567"/></div>
+    <div class="info-note info-blue">🔒 Contact revealed instantly after confirmation · UGX 3K platform · UGX 2K referrer</div>
+    <button class="btn-primary" id="pay-btn" onclick="processPayment()">💳 Pay UGX ${l?.viewingFee?.toLocaleString()}</button>
+    <button class="btn-ghost" onclick="renderBookStep(2)">← Back</button>`;
+  }else if(step===4){
+    const txn='TXN-'+Math.random().toString(36).slice(2,10).toUpperCase();
+    body=`<div class="text-center" style="padding:10px 0 14px"><div style="font-size:3rem;margin-bottom:10px">✅</div><div style="font-size:1.1rem;font-weight:800;color:#1A1A1A;margin-bottom:6px">Viewing confirmed!</div><div style="font-size:.75rem;color:#9B9B9B;margin-bottom:16px">Ref: ${txn}</div></div>
+    <div class="info-note info-green"><strong>✅ Booking details</strong><br/><strong>Property:</strong> ${l?.title}<br/><strong>Date:</strong> ${document.getElementById('bk-date')?.value||'Confirmed'}<br/><strong>Fee:</strong> UGX ${l?.viewingFee?.toLocaleString()} · ${txn}<br/><strong>🔓 Landlord:</strong> ${l?.landlord} · 0712 345 678</div>
+    <a href="https://wa.me/${l?.wa}?text=Hi! I booked a viewing for ${encodeURIComponent(l?.title||'')} via RentRight. Ref: ${txn}" target="_blank" style="display:block;background:#25D366;color:#fff;border-radius:8px;padding:13px;font-weight:700;font-size:13px;text-align:center;text-decoration:none;margin-bottom:8px">💬 Message on WhatsApp</a>
+    <button class="btn-ghost" onclick="closeModal('booking-modal')">Done ✓</button>`;
+  }
+  document.getElementById('booking-modal-content').innerHTML=`
+    <div class="mhdr"><div><div class="m-title">Book a viewing</div><div class="m-sub">${l?.title} · UGX ${l?.price?.toLocaleString()}/mo</div></div><button class="m-close" onclick="closeModal('booking-modal')">×</button></div>
+    <div class="step-bar">${sb}</div><div class="mbody">${body}</div>`;
+}
+
+function selPay(m){payMethod=m;document.getElementById('pm-mtn').classList.toggle('sel',m==='mtn');document.getElementById('pm-airtel').classList.toggle('sel',m==='airtel');}
+function processPayment(){
+  const m=document.getElementById('bk-momo')?.value;
+  if(!m||m.length<10){toast('Enter a valid MoMo number');return;}
+  const btn=document.getElementById('pay-btn');btn.textContent='Processing…';btn.disabled=true;
+  setTimeout(()=>renderBookStep(4),2400);
+}
+
+/* ══ JOBS ═══════════════════════════════════════════ */
+function renderJobs(){
+  document.getElementById('jobs-grid').innerHTML=JOBS.map(j=>`
+    <div class="job-card" onclick="openAcceptJob('${j.id}')">
+      <div class="job-cat" style="color:${j.color}">${j.cat} · ${j.urgency==='Urgent'?'⚡ Urgent':j.urgency}</div>
+      <div class="job-title">${j.title}</div>
+      <div class="job-loc">📍 ${j.loc} · Posted ${j.posted}</div>
+      <div class="job-tags">${j.tags.map(t=>`<span class="job-tag">${t}</span>`).join('')}</div>
+      <div class="job-footer">
+        <div><div class="job-budget">UGX ${j.budget.toLocaleString()}</div><div class="job-commission">8% = UGX ${Math.round(j.budget*.08).toLocaleString()} commission</div></div>
+        <button class="btn-accept" onclick="event.stopPropagation();openAcceptJob('${j.id}')">Accept job</button>
+      </div>
+    </div>`).join('');
+}
+
+function openAcceptJob(jobId){
+  const j=JOBS.find(x=>x.id===jobId);if(!j)return;
+  const commission=Math.round(j.budget*.08);
+  document.getElementById('accept-job-content').innerHTML=`
+    <div class="mhdr"><div><div class="m-title">Accept Job — E-Signature Required</div><div class="m-sub">${j.title}</div></div><button class="m-close" onclick="closeModal('accept-job-modal')">×</button></div>
+    <div class="mbody">
+      <div class="info-note info-blue">📋 <strong>${j.cat} job · ${j.loc}</strong><br/>Budget: UGX ${j.budget.toLocaleString()} · Your commission: UGX ${commission.toLocaleString()} (8%)</div>
+      <div class="info-note info-amber">⚠️ You must e-sign the commission agreement before accessing client contact details. This is legally binding.</div>
+      <div class="esign-box">
+        <strong>Commission Agreement — Job ID: ${j.id}</strong><br/><br/>
+        I, the undersigned provider, agree to:<br/><br/>
+        1. Pay RentRight a commission of <strong>8% (UGX ${commission.toLocaleString()})</strong> of the agreed job value of UGX ${j.budget.toLocaleString()}.<br/>
+        2. This commission is payable via MTN/Airtel MoMo before client contact details are revealed.<br/>
+        3. I will NOT attempt to contact the client directly without going through the platform.<br/>
+        4. I will complete the job as agreed. Any disputes will be handled through RentRight's dispute system.<br/>
+        5. Bypassing this agreement will result in immediate account suspension and recovery of commission through legal means.<br/>
+        6. This agreement is valid from the timestamp below and is legally enforceable.
+      </div>
+      <div class="esign-confirm">
+        <div class="esign-confirm-lbl">Provider E-Signature</div>
+        <div class="esign-fields">
+          <div class="esign-field"><input type="text" id="job-sign-name" placeholder="Your full legal name"/></div>
+          <div class="esign-field"><input type="text" value="${new Date().toLocaleString()}" readonly style="color:#7A7A7A"/></div>
+        </div>
+        <label class="esign-check"><input type="checkbox" id="job-sign-agree"/>I have read and agree to pay the 8% commission (UGX ${commission.toLocaleString()}) before receiving client contact. This is my legal digital signature.</label>
+        <div class="esign-badge"><span class="esign-badge-icon">🔐</span><span class="esign-badge-txt">Stored: IP address · Device ID · Timestamp · Full name</span></div>
+      </div>
+      <div class="field" style="margin-top:14px"><label>Your MoMo number (to pay commission)</label><input type="tel" id="job-momo" placeholder="0771 234 567"/></div>
+      <button class="btn-primary" onclick="confirmAcceptJob('${j.id}',${commission})">✍️ Sign &amp; Pay UGX ${commission.toLocaleString()} Commission</button>
+      <button class="btn-ghost" onclick="closeModal('accept-job-modal')">Cancel</button>
+    </div>`;
+  openModal('accept-job-modal');
+}
+
+function confirmAcceptJob(jobId,commission){
+  const name=document.getElementById('job-sign-name')?.value;
+  const agreed=document.getElementById('job-sign-agree')?.checked;
+  const momo=document.getElementById('job-momo')?.value;
+  if(!name){toast('Please type your full name to sign');return;}
+  if(!agreed){toast('Please accept the commission agreement');return;}
+  if(!momo||momo.length<10){toast('Please enter your MoMo number');return;}
+  const btn=event.target;btn.textContent='Processing payment…';btn.disabled=true;
+  setTimeout(()=>{
+    document.getElementById('accept-job-content').innerHTML=`
+      <div class="mhdr"><div><div class="m-title">🔓 Job Unlocked!</div><div class="m-sub">Commission paid · Client details revealed</div></div><button class="m-close" onclick="closeModal('accept-job-modal')">×</button></div>
+      <div class="mbody">
+        <div class="text-center" style="padding:10px 0 16px"><div style="font-size:3rem;margin-bottom:10px">✅</div><div style="font-size:1.05rem;font-weight:800;color:#1A1A1A">Commission of UGX ${commission.toLocaleString()} paid!</div></div>
+        <div class="info-note info-green"><strong>✅ Client Details</strong><br/><strong>Name:</strong> Aisha Nakato<br/><strong>Phone:</strong> 0712 345 678<br/><strong>WhatsApp:</strong> 256712345678<br/><strong>Address:</strong> Kisaasi, near Shell petrol station<br/><strong>Signed by you:</strong> ${name} · ${new Date().toLocaleString()}</div>
+        <a href="https://wa.me/256712345678?text=Hi! I accepted your job on RentRight. I'm ready to proceed." target="_blank" style="display:block;background:#25D366;color:#fff;border-radius:8px;padding:12px;font-weight:700;font-size:13px;text-align:center;text-decoration:none;margin-bottom:8px">💬 WhatsApp Client</a>
+        <button class="btn-ghost" onclick="closeModal('accept-job-modal')">Done ✓</button>
+      </div>`;
+  },2200);
+}
+
+function submitJob(){toast('✅ Job posted! Verified providers will see it and can accept (after e-signing commission agreement).');closeModal('post-job-modal');}
+
+/* ══ SERVICES ═══════════════════════════════════════ */
+function renderServices(){
+  document.getElementById('services-grid').innerHTML=SERVICES.map(s=>`
+    <div style="background:#F0F0EE;border-radius:10px;padding:22px 16px;cursor:pointer;transition:all .18s;border:1px solid transparent;text-align:left" onclick="openModal('provider-signup-modal')" onmouseover="this.style.background='#fff';this.style.borderColor='#E8E8E6';this.style.transform='translateY(-3px)';this.style.boxShadow='0 4px 20px rgba(0,0,0,.08)'" onmouseout="this.style.background='#F0F0EE';this.style.borderColor='transparent';this.style.transform='';this.style.boxShadow=''">
+      <div style="font-size:1.4rem;margin-bottom:10px;width:38px;height:38px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.08)">${s.icon}</div>
+      <div style="font-weight:800;font-size:.85rem;color:#1A1A1A;margin-bottom:3px">${s.title}</div>
+      <div style="font-size:.72rem;color:#2C5F2E;font-weight:700">${s.price}</div>
+    </div>`).join('');
+}
+
+function renderProviders(){
+  document.getElementById('providers-list').innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #E8E8E6;background:#F5F5F3;border-radius:10px 10px 0 0">
+      <div style="font-size:.82rem;font-weight:800;color:#1A1A1A">Providers near you</div>
+      <button onclick="enableGPS()" style="background:#1A1A1A;color:#fff;border:none;border-radius:6px;padding:7px 13px;font-size:11px;font-weight:700;cursor:pointer">📍 Enable GPS</button>
+    </div>
+    ${PROVIDERS.map(p=>`
+    <div class="prov-row">
+      <div class="prov-av" style="background:${p.available?'linear-gradient(135deg,#2C5F2E,#5CB85C)':'#E8E8E6'}">${p.emoji}</div>
+      <div class="prov-info">
+        <div class="prov-name">${p.name} ${p.verified?'<span style="font-size:9px;background:#DCFCE7;color:#15803D;border-radius:20px;padding:1px 6px;font-weight:700">✔ Verified</span>':''}</div>
+        <div class="prov-meta">${p.type} · ${p.area} · ${p.dist}</div>
+        <div class="prov-stars">${'★'.repeat(Math.round(p.rating))} ${p.rating} (${p.reviews}) · Trust: ${p.trustScore}%</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
+        <span class="avail-pill ${p.available?'avail-yes':'avail-no'}">${p.available?'Available':'Busy'}</span>
+        <div style="font-size:.75rem;font-weight:700;color:#1A1A1A">${p.price}</div>
+        <button onclick="openModal('post-job-modal')" style="background:transparent;border:1px solid #E8E8E6;border-radius:20px;padding:4px 11px;font-size:10px;font-weight:700;color:#3D3D3D;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='#1A1A1A'" onmouseout="this.style.borderColor='#E8E8E6'">Contact</button>
+      </div>
+    </div>`).join('')}`;
+}
+
+/* ══ LAND ═══════════════════════════════════════════ */
+function renderLand(){
+  document.getElementById('land-grid').innerHTML=LAND.map(l=>`
+    <div class="land-card" onclick="openLandDetail('${l.id}')">
+      <div class="land-img"><img src="${l.img}" alt="${l.title}" loading="lazy"/></div>
+      <div class="land-body">
+        ${l.premium?`<div style="background:linear-gradient(135deg,#B8960C,#D4A853);color:#fff;font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:20px;padding:3px 10px;display:inline-block;margin-bottom:8px">⭐ Premium Property</div>`:``}
+        <div class="land-type-pill">${l.type}</div>
+        <div class="land-title">${l.title}</div>
+        <div class="land-loc">📍 ${l.area} · ${l.size} · ${l.titleDeed}</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px">${l.features.map(f=>`<span style="font-size:9px;background:#F0FDF4;color:#2C5F2E;border-radius:20px;padding:2px 7px;font-weight:600">✓ ${f}</span>`).join('')}</div>
+        <div class="land-price">UGX ${l.price.toLocaleString()}</div>
+        <div class="land-lock">
+          <div style="font-size:1.1rem">🔒</div>
+          <div class="land-lock-txt"><strong>GPS + title deed + owner contact locked</strong><br/>Pay UGX ${l.accessFee.toLocaleString()} access fee via MoMo to unlock</div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function openLandDetail(id){
+  const l=LAND.find(x=>x.id===id);if(!l)return;
+  let paid=false,momo='',agreed=false;
+  function renderLandModal(){
+    document.getElementById('land-modal-content').innerHTML=`
+      <div style="position:relative"><img src="${l.img}" style="width:100%;height:240px;object-fit:cover;border-radius:14px 14px 0 0" alt="${l.title}"/><button class="m-close" onclick="closeModal('land-modal')" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,.9)">×</button>${l.premium?`<div style="position:absolute;top:12px;left:12px;background:linear-gradient(135deg,#B8960C,#D4A853);color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px">⭐ Premium Property</div>`:''}</div>
+      <div style="padding:22px 24px 26px">
+        <div style="font-size:1.1rem;font-weight:800;color:#1A1A1A;margin-bottom:3px">${l.title}</div>
+        <div style="font-size:.75rem;color:#9B9B9B;margin-bottom:10px">📍 ${l.area} · ${l.size} · ${l.type} · ${l.titleDeed}</div>
+        <div style="font-size:1.4rem;font-weight:900;color:#1A1A1A;margin-bottom:12px">UGX ${l.price.toLocaleString()}</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px">${l.features.map(f=>`<span style="font-size:10px;background:#F0FDF4;color:#2C5F2E;border-radius:20px;padding:3px 9px;font-weight:600">✓ ${f}</span>`).join('')}</div>
+        ${!paid?`
+          <div class="esign-box">
+            <strong>Land Access Agreement</strong><br/><br/>
+            1. The access fee of UGX ${l.accessFee.toLocaleString()} is non-refundable.<br/>
+            2. RentRight is an intermediary only — conduct independent due diligence.<br/>
+            3. Verify title deeds at the Uganda Lands Registry before any payment.<br/>
+            4. Hire a licensed lawyer and surveyor before completing any land transaction.<br/>
+            5. Never pay the full land price without lawyer present and proper land search.
+          </div>
+          <div class="esign-confirm">
+            <div class="esign-confirm-lbl">Access Agreement</div>
+            <div class="esign-fields"><div class="esign-field"><input type="text" id="land-sign" placeholder="Your full name"/></div><div class="esign-field"><input type="text" value="${new Date().toLocaleDateString()}" readonly style="color:#7A7A7A"/></div></div>
+            <label class="esign-check"><input type="checkbox" id="land-agree" onchange="agreed=this.checked"/>I understand this is an access fee only. I will conduct independent legal verification.</label>
+            <div class="esign-badge"><span class="esign-badge-icon">🔐</span><span class="esign-badge-txt">Agreement stored with timestamp &amp; device proof</span></div>
+          </div>
+          <div id="land-pay-section" style="margin-top:12px" class="hidden">
+            <div class="field"><label>MTN / Airtel MoMo number</label><input type="tel" id="land-momo" placeholder="0771 234 567"/></div>
+            <button class="btn-primary" id="land-pay-btn" onclick="payLandAccess('${l.id}',${l.accessFee})">💳 Pay UGX ${l.accessFee.toLocaleString()} to Unlock</button>
+          </div>
+          <div id="land-agree-prompt" style="margin-top:8px;font-size:11px;color:#9B9B9B;text-align:center">Sign and agree above to proceed to payment</div>
+          <script>document.getElementById('land-agree').addEventListener('change',function(){document.getElementById('land-pay-section').classList.toggle('hidden',!this.checked);document.getElementById('land-agree-prompt').style.display=this.checked?'none':'block';});<\/script>
+        `:`
+          <div class="info-note info-green"><strong>🔓 Full Details Unlocked</strong><br/><br/><strong>Location:</strong> ${l.area}, 2km from main road<br/><strong>GPS:</strong> 0.3821°N, 32.6184°E<br/><strong>Owner:</strong> John Mukasa<br/><strong>Owner phone:</strong> 0712 345 678<br/><strong>Surveyor:</strong> James Okello & Associates<br/><strong>Title ref:</strong> Block 244, Plot 12</div>
+          <div class="info-note info-amber">⚠️ <strong>Legal reminder:</strong> Always do a land search at the Uganda Lands Registry, hire a lawyer, and verify boundaries with a registered surveyor before any payment.</div>
+          <a href="https://wa.me/256712345678?text=Hi! I accessed your land listing via RentRight. I'm interested in ${encodeURIComponent(l.title)}." target="_blank" style="display:block;background:#25D366;color:#fff;border-radius:8px;padding:12px;font-weight:700;font-size:13px;text-align:center;text-decoration:none;margin-bottom:8px">💬 Contact Owner on WhatsApp</a>
+          <button class="btn-ghost" onclick="closeModal('land-modal')">Done ✓</button>
+        `}
+      </div>`;
+  }
+  renderLandModal();openModal('land-modal');
+  window.payLandAccess=function(id,fee){
+    const momo=document.getElementById('land-momo')?.value;
+    const sign=document.getElementById('land-sign')?.value;
+    if(!sign){toast('Please type your name to sign');return;}
+    if(!momo||momo.length<10){toast('Enter valid MoMo number');return;}
+    const btn=document.getElementById('land-pay-btn');btn.textContent='Processing…';btn.disabled=true;
+    setTimeout(()=>{paid=true;renderLandModal();},2200);
+  };
+}
+
+/* ══ HOW IT WORKS ═══════════════════════════════════ */
+function setHowStep(i,el){
+  document.querySelectorAll('.how-step').forEach(s=>s.classList.remove('active'));el.classList.add('active');
+  document.getElementById('how-img').src=HOW_DATA[i].img;
+  document.getElementById('hfc-lbl').textContent=HOW_DATA[i].desc;
+  document.getElementById('hfc-val').textContent=HOW_DATA[i].card;
+}
+
+/* ══ STATS ══════════════════════════════════════════ */
+function buildMiniBars(){
+  const configs=[
+    {id:'sb1',vals:[40,55,60,70,75,80,85,90,88,95,92,98]},
+    {id:'sb2',vals:[30,40,45,38,55,60,65,72,78,82,88,94]},
+    {id:'sb3',vals:[80,75,70,65,55,50,42,40,35,33,30,28]},
+  ];
+  configs.forEach(({id,vals})=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const max=Math.max(...vals);
+    el.innerHTML=vals.map((v,i)=>`<div class="mbar ${v>=max*.85?'hi':''}" style="height:${v/max*100}%"></div>`).join('');
+  });
+}
+
+/* ══ AUTH ════════════════════════════════════════════ */
+function authTab(t){
+  ['login','signup','agent'].forEach(x=>{document.getElementById('auth-'+x).classList.toggle('hidden',x!==t);document.getElementById('mtab-'+x).classList.toggle('active',x===t);});
+  if(t==='agent')initEsignTimestamp();
+}
+
+function setRole(r){
+  currentRole=r;
+  ['seeker','landlord','provider','hostel'].forEach(x=>{
+    const b=document.getElementById('role-'+x);
+    b.style.background=x===r?'#1A1A1A':'#fff';
+    b.style.color=x===r?'#fff':'#3D3D3D';
+    b.style.borderColor=x===r?'#1A1A1A':'#E8E8E6';
+  });
+}
+
+function sendOTP(){
+  const ph=document.getElementById('su-ph').value;
+  if(ph.length<10){toast('Enter a valid phone number');return;}
+  document.getElementById('otp-btn').textContent='✅ Sent';document.getElementById('otp-btn').disabled=true;
+  document.getElementById('otp-field').classList.remove('hidden');
+  toast('OTP sent to '+ph+' (demo: any 6 digits)');
+}
+
+function checkPW(v){
+  const rules=[[document.getElementById('pwr-len'),v.length>=8],[document.getElementById('pwr-num'),/\d/.test(v)&&/[a-zA-Z]/.test(v)],[document.getElementById('pwr-spec'),/[^a-zA-Z0-9]/.test(v)]];
+  rules.forEach(([el,ok])=>{if(el)el.classList.toggle('ok',ok);});
+}
+
+function doLogin(){
+  const email=document.getElementById('l-email')?.value||'';
+  const pass=document.getElementById('l-pass')?.value||'';
+  if(email==='admin@rentright.ug'&&pass==='admin2025'){
+    currentUser={name:'Admin',email,role:'admin',referralCode:'admin'};
+    closeModal('auth-modal');updateNav();setTimeout(()=>showAdmin(),300);return;
+  }
+  if(!email){toast('Please enter your email');return;}
+  const btn=event.target;btn.textContent='Signing in…';btn.disabled=true;
+  setTimeout(()=>{
+    currentUser={name:email.split('@')[0],email,role:'seeker',referralCode:'ref'+Math.random().toString(36).slice(2,8),earnings:{total:10000,withdrawable:4000}};
+    closeModal('auth-modal');updateNav();btn.textContent='Sign in →';btn.disabled=false;toast('Welcome back, '+currentUser.name+'!');
+  },1300);
+}
+
+function doSignup(){
+  const fn=document.getElementById('su-fn')?.value,em=document.getElementById('su-em')?.value;
+  if(!fn||!em){toast('Please fill in name and email');return;}
+  const btn=event.target;btn.textContent='Creating…';btn.disabled=true;
+  setTimeout(()=>{
+    currentUser={name:fn,email:em,role:currentRole,referralCode:'ref'+Math.random().toString(36).slice(2,8),earnings:{total:0,withdrawable:0}};
+    closeModal('auth-modal');updateNav();btn.textContent='Create account →';btn.disabled=false;toast('Welcome to RentRight, '+fn+'!');
+  },1300);
+}
+
+function submitAgent(){
+  const name=document.getElementById('ag-name')?.value;
+  const esignName=document.getElementById('esign-name')?.value;
+  const agreed=document.getElementById('esign-agree')?.checked;
+  if(!name){toast('Please fill in your name');return;}
+  if(!esignName){toast('Please type your name in the e-signature field');return;}
+  if(!agreed){toast('Please accept the provider agreement');return;}
+  closeModal('auth-modal');
+  toast('✅ Application submitted! Admin will review within 24 hours.');
+}
+
+function submitProviderApp(){toast('✅ Provider application submitted! Admin reviews within 24 hours. E-signature recorded.');}
+function submitDelegate(){toast('✅ Delegation submitted! We will assign a verified agent to your property within 48 hours.');}
+
+function initEsignTimestamp(){
+  const ts=document.getElementById('esign-ts');const d=document.getElementById('esign-date');
+  const now=new Date().toLocaleString();
+  if(ts)ts.textContent='Timestamp: '+now+' · IP: 197.xxx.xxx.xxx · Device: Chrome/Uganda';
+  if(d)d.value=new Date().toLocaleDateString();
+}
+
+function updateNav(){
+  const a=document.getElementById('nav-actions');
+  if(!currentUser){a.innerHTML=`<button class="btn-ghost-nav" onclick="openModal('auth-modal','login')">Sign in</button><button class="btn-dark-nav" onclick="openModal('auth-modal','signup')">Post a property</button>`;return;}
+  if(currentUser.role==='admin'){a.innerHTML=`<button class="btn-ghost-nav" onclick="showAdmin()">⚙️ Admin</button><button class="btn-dark-nav" onclick="logOut()">Sign out</button>`;return;}
+  a.innerHTML=`<button class="btn-ghost-nav" onclick="openDashboard()">👤 ${currentUser.name.split(' ')[0]}</button><button class="btn-dark-nav" onclick="logOut()">Sign out</button>`;
+}
+
+function logOut(){currentUser=null;updateNav();toast('Signed out.');}
+
+/* ══ USER DASHBOARD ════════════════════════════════ */
+function openDashboard(){
+  const refCode=currentUser?.referralCode||'ref123abc';
+  document.getElementById('dashboard-content').innerHTML=`
+    <div class="mhdr"><div><div class="m-title">👋 ${currentUser?.name}</div><div class="m-sub">Your RentRight dashboard</div></div><div style="display:flex;gap:8px"><button onclick="logOut();closeModal('dashboard-modal')" style="padding:7px 13px;border:1px solid #E8E8E6;border-radius:6px;font-size:11px;font-weight:700;color:#3D3D3D;cursor:pointer;background:transparent">Sign out</button><button class="m-close" onclick="closeModal('dashboard-modal')">×</button></div></div>
+    <div class="mbody">
+      <div class="info-note info-green"><strong>Your referral link:</strong><br/><span style="font-size:12px;color:#2C5F2E;font-weight:700">rentright.ug/ref/${refCode}</span><br/><button onclick="navigator.clipboard.writeText('rentright.ug/ref/${refCode}');toast('Copied!')" style="margin-top:6px;background:#1A1A1A;color:#fff;border:none;border-radius:5px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer">Copy link</button></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px">
+        ${[['Total earned','UGX 10,000','#2C5F2E'],['Pending','UGX 6,000','#D4A853'],['Withdrawable','UGX 4,000','#1A6DC0']].map(([lb,v,c])=>`<div style="background:#F5F5F3;border-radius:8px;padding:12px;text-align:center;border:1px solid #E8E8E6"><div style="font-weight:800;font-size:.9rem;color:${c}">${v}</div><div style="font-size:9px;color:#9B9B9B;margin-top:2px">${lb}</div></div>`).join('')}
+      </div>
+      <button onclick="toast('✅ UGX 4,000 sent to your MoMo!');closeModal('dashboard-modal')" class="btn-blue" style="margin-bottom:8px">Withdraw UGX 4,000 to MoMo</button>
+      <button onclick="scrollToId('ref-sec');closeModal('dashboard-modal')" class="btn-ghost">View referral programme</button>
+    </div>`;
+  openModal('dashboard-modal');
+}
+
+/* ══ REFERRAL ════════════════════════════════════════ */
+function getRefLink(){
+  const ph=document.getElementById('ref-phone').value;
+  if(!ph){toast('Enter your phone or email');return;}
+  const code='ref'+Math.random().toString(36).slice(2,10);
+  document.getElementById('ref-link-txt').textContent='rentright.ug/ref/'+code;
+  document.getElementById('ref-result').classList.remove('hidden');
+}
+function copyRef(){navigator.clipboard.writeText(document.getElementById('ref-link-txt').textContent);toast('Referral link copied!');}
+
+/* ══ ADMIN DASHBOARD ════════════════════════════════ */
+function showAdmin(){
+  document.getElementById('main-site').classList.add('hidden');
+  document.getElementById('admin-dashboard').classList.remove('hidden');
+  document.body.style.overflow='hidden';
+  renderAdminTab('overview');
+}
+function exitAdmin(){
+  document.getElementById('admin-dashboard').classList.add('hidden');
+  document.getElementById('main-site').classList.remove('hidden');
+  document.body.style.overflow='';
+}
+
+function setAdminTab(tab,el){
+  document.querySelectorAll('.admin-nav-item').forEach(i=>i.classList.remove('active'));el.classList.add('active');
+  adminTab=tab;renderAdminTab(tab);
+}
+
+function renderAdminTab(tab){
+  const titles={overview:'Dashboard Overview',alerts:'System Alerts',verify:'Verify Providers',agents:'Agent Management',listings:'Listings',jobs:'Job Board',land:'Land & Property',payments:'Payments & Revenue',referrals:'Referral Payouts',commissions:'Job Commissions',users:'Users',disputes:'Disputes',esigns:'E-Signatures',settings:'Platform Settings'};
+  document.getElementById('admin-page-title').textContent=titles[tab]||'Admin';
+  const content=document.getElementById('admin-content');
+
+  if(tab==='overview'){
+    content.innerHTML=`
+      <div class="kpi-grid">
+        ${[['🏠','Listings','${LISTINGS.length}','+3 today','up'],['👤','Users','2,847','+14 today','up'],['💰','Revenue (MTD)','UGX 4.28M','+18% vs last mo','up'],['⏳','Pending verify','15','3 critical','dn'],['🚨','Open disputes','3','↓ from 5','up'],['✍️','E-signs today','24','+8 vs yesterday','up'],['🔧','Active jobs','8','6 with commission','up'],['🌍','Land queries','19','UGX 945K fees','up']].map(([ic,lb,val,sub,trend])=>`
+          <div class="kpi-card"><div class="kpi-icon">${ic}</div><div class="kpi-val">${val}</div><div class="kpi-lbl">${lb}</div><div class="kpi-trend ${trend==='up'?'trend-up':'trend-dn'}">${sub}</div></div>`).join('')}
+      </div>
+      <div class="admin-row">
+        <div class="admin-panel">
+          <div class="ap-header"><div class="ap-title">Revenue breakdown (this month)</div><button class="ap-action" onclick="setAdminTab('payments',document.querySelector('.admin-nav-item:nth-child(11)'))">View all</button></div>
+          <div class="rev-chart">
+            <div class="rev-bars">
+              ${[{h:40,lbl:'Viewing',hi:false},{h:65,lbl:'Viewing',hi:false},{h:55,lbl:'Viewing',hi:false},{h:80,lbl:'Viewing',hi:false},{h:70,lbl:'Viewing',hi:false},{h:90,lbl:'Viewing',hi:true},{h:85,lbl:'Boost',hi:true},{h:95,lbl:'Boost',hi:true},{h:88,lbl:'Comm',hi:true},{h:100,lbl:'Comm',hi:true},{h:92,lbl:'Land',hi:true},{h:98,lbl:'Land',hi:true}].map(b=>`<div class="rev-bar-wrap"><div class="rev-bar ${b.hi?'hi':''}" style="height:${b.h}%"></div><div class="rev-bar-lbl">${b.lbl}</div></div>`).join('')}
+            </div>
+            <div class="rev-summary">
+              <div class="rev-sum-item"><div class="rev-sum-n">UGX 744K</div><div class="rev-sum-l">Viewing fees (3K×248)</div></div>
+              <div class="rev-sum-item"><div class="rev-sum-n">UGX 640K</div><div class="rev-sum-l">Job commissions 8%</div></div>
+              <div class="rev-sum-item"><div class="rev-sum-n">UGX 945K</div><div class="rev-sum-l">Land access fees</div></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="admin-panel">
+            <div class="ap-header"><div class="ap-title">🚨 Active alerts</div><button class="ap-action">Mark all read</button></div>
+            <div class="ap-body">
+              <div class="alert-row alert-critical"><div class="alert-icon">🔴</div><div class="alert-info"><div class="alert-title">Fraud: same phone, 3 listings</div><div class="alert-desc">Ntinda area · Posted in last 2hrs</div></div><div class="alert-time">12m ago</div></div>
+              <div class="alert-row alert-urgent"><div class="alert-icon">🟡</div><div class="alert-info"><div class="alert-title">15 providers pending review</div><div class="alert-desc">SLA: approve within 24 hours</div></div><div class="alert-time">1h ago</div></div>
+              <div class="alert-row alert-urgent"><div class="alert-icon">🟡</div><div class="alert-info"><div class="alert-title">Payment dispute — UGX 45,000</div><div class="alert-desc">Job D001 · Provider no-show</div></div><div class="alert-time">3h ago</div></div>
+              <div class="alert-row alert-normal"><div class="alert-icon">🟢</div><div class="alert-info"><div class="alert-title">New verified agent approved</div><div class="alert-desc">Grace K. · Naguru area</div></div><div class="alert-time">5h ago</div></div>
+            </div>
+          </div>
+          <div style="margin-top:14px"><div class="admin-panel">
+            <div class="ap-header"><div class="ap-title">SLA status</div></div>
+            <div class="ap-body">
+              ${[['Provider approvals','<24hr','12/15 on track','#2C5F2E'],['Dispute responses','<12hr','2/3 on track','#D4A853'],['Listing reviews','<6hr','All clear','#2C5F2E']].map(([lb,target,status,c])=>`<div class="data-row"><div class="data-info"><div class="data-name">${lb}</div><div class="data-meta">Target: ${target} · ${status}</div></div><span style="font-size:10px;font-weight:700;color:${c}">${status.includes('clear')?'✅':'⚠️'}</span></div>`).join('')}
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="admin-row">
+        <div class="admin-panel">
+          <div class="ap-header"><div class="ap-title">Recent transactions</div></div>
+          <div class="ap-body">
+            ${TRANSACTIONS.map(t=>`<div class="data-row"><div class="data-av" style="background:${t.type==='in'?'#DCFCE7':'#FEE2E2'};color:${t.type==='in'?'#15803D':'#991B1B'}">${t.type==='in'?'↓':'↑'}</div><div class="data-info"><div class="data-name">${t.desc}</div><div class="data-meta">${t.id} · ${t.split} · ${t.date}</div></div><div style="font-weight:800;font-size:.82rem;color:${t.type==='in'?'#2C5F2E':'#E8453C'}">${t.type==='in'?'+':'−'}UGX ${t.amount.toLocaleString()}</div></div>`).join('')}
+          </div>
+        </div>
+        <div class="admin-panel">
+          <div class="ap-header"><div class="ap-title">Trust score distribution</div></div>
+          <div class="ap-body" style="padding:16px 20px">
+            ${[['High trust (85–100)','78 providers','#2C5F2E',78],['Good (65–84)','31 providers','#1A6DC0',31],['Low (40–64)','9 providers','#D4A853',9],['Risk (&lt;40)','2 providers','#E8453C',2]].map(([lb,cnt,c,pct])=>`<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:3px"><span style="color:#3D3D3D;font-weight:600">${lb}</span><span style="color:${c};font-weight:700">${cnt}</span></div><div style="background:#F0F0EE;border-radius:10px;height:5px"><div style="width:${pct}%;height:100%;background:${c};border-radius:10px"></div></div></div>`).join('')}
+          </div>
+        </div>
+      </div>`;
+  }
+
+  else if(tab==='verify'){
+    const apps=[
+      {name:'Moses Opio',type:'Moving Provider',nin:'CM920...',submitted:'2h ago',docs:{nin:true,lc:true,agreement:true,vehicle:true},status:'pending'},
+      {name:'Aisha Kamya',type:'Cleaner',nin:'CF880...',submitted:'5h ago',docs:{nin:true,lc:false,agreement:true,vehicle:false},status:'pending'},
+      {name:'Patrick Muwanga',type:'Agent',nin:'CM780...',submitted:'1d ago',docs:{nin:true,lc:true,agreement:true,vehicle:false},status:'pending'},
+      {name:'Ruth Adong',type:'Moving Provider',nin:'CF950...',submitted:'2d ago',docs:{nin:true,lc:true,agreement:true,vehicle:true},status:'approved'},
+    ];
+    content.innerHTML=`
+      <div class="info-note info-amber" style="max-width:600px">⏱️ SLA: Provider approvals within 24 hours · Dispute responses within 12 hours. ${apps.filter(a=>a.status==='pending').length} pending now.</div>
+      ${apps.map((a,i)=>`
+        <div class="admin-panel" style="margin-bottom:14px">
+          <div class="ap-header">
+            <div><div class="ap-title">${a.name} · ${a.type}</div><div style="font-size:.7rem;color:#9B9B9B;margin-top:2px">NIN: ${a.nin} · Submitted ${a.submitted}</div></div>
+            <span class="data-status ${a.status==='approved'?'ds-approved':'ds-pending'}">${a.status==='approved'?'✅ Approved':'⏳ Pending'}</span>
+          </div>
+          <div class="ap-body" style="padding:14px 20px">
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
+              ${[['🪪','NIN',a.docs.nin],['📜','LC Letter',a.docs.lc],['✍️','Agreement',a.docs.agreement],['🚛','Vehicle',a.docs.vehicle]].map(([ic,lb,has])=>`
+                <div class="verify-doc"><div class="vd-icon">${ic}</div><div class="vd-info"><div class="vd-name">${lb}</div><div class="vd-status ${has?'ok':'missing'}">${has?'✅ Uploaded':'❌ Missing'}</div></div></div>`).join('')}
+            </div>
+            ${a.status==='pending'?`
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="da-btn da-approve" onclick="this.closest('.admin-panel').querySelector('.data-status').textContent='✅ Approved';this.closest('.admin-panel').querySelector('.data-status').className='data-status ds-approved';this.parentElement.innerHTML='<span style=\\"font-size:12px;color:#2C5F2E;font-weight:700\\">✅ Approved — SMS sent to provider</span>';document.getElementById('verify-badge').textContent=Math.max(0,parseInt(document.getElementById('verify-badge').textContent)-1)">✅ Approve &amp; Notify</button>
+                <button class="da-btn da-reject" onclick="this.parentElement.innerHTML='<span style=\\"font-size:12px;color:#991B1B;font-weight:700\\">❌ Rejected — SMS sent</span>'">❌ Reject</button>
+                <button class="da-btn da-view" onclick="toast('Requesting additional documents from '+${JSON.stringify(a.name)}+'...')">📋 Request more docs</button>
+                <button class="da-btn da-view" onclick="toast('Assigning field agent to verify '+${JSON.stringify(a.name)}+' in person...')">🚗 Send field agent</button>
+              </div>`:`<div style="font-size:12px;color:#2C5F2E;font-weight:700">✅ Approved · Provider active</div>`}
+          </div>
+        </div>`).join('')}`;
+  }
+
+  else if(tab==='payments'){
+    content.innerHTML=`
+      <div class="kpi-grid" style="margin-bottom:20px">
+        ${[['💰','Total MRR','UGX 4.28M'],['📊','Viewing fees','UGX 744K (248 × 3K)'],['🔧','Job commissions','UGX 640K (8%)'],['🌍','Land access','UGX 945K'],['🔁','Referral paid out','UGX 496K (248 × 2K)'],['🚀','Boost fees','UGX 975K']].map(([ic,lb,v])=>`<div class="kpi-card"><div class="kpi-icon">${ic}</div><div class="kpi-val" style="font-size:1rem">${v}</div><div class="kpi-lbl">${lb}</div></div>`).join('')}
+      </div>
+      <div class="admin-panel">
+        <div class="ap-header"><div class="ap-title">All transactions</div><button class="ap-action" onclick="toast('Exporting CSV...')">Export CSV</button></div>
+        <div class="ap-body">
+          ${TRANSACTIONS.map(t=>`<div class="data-row"><div class="data-av" style="background:${t.type==='in'?'#DCFCE7':'#FEE2E2'};color:${t.type==='in'?'#15803D':'#991B1B'}">${t.type==='in'?'↓':'↑'}</div><div class="data-info"><div class="data-name">${t.desc}</div><div class="data-meta">${t.id} · ${t.split} · ${t.date} · ${t.user}</div></div><div style="font-weight:800;font-size:.82rem;color:${t.type==='in'?'#2C5F2E':'#E8453C'}">${t.type==='in'?'+':'−'}UGX ${t.amount.toLocaleString()}</div></div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  else if(tab==='disputes'){
+    content.innerHTML=`
+      <div class="info-note info-blue" style="max-width:600px">⚖️ SLA: All disputes must receive a response within 12 hours. ${DISPUTES.filter(d=>d.status==='open').length} open disputes require attention.</div>
+      ${DISPUTES.map(d=>`
+        <div class="admin-panel" style="margin-bottom:12px">
+          <div class="ap-header">
+            <div><div class="ap-title">Dispute ${d.id} — ${d.title}</div><div style="font-size:.7rem;color:#9B9B9B">${d.date} · User: ${d.user} vs ${d.provider} · Amount: UGX ${d.amount.toLocaleString()}</div></div>
+            <span class="data-status ${d.status==='resolved'?'ds-approved':d.status==='reviewing'?'ds-active':'ds-pending'}">${d.status}</span>
+          </div>
+          ${d.status!=='resolved'?`<div class="ap-body" style="padding:12px 20px;display:flex;gap:8px;flex-wrap:wrap">
+            <button class="da-btn da-approve" onclick="toast('Resolving in favour of client...')">Resolve for client</button>
+            <button class="da-btn da-reject" onclick="toast('Resolving in favour of provider...')">Resolve for provider</button>
+            <button class="da-btn da-view" onclick="toast('Escalating dispute ${d.id}...')">Escalate</button>
+            <button class="da-btn da-view" onclick="toast('Contacting both parties...')">Contact parties</button>
+          </div>`:''}
+        </div>`).join('')}`;
+  }
+
+  else if(tab==='settings'){
+    content.innerHTML=`
+      <div class="admin-panel" style="margin-bottom:16px">
+        <div class="ap-header"><div class="ap-title">Platform fee settings</div><button class="ap-action" onclick="toast('Settings saved!')">Save changes</button></div>
+        <div class="ap-body" style="padding:20px">
+          <div class="info-note info-amber">Changes apply to all new transactions immediately. Existing bookings are not affected.</div>
+          <div class="fee-grid">
+            ${[['Viewing fee (UGX)','5,000'],['Platform keeps (UGX)','3,000'],['Referral payout (UGX)','2,000'],['Min withdrawal (UGX)','20,000'],['Job commission (%)','8'],['Land access fee (UGX)','50,000'],['Boost 7 days (UGX)','25,000'],['Boost 30 days (UGX)','50,000'],['Agent verify fee (UGX)','40,000'],['Provider approval SLA (hrs)','24']].map(([lb,v])=>`<div class="fee-field"><label>${lb}</label><input type="text" value="${v}"/></div>`).join('')}
+          </div>
+          <div class="info-note info-green" style="margin-top:8px">💡 Current split: UGX 5,000 viewing fee → UGX 3,000 platform + UGX 2,000 referrer</div>
+        </div>
+      </div>
+      <div class="admin-panel">
+        <div class="ap-header"><div class="ap-title">Ban system</div></div>
+        <div class="ap-body" style="padding:16px 20px">
+          <div class="info-note info-red">Permanent bans are irreversible. Use temporary suspension for first offences. All ban actions are logged with admin name and timestamp.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+            ${[['⏸️ Suspend user','Temporarily disable account (24–72h)','#D4A853'],['🚫 Permanent ban','Full account termination','#E8453C'],['🗑️ Remove listing','Delete specific listing','#E8453C']].map(([ic,desc,c])=>`<div style="background:#F5F5F3;border-radius:8px;padding:14px;border:1px solid #E8E8E6"><div style="font-weight:700;font-size:.82rem;color:${c};margin-bottom:4px">${ic}</div><div style="font-size:.72rem;color:#9B9B9B">${desc}</div><input type="text" placeholder="User ID or email" style="width:100%;margin-top:8px;padding:7px 10px;border:1px solid #E8E8E6;border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;outline:none"/><button onclick="toast('Action logged and executed')" style="width:100%;margin-top:6px;padding:7px;background:${c};color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">Execute</button></div>`).join('')}
+          </div>
+        </div>
+      </div>`;
+  }
+
+  else if(tab==='esigns'){
+    content.innerHTML=`
+      <div class="admin-panel">
+        <div class="ap-header"><div class="ap-title">E-Signature log</div><button class="ap-action" onclick="toast('Exporting e-sign records...')">Export</button></div>
+        <div class="ap-body">
+          ${[
+            {who:'Moses Opio',type:'Provider Agreement',doc:'Commission 8%',time:'Today 9:14am',ip:'197.xxx.xxx.xxx',status:'valid'},
+            {who:'Aisha N.',type:'Booking Agreement',doc:'Viewing fee UGX 5,000',time:'Today 3:22pm',ip:'196.xxx.xxx.xxx',status:'valid'},
+            {who:'Brian M.',type:'Job Commission',doc:'Plumbing job J2 — 8%',time:'Yesterday 11am',ip:'197.xxx.xxx.xxx',status:'valid'},
+            {who:'Grace K.',type:'Delegation Agreement',doc:'Agent for Listing #6',time:'2 days ago',ip:'196.xxx.xxx.xxx',status:'valid'},
+            {who:'Denis O.',type:'Land Access',doc:'Mukono plot L1',time:'3 days ago',ip:'197.xxx.xxx.xxx',status:'valid'},
+          ].map(s=>`<div class="data-row"><div class="data-av" style="background:#F0FDF4;color:#15803D;font-size:.7rem;font-weight:700">✍️</div><div class="data-info"><div class="data-name">${s.who} — ${s.type}</div><div class="data-meta">${s.doc} · ${s.time} · IP: ${s.ip}</div></div><span class="data-status ds-approved">${s.status}</span></div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  else if(tab==='listings'){
+    content.innerHTML=`
+      <div class="admin-panel">
+        <div class="ap-header"><div class="ap-title">All listings (${LISTINGS.length})</div><button class="ap-action" onclick="toast('Exporting...')">Export</button></div>
+        <div class="ap-body">
+          ${LISTINGS.map(l=>`<div class="data-row"><div class="data-av" style="padding:0;overflow:hidden;border-radius:8px;flex-shrink:0"><img src="${l.img}" style="width:34px;height:34px;object-fit:cover"/></div><div class="data-info"><div class="data-name">${l.title} · ${l.area}${l.agentManaged?' 🏢':''}</div><div class="data-meta">UGX ${l.price.toLocaleString()} · Trust ${l.confidence}% · ${l.verified?'✔ Verified':'⚠ Unverified'}</div></div><div class="data-actions"><button class="da-btn da-view" onclick="toast('Viewing listing ${l.id}')">View</button>${l.verified?`<button class="da-btn da-reject" onclick="toast('Listing ${l.id} frozen')">Freeze</button>`:`<button class="da-btn da-approve" onclick="toast('Listing ${l.id} verified')">Verify</button>`}</div></div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  else if(tab==='users'){
+    content.innerHTML=`
+      <div class="admin-panel">
+        <div class="ap-header"><div class="ap-title">Users (2,847)</div><button class="ap-action">Export</button></div>
+        <div class="ap-body">
+          ${[{name:'Aisha Nakato',role:'Seeker',joined:'Today',status:'active',spend:'UGX 5,000'},{name:'Brian Mukasa',role:'Landlord',joined:'Yesterday',status:'active',spend:'UGX 25,000'},{name:'Grace Nambi',role:'Agent',joined:'2 days ago',status:'pending',spend:'UGX 0'},{name:'Moses Opio',role:'Provider',joined:'3 days ago',status:'active',spend:'UGX 3,600'},{name:'Ruth Atim',role:'Seeker',joined:'1 week ago',status:'active',spend:'UGX 10,000'}].map(u=>`<div class="data-row"><div class="data-av" style="background:linear-gradient(135deg,#1A6DC0,#2C5F2E);color:#fff;font-size:.8rem">${u.name[0]}</div><div class="data-info"><div class="data-name">${u.name} · ${u.role}</div><div class="data-meta">Joined ${u.joined} · Total spend: ${u.spend}</div></div><div class="data-actions"><span class="data-status ${u.status==='active'?'ds-approved':'ds-pending'}">${u.status}</span><button class="da-btn da-reject" onclick="toast('User suspended')">Suspend</button></div></div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  else if(tab==='alerts'){
+    content.innerHTML=`
+      <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
+        ${[['🔴 Critical','2','#FEF2F2','#991B1B'],['🟡 Urgent','3','#FFFBEB','#92400E'],['🟢 Normal','2','#F0FDF4','#15803D']].map(([lb,cnt,bg,c])=>`<div style="background:${bg};border-radius:8px;padding:12px 18px;border:1px solid ${c}22;flex:1;min-width:120px"><div style="font-size:1.3rem;font-weight:900;color:${c}">${cnt}</div><div style="font-size:.72rem;color:${c};font-weight:700">${lb}</div></div>`).join('')}
+      </div>
+      <div class="admin-panel">
+        <div class="ap-header"><div class="ap-title">All alerts</div><button class="ap-action" onclick="toast('All alerts marked as read')">Mark all read</button></div>
+        <div class="ap-body">
+          ${[
+            {sev:'critical',icon:'🔴',title:'Fraud detected: same phone, 3 listings in 2hrs',desc:'Phone 0771-XXX repeated on Ntinda, Kira, Mukono listings · Auto-flagged by AI',time:'12m ago'},
+            {sev:'critical',icon:'🔴',title:'GPS mismatch on Wandegeya listing #44',desc:'Listed address 2.4km from GPS coordinates · Possible fake listing',time:'34m ago'},
+            {sev:'urgent',icon:'🟡',title:'15 providers pending approval — SLA risk',desc:'3 providers past 20-hour mark. SLA is 24 hours.',time:'1h ago'},
+            {sev:'urgent',icon:'🟡',title:'Payment dispute D001 open 4 hours',desc:'UGX 45,000 · SLA requires 12-hour response',time:'4h ago'},
+            {sev:'urgent',icon:'🟡',title:'Price 62% below area average — Ntinda Room',desc:'Listed at UGX 80,000 vs area average UGX 210,000 · Possible bait listing',time:'6h ago'},
+            {sev:'normal',icon:'🟢',title:'New agent verified: Grace K., Naguru area',desc:'All documents confirmed · Field agent visited · Permanently verified',time:'7h ago'},
+            {sev:'normal',icon:'🟢',title:'Referral milestone: UGX 1M paid out this month',desc:'248 referrals × UGX 2,000 = UGX 496,000 this month alone',time:'Today'},
+          ].map(a=>`
+            <div class="alert-row alert-${a.sev==='critical'?'critical':a.sev==='urgent'?'urgent':'normal'}">
+              <div class="alert-icon">${a.icon}</div>
+              <div class="alert-info"><div class="alert-title">${a.title}</div><div class="alert-desc">${a.desc}</div></div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                <div class="alert-time">${a.time}</div>
+                <button class="da-btn da-view" onclick="toast('Opening case...')">Handle</button>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  else if(tab==='agents'){
+    content.innerHTML=`
+      <div class="kpi-grid" style="margin-bottom:20px">
+        ${[['🏢','Total agents','12'],['✅','Verified','9'],['⏳','Pending','3'],['🏠','Properties managed','18'],['💰','Avg commission','10%']].map(([ic,lb,v])=>`<div class="kpi-card"><div class="kpi-icon">${ic}</div><div class="kpi-val" style="font-size:1.1rem">${v}</div><div class="kpi-lbl">${lb}</div></div>`).join('')}
+      </div>
+      <div class="admin-panel" style="margin-bottom:16px">
+        <div class="ap-header"><div class="ap-title">Agent roster</div><button class="ap-action" onclick="toast('Invite new agent...')">+ Invite agent</button></div>
+        <div class="ap-body">
+          ${[
+            {name:'Grace K.',area:'Naguru',listings:3,tenants:5,commission:'10%',verified:true,rating:4.8,joined:'3 months ago'},
+            {name:'James M.',area:'Kisaasi',listings:4,tenants:8,commission:'8%',verified:true,rating:4.6,joined:'6 months ago'},
+            {name:'Sarah O.',area:'Ntinda',listings:2,tenants:3,commission:'10%',verified:true,rating:4.9,joined:'1 month ago'},
+            {name:'Peter K.',area:'Makerere',listings:1,tenants:0,commission:'10%',verified:false,rating:0,joined:'2 days ago'},
+          ].map(a=>`
+            <div class="data-row">
+              <div class="data-av" style="background:${a.verified?'linear-gradient(135deg,#2C5F2E,#5CB85C)':'#E8E8E6'};color:#fff">${a.name[0]}</div>
+              <div class="data-info">
+                <div class="data-name">${a.name} · ${a.area} ${a.verified?'<span style="font-size:9px;background:#DCFCE7;color:#15803D;border-radius:20px;padding:1px 6px">✔ Verified</span>':''}</div>
+                <div class="data-meta">${a.listings} listings · ${a.tenants} tenants placed · ${a.commission} commission · Joined ${a.joined}${a.rating?` · ★ ${a.rating}`:''}</div>
+              </div>
+              <div class="data-actions">
+                <span class="data-status ${a.verified?'ds-approved':'ds-pending'}">${a.verified?'Active':'Pending'}</span>
+                <button class="da-btn da-view" onclick="toast('Viewing agent profile...')">View</button>
+                ${!a.verified?`<button class="da-btn da-approve" onclick="this.closest('.data-row').querySelector('.data-status').textContent='Active';this.closest('.data-row').querySelector('.data-status').className='data-status ds-approved';toast('Agent ${a.name} approved!')">Approve</button>`:''}
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div class="admin-panel">
+        <div class="ap-header"><div class="ap-title">Pending property delegations</div></div>
+        <div class="ap-body">
+          ${[
+            {property:'Executive 2BR, Naguru',landlord:'David R.',reqAgent:'Best in area',commission:'10%',date:'Yesterday'},
+            {property:'Bright Double Room, Kisaasi',landlord:'Grace N.',reqAgent:'James M.',commission:'8%',date:'2 days ago'},
+          ].map(d=>`
+            <div class="data-row">
+              <div class="data-av" style="background:#EDE9FE;color:#5B21B6;font-size:.8rem">🏠</div>
+              <div class="data-info"><div class="data-name">${d.property}</div><div class="data-meta">Landlord: ${d.landlord} · Agent req: ${d.reqAgent} · Commission: ${d.commission} · ${d.date}</div></div>
+              <div class="data-actions">
+                <button class="da-btn da-approve" onclick="toast('Agent assigned and notified')">Assign agent</button>
+                <button class="da-btn da-view" onclick="toast('Viewing delegation details...')">View</button>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  else if(tab==='referrals'){
+    content.innerHTML=`
+      <div class="kpi-grid" style="margin-bottom:20px">
+        ${[['🔁','Total referrals','248'],['💸','Paid out','UGX 496K'],['⏳','Pending payout','UGX 24K'],['🚫','Flagged abuse','3'],['📱','Unique devices','241']].map(([ic,lb,v])=>`<div class="kpi-card"><div class="kpi-icon">${ic}</div><div class="kpi-val" style="font-size:1rem">${v}</div><div class="kpi-lbl">${lb}</div></div>`).join('')}
+      </div>
+      <div class="admin-panel" style="margin-bottom:16px">
+        <div class="ap-header"><div class="ap-title">Recent referral payouts</div><button class="ap-action" onclick="toast('Exporting referral report...')">Export</button></div>
+        <div class="ap-body">
+          ${[
+            {referrer:'Aisha N.',friend:'Brian M.',property:'Kisaasi Room',earned:2000,status:'paid',date:'Today 9:14am'},
+            {referrer:'Moses K.',friend:'Ruth A.',property:'Makerere Bedsitter',earned:2000,status:'paid',date:'Yesterday'},
+            {referrer:'Grace N.',friend:'Denis O.',property:'Wandegeya Hostel',earned:2000,status:'pending',date:'2 days ago'},
+            {referrer:'James R.',friend:'Sarah K.',property:'Ntinda Room',earned:2000,status:'paid',date:'3 days ago'},
+            {referrer:'Peter M.',friend:'Aisha K.',property:'Naguru 2BR',earned:2000,status:'pending',date:'1 week ago'},
+          ].map(r=>`
+            <div class="data-row">
+              <div class="data-av" style="background:${r.status==='paid'?'#DCFCE7':'#FEF9C3'};color:${r.status==='paid'?'#15803D':'#78350F'};font-size:.7rem;font-weight:700">${r.status==='paid'?'✅':'⏳'}</div>
+              <div class="data-info"><div class="data-name">${r.referrer} referred ${r.friend} → ${r.property}</div><div class="data-meta">${r.date}</div></div>
+              <div style="text-align:right;flex-shrink:0">
+                <div style="font-weight:800;font-size:.82rem;color:${r.status==='paid'?'#2C5F2E':'#D4A853'}">+UGX ${r.earned.toLocaleString()}</div>
+                <span class="data-status ${r.status==='paid'?'ds-approved':'ds-pending'}">${r.status}</span>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div class="admin-panel">
+        <div class="ap-header"><div class="ap-title">🚫 Anti-abuse flags</div></div>
+        <div class="ap-body">
+          <div class="info-note info-red" style="margin:14px">⚠️ Referral abuse detection: same device multiple accounts, self-referral attempts, bulk fake signups. Review flagged cases below.</div>
+          ${[
+            {user:'ref7a3b2c',reason:'Same device: 4 referrals in 2 hours',risk:'High'},
+            {user:'ref9d1e4f',reason:'Phone number reused across 3 accounts',risk:'High'},
+            {user:'ref2c8a7b',reason:'Self-referral attempt detected',risk:'Medium'},
+          ].map(f=>`
+            <div class="data-row">
+              <div class="data-av" style="background:#FEE2E2;color:#991B1B">🚨</div>
+              <div class="data-info"><div class="data-name">${f.user}</div><div class="data-meta">${f.reason} · Risk: ${f.risk}</div></div>
+              <div class="data-actions">
+                <button class="da-btn da-reject" onclick="toast('Referral frozen and user flagged')">Freeze</button>
+                <button class="da-btn da-view" onclick="toast('Investigating...')">Investigate</button>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  else if(tab==='commissions'){
+    content.innerHTML=`
+      <div class="kpi-grid" style="margin-bottom:20px">
+        ${[['💰','Total collected','UGX 640K'],['✅','Paid commissions','16'],['⏳','Awaiting payment','3'],['🔧','Active jobs','8'],['📋','E-signs on file','16']].map(([ic,lb,v])=>`<div class="kpi-card"><div class="kpi-icon">${ic}</div><div class="kpi-val" style="font-size:1rem">${v}</div><div class="kpi-lbl">${lb}</div></div>`).join('')}
+      </div>
+      <div class="admin-panel">
+        <div class="ap-header"><div class="ap-title">Job commission log</div><button class="ap-action" onclick="toast('Exporting commissions...')">Export</button></div>
+        <div class="ap-body">
+          ${[
+            {jobId:'J1',provider:'Moses K.',cat:'Plumbing',budget:45000,commission:3600,esigned:true,status:'paid',date:'Today'},
+            {jobId:'J2',provider:'Brian Trucks',cat:'Moving',budget:80000,commission:6400,esigned:true,status:'paid',date:'Yesterday'},
+            {jobId:'J3',provider:'Patrick E.',cat:'Electrical',budget:60000,commission:4800,esigned:true,status:'pending',date:'2 days ago'},
+            {jobId:'J4',provider:'Aisha N.',cat:'Cleaning',budget:35000,commission:2800,esigned:true,status:'paid',date:'3 days ago'},
+            {jobId:'J5',provider:'Grace K.',cat:'Security',budget:300000,commission:24000,esigned:false,status:'pending',date:'1 week ago'},
+          ].map(j=>`
+            <div class="data-row">
+              <div class="data-av" style="background:${j.status==='paid'?'#DCFCE7':'#FEF9C3'};color:${j.status==='paid'?'#15803D':'#78350F'};font-size:.7rem">${j.status==='paid'?'✅':'⏳'}</div>
+              <div class="data-info">
+                <div class="data-name">Job ${j.jobId} · ${j.cat} · ${j.provider}</div>
+                <div class="data-meta">Budget UGX ${j.budget.toLocaleString()} · Commission 8% = UGX ${j.commission.toLocaleString()} · ${j.date} · ${j.esigned?'✍️ E-signed':'⚠️ Not signed'}</div>
+              </div>
+              <div style="text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                <div style="font-weight:800;font-size:.82rem;color:${j.status==='paid'?'#2C5F2E':'#D4A853'}">+UGX ${j.commission.toLocaleString()}</div>
+                ${j.status==='pending'?`<button class="da-btn da-approve" onclick="toast('Commission chased for Job ${j.jobId}')">Chase</button>`:`<span class="data-status ds-approved">paid</span>`}
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  else if(tab==='jobs'){
+    content.innerHTML=`
+      <div class="kpi-grid" style="margin-bottom:20px">
+        ${[['🔧','Active jobs','8'],['✅','Completed','34'],['⏳','Awaiting provider','3'],['💰','Revenue from jobs','UGX 640K']].map(([ic,lb,v])=>`<div class="kpi-card"><div class="kpi-icon">${ic}</div><div class="kpi-val" style="font-size:1.1rem">${v}</div><div class="kpi-lbl">${lb}</div></div>`).join('')}
+      </div>
+      <div class="admin-panel">
+        <div class="ap-header"><div class="ap-title">Job board (${JOBS.length} active)</div><button class="ap-action" onclick="toast('Exporting jobs...')">Export</button></div>
+        <div class="ap-body">
+          ${JOBS.map(j=>`
+            <div class="data-row">
+              <div class="data-av" style="background:#F5F5F3;color:#1A1A1A;font-size:.75rem;font-weight:700">${j.cat.slice(0,3).toUpperCase()}</div>
+              <div class="data-info">
+                <div class="data-name">${j.title}</div>
+                <div class="data-meta">📍 ${j.loc} · Budget UGX ${j.budget.toLocaleString()} · 8% = UGX ${Math.round(j.budget*.08).toLocaleString()} · ${j.urgency} · Posted ${j.posted}</div>
+              </div>
+              <div class="data-actions">
+                <span class="data-status ds-active">open</span>
+                <button class="da-btn da-reject" onclick="toast('Job ${j.id} removed')">Remove</button>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  else if(tab==='land'){
+    content.innerHTML=`
+      <div class="kpi-grid" style="margin-bottom:20px">
+        ${[['🌍','Land listings','3'],['💰','Access fee revenue','UGX 945K'],['✅','Verified owners','2'],['⭐','Premium listings','1'],['🔓','Unlocks this month','19']].map(([ic,lb,v])=>`<div class="kpi-card"><div class="kpi-icon">${ic}</div><div class="kpi-val" style="font-size:1rem">${v}</div><div class="kpi-lbl">${lb}</div></div>`).join('')}
+      </div>
+      <div class="admin-panel">
+        <div class="ap-header"><div class="ap-title">Land listings</div><button class="ap-action" onclick="toast('Add land listing...')">+ Add listing</button></div>
+        <div class="ap-body">
+          ${LAND.map(l=>`
+            <div class="data-row">
+              <div class="data-av" style="padding:0;overflow:hidden;border-radius:6px;flex-shrink:0"><img src="${l.img}" style="width:34px;height:34px;object-fit:cover"/></div>
+              <div class="data-info">
+                <div class="data-name">${l.title} · ${l.area}${l.premium?' ⭐':''}</div>
+                <div class="data-meta">UGX ${l.price.toLocaleString()} · ${l.size} · Access fee: UGX ${l.accessFee.toLocaleString()} · ${l.titleDeed}</div>
+              </div>
+              <div class="data-actions">
+                <span class="data-status ${l.verified?'ds-approved':'ds-pending'}">${l.verified?'Verified':'Pending'}</span>
+                <button class="da-btn da-view" onclick="toast('Viewing land details...')">View</button>
+                ${!l.verified?`<button class="da-btn da-approve" onclick="toast('Land listing ${l.id} verified!')">Verify</button>`:''}
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div class="admin-panel" style="margin-top:14px">
+        <div class="ap-header"><div class="ap-title">Recent land access payments</div></div>
+        <div class="ap-body">
+          ${[{user:'Denis O.',plot:'Mukono 1 Acre',fee:50000,date:'2 days ago'},{user:'Sarah K.',plot:'Wakiso 50×100ft',fee:30000,date:'4 days ago'},{user:'Brian M.',plot:'Kololo Premium Villa',fee:100000,date:'1 week ago'}].map(p=>`
+            <div class="data-row">
+              <div class="data-av" style="background:#DCFCE7;color:#15803D;font-size:.7rem">✅</div>
+              <div class="data-info"><div class="data-name">${p.user} → ${p.plot}</div><div class="data-meta">${p.date} · Full details unlocked</div></div>
+              <div style="font-weight:800;font-size:.82rem;color:#2C5F2E">+UGX ${p.fee.toLocaleString()}</div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  else{
+    content.innerHTML=`<div class="admin-panel"><div class="ap-header"><div class="ap-title">${titles[tab]||tab}</div></div><div class="ap-body" style="padding:28px;text-align:center;color:#9B9B9B;font-size:.88rem">Connect your backend API to populate this section with live data.</div></div>`;
+  }
+}
+
+/* ══ MODAL ENGINE ════════════════════════════════════ */
+function openModal(id,tab){
+  if(tab&&id==='auth-modal')authTab(tab);
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
+function bgClose(e,id){if(e.target===document.getElementById(id))closeModal(id);}
+
+/* ══ CHAT ════════════════════════════════════════════ */
+function toggleChat(){document.getElementById('chat-panel').classList.toggle('open');}
+async function sendChat(){
+  const inp=document.getElementById('chat-inp'),msgs=document.getElementById('chat-msgs');
+  const txt=inp.value.trim();if(!txt)return;inp.value='';
+  const um=document.createElement('div');um.className='cmsg user';um.textContent=txt;msgs.appendChild(um);
+  const lm=document.createElement('div');lm.className='cmsg ai';lm.textContent='Searching…';msgs.appendChild(lm);msgs.scrollTop=msgs.scrollHeight;
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:250,
+        system:`You are RentRight AI assistant for Kampala, Uganda. Rentals: Bukoto 420K, Kisaasi 350K, Wandegeya 175K (hostel), Ntinda 280K, Makerere 240K, Naguru 850K. Viewing fee UGX 5K → platform 3K + referrer 2K. Also: service jobs (8% commission, e-signed), land sales (access fee to unlock GPS+owner), moving, cleaning, plumbing. Reply 2 sentences max. Never mention Claude or Anthropic.`,
+        messages:[{role:'user',content:txt}]})});
+    const data=await res.json();
+    lm.textContent=data.content?.find(c=>c.type==='text')?.text||'Happy to help! Tell me your budget and area.';
+  }catch{lm.textContent='Connection issue — try WhatsApp instead!';}
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+/* ══ TOAST ════════════════════════════════════════════ */
+function toast(msg){
+  const t=document.createElement('div');t.className='toast';t.textContent=msg;
+  document.body.appendChild(t);setTimeout(()=>t.remove(),3000);
+}
+
+/* ══ UTILS ════════════════════════════════════════════ */
+function scrollToId(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
+function btabClick(el,target){document.querySelectorAll('.btab').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(target)scr
