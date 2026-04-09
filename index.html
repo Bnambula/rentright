@@ -1115,8 +1115,7 @@ Tell me your budget and area!</div>
 
 <!-- ══════════════════════════════════════════════════
      JAVASCRIPT
-══════════════════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ══ DATA ══════════════════════════════════════════ */
 const LISTINGS = [
   {id:1,title:"Tranquil Studio",area:"Bukoto",price:420000,type:"Self-Contained",verified:true,boosted:true,popular:false,rating:4.9,match:94,confidence:98,moveIn:"ready",beds:1,baths:1,sqm:32,img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80",desc:"Calm studio in Bukoto. Quiet area, supermarket 5 min, UMEME metered power.",landlord:"Sarah B.",wa:"256700000005",viewingFee:5000,agentManaged:false},
@@ -1529,7 +1528,7 @@ function confirmAcceptJob(jobId,commission){
   },2200);
 }
 
-function submitJob(){toast('✅ Job posted! Verified providers will see it and can accept (after e-signing commission agreement).');closeModal('post-job-modal');}
+
 
 /* ══ SERVICES ═══════════════════════════════════════ */
 function renderServices(){
@@ -1606,7 +1605,7 @@ function openLandDetail(id){
           <div class="esign-confirm">
             <div class="esign-confirm-lbl">Access Agreement</div>
             <div class="esign-fields"><div class="esign-field"><input type="text" id="land-sign" placeholder="Your full name"/></div><div class="esign-field"><input type="text" value="${new Date().toLocaleDateString()}" readonly style="color:#7A7A7A"/></div></div>
-            <label class="esign-check"><input type="checkbox" id="land-agree" onchange="agreed=this.checked"/>I understand this is an access fee only. I will conduct independent legal verification.</label>
+            <label class="esign-check"><input type="checkbox" id="land-agree" onchange="agreed=this.checked;document.getElementById('land-pay-section').classList.toggle('hidden',!this.checked);document.getElementById('land-agree-prompt').style.display=this.checked?'none':'block'"/>I understand this is an access fee only. I will conduct independent legal verification.</label>
             <div class="esign-badge"><span class="esign-badge-icon">🔐</span><span class="esign-badge-txt">Agreement stored with timestamp &amp; device proof</span></div>
           </div>
           <div id="land-pay-section" style="margin-top:12px" class="hidden">
@@ -1614,7 +1613,6 @@ function openLandDetail(id){
             <button class="btn-primary" id="land-pay-btn" onclick="payLandAccess('${l.id}',${l.accessFee})">💳 Pay UGX ${l.accessFee.toLocaleString()} to Unlock</button>
           </div>
           <div id="land-agree-prompt" style="margin-top:8px;font-size:11px;color:#9B9B9B;text-align:center">Sign and agree above to proceed to payment</div>
-          <script>document.getElementById('land-agree').addEventListener('change',function(){document.getElementById('land-pay-section').classList.toggle('hidden',!this.checked);document.getElementById('land-agree-prompt').style.display=this.checked?'none':'block';});<\/script>
         `:`
           <div class="info-note info-green"><strong>🔓 Full Details Unlocked</strong><br/><br/><strong>Location:</strong> ${l.area}, 2km from main road<br/><strong>GPS:</strong> 0.3821°N, 32.6184°E<br/><strong>Owner:</strong> John Mukasa<br/><strong>Owner phone:</strong> 0712 345 678<br/><strong>Surveyor:</strong> James Okello & Associates<br/><strong>Title ref:</strong> Block 244, Plot 12</div>
           <div class="info-note info-amber">⚠️ <strong>Legal reminder:</strong> Always do a land search at the Uganda Lands Registry, hire a lawyer, and verify boundaries with a registered surveyor before any payment.</div>
@@ -1742,20 +1740,7 @@ function updateNav(){
 function logOut(){currentUser=null;updateNav();toast('Signed out.');}
 
 /* ══ USER DASHBOARD ════════════════════════════════ */
-function openDashboard(){
-  const refCode=currentUser?.referralCode||'ref123abc';
-  document.getElementById('dashboard-content').innerHTML=`
-    <div class="mhdr"><div><div class="m-title">👋 ${currentUser?.name}</div><div class="m-sub">Your RentRight dashboard</div></div><div style="display:flex;gap:8px"><button onclick="logOut();closeModal('dashboard-modal')" style="padding:7px 13px;border:1px solid #E8E8E6;border-radius:6px;font-size:11px;font-weight:700;color:#3D3D3D;cursor:pointer;background:transparent">Sign out</button><button class="m-close" onclick="closeModal('dashboard-modal')">×</button></div></div>
-    <div class="mbody">
-      <div class="info-note info-green"><strong>Your referral link:</strong><br/><span style="font-size:12px;color:#2C5F2E;font-weight:700">rentright.ug/ref/${refCode}</span><br/><button onclick="navigator.clipboard.writeText('rentright.ug/ref/${refCode}');toast('Copied!')" style="margin-top:6px;background:#1A1A1A;color:#fff;border:none;border-radius:5px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer">Copy link</button></div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px">
-        ${[['Total earned','UGX 10,000','#2C5F2E'],['Pending','UGX 6,000','#D4A853'],['Withdrawable','UGX 4,000','#1A6DC0']].map(([lb,v,c])=>`<div style="background:#F5F5F3;border-radius:8px;padding:12px;text-align:center;border:1px solid #E8E8E6"><div style="font-weight:800;font-size:.9rem;color:${c}">${v}</div><div style="font-size:9px;color:#9B9B9B;margin-top:2px">${lb}</div></div>`).join('')}
-      </div>
-      <button onclick="toast('✅ UGX 4,000 sent to your MoMo!');closeModal('dashboard-modal')" class="btn-blue" style="margin-bottom:8px">Withdraw UGX 4,000 to MoMo</button>
-      <button onclick="scrollToId('ref-sec');closeModal('dashboard-modal')" class="btn-ghost">View referral programme</button>
-    </div>`;
-  openModal('dashboard-modal');
-}
+/* openDashboard defined below */
 
 /* ══ REFERRAL ════════════════════════════════════════ */
 function getRefLink(){
@@ -2217,4 +2202,27 @@ function toast(msg){
 
 /* ══ UTILS ════════════════════════════════════════════ */
 function scrollToId(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
-function btabClick(el,target){document.querySelectorAll('.btab').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(target)scr
+
+function btabClick(el,target){document.querySelectorAll('.btab').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(target)scrollToId(target);}
+function showPage(p){}
+function submitJob(){toast('✅ Job posted! Verified providers will e-sign commission agreement before accessing your contact.');closeModal('post-job-modal');}
+function submitProviderApp(){toast('✅ Application submitted! Admin reviews within 24 hours. Your e-signature has been recorded.');closeModal('provider-signup-modal');}
+function submitDelegate(){toast('✅ Delegation submitted! A verified agent will be assigned to your property within 48 hours.');closeModal('delegate-modal');}
+function openDashboard(){
+  if(!currentUser){openModal('auth-modal','login');return;}
+  const refCode=currentUser?.referralCode||'ref123abc';
+  document.getElementById('dashboard-content').innerHTML=`
+    <div class="mhdr"><div><div class="m-title">👋 ${currentUser?.name}</div><div class="m-sub">Your RentRight dashboard</div></div><div style="display:flex;gap:8px"><button onclick="logOut();closeModal('dashboard-modal')" style="padding:7px 13px;border:1px solid #E8E8E6;border-radius:6px;font-size:11px;font-weight:700;color:#3D3D3D;cursor:pointer;background:transparent">Sign out</button><button class="m-close" onclick="closeModal('dashboard-modal')">×</button></div></div>
+    <div class="mbody">
+      <div class="info-note info-green"><strong>Your referral link:</strong><br/><span style="font-size:12px;color:#2C5F2E;font-weight:700">rentright.ug/ref/${refCode}</span><br/><button onclick="navigator.clipboard.writeText('rentright.ug/ref/${refCode}');toast('Link copied!')" style="margin-top:6px;background:#1A1A1A;color:#fff;border:none;border-radius:5px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer">Copy link</button></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px">
+        ${[['Total earned','UGX 10,000','#2C5F2E'],['Pending','UGX 6,000','#D4A853'],['Withdrawable','UGX 4,000','#1A6DC0']].map(([lb,v,c])=>`<div style="background:#F5F5F3;border-radius:8px;padding:12px;text-align:center;border:1px solid #E8E8E6"><div style="font-weight:800;font-size:.9rem;color:${c}">${v}</div><div style="font-size:9px;color:#9B9B9B;margin-top:2px">${lb}</div></div>`).join('')}
+      </div>
+      <button onclick="toast('✅ UGX 4,000 sent to your MoMo!');closeModal('dashboard-modal')" class="btn-blue" style="margin-bottom:8px">Withdraw UGX 4,000 to MoMo</button>
+      <button onclick="scrollToId('ref-sec');closeModal('dashboard-modal')" class="btn-ghost">View referral programme</button>
+    </div>`;
+  openModal('dashboard-modal');
+}
+</script>
+</body>
+</html>
