@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RentRight — Find a Place You'll Call Home · Uganda</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--white:#fff;--off:#F7F7F5;--bd:#E8E8E6;--muted:#9B9B9B;--body:#3D3D3D;--dark:#1A1A1A;--black:#0D0D0D;--g:#2C7A3A;--gl:#E8F5EB;--gd:#1B5227;--g2:#4CAF50;--g2l:#F0FDF4;--bl:#1A6DC0;--bll:#EFF6FF;--am:#D4853A;--aml:#FEF3C7;--rd:#DC3545;--rdl:#FEE2E2}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--off);color:var(--dark);line-height:1.6;overflow-x:hidden}
+button,input,select,textarea{font-family:inherit}
+img{display:block;width:100%;object-fit:cover}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--bd)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;transition:all .3s;background:transparent}
+#nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--bd)}
+.ni{max-width:1280px;margin:0 auto;height:100%;padding:0 40px;display:flex;align-items:center;gap:16px}
+.logo{display:flex;align-items:center;gap:8px;cursor:pointer;flex-shrink:0}
+.lm{width:34px;height:34px;background:var(--g);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.lm svg{width:18px;height:18px;fill:#fff}
+.lt{font-weight:800;font-size:1.05rem;letter-spacing:-.02em;color:#fff;transition:color .3s}
+#nav.solid .lt{color:var(--dark)}
+.navlinks{display:flex;gap:2px;margin-left:8px}
+.na{font-size:13px;font-weight:500;color:rgba(255,255,255,.82);padding:7px 12px;border-radius:6px;cursor:pointer;border:none;background:none;transition:color .2s;white-space:nowrap}
+.na:hover{color:#fff}
+#nav.solid .na{color:var(--body)}
+#nav.solid .na:hover{color:var(--dark)}
+.nr{display:flex;align-items:center;gap:8px;margin-left:auto}
+.bsign{font-size:12px;font-weight:600;color:rgba(255,255,255,.9);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:8px 16px;border-radius:6px;cursor:pointer;transition:all .2s}
+#nav.solid .bsign{color:var(--body);background:transparent;border-color:var(--bd)}
+.blist{font-size:12px;font-weight:700;color:var(--dark);background:#fff;border:none;padding:9px 18px;border-radius:6px;cursor:pointer;transition:all .2s}
+#nav.solid .blist{background:var(--g);color:#fff}
+.blist:hover{opacity:.88;transform:translateY(-1px)}
+
+/* HERO */
+#hero{position:relative;height:100vh;min-height:660px;overflow:hidden}
+.hs{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
+.hs.on{opacity:1}
+.hs img{width:100%;height:100%;object-fit:cover}
+.ho{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.14) 0%,rgba(0,0,0,.52) 55%,rgba(0,0,0,.78) 100%)}
+.hc{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 40px 72px;max-width:1280px;margin:0 auto;left:0;right:0}
+.hbadge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);border-radius:24px;padding:5px 14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.07em;text-transform:uppercase;margin-bottom:18px;width:fit-content}
+.hdot{width:7px;height:7px;border-radius:50%;background:var(--g2);animation:pulse 2s infinite}
+h1.h1{font-family:'Playfair Display',Georgia,serif;font-weight:300;font-size:clamp(2.6rem,5.5vw,5rem);line-height:1.06;letter-spacing:-.02em;color:#fff;margin-bottom:14px}
+.hsub{font-size:.95rem;color:rgba(255,255,255,.72);line-height:1.6;max-width:440px;margin-bottom:26px}
+.hctas{display:flex;gap:12px;flex-wrap:wrap}
+.bhp{font-size:14px;font-weight:700;background:#fff;color:var(--dark);border:none;padding:13px 26px;border-radius:7px;cursor:pointer;transition:all .2s}
+.bhp:hover{background:var(--off);transform:translateY(-1px)}
+.bhs{font-size:14px;font-weight:600;background:transparent;color:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.35);padding:12px 22px;border-radius:7px;cursor:pointer;transition:all .2s}
+.bhs:hover{background:rgba(255,255,255,.1)}
+.hstats{display:flex;gap:28px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.15);flex-wrap:wrap}
+.hsn{font-size:1.4rem;font-weight:800;color:#fff;letter-spacing:-.04em}
+.hsl{font-size:10px;color:rgba(255,255,255,.52);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-top:2px}
+.hdots{position:absolute;bottom:26px;right:40px;display:flex;gap:5px}
+.hd{width:7px;height:7px;border-radius:4px;border:none;background:rgba(255,255,255,.38);cursor:pointer;padding:0;transition:all .3s}
+.hd.on{width:22px;background:#fff}
+.hprog{position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,.15)}
+.hpb{height:100%;background:#fff;width:0;transition:width .1s linear}
+
+/* SEARCH */
+.swrap{padding:0 40px;background:var(--off)}
+#sbox{background:#fff;border-radius:0 0 14px 14px;box-shadow:0 12px 40px rgba(0,0,0,.12);overflow:hidden}
+.stabs{display:flex;border-bottom:1px solid var(--bd);overflow-x:auto;scrollbar-width:none}
+.stab{flex-shrink:0;padding:14px 20px;font-size:13px;font-weight:600;color:var(--muted);border:none;border-bottom:2.5px solid transparent;background:none;cursor:pointer;transition:all .2s;white-space:nowrap}
+.stab:hover{color:var(--dark)}
+.stab.on{color:var(--g);border-bottom-color:var(--g);font-weight:700}
+.sbody{padding:16px 20px;display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.sf{flex:1;min-width:140px}
+.sfl{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:5px}
+.ssel,.sinp{width:100%;padding:10px 12px;background:var(--off);border:1.5px solid var(--bd);border-radius:8px;font-size:13px;color:var(--dark);outline:none;-webkit-appearance:none;transition:border-color .2s;cursor:pointer}
+.ssel:focus,.sinp:focus{border-color:var(--g)}
+.bsch{background:var(--g);color:#fff;border:none;border-radius:8px;padding:11px 24px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s;flex-shrink:0}
+.bsch:hover{background:var(--gd)}
+
+/* TRUST */
+.tstrip{background:var(--g);padding:13px 40px}
+.tsi{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.titems{display:flex;gap:22px;flex-wrap:wrap}
+.titem{font-size:12px;font-weight:600;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:6px}
+.bgps{font-size:12px;font-weight:700;color:var(--g);background:#fff;border:none;border-radius:6px;padding:7px 14px;cursor:pointer;transition:all .2s}
+.bgps:hover{background:var(--gl)}
+
+/* SECTIONS */
+.sec{max-width:1280px;margin:0 auto;padding:68px 40px}
+.sec-w{background:#fff}
+.sec-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:30px;flex-wrap:wrap;gap:14px}
+.stitle{font-weight:800;font-size:clamp(1.7rem,2.8vw,2.3rem);color:var(--dark);letter-spacing:-.02em;line-height:1.12}
+.ssub{font-size:.85rem;color:var(--muted);margin-top:5px;line-height:1.6;max-width:300px}
+.bmore{font-size:13px;font-weight:700;color:var(--g);background:var(--gl);border:1px solid rgba(44,122,58,.2);border-radius:6px;padding:9px 18px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.bmore:hover{background:var(--g);color:#fff}
+
+/* CHIPS */
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px}
+.chip{padding:7px 14px;background:#fff;border:1.5px solid var(--bd);border-radius:24px;font-size:12px;font-weight:600;color:var(--body);cursor:pointer;transition:all .18s;white-space:nowrap}
+.chip:hover{border-color:var(--g);color:var(--g)}
+.chip.on{background:var(--g);color:#fff;border-color:var(--g)}
+
+/* CARDS */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pc{background:#fff;border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .22s,box-shadow .22s;box-shadow:0 2px 12px rgba(0,0,0,.07);border:1px solid var(--bd)}
+.pc:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(0,0,0,.13);border-color:rgba(44,122,58,.3)}
+.ciw{position:relative;height:218px;overflow:hidden}
+.ciw img{height:100%;transition:transform .4s}
+.pc:hover .ciw img{transform:scale(1.04)}
+.cbadges{position:absolute;top:10px;left:10px;display:flex;gap:4px;z-index:2;flex-wrap:wrap}
+.cb{background:#fff;border-radius:24px;padding:3px 9px;font-size:9px;font-weight:700;letter-spacing:.04em;box-shadow:0 1px 5px rgba(0,0,0,.11);display:inline-flex;align-items:center;gap:3px}
+.cb-g{color:var(--gd)}.cb-r{color:var(--rd)}.cb-am{color:#78350F}.cb-bl{color:var(--bl)}.cb-pu{color:#5B21B6}
+.cfav{position:absolute;top:10px;right:10px;width:32px;height:32px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;box-shadow:0 1px 5px rgba(0,0,0,.11);transition:all .2s;z-index:2}
+.cfav:hover{background:#fff0f0}
+.cfav svg{width:15px;height:15px;stroke:var(--muted);fill:none;transition:all .2s}
+.cfav.sv svg{stroke:var(--rd);fill:var(--rd)}
+.cbody{padding:14px 16px}
+.cr1{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:3px}
+.cn{font-size:.92rem;font-weight:700;color:var(--dark);line-height:1.3}
+.cpr{font-size:1rem;font-weight:800;color:var(--dark);white-space:nowrap;letter-spacing:-.02em}
+.car{font-size:.72rem;color:var(--muted);margin-bottom:9px}
+.cbar{height:3px;background:var(--off);border-radius:4px;overflow:hidden;margin-bottom:9px}
+.cbarfill{height:100%;border-radius:4px}
+.cmeta{display:flex;align-items:center;border-top:1px solid var(--off);padding-top:9px;gap:0}
+.cm{flex:1;display:flex;align-items:center;gap:3px;font-size:.68rem;color:var(--muted);font-weight:500}
+.cm svg{width:11px;height:11px;stroke:#C0C0C0;fill:none;flex-shrink:0}
+.cms{width:1px;height:11px;background:var(--bd);flex-shrink:0}
+.cft{display:flex;align-items:center;justify-content:space-between;margin-top:9px}
+.cts{font-size:10px;font-weight:700;color:var(--g)}
+.bvw{background:var(--g);color:#fff;border:none;border-radius:24px;padding:7px 14px;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s}
+.bvw:hover{background:var(--gd)}
+
+/* JOB CARDS */
+.jc{background:#fff;border-radius:10px;padding:18px;cursor:pointer;transition:all .2s;border:1.5px solid var(--bd)}
+.jc:hover{border-color:var(--g);box-shadow:0 4px 20px rgba(0,0,0,.09);transform:translateY(-3px)}
+.jcat{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
+.jtitle{font-size:.92rem;font-weight:700;color:var(--dark);margin-bottom:3px;line-height:1.3}
+.jloc{font-size:.72rem;color:var(--muted);margin-bottom:9px}
+.jtags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:11px}
+.jtag{font-size:9px;font-weight:600;padding:2px 8px;border-radius:20px;background:var(--off);color:var(--body)}
+.jfoot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--off);padding-top:9px}
+.jbud{font-size:.92rem;font-weight:800;color:var(--dark);letter-spacing:-.02em}
+.jcomm{font-size:9px;color:var(--muted)}
+.bacc{background:var(--g);color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s}
+.bacc:hover{background:var(--gd)}
+
+/* SERVICE CARDS */
+.sc{background:#fff;border-radius:10px;padding:18px 14px;cursor:pointer;transition:all .2s;border:1.5px solid var(--bd)}
+.sc:hover{border-color:var(--g);transform:translateY(-3px);box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.sico{width:42px;height:42px;background:var(--gl);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:11px;border:1px solid rgba(44,122,58,.15)}
+.stit{font-size:.88rem;font-weight:700;color:var(--dark);margin-bottom:2px}
+.spri{font-size:.72rem;color:var(--g);font-weight:700}
+.ssub2{font-size:.68rem;color:var(--muted);margin-top:2px}
+
+/* PROVIDERS */
+.pl{background:#fff;border-radius:10px;border:1px solid var(--bd);overflow:hidden}
+.pr{display:flex;align-items:center;gap:13px;padding:13px 17px;border-bottom:1px solid var(--off);cursor:pointer;transition:background .15s}
+.pr:last-child{border-bottom:none}
+.pr:hover{background:var(--g2l)}
+.pav{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.pin{flex:1;min-width:0}
+.pname{font-size:.85rem;font-weight:700;color:var(--dark)}
+.pmeta{font-size:.7rem;color:var(--muted);margin-top:1px}
+.pstars{font-size:10px;color:var(--am);margin-top:2px}
+.avy{background:var(--g2l);color:var(--gd);font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px}
+.avn{background:var(--off);color:var(--muted);font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px}
+
+/* MOVING */
+.mc{background:#fff;border-radius:10px;padding:22px 18px;border:1.5px solid var(--bd);cursor:pointer;transition:all .2s}
+.mc:hover{border-color:var(--g);box-shadow:0 4px 18px rgba(0,0,0,.08);transform:translateY(-3px)}
+.mico{font-size:1.8rem;margin-bottom:12px}
+.mtitle{font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:5px}
+.mdesc{font-size:.78rem;color:var(--muted);line-height:1.6;margin-bottom:10px}
+.mprice{font-size:.85rem;font-weight:700;color:var(--g)}
+.mtags{display:flex;gap:4px;flex-wrap:wrap}
+.mtag{font-size:9px;font-weight:600;background:var(--gl);color:var(--gd);border-radius:20px;padding:2px 7px}
+
+/* LAND */
+.lc{background:#fff;border-radius:10px;overflow:hidden;cursor:pointer;border:1px solid var(--bd);transition:all .22s}
+.lc:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.12);border-color:rgba(44,122,58,.3)}
+.limg{height:188px;overflow:hidden}
+.limg img{height:100%;transition:transform .4s}
+.lc:hover .limg img{transform:scale(1.04)}
+.lbody{padding:14px 16px}
+.ltype{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--am);background:var(--aml);border-radius:20px;padding:3px 9px;display:inline-block;margin-bottom:6px}
+.lprem{background:linear-gradient(135deg,#B8960C,#D4A853);color:#fff;font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:20px;padding:3px 9px;display:inline-block;margin-bottom:6px;margin-left:5px}
+.lname{font-size:.92rem;font-weight:700;color:var(--dark);margin-bottom:2px}
+.lloc{font-size:.72rem;color:var(--muted);margin-bottom:7px}
+.lprice{font-size:1.1rem;font-weight:800;color:var(--dark);letter-spacing:-.02em;margin-bottom:9px}
+.lfeats{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:9px}
+.lfeat{font-size:9px;font-weight:600;background:var(--gl);color:var(--gd);border-radius:20px;padding:2px 7px}
+.llock{background:var(--dark);border-radius:8px;padding:9px 12px;display:flex;gap:8px;align-items:center}
+.llockxt{font-size:.7rem;color:rgba(255,255,255,.7);line-height:1.4}
+.llockxt strong{color:#fff}
+
+/* HOW */
+.hwg{display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:center}
+.hwsteps{display:flex;flex-direction:column;margin-top:26px}
+.hwstep{padding:12px 0 12px 12px;border-bottom:1px solid var(--bd);cursor:pointer;transition:all .2s;border-left:3px solid transparent}
+.hwstep.on{border-left-color:var(--g)}
+.hwstep-l{font-size:13px;font-weight:600;color:var(--muted);transition:color .2s}
+.hwstep.on .hwstep-l{color:var(--dark);font-weight:700}
+.hwphoto{position:relative;border-radius:10px;overflow:hidden;height:470px}
+.hwphoto img{height:100%;object-fit:cover}
+.hwfc{position:absolute;bottom:20px;right:-12px;background:#fff;border-radius:10px;padding:12px 17px;box-shadow:0 8px 32px rgba(0,0,0,.13);min-width:155px}
+.hwfc-l{font-size:9px;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+.hwfc-v{font-size:.88rem;font-weight:800;color:var(--dark)}
+
+/* STATS */
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sk{background:#fff;border-radius:10px;padding:22px;border:1px solid var(--bd)}
+.sl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px}
+.sn{font-size:2.3rem;font-weight:900;color:var(--dark);letter-spacing:-.06em;line-height:1;margin-bottom:13px}
+.mbars{display:flex;align-items:flex-end;gap:3px;height:24px}
+.mb{flex:1;background:var(--bd);border-radius:2px 2px 0 0}
+.mb.hi{background:var(--g)}
+
+/* REFERRAL */
+.refsec{background:var(--dark);padding:76px 40px}
+.rfi{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.rfey{font-size:10px;color:var(--g2);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.rft{font-family:'Playfair Display',Georgia,serif;font-weight:300;font-size:clamp(1.8rem,3vw,2.5rem);color:#fff;line-height:1.1;margin-bottom:15px}
+.rfb{font-size:.85rem;color:#7A7A7A;line-height:1.7;max-width:370px;margin-bottom:22px}
+.rfsp{background:#1E1E1E;border-radius:10px;overflow:hidden;display:flex;margin-bottom:18px}
+.rfspi{flex:1;padding:17px;text-align:center;border-right:1px solid #2A2A2A}
+.rfspi:last-child{border-right:none}
+.rfspn{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-.04em}
+.rfspl{font-size:9px;color:#7A7A7A;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-top:3px}
+.rfrr{background:#1A1A1A;border-radius:10px;padding:26px}
+.rfir{display:flex;gap:8px;margin-bottom:16px}
+.rfin{flex:1;background:#2A2A2A;border:1px solid #3A3A3A;border-radius:6px;padding:10px 12px;font-size:13px;color:#E8E8E8;outline:none;font-family:inherit;transition:border-color .2s}
+.rfin:focus{border-color:var(--g2)}
+.rfin::placeholder{color:#5A5A5A}
+.bgl{background:#fff;color:var(--dark);border:none;border-radius:6px;padding:10px 15px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s}
+.bgl:hover{background:var(--gl);color:var(--gd)}
+#rflr{display:none;background:#111;border:1px solid #2A2A2A;border-radius:8px;padding:11px 13px;margin-bottom:14px}
+#rflv{font-size:.82rem;color:var(--g2);font-weight:700;word-break:break-all;margin-bottom:6px}
+.rfst{display:flex;align-items:flex-start;gap:10px;margin-bottom:11px}
+.rfstn{width:23px;height:23px;border-radius:50%;background:#2A2A2A;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#E8E8E8;flex-shrink:0;margin-top:1px}
+.rfstt{font-size:.8rem;color:#7A7A7A;line-height:1.5}
+.rfstt strong{color:#E8E8E8}
+
+/* FOOTER */
+footer{background:#F7F7F5;border-top:1px solid var(--bd);padding:52px 40px 34px}
+.fi{max-width:1280px;margin:0 auto}
+.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:34px;margin-bottom:38px}
+.flogo{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.flm{width:27px;height:27px;background:var(--g);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.flm svg{width:14px;height:14px;fill:#fff}
+.flt{font-weight:800;font-size:.92rem;color:var(--dark)}
+.ftag{font-size:.78rem;color:var(--muted);line-height:1.65;max-width:210px;margin-bottom:14px}
+.fctl{font-size:10px;font-weight:700;color:var(--dark);letter-spacing:.08em;text-transform:uppercase;margin-bottom:13px}
+.flinks{display:flex;flex-direction:column;gap:8px}
+.fl{font-size:.78rem;color:var(--muted);cursor:pointer;transition:color .2s}
+.fl:hover{color:var(--g)}
+.fbot{border-top:1px solid var(--bd);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.fcopy{font-size:.7rem;color:var(--muted)}
+.flegal{display:flex;gap:17px}
+.flegal a{font-size:.7rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.flegal a:hover{color:var(--g)}
+.bwa{display:inline-flex;align-items:center;gap:6px;background:var(--dark);color:#fff;border:none;border-radius:6px;padding:8px 13px;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s}
+.bwa:hover{background:var(--g)}
+
+/* MOBILE BAR */
+.mbar{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);z-index:998;padding:6px 0 max(6px,env(safe-area-inset-bottom))}
+.mtabs{display:flex}
+.mtab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 0;cursor:pointer;border:none;background:none;transition:all .15s}
+.mtab svg{width:21px;height:21px;stroke:var(--muted);fill:none;transition:stroke .2s}
+.mtab span{font-size:9px;color:var(--muted);font-weight:600;transition:color .2s}
+.mtab.on svg{stroke:var(--g)}
+.mtab.on span{color:var(--g);font-weight:800}
+
+/* MODAL */
+.mbdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.46);z-index:1100;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.mbdrop.open{display:flex}
+.mbox{background:#fff;border-radius:14px;width:100%;max-width:500px;max-height:93vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.22);animation:fadeUp .25s cubic-bezier(.16,1,.3,1)}
+.mbox-lg{max-width:660px}
+.mhdr{padding:19px 22px 15px;border-bottom:1px solid var(--off);display:flex;justify-content:space-between;align-items:flex-start;position:sticky;top:0;background:#fff;z-index:2;border-radius:14px 14px 0 0}
+.mtit{font-size:.98rem;font-weight:800;color:var(--dark);letter-spacing:-.02em}
+.msub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.mcl{width:27px;height:27px;border:none;background:var(--off);border-radius:50%;cursor:pointer;font-size:15px;color:var(--body);display:flex;align-items:center;justify-content:center;transition:background .15s;flex-shrink:0;margin-left:12px}
+.mcl:hover{background:var(--bd)}
+.mbody{padding:18px 22px 24px}
+.mttabs{display:flex;background:var(--off);border-radius:8px;padding:3px;margin-bottom:17px}
+.mttab{flex:1;padding:8px;font-size:12px;font-weight:700;color:var(--muted);background:none;border:none;border-radius:6px;cursor:pointer;transition:all .18s;text-align:center}
+.mttab.on{background:#fff;color:var(--dark);box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.sbar{display:flex;border-bottom:1px solid var(--bd);margin:-18px -22px 18px}
+.si{flex:1;padding:11px 6px;text-align:center;font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .18s}
+.si.on{color:var(--g);border-bottom-color:var(--g)}
+.si.dn{color:var(--gd);border-bottom-color:var(--gd)}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:11px;font-weight:700;color:var(--body);margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:8px;font-size:13px;color:var(--dark);outline:none;transition:border-color .18s;background:#fff;font-family:inherit}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--g)}
+.field input::placeholder{color:#C0C0C0}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.note{border-radius:8px;padding:10px 12px;font-size:.76rem;line-height:1.6;margin-bottom:11px}
+.ng{background:var(--g2l);color:var(--gd);border-left:3px solid var(--g2)}
+.nb{background:var(--bll);color:#0F4B8C;border-left:3px solid var(--bl)}
+.na2{background:var(--aml);color:#78350F;border-left:3px solid var(--am)}
+.nr2{background:var(--rdl);color:#7f1d1d;border-left:3px solid var(--rd)}
+.nd{background:var(--dark);color:rgba(255,255,255,.8);border-radius:8px;padding:11px 13px;display:flex;gap:10px;align-items:center;margin-bottom:11px}
+.bp{width:100%;padding:12px;background:var(--g);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;margin-top:5px}
+.bp:hover{background:var(--gd)}
+.bp:disabled{background:var(--bd);color:var(--muted);cursor:default}
+.bb{width:100%;padding:12px;background:var(--bl);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;margin-top:5px}
+.bb:hover{background:#0F4B8C}
+.bg2{width:100%;padding:11px;background:none;color:var(--body);border:1.5px solid var(--bd);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:all .18s;margin-top:7px}
+.bg2:hover{border-color:var(--dark);color:var(--dark)}
+.pms{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:13px}
+.pm{border:1.5px solid var(--bd);border-radius:8px;padding:12px;cursor:pointer;transition:all .18s;text-align:center}
+.pm.on{border-color:var(--g);background:var(--g2l)}
+.pmi{font-size:1.2rem;margin-bottom:3px}
+.pmn{font-size:11px;font-weight:700;color:var(--dark)}
+.pms2{font-size:9px;color:var(--muted)}
+.sdiv{display:flex;align-items:center;gap:11px;margin:13px 0;color:var(--muted);font-size:11px}
+.sdiv::before,.sdiv::after{content:'';flex:1;height:1px;background:var(--bd)}
+.sbtn{width:100%;padding:10px;background:#fff;border:1.5px solid var(--bd);border-radius:8px;font-size:12px;font-weight:600;color:var(--body);cursor:pointer;transition:all .18s;display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:7px}
+.sbtn:hover{border-color:var(--muted);background:var(--off)}
+.uzn{border:1.5px dashed var(--bd);border-radius:8px;padding:13px;text-align:center;cursor:pointer;transition:border-color .18s;background:var(--off)}
+.uzn:hover{border-color:var(--g)}
+.uzni{font-size:1.3rem;margin-bottom:4px}
+.uznt{font-size:.72rem;color:var(--muted)}
+.esbox{background:var(--off);border-radius:8px;border:1px solid var(--bd);padding:13px;font-size:.73rem;line-height:1.8;color:var(--body);max-height:170px;overflow-y:auto;margin-bottom:11px}
+.espanel{background:var(--dark);border-radius:10px;padding:15px;margin-top:11px}
+.eslbl{font-size:9px;color:#7A7A7A;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px}
+.esfields{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:9px}
+.esinp{background:#1E1E1E;border:1px solid #3A3A3A;border-radius:6px;padding:9px 11px;font-size:12px;color:#E8E8E8;outline:none;width:100%;font-family:inherit;transition:border-color .18s}
+.esinp:focus{border-color:var(--g2)}
+.esinp::placeholder{color:#5A5A5A}
+.esch{display:flex;align-items:flex-start;gap:8px;cursor:pointer;margin-bottom:8px;font-size:.73rem;color:#9B9B9B;line-height:1.5}
+.esch input{margin-top:2px;accent-color:var(--g2);width:14px;height:14px;flex-shrink:0}
+.essec{background:#1A2A1A;border:1px solid #2A3A2A;border-radius:6px;padding:7px 11px;display:flex;align-items:center;gap:7px;margin-top:7px}
+.essect{font-size:10px;color:var(--g2);font-weight:600}
+.pwrules{margin-top:5px}
+.pwr{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted);margin-bottom:2px}
+.pwr.ok{color:var(--g)}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:15px}
+.rb{padding:9px;border:1.5px solid var(--bd);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;background:#fff;color:var(--body);transition:all .15s;text-align:center}
+.rb.on{background:var(--g);color:#fff;border-color:var(--g)}
+
+/* ADMIN */
+#admp{display:none;position:fixed;inset:0;z-index:2000;background:var(--off)}
+.adml{display:grid;grid-template-columns:215px 1fr;height:100vh;overflow:hidden}
+.adms{background:#0A0A0A;display:flex;flex-direction:column;overflow-y:auto}
+.admlogo{padding:17px 15px;border-bottom:1px solid #1E1E1E;display:flex;align-items:center;gap:8px}
+.admlogom{width:27px;height:27px;background:var(--g);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px}
+.admlogot{font-weight:800;font-size:.85rem;color:#fff}
+.admn{padding:9px 7px;flex:1}
+.ansl{font-size:9px;font-weight:700;color:#4A4A4A;letter-spacing:.1em;text-transform:uppercase;padding:9px 8px 3px}
+.ani{display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:7px;cursor:pointer;transition:all .15s;margin-bottom:1px;border-left:3px solid transparent}
+.ani:hover{background:#1A1A1A}
+.ani.on{background:#1A1A1A;border-left-color:var(--g)}
+.anicon{font-size:13px;flex-shrink:0}
+.anlbl{font-size:12px;font-weight:600;color:#6A6A6A;transition:color .15s;white-space:nowrap}
+.ani:hover .anlbl,.ani.on .anlbl{color:#fff}
+.anbd{margin-left:auto;background:var(--rd);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:20px;min-width:18px;text-align:center}
+.anbd.am{background:var(--am)}
+.admm{background:var(--off);overflow-y:auto;display:flex;flex-direction:column}
+.admtop{background:#fff;border-bottom:1px solid var(--bd);height:52px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:10}
+.admtopt{font-weight:800;font-size:.92rem;color:var(--dark)}
+.admc{padding:20px 24px;flex:1}
+.kg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}
+.kc{background:#fff;border-radius:10px;padding:15px;border:1px solid var(--bd)}
+.ki{font-size:1.2rem;margin-bottom:7px}
+.kv{font-size:1.5rem;font-weight:900;color:var(--dark);letter-spacing:-.05em;line-height:1;margin-bottom:3px}
+.kl{font-size:10px;color:var(--muted);font-weight:600}
+.kt{font-size:10px;font-weight:700;margin-top:3px}
+.kup{color:var(--g)}.kdn{color:var(--rd)}
+.ap{background:#fff;border-radius:10px;border:1px solid var(--bd);overflow:hidden;margin-bottom:14px}
+.aph{padding:13px 17px;border-bottom:1px solid var(--off);display:flex;justify-content:space-between;align-items:center}
+.apt{font-size:.85rem;font-weight:800;color:var(--dark)}
+.apa{font-size:11px;font-weight:700;color:var(--g);cursor:pointer;border:none;background:none}
+.arow{display:flex;align-items:center;gap:11px;padding:11px 17px;border-bottom:1px solid var(--off);transition:background .15s}
+.arow:last-child{border-bottom:none}
+.arow:hover{background:var(--off)}
+.aav{width:31px;height:31px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;flex-shrink:0}
+.ainfo{flex:1;min-width:0}
+.aname{font-size:.8rem;font-weight:700;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ameta{font-size:.67rem;color:var(--muted);margin-top:1px}
+.ast{font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap}
+.asp{background:var(--aml);color:#78350F}
+.asa{background:var(--g2l);color:var(--gd)}
+.asac{background:var(--bll);color:#0F4B8C}
+.asr{background:var(--rdl);color:#7f1d1d}
+.abts{display:flex;gap:5px}
+.abt{font-size:9px;font-weight:700;padding:4px 9px;border-radius:5px;cursor:pointer;border:none;transition:all .15s}
+.abta{background:var(--g2l);color:var(--gd)}.abta:hover{background:var(--g2);color:#fff}
+.abtr{background:var(--rdl);color:#7f1d1d}.abtr:hover{background:var(--rd);color:#fff}
+.abtv{background:var(--off);color:var(--body)}.abtv:hover{background:var(--bd)}
+.alrt{display:flex;align-items:flex-start;gap:9px;padding:11px 17px;border-left:3px solid transparent;border-bottom:1px solid var(--off);cursor:pointer;transition:background .15s}
+.alrt:last-child{border-bottom:none}
+.alrt:hover{background:var(--off)}
+.alc{border-left-color:var(--rd)}.alu{border-left-color:var(--am)}.aln{border-left-color:var(--g2)}
+.alicon{font-size:13px;flex-shrink:0;margin-top:1px}
+.alinfo{flex:1}.altit{font-size:.78rem;font-weight:700;color:var(--dark)}
+.aldesc{font-size:.68rem;color:var(--muted);margin-top:1px}
+.altm{font-size:.63rem;color:#C0C0C0;flex-shrink:0;margin-top:2px}
+.a2c{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}
+.feg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:13px}
+.fei label{font-size:10px;font-weight:700;color:var(--muted);display:block;margin-bottom:3px;letter-spacing:.04em;text-transform:uppercase}
+.fei input{width:100%;padding:8px 11px;border:1.5px solid var(--bd);border-radius:7px;font-size:13px;color:var(--dark);outline:none;background:var(--off);font-family:inherit;transition:border-color .18s}
+.fei input:focus{border-color:var(--g);background:#fff}
+
+/* FAB + CHAT */
+.fabw{position:fixed;bottom:22px;right:22px;display:flex;flex-direction:column;align-items:flex-end;gap:8px;z-index:997}
+.fab{width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 4px 16px rgba(0,0,0,.18);transition:all .2s}
+.fab:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.22)}
+.fabai{background:var(--dark)}.fabwa{background:#25D366}
+#chatp{display:none;position:fixed;bottom:80px;right:22px;width:308px;background:#fff;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.16);border:1px solid var(--bd);z-index:996;flex-direction:column;max-height:416px}
+#chatp.open{display:flex;animation:fadeUp .22s ease}
+.chdr{background:var(--dark);border-radius:12px 12px 0 0;padding:12px 15px;display:flex;align-items:center;justify-content:space-between}
+.chdrli{display:flex;align-items:center;gap:9px}
+.chav{width:26px;height:26px;background:var(--g);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px}
+.chn{color:#fff;font-weight:700;font-size:12px}
+.chs{color:#7A7A7A;font-size:9px}
+.chx{background:rgba(255,255,255,.1);border:none;color:#fff;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center}
+.cmsgs{flex:1;overflow-y:auto;padding:12px 13px;display:flex;flex-direction:column;gap:8px}
+.cmsg{max-width:82%;font-size:11px;line-height:1.5;padding:8px 11px;border-radius:12px;white-space:pre-wrap}
+.cmsg.ai{background:var(--off);color:var(--dark);align-self:flex-start;border-radius:4px 12px 12px 12px}
+.cmsg.usr{background:var(--g);color:#fff;align-self:flex-end;border-radius:12px 4px 12px 12px}
+.cinr{padding:9px 11px;border-top:1px solid var(--bd);display:flex;gap:7px}
+.cinp{flex:1;padding:7px 11px;border:1.5px solid var(--bd);border-radius:20px;font-size:11px;outline:none;font-family:inherit;transition:border-color .18s}
+.cinp:focus{border-color:var(--g)}
+.csnd{background:var(--g);color:#fff;border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
+.csnd:hover{background:var(--gd)}
+.toast-el{position:fixed;bottom:74px;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;padding:10px 20px;border-radius:8px;font-size:12px;font-weight:600;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.2);animation:fadeUp .3s ease;white-space:nowrap;pointer-events:none}
+.empty{grid-column:1/-1;text-align:center;padding:56px 20px;background:#fff;border-radius:10px;border:1px solid var(--bd)}
+.empty-i{font-size:2.2rem;margin-bottom:11px}
+.empty-t{font-weight:800;font-size:.95rem;color:var(--dark);margin-bottom:4px}
+.empty-s{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+.hidden{display:none!important}
+.tc{text-align:center}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .ni,.hc,.swrap,.tsi,.sec,.rfi,footer,.fi,.refsec{padding-left:22px;padding-right:22px}
+  .g3{grid-template-columns:repeat(2,1fr)}.g4{grid-template-columns:repeat(2,1fr)}
+  .hwg{grid-template-columns:1fr;gap:36px}.hwphoto{height:340px}.hwfc{right:0;bottom:-12px}
+  .rfi{grid-template-columns:1fr}.fg{grid-template-columns:1fr 1fr}.sg{grid-template-columns:1fr}.a2c{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .ni{padding:0 16px}.navlinks{display:none}.hc{padding:0 18px 70px}.hstats{display:none}.hdots{right:18px}
+  .swrap{padding:0}.sbody{flex-direction:column;gap:10px}.sf{min-width:0;width:100%}.bsch{width:100%}
+  .g3,.g4{grid-template-columns:1fr}.fg{grid-template-columns:1fr}.refsec{padding:52px 18px}
+  .mbar{display:block}body{padding-bottom:60px}.sec{padding-top:50px;padding-bottom:50px}.fabw{bottom:72px}
+  .fr{grid-template-columns:1fr}.esfields{grid-template-columns:1fr}.feg{grid-template-columns:1fr}.rgrid{grid-template-columns:1fr}
+  .adml{grid-template-columns:1fr}.adms{display:none}
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav id="nav">
+  <div class="ni">
+    <div class="logo" onclick="gotoTop()">
+      <div class="lm"><svg viewBox="0 0 20 20"><path d="M10 2L18 8.5V18H13V13H7V18H2V8.5L10 2Z"/></svg></div>
+      <span class="lt">RentRight</span>
+    </div>
+    <div class="navlinks">
+      <button class="na" onclick="goTo('ls')">Properties</button>
+      <button class="na" onclick="goTo('svs')">Services</button>
+      <button class="na" onclick="goTo('jbs')">Jobs</button>
+      <button class="na" onclick="goTo('mvs')">Moving</button>
+      <button class="na" onclick="goTo('lds')">Land</button>
+      <button class="na" onclick="goTo('rfs')">Earn</button>
+    </div>
+    <div class="nr" id="nav-right">
+      <button class="bsign" onclick="openAuth('login')">Sign in</button>
+      <button class="blist" onclick="openAuth('signup')">Post property</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div id="slides">
+    <div class="hs on"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=85" alt="Modern home Kampala"></div>
+    <div class="hs"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1600&q=85" alt="Executive apartment"></div>
+    <div class="hs"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600&q=85" alt="Premium property"></div>
+  </div>
+  <div class="ho"></div>
+  <div class="hc">
+    <div class="hbadge"><span class="hdot"></span>Uganda's #1 Verified Housing Marketplace</div>
+    <h1 class="h1">Find a place you<br>will call home.</h1>
+    <p class="hsub">Verified rentals, service jobs, moving help &amp; premium land — GPS-confirmed, no brokers, no scams.</p>
+    <div class="hctas">
+      <button class="bhp" onclick="goTo('ls')">Find properties</button>
+      <button class="bhs" onclick="openAuth('agent')">List your property →</button>
+    </div>
+    <div class="hstats">
+      <div><div class="hsn">500+</div><div class="hsl">Listings</div></div>
+      <div><div class="hsn">2,400</div><div class="hsl">Happy tenants</div></div>
+      <div><div class="hsn">98%</div><div class="hsl">Verified</div></div>
+      <div><div class="hsn">120+</div><div class="hsl">Providers</div></div>
+      <div><div class="hsn">UGX 2K</div><div class="hsl">Per referral</div></div>
+    </div>
+  </div>
+  <div class="hdots">
+    <button class="hd on" onclick="heroGo(0)" id="hd0"></button>
+    <button class="hd" onclick="heroGo(1)" id="hd1"></button>
+    <button class="hd" onclick="heroGo(2)" id="hd2"></button>
+  </div>
+  <div class="hprog"><div class="hpb" id="hpb"></div></div>
+</section>
+
+<!-- SEARCH -->
+<div class="swrap">
+  <div id="sbox">
+    <div class="stabs">
+      <button class="stab on" onclick="setTab(this,'rent')">Rent</button>
+      <button class="stab" onclick="setTab(this,'buy')">Buy</button>
+      <button class="stab" onclick="setTab(this,'hostel')">Student / Hostel</button>
+      <button class="stab" onclick="setTab(this,'shared')">Shared housing</button>
+      <button class="stab" onclick="setTab(this,'land')">Land &amp; Property</button>
+      <button class="stab" onclick="setTab(this,'jobs')">Service jobs</button>
+    </div>
+    <div class="sbody">
+      <div class="sf"><span class="sfl">Area</span>
+        <select class="ssel" id="fa">
+          <option value="">All areas</option>
+          <option>Bukoto</option><option>Kisaasi</option><option>Ntinda</option>
+          <option>Wandegeya</option><option>Makerere</option><option>Naguru</option>
+          <option>Kololo</option><option>Muyenga</option><option>Mukono</option><option>Wakiso</option>
+        </select>
+      </div>
+      <div class="sf"><span class="sfl">Property type</span>
+        <select class="ssel" id="ft">
+          <option value="">All types</option>
+          <option value="Self-Contained">Self-Contained</option>
+          <option value="Single Room">Single Room</option>
+          <option value="Double Room">Double Room</option>
+          <option value="Hostel">Hostel / Student</option>
+          <option value="Shared Housing">Shared Housing</option>
+          <option value="Apartment">Apartment</option>
+        </select>
+      </div>
+      <div class="sf"><span class="sfl">Budget</span>
+        <select class="ssel" id="fb">
+          <option value="">Any price</option>
+          <option value="0-200000">Under UGX 200K</option>
+          <option value="0-300000">Under UGX 300K</option>
+          <option value="200000-500000">UGX 200K – 500K</option>
+          <option value="500000-99999999">Above UGX 500K</option>
+        </select>
+      </div>
+      <div class="sf"><span class="sfl">Condition</span>
+        <select class="ssel" id="fc">
+          <option value="">All listings</option>
+          <option value="verified">Verified only</option>
+          <option value="ready">Move-in ready</option>
+          <option value="boosted">Boosted</option>
+        </select>
+      </div>
+      <button class="bsch" onclick="doSearch()">Show properties</button>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="tstrip">
+  <div class="tsi">
+    <div class="titems">
+      <div class="titem">✔ GPS-confirmed locations</div>
+      <div class="titem">🔒 Contact locked until payment</div>
+      <div class="titem">✍️ E-signed agreements</div>
+      <div class="titem">📱 MTN &amp; Airtel MoMo</div>
+      <div class="titem">🛡️ AI fraud detection</div>
+    </div>
+    <button class="bgps" onclick="useGPS()">📍 Find near me</button>
+  </div>
+</div>
+
+<!-- LISTINGS -->
+<div class="sec-w" id="ls" style="padding:68px 0 0">
+<div class="sec" style="padding-top:0">
+  <div class="sec-hdr">
+    <div><div class="stitle" id="ltit">New properties</div><div class="ssub" id="lsub">Verified · GPS confirmed · Real photos</div></div>
+    <div style="display:flex;gap:8px;align-items:flex-start">
+      <select id="sortsel" onchange="applySort()" style="padding:8px 12px;border:1.5px solid var(--bd);border-radius:7px;font-size:12px;color:var(--body);outline:none;background:#fff;cursor:pointer;font-family:inherit">
+        <option value="match">Best match</option>
+        <option value="price-asc">Price: Low → High</option>
+        <option value="price-desc">Price: High → Low</option>
+        <option value="confidence">Trust score</option>
+        <option value="rating">Top rated</option>
+      </select>
+      <button id="clrbtn" onclick="clearSearch()" class="hidden" style="padding:8px 12px;background:var(--rdl);border:1.5px solid rgba(220,53,69,.2);border-radius:7px;font-size:11px;font-weight:700;color:var(--rd);cursor:pointer">✕ Clear</button>
+    </div>
+  </div>
+  <div class="chips" id="chips">
+    <button class="chip on" onclick="doChip(this,'all')">All</button>
+    <button class="chip" onclick="doChip(this,'u300')">💸 Under 300k</button>
+    <button class="chip" onclick="doChip(this,'student')">🎓 Student</button>
+    <button class="chip" onclick="doChip(this,'hostel')">🏨 Hostel</button>
+    <button class="chip" onclick="doChip(this,'shared')">🤝 Shared</button>
+    <button class="chip" onclick="doChip(this,'verified')">✔ Verified</button>
+    <button class="chip" onclick="doChip(this,'ready')">🟢 Move-in ready</button>
+    <button class="chip" onclick="doChip(this,'boosted')">🚀 Boosted</button>
+  </div>
+  <div class="g3" id="lgrid"></div>
+  <div style="text-align:center;margin-top:26px">
+    <button class="bmore" style="padding:11px 28px;font-size:13px" onclick="toast('Connect your backend API to paginate listings')">Load more properties</button>
+  </div>
+</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div style="background:var(--off);padding:68px 0">
+<div class="sec" style="padding-top:0;padding-bottom:0">
+  <div class="hwg">
+    <div>
+      <div style="font-size:10px;color:var(--g);font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:9px">How it works</div>
+      <div class="stitle">Simple. Safe. Fast.</div>
+      <p class="ssub" style="margin-top:6px;max-width:340px">Verified listings, GPS-matched, legal e-sign protection built in from day one.</p>
+      <div class="hwsteps" id="hwsteps">
+        <div class="hwstep on" onclick="howStep(0,this)"><div class="hwstep-l">Search &amp; filter verified properties</div></div>
+        <div class="hwstep" onclick="howStep(1,this)"><div class="hwstep-l">Review trust score &amp; GPS details</div></div>
+        <div class="hwstep" onclick="howStep(2,this)"><div class="hwstep-l">Pay UGX 5,000 · Unlock landlord contact</div></div>
+        <div class="hwstep" onclick="howStep(3,this)"><div class="hwstep-l">E-sign agreement · Move in safely</div></div>
+      </div>
+      <button class="bp" style="width:auto;padding:12px 22px;margin-top:20px" onclick="openAuth('signup')">Get started free</button>
+    </div>
+    <div class="hwphoto">
+      <img id="hwimg" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=85" alt="">
+      <div class="hwfc">
+        <div class="hwfc-l" id="hwfl">Current step</div>
+        <div class="hwfc-v" id="hwfv">Search &amp; Discover</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- STATS -->
+<div class="sec-w" style="padding:52px 0;border-top:1px solid var(--bd)">
+<div class="sec" style="padding-top:0;padding-bottom:0">
+  <div class="sg">
+    <div class="sk"><div class="sl">Listings verified</div><div class="sn">98%</div><div class="mbars" id="sb1"></div></div>
+    <div class="sk"><div class="sl">Referral payouts</div><div class="sn">UGX 4.8M</div><div class="mbars" id="sb2"></div></div>
+    <div class="sk"><div class="sl">Days to rent avg.</div><div class="sn">3.2</div><div class="mbars" id="sb3"></div></div>
+  </div>
+</div>
+</div>
+
+<!-- JOBS -->
+<div style="background:var(--off);padding:68px 0" id="jbs">
+<div class="sec" style="padding-top:0;padding-bottom:0">
+  <div class="sec-hdr">
+    <div><div class="stitle">Service job board</div><p class="ssub">Post or accept jobs · E-signed commission before contact revealed</p></div>
+    <button class="bmore" onclick="openPostJob()">+ Post a job</button>
+  </div>
+  <div class="g3" id="jgrid"></div>
+</div>
+</div>
+
+<!-- SERVICES -->
+<div class="sec-w" id="svs" style="padding:68px 0">
+<div class="sec" style="padding-top:0;padding-bottom:0">
+  <div class="sec-hdr">
+    <div><div class="stitle">Home services<br>near you</div><p class="ssub">GPS-matched · Verified providers · Cleaners, movers, plumbers &amp; more</p></div>
+    <button class="bmore" onclick="openProvSignup()">Register as provider</button>
+  </div>
+  <div class="g4" style="margin-bottom:26px" id="svgrid"></div>
+  <div class="pl" id="plist"></div>
+</div>
+</div>
+
+<!-- MOVING -->
+<div style="background:var(--off);padding:68px 0" id="mvs">
+<div class="sec" style="padding-top:0;padding-bottom:0">
+  <div class="sec-hdr">
+    <div><div class="stitle">Moving services</div><p class="ssub">Trucks, packers, storage &amp; furniture assembly · Get quotes fast</p></div>
+    <button class="bmore" onclick="openMoving()">Post moving job</button>
+  </div>
+  <div class="g3" id="mvgrid"></div>
+</div>
+</div>
+
+<!-- LAND -->
+<div class="sec-w" id="lds" style="padding:68px 0">
+<div class="sec" style="padding-top:0;padding-bottom:0">
+  <div class="sec-hdr">
+    <div><div class="stitle">Land &amp; premium<br>property sales</div><p class="ssub">Verified owners · Pay access fee → GPS + title deed + owner contact unlocked</p></div>
+    <button class="bmore" onclick="openLandAll()">All plots</button>
+  </div>
+  <div class="g3" id="ldgrid"></div>
+</div>
+</div>
+
+<!-- REFERRAL -->
+<div class="refsec" id="rfs">
+  <div class="rfi">
+    <div>
+      <div class="rfey">Referral programme</div>
+      <h2 class="rft">Earn money every time<br>a friend finds a home.</h2>
+      <p class="rfb">Share your link. Every UGX 5,000 viewing fee paid by your referral → UGX 2,000 goes directly to your MoMo. No cap, no limit.</p>
+      <div class="rfsp">
+        <div class="rfspi"><div class="rfspn">UGX 5K</div><div class="rfspl">Viewing fee</div></div>
+        <div class="rfspi"><div class="rfspn" style="color:var(--g2)">UGX 2K</div><div class="rfspl">You earn → MoMo</div></div>
+        <div class="rfspi"><div class="rfspn" style="color:var(--am)">UGX 3K</div><div class="rfspl">Platform keeps</div></div>
+      </div>
+      <div style="font-size:10px;color:#5A5A5A">Min withdrawal UGX 20,000 · MTN or Airtel MoMo · Instant payout</div>
+    </div>
+    <div class="rfrr">
+      <div style="font-size:10px;color:#7A7A7A;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px">Get your referral link</div>
+      <div class="rfir">
+        <input class="rfin" id="rfin" placeholder="Phone or email address">
+        <button class="bgl" onclick="getRefLink()">Get link</button>
+      </div>
+      <div id="rflr">
+        <div style="font-size:9px;color:#7A7A7A;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px">Your referral link</div>
+        <div id="rflv"></div>
+        <button onclick="copyRef()" style="margin-top:7px;background:#2A2A2A;color:#E8E8E8;border:none;border-radius:5px;padding:6px 12px;font-size:10px;font-weight:700;cursor:pointer">Copy link</button>
+      </div>
+      <div class="rfst"><div class="rfstn">1</div><div class="rfstt"><strong>Share your link</strong> with anyone looking for a home</div></div>
+      <div class="rfst"><div class="rfstn">2</div><div class="rfstt">Friend <strong>signs up &amp; pays</strong> UGX 5,000 viewing fee</div></div>
+      <div class="rfst"><div class="rfstn">3</div><div class="rfstt"><strong>UGX 2,000 credited instantly</strong> to your MoMo wallet</div></div>
+      <div class="rfst"><div class="rfstn">4</div><div class="rfstt">Withdraw <strong>above UGX 20,000</strong> anytime, instantly</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- DELEGATION -->
+<div class="sec-w" style="padding:68px 0;border-top:1px solid var(--bd)">
+<div class="sec" style="padding-top:0;padding-bottom:0">
+  <div class="sec-hdr">
+    <div><div class="stitle">Delegate to a<br>verified agent</div><p class="ssub">Landlords appoint agents through RentRight. E-signed agreement. Full accountability.</p></div>
+    <button class="bmore" onclick="openDelegate()">Delegate my property →</button>
+  </div>
+  <div class="g3">
+    <div style="background:var(--off);border-radius:10px;padding:22px;border:1px solid var(--bd)"><div style="font-size:1.5rem;margin-bottom:10px">🏠</div><div style="font-weight:800;font-size:.92rem;color:var(--dark);margin-bottom:5px">Landlord lists property</div><div style="font-size:.78rem;color:var(--muted);line-height:1.6">Upload photos, set price, specify agent requirements and commission percentage.</div></div>
+    <div style="background:var(--off);border-radius:10px;padding:22px;border:1px solid var(--bd)"><div style="font-size:1.5rem;margin-bottom:10px">🤝</div><div style="font-weight:800;font-size:.92rem;color:var(--dark);margin-bottom:5px">Platform assigns verified agent</div><div style="font-size:.78rem;color:var(--muted);line-height:1.6">All agents: NIN + LC letter + guarantor + field verification before any assignment.</div></div>
+    <div style="background:var(--off);border-radius:10px;padding:22px;border:1px solid var(--bd)"><div style="font-size:1.5rem;margin-bottom:10px">✍️</div><div style="font-weight:800;font-size:.92rem;color:var(--dark);margin-bottom:5px">Both parties e-sign</div><div style="font-size:.78rem;color:var(--muted);line-height:1.6">Commission agreement signed digitally by both landlord and agent. Legally protected.</div></div>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<div class="fi">
+  <div class="fg">
+    <div>
+      <div class="flogo"><div class="flm"><svg viewBox="0 0 20 20"><path d="M10 2L18 8.5V18H13V13H7V18H2V8.5L10 2Z"/></svg></div><span class="flt">RentRight</span></div>
+      <p class="ftag">Uganda's verified rental and housing marketplace. No brokers. No scams. GPS-confirmed. Legal protection built in.</p>
+      <button class="bwa" onclick="window.open('https://wa.me/256700000000','_blank')">💬 WhatsApp us</button>
+    </div>
+    <div>
+      <div class="fctl">Platform</div>
+      <div class="flinks">
+        <div class="fl" onclick="goTo('ls')">Browse listings</div>
+        <div class="fl" onclick="goTo('jbs')">Service jobs</div>
+        <div class="fl" onclick="goTo('mvs')">Moving services</div>
+        <div class="fl" onclick="goTo('lds')">Land &amp; property</div>
+        <div class="fl" onclick="goTo('rfs')">Referral programme</div>
+        <div class="fl" onclick="openDelegate()">Delegate to agent</div>
+      </div>
+    </div>
+    <div>
+      <div class="fctl">Popular areas</div>
+      <div class="flinks">
+        <div class="fl" onclick="areaQ('Makerere')">📍 Makerere</div>
+        <div class="fl" onclick="areaQ('Kisaasi')">📍 Kisaasi</div>
+        <div class="fl" onclick="areaQ('Ntinda')">📍 Ntinda</div>
+        <div class="fl" onclick="areaQ('Bukoto')">📍 Bukoto</div>
+        <div class="fl" onclick="areaQ('Wandegeya')">📍 Wandegeya</div>
+        <div class="fl" onclick="areaQ('Naguru')">📍 Naguru</div>
+      </div>
+    </div>
+    <div>
+      <div class="fctl">Contact</div>
+      <div class="flinks">
+        <div class="fl">+256 700 000 000</div>
+        <div class="fl">hello@rentright.ug</div>
+        <div class="fl">Kampala, Uganda</div>
+      </div>
+      <div style="margin-top:15px;background:var(--aml);border-radius:8px;padding:10px;font-size:.68rem;color:#78350F;line-height:1.6;border-left:3px solid var(--am)">⚠ Never pay rent before physically viewing. RentRight is an intermediary only.</div>
+    </div>
+  </div>
+  <div class="fbot">
+    <div class="fcopy">© 2025 RentRight Uganda · UGX 5K fee → UGX 3K platform + UGX 2K referrer · 8% job commission</div>
+    <div class="flegal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Report</a></div>
+  </div>
+</div>
+</footer>
+
+<!-- MOBILE BAR -->
+<div class="mbar">
+  <div class="mtabs">
+    <button class="mtab on" onclick="mobTab(this,'ls')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></button>
+    <button class="mtab" onclick="mobTab(this,'ls')"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>Search</span></button>
+    <button class="mtab" onclick="mobTab(this,'jbs')"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg><span>Jobs</span></button>
+    <button class="mtab" onclick="mobTab(this,'svs')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>Services</span></button>
+    <button class="mtab" onclick="openMe()"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Me</span></button>
+  </div>
+</div>
+
+<!-- FABs -->
+<div class="fabw">
+  <button class="fab fabai" onclick="chatToggle()" title="AI Assistant">🤖</button>
+  <a href="https://wa.me/256700000000" target="_blank" class="fab fabwa" title="WhatsApp">💬</a>
+</div>
+
+<!-- CHAT -->
+<div id="chatp">
+  <div class="chdr">
+    <div class="chdrli"><div class="chav">🤖</div><div><div class="chn">RentRight AI</div><div class="chs">Homes · Jobs · Land · Services</div></div></div>
+    <button class="chx" onclick="chatToggle()">×</button>
+  </div>
+  <div class="cmsgs" id="cmsgs">
+    <div class="cmsg ai">Hi! I'm your RentRight assistant 🏠
+
+Tell me your budget and area and I'll find your ideal home. I can also help with:
+• Service jobs &amp; providers
+• Moving quotes
+• Land listings</div>
+  </div>
+  <div class="cinr">
+    <input class="cinp" id="cinp" placeholder="Ask anything…" onkeydown="if(event.key==='Enter')chatSend()">
+    <button class="csnd" onclick="chatSend()">↑</button>
+  </div>
+</div>
+
+<!-- ADMIN PAGE -->
+<div id="admp">
+  <div class="adml">
+    <div class="adms">
+      <div class="admlogo"><div class="admlogom">⚙️</div><div class="admlogot">RentRight Admin</div></div>
+      <div class="admn">
+        <div class="ansl">Overview</div>
+        <div class="ani on" onclick="aTab('overview',this)"><span class="anicon">📊</span><span class="anlbl">Dashboard</span></div>
+        <div class="ani" onclick="aTab('alerts',this)"><span class="anicon">🚨</span><span class="anlbl">Alerts</span><span class="anbd">7</span></div>
+        <div class="ansl">Verification</div>
+        <div class="ani" onclick="aTab('verify',this)"><span class="anicon">🔍</span><span class="anlbl">Verify Providers</span><span class="anbd am">15</span></div>
+        <div class="ani" onclick="aTab('agents',this)"><span class="anicon">🏢</span><span class="anlbl">Agents</span></div>
+        <div class="ansl">Content</div>
+        <div class="ani" onclick="aTab('listings',this)"><span class="anicon">🏠</span><span class="anlbl">Listings</span></div>
+        <div class="ani" onclick="aTab('jobs_admin',this)"><span class="anicon">🔧</span><span class="anlbl">Job Board</span></div>
+        <div class="ani" onclick="aTab('land_admin',this)"><span class="anicon">🌍</span><span class="anlbl">Land</span></div>
+        <div class="ansl">Finance</div>
+        <div class="ani" onclick="aTab('payments',this)"><span class="anicon">💳</span><span class="anlbl">Payments</span></div>
+        <div class="ani" onclick="aTab('referrals',this)"><span class="anicon">🔁</span><span class="anlbl">Referrals</span></div>
+        <div class="ani" onclick="aTab('commissions',this)"><span class="anicon">💰</span><span class="anlbl">Commissions</span></div>
+        <div class="ansl">Operations</div>
+        <div class="ani" onclick="aTab('users',this)"><span class="anicon">👤</span><span class="anlbl">Users</span></div>
+        <div class="ani" onclick="aTab('disputes',this)"><span class="anicon">⚖️</span><span class="anlbl">Disputes</span><span class="anbd">3</span></div>
+        <div class="ani" onclick="aTab('esigns',this)"><span class="anicon">✍️</span><span class="anlbl">E-Signatures</span></div>
+        <div class="ani" onclick="aTab('settings',this)"><span class="anicon">⚙️</span><span class="anlbl">Settings</span></div>
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid #1A1A1A">
+          <div class="ani" onclick="exitAdmin()"><span class="anicon">🔙</span><span class="anlbl">Back to site</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="admm">
+      <div class="admtop">
+        <div class="admtopt" id="atitle">Dashboard</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button onclick="toast('Exporting...')" style="padding:7px 12px;font-size:11px;font-weight:700;border-radius:6px;cursor:pointer;border:1px solid var(--bd);background:#fff;color:var(--body)">Export</button>
+          <button id="admbtn" onclick="toast('Action executed')" style="padding:7px 12px;font-size:11px;font-weight:700;border-radius:6px;cursor:pointer;border:none;background:var(--g);color:#fff">Quick action</button>
+          <div style="width:30px;height:30px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;cursor:pointer">A</div>
+        </div>
+      </div>
+      <div class="admc" id="acontent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<div id="m-auth" class="mbdrop" onclick="bClose(event,'m-auth')"><div class="mbox" id="m-auth-b"></div></div>
+<div id="m-listing" class="mbdrop" onclick="bClose(event,'m-listing')"><div class="mbox mbox-lg" id="m-listing-b"></div></div>
+<div id="m-booking" class="mbdrop" onclick="bClose(event,'m-booking')"><div class="mbox" id="m-booking-b"></div></div>
+<div id="m-job" class="mbdrop" onclick="bClose(event,'m-job')"><div class="mbox mbox-lg" id="m-job-b"></div></div>
+<div id="m-accept" class="mbdrop" onclick="bClose(event,'m-accept')"><div class="mbox" id="m-accept-b"></div></div>
+<div id="m-prov" class="mbdrop" onclick="bClose(event,'m-prov')"><div class="mbox mbox-lg" id="m-prov-b"></div></div>
+<div id="m-land" class="mbdrop" onclick="bClose(event,'m-land')"><div class="mbox mbox-lg" id="m-land-b"></div></div>
+<div id="m-moving" class="mbdrop" onclick="bClose(event,'m-moving')"><div class="mbox mbox-lg" id="m-moving-b"></div></div>
+<div id="m-delegate" class="mbdrop" onclick="bClose(event,'m-delegate')"><div class="mbox" id="m-delegate-b"></div></div>
+<div id="m-dash" class="mbdrop" onclick="bClose(event,'m-dash')"><div class="mbox mbox-lg" id="m-dash-b"></div></div>
+<script>
+/* DATA */
+var LL=[
+  {id:1,name:"Tranquil Studio",area:"Bukoto",price:420000,type:"Self-Contained",v:true,boost:true,pop:false,rating:4.9,match:94,conf:98,ready:true,beds:1,baths:1,sqm:32,img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80",desc:"Calm studio in Bukoto. Quiet area, supermarket 5 min, UMEME metered power, gated compound.",ll:"Sarah B.",wa:"256700000005",fee:5000,agent:false,hostel:false},
+  {id:2,name:"Bright Double Room",area:"Kisaasi",price:350000,type:"Double Room",v:true,boost:false,pop:true,rating:4.7,match:88,conf:91,ready:true,beds:1,baths:1,sqm:24,img:"https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=700&q=80",desc:"Bright double room, taxi 1 min. Prepaid electricity, reliable water.",ll:"Grace N.",wa:"256700000002",fee:5000,agent:true,agname:"James K. (Agent)",hostel:false},
+  {id:3,name:"Student Hostel — 12 Rooms",area:"Wandegeya",price:175000,type:"Hostel",v:true,boost:true,pop:false,rating:4.3,match:91,conf:84,ready:true,beds:1,baths:1,sqm:14,img:"https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=700&q=80",desc:"Affordable hostel 2 mins from Makerere. WiFi, shared kitchen, 24hr security. 12 rooms.",ll:"Hostel Admin",wa:"256700000003",fee:5000,agent:false,hostel:true,left:4},
+  {id:4,name:"Spacious Single Room",area:"Ntinda",price:280000,type:"Single Room",v:false,boost:false,pop:false,rating:4.1,match:72,conf:52,ready:false,beds:1,baths:1,sqm:20,img:"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=700&q=80",desc:"Spacious single in family compound. Peaceful area. Awaiting full verification.",ll:"Peter M.",wa:"256700000004",fee:5000,agent:false,hostel:false},
+  {id:5,name:"Modern Bedsitter",area:"Makerere",price:240000,type:"Single Room",v:true,boost:false,pop:true,rating:4.5,match:89,conf:93,ready:true,beds:1,baths:1,sqm:18,img:"https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80",desc:"Modern bedsitter near Makerere campus. Quiet zone, reliable power, shops nearby.",ll:"James K.",wa:"256700000001",fee:5000,agent:false,hostel:false},
+  {id:6,name:"Executive 2-Bedroom",area:"Naguru",price:850000,type:"Self-Contained",v:true,boost:true,pop:false,rating:4.8,match:78,conf:97,ready:true,beds:2,baths:2,sqm:85,img:"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=700&q=80",desc:"Executive 2BR in Naguru hills. Generator, panoramic views, fully fitted kitchen.",ll:"David R.",wa:"256700000006",fee:5000,agent:true,agname:"Grace K. (Agent)",hostel:false},
+  {id:7,name:"Shared 3-Bedroom Flat",area:"Kololo",price:300000,type:"Shared Housing",v:true,boost:false,pop:false,rating:4.6,match:82,conf:88,ready:true,beds:1,baths:1,sqm:22,img:"https://images.unsplash.com/photo-1484154218962-a197022b5858?w=700&q=80",desc:"One room in shared 3BR flat with professionals. WiFi, kitchen, DSTV, generator.",ll:"Anne K.",wa:"256700000007",fee:5000,agent:false,hostel:false},
+  {id:8,name:"Budget Single, Wandegeya",area:"Wandegeya",price:150000,type:"Single Room",v:true,boost:false,pop:false,rating:4.2,match:85,conf:76,ready:true,beds:1,baths:1,sqm:12,img:"https://images.unsplash.com/photo-1506146332389-18140dc7b2fb?w=700&q=80",desc:"Affordable single in Wandegeya. Walking to Makerere. Reliable water, gated compound.",ll:"Moses K.",wa:"256700000008",fee:5000,agent:false,hostel:false}
+];
+var JJ=[
+  {id:"J1",cat:"Plumbing",col:"#1A6DC0",em:"🔧",title:"Fix leaking pipe in kitchen",loc:"Kira, Wakiso",budget:45000,posted:"2h ago",urg:"Urgent",tags:["Residential","Same day"],client:"Aisha N."},
+  {id:"J2",cat:"Moving",col:"#2C7A3A",em:"🚛",title:"Move 1-bedroom Kisaasi to Ntinda",loc:"Kisaasi → Ntinda",budget:120000,posted:"5h ago",urg:"Normal",tags:["Truck needed","Guard rails"],client:"Brian M."},
+  {id:"J3",cat:"Electrical",col:"#D4853A",em:"⚡",title:"Install 3 sockets + ceiling fan wiring",loc:"Wandegeya",budget:60000,posted:"1d ago",urg:"Normal",tags:["Residential","Certified"],client:"Ruth K."},
+  {id:"J4",cat:"Cleaning",col:"#4CAF50",em:"🧹",title:"Full house deep clean — 3 bedrooms",loc:"Naguru",budget:35000,posted:"3h ago",urg:"Normal",tags:["Move-in","Eco-friendly"],client:"Denis O."},
+  {id:"J5",cat:"Security",col:"#7C3AED",em:"🔒",title:"Night guard — 3 month contract",loc:"Bukoto compound",budget:300000,posted:"1d ago",urg:"Normal",tags:["Monthly","Gated"],client:"Sarah B."},
+  {id:"J6",cat:"Carpentry",col:"#B8960C",em:"🪚",title:"Build wardrobe and bed frame",loc:"Ntinda",budget:200000,posted:"6h ago",urg:"Normal",tags:["Custom","2 weeks"],client:"Grace L."}
+];
+var SS=[
+  {em:"🧹",title:"House Cleaners",price:"From UGX 15,000",sub:"Deep clean, move-in/out"},
+  {em:"👕",title:"Laundry Services",price:"From UGX 6,000/kg",sub:"Wash, dry &amp; iron"},
+  {em:"🚛",title:"Movers &amp; Trucks",price:"From UGX 50,000",sub:"Full house moves"},
+  {em:"👷",title:"Packing Helpers",price:"From UGX 20,000/day",sub:"Manual labour"},
+  {em:"🔧",title:"Plumbers",price:"From UGX 25,000",sub:"Repairs &amp; installations"},
+  {em:"⚡",title:"Electricians",price:"From UGX 30,000",sub:"Wiring &amp; sockets"},
+  {em:"🔒",title:"Security Guards",price:"From UGX 300,000/mo",sub:"Day or night"},
+  {em:"🌿",title:"Gardeners",price:"From UGX 20,000",sub:"Landscaping &amp; care"}
+];
+var PP=[
+  {id:"P1",em:"🧹",name:"Aisha Nakato",type:"Cleaner",area:"Kisaasi",rating:4.9,rev:47,price:"UGX 20,000/session",avail:true,dist:"0.8km",ver:true,trust:96},
+  {id:"P2",em:"🚛",name:"Brian Trucks Ltd",type:"Mover",area:"Ntinda",rating:4.7,rev:31,price:"UGX 80,000/job",avail:true,dist:"1.2km",ver:true,trust:91},
+  {id:"P3",em:"👕",name:"Grace Laundry",type:"Laundry",area:"Makerere",rating:4.8,rev:62,price:"UGX 6,000/kg",avail:true,dist:"2.1km",ver:false,trust:74},
+  {id:"P4",em:"👷",name:"Moses &amp; Team",type:"Packing",area:"Wandegeya",rating:4.6,rev:28,price:"UGX 25,000/day",avail:false,dist:"1.5km",ver:true,trust:88},
+  {id:"P5",em:"🔧",name:"Patrick Plumbing",type:"Plumber",area:"Bukoto",rating:4.9,rev:85,price:"UGX 35,000/visit",avail:true,dist:"3.2km",ver:true,trust:94},
+  {id:"P6",em:"⚡",name:"James Electric",type:"Electrician",area:"Naguru",rating:4.7,rev:39,price:"UGX 30,000/visit",avail:true,dist:"4.0km",ver:true,trust:90}
+];
+var MV=[
+  {em:"🚛",title:"Full Removal Service",desc:"House-to-house move with truck, movers &amp; packing",price:"From UGX 150,000",tags:["Truck included","Packing","Insurance"]},
+  {em:"🚐",title:"Transport Vehicle Hire",desc:"Self-load — you pack, we drive to your new location",price:"From UGX 60,000",tags:["Pickup","Lorry","Coaster"]},
+  {em:"👷",title:"Packing Helpers",desc:"Manual team to pack, wrap and load all your items",price:"From UGX 20,000/day",tags:["Team of 2-4","Per day"]},
+  {em:"📦",title:"Storage Facility",desc:"Short-term secure storage during your move or renovation",price:"From UGX 50,000/week",tags:["Secure","CCTV","Insured"]},
+  {em:"🛋️",title:"Furniture Assembly",desc:"Disassemble and reassemble furniture at your new location",price:"From UGX 30,000",tags:["Any furniture","Same day"]},
+  {em:"📋",title:"Free Moving Quote",desc:"Describe your move, get a detailed quote with no obligation",price:"Free estimate",tags:["No obligation","Same day"]}
+];
+var LD=[
+  {id:"L1",name:"1 Acre Residential Plot",area:"Mukono",price:45000000,size:"1 acre",type:"Residential",ver:true,deed:"Mailo Land",img:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=700&q=80",fee:50000,feats:["Title deed","Road access","Flat","Near highway"],prem:false},
+  {id:"L2",name:"50×100ft Freehold Plot",area:"Wakiso",price:18000000,size:"50×100ft",type:"Residential",ver:true,deed:"Freehold",img:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80",fee:30000,feats:["Freehold title","Near TC","Borehole","Flat"],prem:false},
+  {id:"L3",name:"Premium Villa Plot, Kololo",area:"Kololo",price:280000000,size:"0.5 acres",type:"Premium / Commercial",ver:true,deed:"Freehold",img:"https://images.unsplash.com/photo-1613977257363-707ba9348227?w=700&q=80",fee:100000,feats:["Hilltop views","Prime location","Freehold","Commercial zoning"],prem:true}
+];
+var HW=[
+  {img:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=85",lbl:"Search &amp; Discover",desc:"GPS-matched results"},
+  {img:"https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=85",lbl:"Trust Verification",desc:"98% verified listings"},
+  {img:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=900&q=85",lbl:"Pay &amp; Unlock",desc:"Contact revealed instantly"},
+  {img:"https://images.unsplash.com/photo-1506146332389-18140dc7b2fb?w=900&q=85",lbl:"Move In Safely",desc:"E-signed &amp; protected"}
+];
+
+/* STATE */
+var user=null,heroIdx=0,heroTmr=null,heroProgTmr=null,hpv=0,filtered=[],saved={},payM="mtn",bookL=null,jobL=null,landL=null;
+
+/* INIT */
+document.addEventListener("DOMContentLoaded",function(){
+  filtered=srt([].concat(LL));
+  rListings();rJobs();rSvcs();rProviders();rMoving();rLand();
+  mbar("sb1",[40,55,60,70,75,80,85,90,88,95,92,98]);
+  mbar("sb2",[30,40,45,38,55,60,65,72,78,82,88,94]);
+  mbar("sb3",[80,75,70,65,55,50,42,40,35,33,30,28]);
+  startHero();
+  window.addEventListener("scroll",onScroll);
+  onScroll();
+});
+function onScroll(){var n=document.getElementById("nav");window.scrollY>40?n.classList.add("solid"):n.classList.remove("solid");}
+function gotoTop(){window.scrollTo({top:0,behavior:"smooth"});}
+function goTo(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth"});}
+function mobTab(el,id){document.querySelectorAll(".mtab").forEach(function(t){t.classList.remove("on")});el.classList.add("on");goTo(id);}
+function openMe(){if(user){openDash();}else{openAuth("login");}}
+
+/* HERO */
+function startHero(){
+  hpv=0;var b=document.getElementById("hpb");if(b){b.style.transition="none";b.style.width="0%";}
+  clearInterval(heroTmr);clearInterval(heroProgTmr);
+  heroProgTmr=setInterval(function(){hpv+=2;if(hpv>100)hpv=100;var pb=document.getElementById("hpb");if(pb){pb.style.transition="none";pb.style.width=hpv+"%";}},100);
+  heroTmr=setTimeout(function(){heroGo((heroIdx+1)%3);},5000);
+}
+function heroGo(i){
+  document.querySelectorAll(".hs").forEach(function(s,x){s.classList.toggle("on",x===i);});
+  document.querySelectorAll(".hd").forEach(function(d,x){d.classList.toggle("on",x===i);});
+  heroIdx=i;startHero();
+}
+
+/* SEARCH */
+function setTab(el,tab){
+  document.querySelectorAll(".stab").forEach(function(t){t.classList.remove("on");});el.classList.add("on");
+  if(tab==="land"){goTo("lds");return;}if(tab==="jobs"){goTo("jbs");return;}
+  var ft=document.getElementById("ft");
+  if(tab==="hostel")ft.value="Hostel";else if(tab==="shared")ft.value="Shared Housing";else ft.value="";
+  doSearch();
+}
+function doSearch(){
+  var a=document.getElementById("fa").value,t=document.getElementById("ft").value,
+      b=document.getElementById("fb").value,c=document.getElementById("fc").value;
+  var res=LL.filter(function(l){
+    if(a&&l.area!==a)return false;
+    if(t&&l.type!==t)return false;
+    if(b){var p=b.split("-"),mn=parseInt(p[0])||0,mx=parseInt(p[1])||99999999;if(l.price<mn||l.price>mx)return false;}
+    if(c==="verified"&&!l.v)return false;
+    if(c==="ready"&&!l.ready)return false;
+    if(c==="boosted"&&!l.boost)return false;
+    return true;
+  });
+  filtered=srt(res);rListings();
+  var ti=document.getElementById("ltit"),su=document.getElementById("lsub");
+  if(ti)ti.textContent=res.length+" properties found";
+  if(su)su.textContent=a?"Showing results in "+a:"All areas · Updated daily";
+  var cb=document.getElementById("clrbtn");if(cb){if(a||t||b||c)cb.classList.remove("hidden");else cb.classList.add("hidden");}
+  document.querySelectorAll(".chip").forEach(function(c){c.classList.remove("on");});
+  var fc=document.querySelector(".chip");if(fc)fc.classList.add("on");
+  goTo("ls");
+}
+function clearSearch(){
+  document.getElementById("fa").value="";document.getElementById("ft").value="";
+  document.getElementById("fb").value="";document.getElementById("fc").value="";
+  filtered=srt([].concat(LL));rListings();
+  var ti=document.getElementById("ltit"),su=document.getElementById("lsub");
+  if(ti)ti.textContent="New properties";if(su)su.textContent="Verified · GPS confirmed · Real photos";
+  var cb=document.getElementById("clrbtn");if(cb)cb.classList.add("hidden");
+  document.querySelectorAll(".chip").forEach(function(c){c.classList.remove("on");});
+  var fc=document.querySelector(".chip");if(fc)fc.classList.add("on");
+}
+function doChip(el,f){
+  document.querySelectorAll(".chip").forEach(function(c){c.classList.remove("on");});el.classList.add("on");
+  var res;
+  if(f==="u300")res=LL.filter(function(l){return l.price<=300000;});
+  else if(f==="student")res=LL.filter(function(l){return l.type==="Hostel"||l.area==="Wandegeya"||l.area==="Makerere";});
+  else if(f==="hostel")res=LL.filter(function(l){return l.hostel||l.type==="Hostel";});
+  else if(f==="shared")res=LL.filter(function(l){return l.type==="Shared Housing";});
+  else if(f==="verified")res=LL.filter(function(l){return l.v;});
+  else if(f==="ready")res=LL.filter(function(l){return l.ready;});
+  else if(f==="boosted")res=LL.filter(function(l){return l.boost;});
+  else res=[].concat(LL);
+  filtered=srt(res);rListings();
+  var ti=document.getElementById("ltit");if(ti)ti.textContent=filtered.length+" properties";
+}
+function applySort(){filtered=srt(filtered);rListings();}
+function srt(arr){
+  var v=document.getElementById("sortsel")?document.getElementById("sortsel").value:"match";
+  var a=[].concat(arr);
+  if(v==="price-asc")a.sort(function(x,y){return x.price-y.price;});
+  else if(v==="price-desc")a.sort(function(x,y){return y.price-x.price;});
+  else if(v==="confidence")a.sort(function(x,y){return y.conf-x.conf;});
+  else if(v==="rating")a.sort(function(x,y){return y.rating-x.rating;});
+  else a.sort(function(x,y){return(y.boost?1:0)-(x.boost?1:0)||y.match-x.match;});
+  return a;
+}
+function useGPS(){
+  if(!navigator.geolocation){toast("GPS not available on this device");return;}
+  navigator.geolocation.getCurrentPosition(function(){toast("📍 GPS enabled — nearest properties first");filtered=[].concat(LL).sort(function(a,b){return a.id-b.id;});rListings();goTo("ls");},function(){toast("Please allow location access in your browser");});
+}
+function areaQ(a){document.getElementById("fa").value=a;doSearch();}
+
+/* RENDER LISTINGS */
+function rListings(){
+  var g=document.getElementById("lgrid");if(!g)return;
+  if(!filtered||!filtered.length){
+    g.innerHTML='<div class="empty"><div class="empty-i">🔍</div><div class="empty-t">No properties match</div><div class="empty-s">Try adjusting your filters or clearing your search</div><button onclick="clearSearch()" style="background:var(--g);color:#fff;border:none;border-radius:7px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer">Clear filters</button></div>';
+    return;
+  }
+  g.innerHTML=filtered.map(function(l){
+    var cc=l.conf>=85?"var(--g)":l.conf>=65?"var(--bl)":l.conf>=40?"var(--am)":"var(--rd)";
+    var bgs="";
+    if(l.boost)bgs+='<div class="cb cb-am">🚀 Boosted</div>';
+    if(l.pop)bgs+='<div class="cb cb-r">✦ Popular</div>';
+    if(l.v)bgs+='<div class="cb cb-g">✔ Verified</div>';else bgs+='<div class="cb cb-r">⚠ Unverified</div>';
+    if(l.hostel)bgs+='<div class="cb cb-bl">🏨 '+(l.left||"")+" rooms left</div>";
+    if(l.agent)bgs+='<div class="cb cb-pu">🏢 Agent</div>';
+    var sv=saved[l.id]?"sv":"";
+    return '<div class="pc" onclick="openL('+l.id+')">'+
+      '<div class="ciw">'+
+        '<img src="'+l.img+'" alt="'+l.name+'" loading="lazy">'+
+        '<div class="cbadges">'+bgs+'</div>'+
+        '<button class="cfav '+sv+'" onclick="event.stopPropagation();toggleSv('+l.id+',this)">'+
+          '<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>'+
+        '</button>'+
+      '</div>'+
+      '<div class="cbody">'+
+        '<div class="cr1"><div class="cn">'+l.name+'</div><div class="cpr">UGX '+l.price.toLocaleString()+'</div></div>'+
+        '<div class="car">📍 '+l.area+' · '+l.type+(l.agent?' · '+l.agname:'')+'</div>'+
+        '<div class="cbar"><div class="cbarfill" style="width:'+l.conf+'%;background:'+cc+'"></div></div>'+
+        '<div class="cmeta">'+
+          '<div class="cm"><svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="14" rx="2"/></svg>'+l.sqm+'m²</div>'+
+          '<div class="cms"></div>'+
+          '<div class="cm"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M3 9l9-7 9 7v11H3z"/></svg>'+l.beds+'bd</div>'+
+          '<div class="cms"></div>'+
+          '<div class="cm"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M4 12h16M4 12a8 8 0 1016 0"/></svg>'+l.baths+'ba</div>'+
+          '<div class="cms"></div>'+
+          '<div class="cm" style="color:var(--am)">'+"★".repeat(Math.round(l.rating))+' '+l.rating+'</div>'+
+        '</div>'+
+        '<div class="cft">'+
+          '<div class="cts">✦ '+l.conf+'% trust</div>'+
+          '<button class="bvw" onclick="event.stopPropagation();openBk('+l.id+')">Book viewing</button>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join("");
+}
+function toggleSv(id,btn){if(saved[id]){delete saved[id];btn.classList.remove("sv");}else{saved[id]=true;btn.classList.add("sv");}}
+
+/* LISTING DETAIL */
+function openL(id){
+  var l=LL.find(function(x){return x.id===id;});if(!l)return;
+  var cc=l.conf>=85?"var(--g)":l.conf>=65?"var(--bl)":"var(--am)";
+  var an=l.agent?'<div class="note nb" style="margin-bottom:11px">🏢 <strong>Agent-managed by '+l.agname+'</strong> — All viewings via verified agent. E-signed delegation on file.</div>':"";
+  var hn=l.hostel?'<div class="note ng" style="margin-bottom:11px">🏨 <strong>Hostel listing</strong> — '+(l.left||"")+" rooms available. One viewing fee covers all rooms.</div>":"";
+  var html='<div style="position:relative">'+
+    '<img src="'+l.img+'" style="width:100%;height:245px;object-fit:cover;border-radius:14px 14px 0 0" alt="'+l.name+'">'+
+    '<button class="mcl" onclick="closeM(\'m-listing\')" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,.9)">×</button>'+
+    '<div style="position:absolute;bottom:12px;left:12px;display:flex;gap:5px;flex-wrap:wrap">'+
+      (l.v?'<div class="cb cb-g">✔ Verified safe home</div>':'<div class="cb cb-r">⚠ Unverified</div>')+
+      (l.ready?'<div class="cb cb-g">🟢 Move-in ready</div>':'<div class="cb cb-am">🟡 Needs viewing</div>')+
+    '</div>'+
+  '</div>'+
+  '<div style="padding:18px 20px 22px">'+
+    '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:7px">'+
+      '<div><div style="font-size:1rem;font-weight:800;color:var(--dark);letter-spacing:-.02em">'+l.name+'</div><div style="font-size:.72rem;color:var(--muted);margin-top:3px">📍 '+l.area+' · '+l.type+'</div></div>'+
+      '<div style="text-align:right"><div style="font-size:1.2rem;font-weight:900;color:var(--dark);letter-spacing:-.04em">UGX '+l.price.toLocaleString()+'</div><div style="font-size:10px;color:var(--muted)">/month</div></div>'+
+    '</div>'+
+    '<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px">'+
+      '<div class="cb cb-bl">📸 Real photos</div><div class="cb cb-g">📍 GPS tagged</div><div class="cb cb-am">🧾 Price verified</div><div class="cb cb-r">🔒 Contact locked</div>'+
+    '</div>'+
+    '<div style="height:3px;background:var(--off);border-radius:4px;margin-bottom:4px"><div style="width:'+l.conf+'%;height:100%;background:'+cc+';border-radius:4px"></div></div>'+
+    '<div style="font-size:10px;color:'+cc+';font-weight:700;margin-bottom:11px">'+l.conf+'% trust · '+(l.conf>=85?"High confidence":l.conf>=65?"Good":"Moderate")+'</div>'+
+    an+hn+
+    '<p style="font-size:.83rem;color:var(--body);line-height:1.65;margin-bottom:13px">'+l.desc+'</p>'+
+    '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:13px">'+
+      [["📐",l.sqm+"m²","Area"],["🛏",l.beds+" bed","Beds"],["🚿",l.baths+" bath","Baths"]].map(function(r){
+        return '<div style="background:var(--off);border-radius:8px;padding:9px;text-align:center;border:1px solid var(--bd)"><div style="font-size:.95rem;margin-bottom:2px">'+r[0]+'</div><div style="font-size:.85rem;font-weight:700;color:var(--dark)">'+r[1]+'</div><div style="font-size:9px;color:var(--muted)">'+r[2]+'</div></div>';
+      }).join("")+
+    '</div>'+
+    '<div class="nd" style="margin-bottom:13px"><div style="font-size:1.2rem">🔒</div><div><div style="font-weight:700;font-size:.83rem">Landlord contact is locked</div><div style="font-size:.7rem;color:rgba(255,255,255,.6);margin-top:2px">Pay UGX '+l.fee.toLocaleString()+' → Platform UGX 3,000 + Referrer UGX 2,000</div></div></div>'+
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px">'+
+      '<button class="bb" style="margin:0" onclick="closeM(\'m-listing\');openBk('+l.id+')">📅 Book viewing</button>'+
+      '<button class="bp" style="margin:0" onclick="closeM(\'m-listing\');openBk('+l.id+')">🔓 Unlock contact</button>'+
+    '</div>'+
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">'+
+      '<button class="bg2" style="margin:0;font-size:11px" onclick="navigator.clipboard.writeText(\'rentright.ug/l/'+l.id+'\');toast(\'Link copied! Share to earn UGX 2,000\')">🔁 Share &amp; Earn</button>'+
+      '<button class="bg2" style="margin:0;font-size:11px;color:var(--rd)" onclick="this.textContent=\'✅ Reported\'">🚨 Report</button>'+
+    '</div>'+
+  '</div>';
+  document.getElementById("m-listing-b").innerHTML=html;openM("m-listing");
+}
+
+/* BOOKING */
+function openBk(id){
+  if(!user){openAuth("login");return;}
+  bookL=LL.find(function(x){return x.id===id;});rBk(1);openM("m-booking");
+}
+function rBk(step){
+  var l=bookL;if(!l)return;
+  var steps=["Details","Agreement","Payment","Done"];
+  var sb=steps.map(function(s,i){var c=step===i+1?"on":step>i+1?"dn":"";return'<div class="si '+c+'">'+(step>i+1?"✓ ":"")+s+'</div>';}).join("");
+  var body="";
+  if(step===1){
+    body='<div class="field"><label>Full name *</label><input type="text" id="bn" value="'+(user?user.name:"")+'" placeholder="Full name"></div>'+
+      '<div class="field"><label>Phone *</label><input type="tel" id="bp2" placeholder="0771 234 567"></div>'+
+      '<div class="field"><label>Preferred viewing date *</label><input type="date" id="bd"></div>'+
+      '<div class="note na2">💡 <strong>Viewing fee: UGX '+l.fee.toLocaleString()+'</strong> — Platform UGX 3,000 · Referrer UGX 2,000. Confirms your slot.</div>'+
+      '<button class="bp" onclick="var n=document.getElementById(\'bn\').value,p=document.getElementById(\'bp2\').value,d=document.getElementById(\'bd\').value;if(n&&p&&d){rBk(2)}else{toast(\'Please fill all fields\')}">Next → Agreement</button>';
+  }else if(step===2){
+    body='<div class="esbox"><strong>RentRight Booking Terms</strong><br><br>1. Viewing fee UGX '+l.fee.toLocaleString()+' is non-refundable once paid.<br>2. RentRight is an intermediary — physically inspect before paying rent.<br>3. Landlord contact revealed only after payment confirmation.<br>4. Never pay rent without a signed tenancy agreement.<br>5. Your IP address, device ID and timestamp are recorded as legal proof.</div>'+
+      '<div class="espanel"><div class="eslbl">Tenant E-Signature</div><div class="esfields"><input class="esinp" id="bsign" placeholder="Type your full name to sign"><input class="esinp" id="bsdate" readonly></div><label class="esch"><input type="checkbox" id="bagr"> I accept all Booking Terms. This is my legal digital signature.</label><div class="essec"><span>🔐</span><span class="essect">IP + timestamp + device ID recorded</span></div></div>'+
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:13px"><button class="bg2" style="margin:0" onclick="rBk(1)">← Back</button><button class="bp" style="margin:0" onclick="var s=document.getElementById(\'bsign\').value,a=document.getElementById(\'bagr\').checked;if(s&&a){rBk(3)}else{toast(\'Please sign and accept the terms\')}">Agree → Pay</button></div>';
+    setTimeout(function(){var e=document.getElementById("bsdate");if(e)e.value=new Date().toLocaleDateString();},50);
+  }else if(step===3){
+    body='<div style="font-weight:800;font-size:.9rem;color:var(--dark);margin-bottom:4px">Pay viewing fee</div>'+
+      '<div style="font-size:.78rem;color:var(--muted);margin-bottom:14px">Amount: <strong style="color:var(--dark)">UGX '+l.fee.toLocaleString()+'</strong></div>'+
+      '<div class="pms"><div class="pm on" id="pmm" onclick="selPay(\'mtn\')"><div class="pmi">📱</div><div class="pmn">MTN MoMo</div><div class="pms2">Instant</div></div><div class="pm" id="pma" onclick="selPay(\'airtel\')"><div class="pmi">📲</div><div class="pmn">Airtel Money</div><div class="pms2">Instant</div></div></div>'+
+      '<div class="field"><label>Your MoMo number *</label><input type="tel" id="bmm" placeholder="0771 234 567"></div>'+
+      '<div class="note nb">🔒 Contact revealed instantly · UGX 3K platform + UGX 2K referrer</div>'+
+      '<button class="bp" id="paybtn" onclick="doPay()">💳 Pay UGX '+l.fee.toLocaleString()+'</button>'+
+      '<button class="bg2" onclick="rBk(2)">← Back</button>';
+  }else if(step===4){
+    var txn="TXN-"+Math.random().toString(36).slice(2,10).toUpperCase();
+    var dv="";try{var de=document.getElementById("bd");if(de)dv=de.value;}catch(e){}
+    body='<div class="tc" style="padding:10px 0 13px"><div style="font-size:3rem;margin-bottom:10px">✅</div><div style="font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:4px">Viewing confirmed!</div><div style="font-size:.73rem;color:var(--muted)">Ref: '+txn+'</div></div>'+
+      '<div class="note ng"><strong>✅ Booking details</strong><br><strong>Property:</strong> '+l.name+'<br><strong>Date:</strong> '+(dv||"Confirmed")+'<br><strong>Fee paid:</strong> UGX '+l.fee.toLocaleString()+' · '+txn+'<br><strong>🔓 Landlord:</strong> '+l.ll+' · 0712 345 678</div>'+
+      '<a href="https://wa.me/'+l.wa+'?text=Hi! I booked a viewing for '+encodeURIComponent(l.name)+' via RentRight. Ref: '+txn+'" target="_blank" style="display:block;background:#25D366;color:#fff;border-radius:8px;padding:12px;font-weight:700;font-size:13px;text-align:center;text-decoration:none;margin-bottom:8px">💬 Message landlord on WhatsApp</a>'+
+      '<button class="bg2" onclick="closeM(\'m-booking\')">Done ✓</button>';
+  }
+  document.getElementById("m-booking-b").innerHTML='<div class="mhdr"><div><div class="mtit">Book a viewing</div><div class="msub">'+l.name+' · UGX '+l.price.toLocaleString()+'/mo</div></div><button class="mcl" onclick="closeM(\'m-booking\')">×</button></div><div class="sbar">'+sb+'</div><div class="mbody">'+body+'</div>';
+}
+function selPay(m){payM=m;var mm=document.getElementById("pmm"),ma=document.getElementById("pma");if(mm)mm.classList.toggle("on",m==="mtn");if(ma)ma.classList.toggle("on",m==="airtel");}
+function doPay(){
+  var mm=document.getElementById("bmm");if(!mm||mm.value.length<10){toast("Enter a valid MoMo number");return;}
+  var btn=document.getElementById("paybtn");if(btn){btn.textContent="Processing…";btn.disabled=true;}
+  setTimeout(function(){rBk(4);},2400);
+}
+
+/* JOBS */
+function rJobs(){
+  var g=document.getElementById("jgrid");if(!g)return;
+  g.innerHTML=JJ.map(function(j){
+    var c=Math.round(j.budget*0.08);
+    return '<div class="jc" onclick="openAccept(\''+j.id+'\')">'+
+      '<div class="jcat" style="color:'+j.col+'">'+j.em+' '+j.cat+(j.urg==="Urgent"?' · ⚡ Urgent':'')+'</div>'+
+      '<div class="jtitle">'+j.title+'</div>'+
+      '<div class="jloc">📍 '+j.loc+' · '+j.posted+'</div>'+
+      '<div class="jtags">'+j.tags.map(function(t){return'<span class="jtag">'+t+'</span>';}).join("")+'</div>'+
+      '<div class="jfoot"><div><div class="jbud">UGX '+j.budget.toLocaleString()+'</div><div class="jcomm">8% = UGX '+c.toLocaleString()+'</div></div>'+
+      '<button class="bacc" onclick="event.stopPropagation();openAccept(\''+j.id+'\')">Accept job</button></div>'+
+    '</div>';
+  }).join("");
+}
+function openPostJob(){
+  document.getElementById("m-job-b").innerHTML='<div class="mhdr"><div><div class="mtit">Post a Service Job</div><div class="msub">E-signed terms protect both parties</div></div><button class="mcl" onclick="closeM(\'m-job\')">×</button></div>'+
+    '<div class="mbody">'+
+      '<div class="note nb">Providers must e-sign a commission agreement (8%) before your contact details are revealed.</div>'+
+      '<div class="fr"><div class="field"><label>Category *</label><select style="width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:8px;font-size:13px;outline:none;font-family:inherit"><option>Moving &amp; Transport</option><option>Plumbing</option><option>Electrical</option><option>Cleaning</option><option>Laundry</option><option>Security</option><option>Gardening</option><option>Carpentry</option><option>Painting</option><option>Other</option></select></div><div class="field"><label>Location *</label><input type="text" placeholder="Area e.g. Kisaasi"></div></div>'+
+      '<div class="field"><label>Job title *</label><input type="text" placeholder="e.g. Fix leaking pipe in kitchen"></div>'+
+      '<div class="field"><label>Description *</label><textarea rows="3" style="width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:8px;font-size:13px;outline:none;resize:none;font-family:inherit" placeholder="Describe the job — what needs doing, urgency, requirements..."></textarea></div>'+
+      '<div class="fr"><div class="field"><label>Budget (UGX)</label><input type="number" placeholder="e.g. 50000"></div><div class="field"><label>Urgency</label><select style="width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:8px;font-size:13px;outline:none;font-family:inherit"><option>Normal (within a week)</option><option>Urgent (within 48 hours)</option><option>Emergency (today)</option></select></div></div>'+
+      '<div class="fr"><div class="field"><label>Your name *</label><input type="text" placeholder="Full name"></div><div class="field"><label>Phone *</label><input type="tel" placeholder="0771 234 567"></div></div>'+
+      '<div class="esbox"><strong>Job Posting Terms</strong><br><br>1. I confirm the job description is accurate.<br>2. Payment must be processed via RentRight MoMo — no off-platform transactions.<br>3. The 8% platform commission is paid by the provider on acceptance.<br>4. Disputes handled through RentRight dispute resolution system.</div>'+
+      '<div class="espanel"><div class="eslbl">Client E-Signature</div><div class="esfields"><input class="esinp" placeholder="Type your full name to sign"><input class="esinp" value="'+new Date().toLocaleDateString()+'" readonly></div><label class="esch"><input type="checkbox"> I confirm job details are accurate and accept the platform terms.</label><div class="essec"><span>🔐</span><span class="essect">IP + timestamp recorded as legal proof</span></div></div>'+
+      '<button class="bp" onclick="toast(\'✅ Job posted! Providers will e-sign before accessing your contact.\');closeM(\'m-job\')">Post Job</button>'+
+    '</div>';
+  openM("m-job");
+}
+function openAccept(jid){
+  jobL=JJ.find(function(j){return j.id===jid;});if(!jobL)return;
+  var j=jobL,c=Math.round(j.budget*0.08);
+  document.getElementById("m-accept-b").innerHTML='<div class="mhdr"><div><div class="mtit">Accept Job — E-Signature Required</div><div class="msub">'+j.title+'</div></div><button class="mcl" onclick="closeM(\'m-accept\')">×</button></div>'+
+    '<div class="mbody">'+
+      '<div class="note nb"><strong>'+j.em+' '+j.cat+' · '+j.loc+'</strong><br>Budget: UGX '+j.budget.toLocaleString()+' · Commission: UGX '+c.toLocaleString()+' (8%)</div>'+
+      '<div class="note na2">⚠️ You must e-sign the commission agreement before accessing client contact. Legally binding.</div>'+
+      '<div class="esbox"><strong>Commission Agreement — Job ID: '+j.id+'</strong><br><br>I, the undersigned provider, agree to:<br><br>1. Pay RentRight a commission of 8% (UGX '+c.toLocaleString()+') of the job value UGX '+j.budget.toLocaleString()+'.<br>2. Commission payable via MoMo before client contact details are revealed.<br>3. I will NOT contact the client through any channel other than the platform.<br>4. I will complete the job as agreed. Disputes handled through RentRight.<br>5. Bypassing this agreement = immediate ban and legal recovery of commission.<br>6. This agreement is legally enforceable from the timestamp below.</div>'+
+      '<div class="espanel"><div class="eslbl">Provider E-Signature</div><div class="esfields"><input class="esinp" id="jsign" placeholder="Your full legal name"><input class="esinp" value="'+new Date().toLocaleString()+'" readonly></div><label class="esch"><input type="checkbox" id="jagr"> I agree to pay 8% commission (UGX '+c.toLocaleString()+'). This is my legal digital signature.</label><div class="essec"><span>🔐</span><span class="essect">IP · Device ID · Timestamp · Full name — all recorded</span></div></div>'+
+      '<div class="field" style="margin-top:11px"><label>Your MoMo number (to pay commission)</label><input type="tel" id="jmm" placeholder="0771 234 567"></div>'+
+      '<button class="bp" onclick="doAccept('+c+')">✍️ Sign &amp; Pay UGX '+c.toLocaleString()+' Commission</button>'+
+      '<button class="bg2" onclick="closeM(\'m-accept\')">Cancel</button>'+
+    '</div>';
+  openM("m-accept");
+}
+function doAccept(c){
+  var n=document.getElementById("jsign"),a=document.getElementById("jagr"),m=document.getElementById("jmm");
+  if(!n||!n.value){toast("Please type your full name to sign");return;}
+  if(!a||!a.checked){toast("Please accept the commission agreement");return;}
+  if(!m||m.value.length<10){toast("Please enter your MoMo number");return;}
+  var btn=event.target;btn.textContent="Processing…";btn.disabled=true;
+  setTimeout(function(){
+    document.getElementById("m-accept-b").innerHTML='<div class="mhdr"><div><div class="mtit">🔓 Job Unlocked!</div><div class="msub">Commission paid · Client details revealed</div></div><button class="mcl" onclick="closeM(\'m-accept\')">×</button></div>'+
+      '<div class="mbody">'+
+        '<div class="tc" style="padding:10px 0 14px"><div style="font-size:3rem;margin-bottom:10px">✅</div><div style="font-size:.95rem;font-weight:800;color:var(--dark)">Commission UGX '+c.toLocaleString()+' paid!</div><div style="font-size:.72rem;color:var(--muted);margin-top:4px">E-signature recorded · '+new Date().toLocaleString()+'</div></div>'+
+        '<div class="note ng"><strong>✅ Client Details</strong><br><strong>Name:</strong> '+(jobL?jobL.client:"Client")+'<br><strong>Phone:</strong> 0712 345 678<br><strong>WhatsApp:</strong> 256712345678<br><strong>Address:</strong> '+(jobL?jobL.loc:"Kisaasi")+'</div>'+
+        '<a href="https://wa.me/256712345678?text=Hi! I accepted your job on RentRight." target="_blank" style="display:block;background:#25D366;color:#fff;border-radius:8px;padding:12px;font-weight:700;font-size:13px;text-align:center;text-decoration:none;margin-bottom:8px">💬 WhatsApp Client Now</a>'+
+        '<button class="bg2" onclick="closeM(\'m-accept\')">Done ✓</button>'+
+      '</div>';
+  },2300);
+}
+
+/* SERVICES */
+function rSvcs(){
+  var g=document.getElementById("svgrid");if(!g)return;
+  g.innerHTML=SS.map(function(s){return'<div class="sc" onclick="openProvSignup()"><div class="sico">'+s.em+'</div><div class="stit">'+s.title+'</div><div class="spri">'+s.price+'</div><div class="ssub2">'+s.sub+'</div></div>';}).join("");
+}
+function rProviders(){
+  var g=document.getElementById("plist");if(!g)return;
+  var hdr='<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 17px;border-bottom:1px solid var(--off);background:var(--g2l)"><div style="font-size:.82rem;font-weight:800;color:var(--dark)">Verified providers near you</div><button class="bgps" onclick="useGPS()">📍 Enable GPS</button></div>';
+  var rows=PP.map(function(p){
+    return'<div class="pr">'+
+      '<div class="pav" style="background:'+(p.avail?"var(--g2l)":"var(--off)")+'">'+(p.em)+'</div>'+
+      '<div class="pin">'+
+        '<div class="pname">'+p.name+(p.ver?' <span style="font-size:9px;background:var(--g2l);color:var(--gd);border-radius:20px;padding:1px 6px;font-weight:700">✔ Verified</span>':'')+'</div>'+
+        '<div class="pmeta">'+p.type+' · '+p.area+' · '+p.dist+'</div>'+
+        '<div class="pstars">'+"★".repeat(Math.round(p.rating))+' '+p.rating+' ('+p.rev+') · Trust: '+p.trust+'%</div>'+
+      '</div>'+
+      '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">'+
+        '<span class="'+(p.avail?"avy":"avn")+'">'+(p.avail?"Available":"Busy")+'</span>'+
+        '<div style="font-size:.73rem;font-weight:700;color:var(--dark)">'+p.price+'</div>'+
+        '<button onclick="openPostJob()" style="background:none;border:1px solid var(--bd);border-radius:20px;padding:4px 11px;font-size:10px;font-weight:700;color:var(--body);cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor=\'var(--g)\';this.style.color=\'var(--g)\'" onmouseout="this.style.borderColor=\'var(--bd)\';this.style.color=\'var(--body)\'">Contact</button>'+
+      '</div>'+
+    '</div>';
+  }).join("");
+  g.innerHTML=hdr+rows;
+}
+function openProvSignup(){
+  document.getElementById("m-prov-b").innerHTML='<div class="mhdr"><div><div class="mtit">Register as Service Provider</div><div class="msub">Get verified · Accept jobs · Earn</div></div><button class="mcl" onclick="closeM(\'m-prov\')">×</button></div>'+
+    '<div class="mbody">'+
+      '<div class="note na2"><strong>Verification required.</strong> All providers verified: NIN + LC letter + guarantor. Reviewed within 24 hours.</div>'+
+      '<div class="field"><label>Full name *</label><input type="text" placeholder="Your full name"></div>'+
+      '<div class="fr"><div class="field"><label>Phone *</label><input type="tel" placeholder="0771 234 567"></div><div class="field"><label>NIN *</label><input type="text" placeholder="National ID number"></div></div>'+
+      '<div class="fr"><div class="field"><label>Service type *</label><select style="width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:8px;font-size:13px;outline:none;font-family:inherit"><option>Cleaner</option><option>Laundry</option><option>Mover/Truck</option><option>Packing helper</option><option>Plumber</option><option>Electrician</option><option>Security guard</option><option>Gardener</option><option>Carpenter</option></select></div><div class="field"><label>Area(s) served *</label><input type="text" placeholder="e.g. Kisaasi, Ntinda"></div></div>'+
+      '<div class="field"><label>Your rate</label><input type="text" placeholder="e.g. UGX 20,000 per session"></div>'+
+      '<div class="field"><label>Upload NIN</label><div class="uzn" onclick="document.getElementById(\'pnin\').click()"><div class="uzni">🪪</div><div class="uznt" id="pnintxt">Click to upload National ID</div><input id="pnin" type="file" accept="image/*,.pdf" style="display:none" onchange="document.getElementById(\'pnintxt\').textContent=\'✅ NIN uploaded\'"></div></div>'+
+      '<div class="field"><label>Upload LC Letter</label><div class="uzn" onclick="document.getElementById(\'plc\').click()"><div class="uzni">📜</div><div class="uznt" id="plctxt">Click to upload LC letter</div><input id="plc" type="file" accept="image/*,.pdf" style="display:none" onchange="document.getElementById(\'plctxt\').textContent=\'✅ LC letter uploaded\'"></div></div>'+
+      '<div class="fr"><div class="field"><label>Guarantor name</label><input type="text" placeholder="Guarantor full name"></div><div class="field"><label>Guarantor phone</label><input type="tel" placeholder="0771 234 567"></div></div>'+
+      '<div class="esbox"><strong>Provider Agreement</strong><br><br>I agree to pay 8% platform commission on all jobs accepted through RentRight. I confirm all documents are genuine. Fraud or bypassing = permanent ban and legal action.</div>'+
+      '<div class="espanel"><div class="eslbl">Electronic Signature</div><div class="esfields"><input class="esinp" placeholder="Type your full name"><input class="esinp" value="'+new Date().toLocaleDateString()+'" readonly></div><label class="esch"><input type="checkbox"> I agree to the Provider Agreement. This is my legal digital signature.</label><div class="essec"><span>🔐</span><span class="essect">IP + timestamp + device ID recorded</span></div></div>'+
+      '<button class="bp" onclick="toast(\'✅ Application submitted! Admin reviews within 24 hours.\');closeM(\'m-prov\')">Submit Application</button>'+
+    '</div>';
+  openM("m-prov");
+}
+
+/* MOVING */
+function rMoving(){
+  var g=document.getElementById("mvgrid");if(!g)return;
+  g.innerHTML=MV.map(function(m){
+    return'<div class="mc" onclick="openMoving()">'+
+      '<div class="mico">'+m.em+'</div>'+
+      '<div class="mtitle">'+m.title+'</div>'+
+      '<div class="mdesc">'+m.desc+'</div>'+
+      '<div class="mprice">'+m.price+'</div>'+
+      '<div class="mtags" style="margin-top:8px">'+m.tags.map(function(t){return'<span class="mtag">'+t+'</span>';}).join("")+'</div>'+
+    '</div>';
+  }).join("");
+}
+function openMoving(){
+  document.getElementById("m-moving-b").innerHTML='<div class="mhdr"><div><div class="mtit">Post a Moving Job</div><div class="msub">Get quotes from verified movers</div></div><button class="mcl" onclick="closeM(\'m-moving\')">×</button></div>'+
+    '<div class="mbody">'+
+      '<div class="note ng">Movers e-sign a commission agreement (8%) before accessing your contact. Your number stays private until they accept.</div>'+
+      '<div class="fr"><div class="field"><label>Service needed *</label><select style="width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:8px;font-size:13px;outline:none;font-family:inherit"><option>Full removal (truck + movers)</option><option>Transport vehicle only</option><option>Packing helpers only</option><option>Storage facility</option><option>Furniture assembly/disassembly</option><option>International move</option></select></div><div class="field"><label>Vehicle size</label><select style="width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:8px;font-size:13px;outline:none;font-family:inherit"><option>Any size</option><option>Pickup truck</option><option>Small lorry (1–2 ton)</option><option>Medium lorry (3–5 ton)</option><option>Large lorry (7+ ton)</option></select></div></div>'+
+      '<div class="fr"><div class="field"><label>Moving from *</label><input type="text" placeholder="Area e.g. Kisaasi"></div><div class="field"><label>Moving to *</label><input type="text" placeholder="Area e.g. Ntinda"></div></div>'+
+      '<div class="fr"><div class="field"><label>Date *</label><input type="date"></div><div class="field"><label>Budget (UGX)</label><input type="number" placeholder="e.g. 120000"></div></div>'+
+      '<div class="field"><label>Items to move</label><input type="text" placeholder="e.g. Wardrobe 120×60cm, sofa, fridge, 10 boxes"></div>'+
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">'+
+        [["Guard rails / fabrication needed","mv1"],["Ropes / straps required","mv2"],["Moving blankets needed","mv3"],["Tarpaulin cover required","mv4"]].map(function(r){
+          return'<label style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:9px 12px;background:var(--off);border-radius:8px;font-size:12px;font-weight:500;color:var(--body);border:1px solid var(--bd)"><input type="checkbox" id="'+r[1]+'" style="accent-color:var(--g)"> '+r[0]+'</label>';
+        }).join("")+
+      '</div>'+
+      '<div class="fr"><div class="field"><label>Your name *</label><input type="text" placeholder="Full name"></div><div class="field"><label>Phone *</label><input type="tel" placeholder="0771 234 567"></div></div>'+
+      '<button class="bp" onclick="toast(\'✅ Moving job posted! Verified movers will be notified.\');closeM(\'m-moving\')">Post Moving Job</button>'+
+    '</div>';
+  openM("m-moving");
+}
+
+/* LAND */
+function rLand(){
+  var g=document.getElementById("ldgrid");if(!g)return;
+  g.innerHTML=LD.map(function(l){
+    return'<div class="lc" onclick="openLand(\''+l.id+'\')">'+
+      '<div class="limg"><img src="'+l.img+'" alt="'+l.name+'" loading="lazy"></div>'+
+      '<div class="lbody">'+
+        (l.prem?'<span class="lprem">⭐ Premium</span>':'')+
+        '<span class="ltype">'+l.type+'</span>'+
+        '<div class="lname">'+l.name+'</div>'+
+        '<div class="lloc">📍 '+l.area+' · '+l.size+' · '+l.deed+'</div>'+
+        '<div class="lfeats">'+l.feats.map(function(f){return'<span class="lfeat">✓ '+f+'</span>';}).join("")+'</div>'+
+        '<div class="lprice">UGX '+l.price.toLocaleString()+'</div>'+
+        '<div class="llock"><div style="font-size:1rem">🔒</div><div class="llockxt"><strong>GPS + title deed + owner locked</strong><br>Pay UGX '+l.fee.toLocaleString()+' via MoMo to unlock</div></div>'+
+      '</div>'+
+    '</div>';
+  }).join("");
+}
+function openLandAll(){goTo("lds");toast("View all plots in the Land section above");}
+function openLand(id){
+  landL=LD.find(function(x){return x.id===id;});if(!landL)return;
+  var l=landL,paid=false;
+  function renderLandM(){
+    var content=paid?
+      '<div class="note ng"><strong>🔓 Full Details Unlocked</strong><br><br><strong>GPS:</strong> 0.3821°N, 32.6184°E<br><strong>Owner:</strong> John Mukasa<br><strong>Phone:</strong> 0712 345 678<br><strong>Title ref:</strong> Block 244, Plot 12<br><strong>Surveyor:</strong> James Okello &amp; Associates</div>'+
+      '<div class="note na2">⚠️ Always do a land search at Uganda Lands Registry, hire a lawyer, and verify boundaries with a registered surveyor before any payment.</div>'+
+      '<a href="https://wa.me/256712345678?text=Hi! I accessed your land listing via RentRight. Interested in '+encodeURIComponent(l.name)+'." target="_blank" style="display:block;background:#25D366;color:#fff;border-radius:8px;padding:12px;font-weight:700;font-size:13px;text-align:center;text-decoration:none;margin-bottom:8px">💬 Contact Owner on WhatsApp</a>'+
+      '<button class="bg2" onclick="closeM(\'m-land\')">Done ✓</button>'
+      :
+      '<div class="esbox"><strong>Land Access Agreement</strong><br><br>1. The access fee UGX '+l.fee.toLocaleString()+' is non-refundable.<br>2. RentRight is an intermediary only — conduct independent due diligence.<br>3. Verify title deeds at Uganda Lands Registry before any payment.<br>4. Hire a licensed lawyer and surveyor before completing any land transaction.<br>5. Never pay the full land price without a lawyer present.</div>'+
+      '<div class="espanel"><div class="eslbl">Access Agreement</div><div class="esfields"><input class="esinp" id="lsign" placeholder="Your full name"><input class="esinp" value="'+new Date().toLocaleDateString()+'" readonly></div>'+
+      '<label class="esch"><input type="checkbox" id="lagr" onchange="document.getElementById(\'lpaysec\').style.display=this.checked?\'block\':\'none\'"> I understand this is an access fee only. I will conduct independent legal verification.</label>'+
+      '<div class="essec"><span>🔐</span><span class="essect">Agreement stored with timestamp &amp; device proof</span></div></div>'+
+      '<div id="lpaysec" style="display:none;margin-top:11px"><div class="field"><label>MTN / Airtel MoMo number</label><input type="tel" id="lmm" placeholder="0771 234 567"></div>'+
+      '<button class="bp" id="lpaybtn" onclick="doLandPay()">💳 Pay UGX '+l.fee.toLocaleString()+' to Unlock</button></div>';
+    document.getElementById("m-land-b").innerHTML='<div style="position:relative"><img src="'+l.img+'" style="width:100%;height:230px;object-fit:cover;border-radius:14px 14px 0 0" alt="'+l.name+'">'+
+      '<button class="mcl" onclick="closeM(\'m-land\')" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,.9)">×</button>'+
+      (l.prem?'<div style="position:absolute;top:12px;left:12px;background:linear-gradient(135deg,#B8960C,#D4A853);color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px">⭐ Premium</div>':'')+
+    '</div>'+
+    '<div style="padding:18px 20px 22px">'+
+      '<div style="font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:3px">'+l.name+'</div>'+
+      '<div style="font-size:.72rem;color:var(--muted);margin-bottom:8px">📍 '+l.area+' · '+l.size+' · '+l.type+' · '+l.deed+'</div>'+
+      '<div style="font-size:1.2rem;font-weight:900;color:var(--dark);margin-bottom:11px">UGX '+l.price.toLocaleString()+'</div>'+
+      '<div class="lfeats" style="margin-bottom:13px">'+l.feats.map(function(f){return'<span class="lfeat">✓ '+f+'</span>';}).join("")+'</div>'+
+      content+
+    '</div>';
+  }
+  renderLandM();openM("m-land");
+  window.doLandPay=function(){
+    var sign=document.getElementById("lsign"),mm=document.getElementById("lmm"),btn=document.getElementById("lpaybtn");
+    if(!sign||!sign.value){toast("Please type your name to sign");return;}
+    if(!mm||mm.value.length<10){toast("Enter valid MoMo number");return;}
+    if(btn){btn.textContent="Processing…";btn.disabled=true;}
+    setTimeout(function(){paid=true;renderLandM();},2200);
+  };
+}
+
+/* HOW */
+function howStep(i,el){
+  document.querySelectorAll(".hwstep").forEach(function(s){s.classList.remove("on");});el.classList.add("on");
+  var img=document.getElementById("hwimg"),fl=document.getElementById("hwfl"),fv=document.getElementById("hwfv");
+  if(img)img.src=HW[i].img;if(fl)fl.textContent=HW[i].desc;if(fv)fv.innerHTML=HW[i].lbl;
+}
+
+/* MINI BARS */
+function mbar(id,vals){
+  var el=document.getElementById(id);if(!el)return;
+  var mx=Math.max.apply(null,vals);
+  el.innerHTML=vals.map(function(v,i){return'<div class="mb '+(v>=mx*.85?"hi":"")+'" style="height:'+(v/mx*100)+'%"></div>';}).join("");
+}
+
+/* REFERRAL */
+function getRefLink(){
+  var inp=document.getElementById("rfin");
+  if(!inp||!inp.value){toast("Enter your phone or email");return;}
+  var code="ref"+Math.random().toString(36).slice(2,10);
+  var rv=document.getElementById("rflv"),rr=document.getElementById("rflr");
+  if(rv)rv.textContent="rentright.ug/ref/"+code;if(rr)rr.style.display="block";
+}
+function copyRef(){
+  var rv=document.getElementById("rflv");if(rv)navigator.clipboard.writeText(rv.textContent);toast("Referral link copied! Share to earn UGX 2,000 per referral.");}
+
+/* AUTH */
+function openAuth(tab){
+  var html=buildAuthHTML(tab);
+  document.getElementById("m-auth-b").innerHTML=html;openM("m-auth");
+}
+function buildAuthHTML(tab){
+  var tabs=['<div class="mttabs"><button class="mttab '+(tab==="login"?"on":"")+'" onclick="switchAuth(\'login\')">Sign in</button><button class="mttab '+(tab==="signup"?"on":"")+'" onclick="switchAuth(\'signup\')">New account</button><button class="mttab '+(tab==="agent"?"on":"")+'" onclick="switchAuth(\'agent\')">Agent/Provider</button></div>'].join("");
+  var body="";
+  if(tab==="login"){
+    body='<div class="field"><label>Email</label><input type="email" id="lem" placeholder="your@email.com"></div>'+
+      '<div class="field"><label>Password</label><input type="password" id="lpw" placeholder="Password"></div>'+
+      '<div style="font-size:11px;color:var(--muted);margin-bottom:9px">Admin: admin@rentright.ug / admin2025</div>'+
+      '<button class="bp" onclick="doLogin()">Sign in →</button>'+
+      '<div class="sdiv">Or sign in with</div>'+
+      '<div class="sbtn" onclick="doLogin()">🍎 Continue with Apple</div>'+
+      '<div class="sbtn" onclick="doLogin()">🔵 Continue with Google</div>';
+  }else if(tab==="signup"){
+    body='<div class="rgrid" id="rgrid">'+
+      '<button class="rb on" id="rseeker" onclick="setRole(\'seeker\')">🔍 Find a home</button>'+
+      '<button class="rb" id="rlandlord" onclick="setRole(\'landlord\')">🏠 Landlord</button>'+
+      '<button class="rb" id="rprovider" onclick="setRole(\'provider\')">🔧 Service provider</button>'+
+      '<button class="rb" id="rhostel" onclick="setRole(\'hostel\')">🏨 Hostel owner</button>'+
+    '</div>'+
+    '<div class="fr"><div class="field"><label>First name *</label><input type="text" id="sfn" placeholder="First name"></div><div class="field"><label>Last name *</label><input type="text" id="sln" placeholder="Last name"></div></div>'+
+    '<div class="field"><label>Email *</label><input type="email" id="sem" placeholder="your@email.com"></div>'+
+    '<div class="field"><label>Phone (MTN / Airtel) *</label><div style="display:flex;gap:8px"><input type="tel" id="sph" placeholder="0771 234 567" style="flex:1;padding:10px 12px;border:1.5px solid var(--bd);border-radius:8px;font-size:13px;outline:none;font-family:inherit;transition:border-color .18s"><button id="otpbtn" onclick="sendOTP()" style="padding:9px 12px;background:var(--off);border:1.5px solid var(--bd);border-radius:8px;font-size:11px;font-weight:700;color:var(--body);cursor:pointer;white-space:nowrap;transition:all .18s">Send OTP</button></div></div>'+
+    '<div class="field hidden" id="otpfield"><label>OTP Code *</label><input type="text" id="sotp" placeholder="6-digit code" maxlength="6"></div>'+
+    '<div class="field"><label>Password *</label><input type="password" id="spw" placeholder="Create password" oninput="chkPW(this.value)"></div>'+
+    '<div class="pwrules" id="pwrules"><div class="pwr" id="pwr1">○ At least 8 characters</div><div class="pwr" id="pwr2">○ Mix letters &amp; numbers</div><div class="pwr" id="pwr3">○ Special character</div></div>'+
+    '<div class="field" style="margin-top:9px"><label>Referral code (optional)</label><input type="text" id="sref" placeholder="e.g. ref123abc"></div>'+
+    '<div class="note ng" style="margin-top:8px">🔁 Earn <strong>UGX 2,000</strong> for every friend who pays a viewing fee through your referral link.</div>'+
+    '<button class="bp" onclick="doSignup()">Create account →</button>'+
+    '<div class="sdiv">Or</div>'+
+    '<div class="sbtn" onclick="doSignup()">🍎 Continue with Apple</div>'+
+    '<div class="sbtn" onclick="doSignup()">🔵 Continue with Google</div>'+
+    '<div style="font-size:10px;color:var(--muted);text-align:center;margin-top:9px">By submitting you accept our <a href="#" style="color:var(--bl)">terms of use</a></div>';
+  }else if(tab==="agent"){
+    body='<div class="note na2"><strong>📋 Required:</strong><br>🪪 NIN front &amp; back · 📜 LC Letter · 👤 Guarantor NID · 🤳 Selfie · ✍️ Digital agreement</div>'+
+      '<div class="note nb">⏱️ <strong>24hr admin review.</strong> Admin verifies NIN, contacts guarantor, may send field agent to your address.</div>'+
+      '<div class="fr"><div class="field"><label>Full legal name</label><input type="text" id="agn" placeholder="Your full name"></div><div class="field"><label>Phone</label><input type="tel" id="agph" placeholder="0771 234 567"></div></div>'+
+      '<div class="field"><label>NIN number</label><input type="text" id="agni" placeholder="National ID number"></div>'+
+      '<div class="field"><label>Service type</label><select style="width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:8px;font-size:13px;outline:none;font-family:inherit"><option>Agent (property)</option><option>Landlord</option><option>Hostel owner</option><option>Moving provider</option><option>Cleaner</option><option>Plumber</option><option>Electrician</option><option>Other</option></select></div>'+
+      '<div class="field"><label>Upload NIN</label><div class="uzn" onclick="document.getElementById(\'aginf\').click()"><div class="uzni">🪪</div><div class="uznt" id="agintxt">Click to upload NIN</div><input id="aginf" type="file" accept="image/*,.pdf" style="display:none" onchange="document.getElementById(\'agintxt\').textContent=\'✅ Uploaded\'"></div></div>'+
+      '<div class="field"><label>Upload LC Letter</label><div class="uzn" onclick="document.getElementById(\'aglcf\').click()"><div class="uzni">📜</div><div class="uznt" id="aglctxt">Click to upload LC letter</div><input id="aglcf" type="file" accept="image/*,.pdf" style="display:none" onchange="document.getElementById(\'aglctxt\').textContent=\'✅ Uploaded\'"></div></div>'+
+      '<div class="fr"><div class="field"><label>Guarantor name</label><input type="text" placeholder="Guarantor full name"></div><div class="field"><label>Guarantor phone</label><input type="tel" placeholder="0771 234 567"></div></div>'+
+      '<div class="esbox"><strong>RentRight Provider Agreement</strong><br><br>1. I confirm all information is true and accurate.<br>2. I agree to pay 8% platform commission on all jobs obtained through RentRight.<br>3. I consent to NIN verification and guarantor contact by RentRight admin.<br>4. Misuse or bypassing the platform = immediate suspension and legal action.<br>5. RentRight may send a field agent to verify my address at any time.<br>6. This agreement is legally binding. IP, device ID and timestamp are recorded.</div>'+
+      '<div class="espanel"><div class="eslbl">Electronic Signature</div><div class="esfields"><input class="esinp" id="agsign" placeholder="Type your full name"><input class="esinp" value="'+new Date().toLocaleDateString()+'" readonly></div><label class="esch"><input type="checkbox" id="agagr"> I have read and agree to the Provider Agreement. This is my legal digital signature.</label><div class="essec"><span>🔐</span><span class="essect">Stored: IP · Device ID · Timestamp · Full name</span></div></div>'+
+      '<button class="bp" onclick="doAgent()" style="margin-top:14px">Submit Application →</button>';
+  }
+  return '<div class="mhdr"><div><div class="mtit">Welcome to RentRight</div><div class="msub">Uganda\'s verified housing marketplace</div></div><button class="mcl" onclick="closeM(\'m-auth\')">×</button></div><div class="mbody">'+tabs+body+'</div>';
+}
+function switchAuth(tab){openAuth(tab);}
+function setRole(r){
+  ["seeker","landlord","provider","hostel"].forEach(function(x){
+    var b=document.getElementById("r"+x);if(b){b.classList.toggle("on",x===r);}
+  });
+}
+function sendOTP(){
+  var ph=document.getElementById("sph");if(!ph||ph.value.length<10){toast("Enter a valid phone number");return;}
+  var btn=document.getElementById("otpbtn"),of=document.getElementById("otpfield");
+  if(btn){btn.textContent="✅ Sent";btn.disabled=true;}
+  if(of)of.classList.remove("hidden");
+  toast("OTP sent to "+ph.value+" (demo: any 6 digits)");
+}
+function chkPW(v){
+  var r=[
+    [document.getElementById("pwr1"),v.length>=8],
+    [document.getElementById("pwr2"),/\d/.test(v)&&/[a-zA-Z]/.test(v)],
+    [document.getElementById("pwr3"),/[^a-zA-Z0-9]/.test(v)]
+  ];
+  r.forEach(function(x){if(x[0])x[0].classList.toggle("ok",x[1]);});
+}
+function doLogin(){
+  var em=document.getElementById("lem"),pw=document.getElementById("lpw");
+  if(!em)return;
+  if(em.value==="admin@rentright.ug"&&pw&&pw.value==="admin2025"){
+    user={name:"Admin",email:em.value,role:"admin",ref:"admin"};
+    closeM("m-auth");updateNav();setTimeout(function(){showAdmin();},300);return;
+  }
+  if(!em.value){toast("Please enter your email");return;}
+  var btn=event.target;btn.textContent="Signing in…";btn.disabled=true;
+  setTimeout(function(){
+    user={name:em.value.split("@")[0],email:em.value,role:"seeker",ref:"ref"+Math.random().toString(36).slice(2,8)};
+    closeM("m-auth");updateNav();btn.textContent="Sign in →";btn.disabled=false;toast("Welcome back, "+user.name+"!");
+  },1300);
+}
+function doSignup(){
+  var fn=document.getElementById("sfn"),em=document.getElementById("sem");
+  if(!fn||!em||!fn.value||!em.value){toast("Please fill in name and email");return;}
+  var btn=event.target;btn.textContent="Creating…";btn.disabled=true;
+  setTimeout(function(){
+    user={name:fn.value,email:em.value,role:"seeker",ref:"ref"+Math.random().toString(36).slice(2,8)};
+    closeM("m-auth");updateNav();btn.textContent="Create account →";btn.disabled=false;toast("Welcome to RentRight, "+user.name+"!");
+  },1300);
+}
+function doAgent(){
+  var n=document.getElementById("agsign"),a=document.getElementById("agagr");
+  if(!n||!n.value){toast("Please type your name in the e-signature field");return;}
+  if(!a||!a.checked){toast("Please accept the provider agreement");return;}
+  closeM("m-auth");toast("✅ Application submitted! Admin reviews within 24 hours. E-signature recorded.");
+}
+function updateNav(){
+  var nr=document.getElementById("nav-right");if(!nr)return;
+  if(!user){nr.innerHTML='<button class="bsign" onclick="openAuth(\'login\')">Sign in</button><button class="blist" onclick="openAuth(\'signup\')">Post property</button>';return;}
+  if(user.role==="admin"){nr.innerHTML='<button class="bsign" onclick="showAdmin()">⚙️ Admin</button><button class="blist" onclick="logOut()">Sign out</button>';return;}
+  nr.innerHTML='<button class="bsign" onclick="openDash()">👤 '+user.name.split(" ")[0]+'</button><button class="blist" onclick="logOut()">Sign out</button>';
+}
+function logOut(){user=null;updateNav();toast("Signed out.");}
+
+/* DASHBOARD */
+function openDash(){
+  if(!user){openAuth("login");return;}
+  var rc=user.ref||"ref123abc";
+  document.getElementById("m-dash-b").innerHTML='<div class="mhdr"><div><div class="mtit">👋 '+user.name+'</div><div class="msub">Your RentRight dashboard</div></div><div style="display:flex;gap:8px"><button onclick="logOut();closeM(\'m-dash\')" style="padding:7px 12px;border:1px solid var(--bd);border-radius:6px;font-size:11px;font-weight:700;color:var(--body);cursor:pointer;background:transparent">Sign out</button><button class="mcl" onclick="closeM(\'m-dash\')">×</button></div></div>'+
+    '<div class="mbody">'+
+      '<div class="note ng"><strong>Your referral link:</strong><br><span style="font-size:12px;color:var(--gd);font-weight:700">rentright.ug/ref/'+rc+'</span><br><button onclick="navigator.clipboard.writeText(\'rentright.ug/ref/'+rc+'\');toast(\'Link copied!\')" style="margin-top:6px;background:var(--g);color:#fff;border:none;border-radius:5px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer">Copy link</button></div>'+
+      '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:15px">'+
+        [["Total earned","UGX 10,000","var(--g)"],["Pending","UGX 6,000","var(--am)"],["Withdrawable","UGX 4,000","var(--bl)"]].map(function(r){
+          return'<div style="background:var(--off);border-radius:8px;padding:11px;text-align:center;border:1px solid var(--bd)"><div style="font-weight:800;font-size:.88rem;color:'+r[2]+'">'+r[1]+'</div><div style="font-size:9px;color:var(--muted);margin-top:2px">'+r[0]+'</div></div>';
+        }).join("")+
+      '</div>'+
+      '<button class="bp" onclick="toast(\'✅ UGX 4,000 sent to your MoMo!\');closeM(\'m-dash\')" style="margin-bottom:8px">Withdraw UGX 4,000 to MoMo</button>'+
+      '<button class="bg2" onclick="goTo(\'rfs\');closeM(\'m-dash\')">View referral programme</button>'+
+    '</div>';
+  openM("m-dash");
+}
+function openMe(){if(user){openDash();}else{openAuth("login");}}
+
+/* DELEGATE */
+function openDelegate(){
+  document.getElementById("m-delegate-b").innerHTML='<div class="mhdr"><div><div class="mtit">Delegate to an Agent</div><div class="msub">Appoint a verified agent to manage your property</div></div><button class="mcl" onclick="closeM(\'m-delegate\')">×</button></div>'+
+    '<div class="mbody">'+
+      '<div class="note nb">Only fully verified agents (NIN + LC + guarantor + field visit) are assigned to properties.</div>'+
+      '<div class="field"><label>Property address *</label><input type="text" placeholder="Full address of the property"></div>'+
+      '<div class="fr"><div class="field"><label>Monthly rent (UGX) *</label><input type="number" placeholder="e.g. 400000"></div><div class="field"><label>Property type</label><select style="width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:8px;font-size:13px;outline:none;font-family:inherit"><option>Self-Contained</option><option>Single Room</option><option>Double Room</option><option>Hostel</option><option>Apartment</option></select></div></div>'+
+      '<div class="field"><label>Agent preference</label><select style="width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:8px;font-size:13px;outline:none;font-family:inherit"><option>Assign best-rated agent in my area</option><option>I want to select from a list</option></select></div>'+
+      '<div class="fr"><div class="field"><label>Agent commission (%)</label><input type="number" placeholder="e.g. 10" value="10"></div><div class="field"><label>Your phone *</label><input type="tel" placeholder="0771 234 567"></div></div>'+
+      '<div class="esbox"><strong>Delegation Agreement</strong><br><br>1. I authorise RentRight to assign a verified agent to market my property.<br>2. The agent must operate within RentRight platform rules and NOT bypass the payment system.<br>3. Viewing fees remain subject to the platform split (UGX 3,000 platform + UGX 2,000 referrer).<br>4. Agent\'s commission is paid after successful tenant placement.<br>5. I can revoke this delegation with 7 days notice.</div>'+
+      '<div class="espanel"><div class="eslbl">Landlord E-Signature</div><div class="esfields"><input class="esinp" placeholder="Your full name"><input class="esinp" value="'+new Date().toLocaleDateString()+'" readonly></div><label class="esch"><input type="checkbox"> I confirm this delegation and accept the agreement above.</label><div class="essec"><span>🔐</span><span class="essect">Agreement stored with timestamp &amp; device proof</span></div></div>'+
+      '<button class="bp" onclick="toast(\'✅ Delegation submitted! A verified agent will be assigned within 48 hours.\');closeM(\'m-delegate\')">Submit Delegation Request</button>'+
+    '</div>';
+  openM("m-delegate");
+}
+
+/* ADMIN */
+function showAdmin(){
+  document.getElementById("admp").style.display="block";
+  document.body.style.overflow="hidden";
+  rAdmin("overview");
+}
+function exitAdmin(){
+  document.getElementById("admp").style.display="none";
+  document.body.style.overflow="";
+}
+function aTab(tab,el){
+  document.querySelectorAll(".ani").forEach(function(i){i.classList.remove("on");});
+  el.classList.add("on");rAdmin(tab);
+}
+function rAdmin(tab){
+  var titles={overview:"Dashboard Overview",alerts:"System Alerts",verify:"Verify Providers",agents:"Agent Management",listings:"Listings",jobs_admin:"Job Board",land_admin:"Land & Property",payments:"Payments & Revenue",referrals:"Referral Payouts",commissions:"Job Commissions",users:"Users",disputes:"Disputes",esigns:"E-Signatures",settings:"Platform Settings"};
+  var t=document.getElementById("atitle"),c=document.getElementById("acontent");
+  if(t)t.textContent=titles[tab]||"Admin";
+  if(!c)return;
+  if(tab==="overview"){
+    c.innerHTML='<div class="kg">'+
+      [["🏠","Listings",LL.length,"+3 today","up"],["👤","Users","2,847","+14 today","up"],["💰","Revenue (MTD)","UGX 4.28M","+18% vs last mo","up"],["⏳","Pending verify","15","3 critical","dn"],["🚨","Disputes","3","↓ from 5","up"],["✍️","E-signs today","24","+8 vs yesterday","up"],["🔧","Active jobs","8","6 with commission","up"],["🌍","Land queries","19","UGX 945K fees","up"]].map(function(k){
+        return'<div class="kc"><div class="ki">'+k[0]+'</div><div class="kv">'+k[2]+'</div><div class="kl">'+k[1]+'</div><div class="kt '+(k[4]==="up"?"kup":"kdn")+'">'+k[3]+'</div></div>';
+      }).join("")+
+    '</div>'+
+    '<div class="a2c">'+
+      '<div class="ap"><div class="aph"><div class="apt">Recent transactions</div></div>'+
+        [["Viewing fee — Bukoto Studio","UGX +5,000","#DCFCE7","#15803D"],["Job commission 8% — Plumbing","UGX +3,600","#DCFCE7","#15803D"],["Referral payout — Brian M.","UGX −2,000","#FEE2E2","#991B1B"],["Land access fee — Mukono","UGX +50,000","#DCFCE7","#15803D"],["Boost fee — 7-day listing","UGX +25,000","#DCFCE7","#15803D"]].map(function(r){
+          return'<div class="arow"><div class="aav" style="background:'+r[2]+';color:'+r[3]+'">'+r[3]==='#991B1B'?'↑':'↓'+'</div><div class="ainfo"><div class="aname">'+r[0]+'</div></div><div style="font-weight:800;font-size:.8rem;color:'+r[3]+'">'+r[1]+'</div></div>';
+        }).join("")+
+      '</div>'+
+      '<div>'+
+        '<div class="ap" style="margin-bottom:13px"><div class="aph"><div class="apt">🚨 Active alerts</div></div>'+
+          '<div class="alrt alc"><div class="alicon">🔴</div><div class="alinfo"><div class="altit">Fraud: same phone, 3 listings</div><div class="aldesc">Ntinda area · Posted in 2hrs</div></div><div class="altm">12m ago</div></div>'+
+          '<div class="alrt alu"><div class="alicon">🟡</div><div class="alinfo"><div class="altit">15 providers pending — SLA risk</div><div class="aldesc">SLA: approve within 24 hours</div></div><div class="altm">1h ago</div></div>'+
+          '<div class="alrt aln"><div class="alicon">🟢</div><div class="alinfo"><div class="altit">New agent verified: Grace K.</div><div class="aldesc">Naguru area · All docs confirmed</div></div><div class="altm">5h ago</div></div>'+
+        '</div>'+
+        '<div class="ap"><div class="aph"><div class="apt">SLA status</div></div>'+
+          [["Provider approvals","< 24hr","12/15 on track","var(--g)"],["Dispute responses","< 12hr","2/3 on track","var(--am)"],["Listing reviews","< 6hr","All clear","var(--g)"]].map(function(r){
+            return'<div class="arow"><div class="ainfo"><div class="aname">'+r[0]+'</div><div class="ameta">Target: '+r[1]+' · '+r[2]+'</div></div><span style="font-size:11px;font-weight:700;color:'+r[3]+'">'+r[2].includes("clear")?"✅":"⚠️"+'</span></div>';
+          }).join("")+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }else if(tab==="alerts"){
+    c.innerHTML='<div class="ap"><div class="aph"><div class="apt">All system alerts</div><button class="apa" onclick="toast(\'All marked as read\')">Mark all read</button></div>'+
+      [["crit","🔴","Fraud: same phone, 3 listings in 2hrs","Ntinda · Auto-flagged by AI","12m ago"],["urg","🟡","15 providers pending — SLA risk","3 providers past 20-hour mark","1h ago"],["urg","🟡","Payment dispute D001 open 4 hours","UGX 45,000 · SLA: 12hr response","4h ago"],["urg","🟡","Price 62% below area average — Ntinda","UGX 80,000 vs area average UGX 210,000","6h ago"],["ok","🟢","New agent verified: Grace K.","All documents confirmed · Field visit done","7h ago"],["ok","🟢","Referral milestone: UGX 1M paid out","248 referrals this month","Today"]].map(function(a){
+        return'<div class="alrt al'+a[0]+'"><div class="alicon">'+a[1]+'</div><div class="alinfo"><div class="altit">'+a[2]+'</div><div class="aldesc">'+a[3]+'</div></div><div><div class="altm">'+a[4]+'</div><button class="abt abtv" onclick="toast(\'Handling...'+'\')" style="margin-top:4px">Handle</button></div></div>';
+      }).join("")+
+    '</div>';
+  }else if(tab==="verify"){
+    var apps=[{n:"Moses Opio",t:"Moving Provider",docs:{nin:true,lc:true,ag:true,vh:true}},{n:"Aisha Kamya",t:"Cleaner",docs:{nin:true,lc:false,ag:true,vh:false}},{n:"Patrick Muwanga",t:"Agent",docs:{nin:true,lc:true,ag:true,vh:false}}];
+    c.innerHTML='<div class="note na2" style="margin-bottom:14px">SLA: Provider approvals within 24 hours. '+apps.length+' pending now.</div>'+
+      apps.map(function(a){
+        return'<div class="ap" style="margin-bottom:12px"><div class="aph"><div><div class="apt">'+a.n+' · '+a.t+'</div></div><span class="ast asp">⏳ Pending</span></div>'+
+          '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px 17px 0">'+
+            [["🪪","NIN",a.docs.nin],["📜","LC Letter",a.docs.lc],["✍️","Agreement",a.docs.ag],["🚛","Vehicle",a.docs.vh]].map(function(d){
+              return'<div style="background:var(--off);border-radius:7px;padding:8px;text-align:center;border:1px solid var(--bd)"><div style="font-size:15px;margin-bottom:3px">'+d[0]+'</div><div style="font-size:9px;font-weight:700;color:var(--dark)">'+d[1]+'</div><div style="font-size:9px;font-weight:700;color:'+(d[2]?"var(--g)":"var(--rd)")+'">'+( d[2]?"✅ OK":"❌ Missing")+'</div></div>';
+            }).join("")+
+          '</div>'+
+          '<div style="display:flex;gap:8px;padding:12px 17px;flex-wrap:wrap">'+
+            '<button class="abt abta" onclick="this.parentElement.innerHTML=\'<span style=\\\"font-size:12px;color:var(--g);font-weight:700\\\">✅ Approved — SMS sent</span>\'">✅ Approve</button>'+
+            '<button class="abt abtr" onclick="this.parentElement.innerHTML=\'<span style=\\\"font-size:12px;color:var(--rd);font-weight:700\\\">❌ Rejected — SMS sent</span>\'">❌ Reject</button>'+
+            '<button class="abt abtv" onclick="toast(\'Requesting more documents...\')">📋 Request docs</button>'+
+            '<button class="abt abtv" onclick="toast(\'Assigning field agent...\')">🚗 Field agent</button>'+
+          '</div>'+
+        '</div>';
+      }).join("");
+  }else if(tab==="payments"){
+    c.innerHTML='<div class="kg">'+
+      [["💰","Total MRR","UGX 4.28M"],["📊","Viewing fees","UGX 744K (248×3K)"],["🔧","Job commissions","UGX 640K (8%)"],["🌍","Land access","UGX 945K"],["🔁","Referrals paid","UGX 496K (248×2K)"],["🚀","Boost fees","UGX 975K"]].map(function(k){
+        return'<div class="kc"><div class="ki">'+k[0]+'</div><div class="kv" style="font-size:1rem">'+k[2]+'</div><div class="kl">'+k[1]+'</div></div>';
+      }).join("")+
+    '</div>'+
+    '<div class="ap"><div class="aph"><div class="apt">All transactions</div><button class="apa" onclick="toast(\'Exporting CSV...\')">Export CSV</button></div>'+
+      [["Viewing fee — Bukoto Studio","UGX 5,000 in","UGX 3K platform + UGX 2K referral","Today"],["Job commission 8% — Plumbing","UGX 3,600 in","8% of UGX 45,000","Yesterday"],["Referral payout","UGX 2,000 out","Paid to referrer","Yesterday"],["Land access fee — Mukono","UGX 50,000 in","Full access fee","2d ago"],["Boost fee — 7-day boost","UGX 25,000 in","Boost fee","3d ago"]].map(function(r){
+        var out=r[1].includes("out");
+        return'<div class="arow"><div class="aav" style="background:'+(out?"var(--rdl)":"var(--g2l)")+';color:'+(out?"var(--rd)":"var(--g)")+';">'+(out?"↑":"↓")+'</div><div class="ainfo"><div class="aname">'+r[0]+'</div><div class="ameta">'+r[2]+' · '+r[3]+'</div></div><div style="font-weight:800;font-size:.8rem;color:'+(out?"var(--rd)":"var(--g)")+'">'+r[1]+'</div></div>';
+      }).join("")+
+    '</div>';
+  }else if(tab==="disputes"){
+    c.innerHTML='<div class="note nb" style="margin-bottom:14px">SLA: All disputes must receive a response within 12 hours.</div>'+
+      [["D001","Provider didn't show up","Aisha N. vs Moses K.","UGX 45,000","open"],["D002","Listing photos don't match","Brian O. vs Peter M.","UGX 5,000","reviewing"],["D003","Commission not paid","Grace L. vs Ntinda Plumbing","UGX 8,000","resolved"]].map(function(d){
+        return'<div class="ap" style="margin-bottom:11px"><div class="aph"><div><div class="apt">'+d[0]+' — '+d[1]+'</div><div style="font-size:.68rem;color:var(--muted)">'+d[2]+' · '+d[3]+'</div></div><span class="ast '+(d[4]==="resolved"?"asa":d[4]==="reviewing"?"asac":"asp")+'">'+d[4]+'</span></div>'+
+          (d[4]!=="resolved"?'<div style="display:flex;gap:8px;padding:11px 17px;flex-wrap:wrap"><button class="abt abta" onclick="toast(\'Resolved for client\')">Client wins</button><button class="abt abtr" onclick="toast(\'Resolved for provider\')">Provider wins</button><button class="abt abtv" onclick="toast(\'Escalating...\')">Escalate</button></div>':'')+
+        '</div>';
+      }).join("");
+  }else if(tab==="settings"){
+    c.innerHTML='<div class="ap" style="margin-bottom:14px"><div class="aph"><div class="apt">Platform fee settings</div><button class="apa" onclick="toast(\'Settings saved!\')">Save changes</button></div>'+
+      '<div style="padding:18px">'+
+        '<div class="note na2">Changes apply immediately to all new transactions.</div>'+
+        '<div class="feg">'+
+          [["Viewing fee (UGX)","5,000"],["Platform keeps (UGX)","3,000"],["Referral payout (UGX)","2,000"],["Min withdrawal (UGX)","20,000"],["Job commission (%)","8"],["Land access fee (UGX)","50,000"],["Boost 7 days (UGX)","25,000"],["Boost 30 days (UGX)","50,000"],["Agent verify fee (UGX)","40,000"],["Provider SLA (hrs)","24"]].map(function(f){
+            return'<div class="fei"><label>'+f[0]+'</label><input type="text" value="'+f[1]+'"></div>';
+          }).join("")+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="ap"><div class="aph"><div class="apt">Ban system</div></div><div style="padding:14px 17px">'+
+      '<div class="note nr2">Permanent bans are irreversible. All ban actions logged with admin name and timestamp.</div>'+
+      '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">'+
+        [["⏸️ Suspend user","24–72hr temp disable","var(--am)"],["🚫 Permanent ban","Full termination","var(--rd)"],["🗑️ Remove listing","Delete listing","var(--rd)"]].map(function(b){
+          return'<div style="background:var(--off);border-radius:8px;padding:13px;border:1px solid var(--bd)"><div style="font-weight:700;font-size:.82rem;color:'+b[2]+';margin-bottom:4px">'+b[0]+'</div><div style="font-size:.7rem;color:var(--muted);margin-bottom:8px">'+b[1]+'</div><input type="text" placeholder="User ID or email" style="width:100%;padding:7px 10px;border:1px solid var(--bd);border-radius:6px;font-size:11px;font-family:inherit;outline:none;margin-bottom:6px"><button onclick="toast(\'Action logged and executed\')" style="width:100%;padding:7px;background:'+b[2]+';color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer">Execute</button></div>';
+        }).join("")+
+      '</div>'+
+    '</div></div>';
+  }else if(tab==="esigns"){
+    c.innerHTML='<div class="ap"><div class="aph"><div class="apt">E-Signature audit log</div><button class="apa" onclick="toast(\'Exporting...\')">Export</button></div>'+
+      [["Moses Opio","Provider Agreement","Commission 8%","Today 9:14am","197.xxx.x.x"],["Aisha N.","Booking Agreement","Viewing fee UGX 5,000","Today 3:22pm","196.xxx.x.x"],["Brian M.","Job Commission","Plumbing job J2","Yesterday 11am","197.xxx.x.x"],["Grace K.","Delegation Agreement","Agent for Listing #6","2 days ago","196.xxx.x.x"],["Denis O.","Land Access","Mukono plot L1","3 days ago","197.xxx.x.x"]].map(function(s){
+        return'<div class="arow"><div class="aav" style="background:var(--g2l);color:var(--gd);font-size:.7rem;font-weight:700">✍️</div><div class="ainfo"><div class="aname">'+s[0]+' — '+s[1]+'</div><div class="ameta">'+s[2]+' · '+s[3]+' · IP: '+s[4]+'</div></div><span class="ast asa">valid</span></div>';
+      }).join("")+
+    '</div>';
+  }else if(tab==="listings"){
+    c.innerHTML='<div class="ap"><div class="aph"><div class="apt">All listings ('+LL.length+')</div><button class="apa" onclick="toast(\'Exporting...\')">Export</button></div>'+
+      LL.map(function(l){
+        return'<div class="arow"><div class="aav" style="padding:0;overflow:hidden;border-radius:7px;flex-shrink:0"><img src="'+l.img+'" style="width:31px;height:31px;object-fit:cover"></div><div class="ainfo"><div class="aname">'+l.name+' · '+l.area+(l.agent?' 🏢':'')+'</div><div class="ameta">UGX '+l.price.toLocaleString()+' · Trust '+l.conf+'% · '+(l.v?'✔ Verified':'⚠ Unverified')+'</div></div><div style="display:flex;gap:5px"><button class="abt abtv" onclick="toast(\'Viewing...\')">View</button>'+(l.v?'<button class="abt abtr" onclick="toast(\'Frozen\')">Freeze</button>':'<button class="abt abta" onclick="toast(\'Verified!\')">Verify</button>')+'</div></div>';
+      }).join("")+
+    '</div>';
+  }else if(tab==="users"){
+    c.innerHTML='<div class="ap"><div class="aph"><div class="apt">Users (2,847)</div><button class="apa" onclick="toast(\'Exporting...\')">Export</button></div>'+
+      [["Aisha Nakato","Seeker","Today","active"],["Brian Mukasa","Landlord","Yesterday","active"],["Grace Nambi","Agent","2d ago","pending"],["Moses Opio","Provider","3d ago","active"],["Ruth Atim","Seeker","1wk ago","active"]].map(function(u){
+        return'<div class="arow"><div class="aav" style="background:linear-gradient(135deg,var(--bl),var(--g));color:#fff;font-size:.78rem">'+u[0][0]+'</div><div class="ainfo"><div class="aname">'+u[0]+' · '+u[1]+'</div><div class="ameta">Joined '+u[2]+'</div></div><div style="display:flex;gap:5px;align-items:center"><span class="ast '+(u[3]==="active"?"asa":"asp")+'">'+u[3]+'</span><button class="abt abtr" onclick="toast(\'User suspended\')">Suspend</button></div></div>';
+      }).join("")+
+    '</div>';
+  }else if(tab==="referrals"){
+    c.innerHTML='<div class="ap"><div class="aph"><div class="apt">Referral payouts</div><button class="apa" onclick="toast(\'Exporting...\')">Export</button></div>'+
+      [["Aisha N.","Brian M.","Kisaasi Room","UGX 2,000","paid","Today"],["Moses K.","Ruth A.","Makerere Bedsitter","UGX 2,000","paid","Yesterday"],["Grace N.","Denis O.","Wandegeya Hostel","UGX 2,000","pending","2d ago"]].map(function(r){
+        var out=r[4]==="pending";
+        return'<div class="arow"><div class="aav" style="background:'+(out?"var(--aml)":"var(--g2l)")+';color:'+(out?"#78350F":"var(--gd)")+';font-size:.7rem">'+(out?"⏳":"✅")+'</div><div class="ainfo"><div class="aname">'+r[0]+' referred '+r[1]+' → '+r[2]+'</div><div class="ameta">'+r[5]+'</div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px"><span style="font-weight:800;font-size:.78rem;color:'+(out?"var(--am)":"var(--g)")+'">'+r[3]+'</span><span class="ast '+(out?"asp":"asa")+'">'+r[4]+'</span></div></div>';
+      }).join("")+
+    '</div>'+
+    '<div class="ap" style="margin-top:12px"><div class="aph"><div class="apt">🚫 Anti-abuse flags</div></div>'+
+      [["ref7a3b","Same device: 4 referrals in 2hrs","High"],["ref9d1e","Phone reused across 3 accounts","High"]].map(function(f){
+        return'<div class="arow"><div class="aav" style="background:var(--rdl);color:var(--rd)">🚨</div><div class="ainfo"><div class="aname">'+f[0]+'</div><div class="ameta">'+f[1]+' · Risk: '+f[2]+'</div></div><div style="display:flex;gap:5px"><button class="abt abtr" onclick="toast(\'Frozen\')">Freeze</button><button class="abt abtv" onclick="toast(\'Investigating...\')">Investigate</button></div></div>';
+      }).join("")+
+    '</div>';
+  }else if(tab==="commissions"){
+    c.innerHTML='<div class="ap"><div class="aph"><div class="apt">Job commission log</div><button class="apa" onclick="toast(\'Exporting...\')">Export</button></div>'+
+      JJ.slice(0,5).map(function(j){
+        var c2=Math.round(j.budget*0.08);
+        return'<div class="arow"><div class="aav" style="background:var(--g2l);color:var(--gd);font-size:.7rem;font-weight:700">8%</div><div class="ainfo"><div class="aname">Job '+j.id+' · '+j.cat+' · '+j.loc+'</div><div class="ameta">Budget UGX '+j.budget.toLocaleString()+' · Commission UGX '+c2.toLocaleString()+' · ✍️ E-signed</div></div><div style="font-weight:800;font-size:.8rem;color:var(--g)">+UGX '+c2.toLocaleString()+'</div></div>';
+      }).join("")+
+    '</div>';
+  }else if(tab==="agents"){
+    c.innerHTML='<div class="ap"><div class="aph"><div class="apt">Agent roster</div><button class="apa" onclick="toast(\'Invite agent...\')">+ Invite</button></div>'+
+      [["Grace K.","Naguru",3,5,"4.8",true],["James M.","Kisaasi",4,8,"4.6",true],["Sarah O.","Ntinda",2,3,"4.9",true],["Peter K.","Makerere",1,0,"-",false]].map(function(a){
+        return'<div class="arow"><div class="aav" style="background:'+(a[5]?"var(--g2l)":"var(--off)")+';color:'+(a[5]?"var(--gd)":"var(--muted)")+'">'+(a[5]?"✔":a[0][0])+'</div><div class="ainfo"><div class="aname">'+a[0]+' · '+a[1]+(a[5]?' <span style="font-size:9px;background:var(--g2l);color:var(--gd);border-radius:20px;padding:1px 6px;font-weight:700">✔ Verified</span>':'')+'</div><div class="ameta">'+a[2]+' listings · '+a[3]+' tenants · '+(a[4]!=="-"?"★ "+a[4]:"No rating yet")+'</div></div><div style="display:flex;gap:5px;align-items:center"><span class="ast '+(a[5]?"asa":"asp")+'">'+(a[5]?"Active":"Pending")+'</span>'+(a[5]?'':'<button class="abt abta" onclick="toast(\'Agent approved!\')">Approve</button>')+'<button class="abt abtv" onclick="toast(\'Viewing profile...\')">View</button></div></div>';
+      }).join("")+
+    '</div>';
+  }else if(tab==="land_admin"){
+    c.innerHTML='<div class="ap"><div class="aph"><div class="apt">Land listings ('+LD.length+')</div><button class="apa" onclick="toast(\'Adding...\')">+ Add</button></div>'+
+      LD.map(function(l){
+        return'<div class="arow"><div class="aav" style="padding:0;overflow:hidden;border-radius:6px;flex-shrink:0"><img src="'+l.img+'" style="width:31px;height:31px;object-fit:cover"></div><div class="ainfo"><div class="aname">'+l.name+' · '+l.area+(l.prem?' ⭐':'')+'</div><div class="ameta">UGX '+l.price.toLocaleString()+' · '+l.size+' · Access fee UGX '+l.fee.toLocaleString()+'</div></div><div style="display:flex;gap:5px"><span class="ast '+(l.ver?"asa":"asp")+'">'+(l.ver?"Verified":"Pending")+'</span><button class="abt abtv" onclick="toast(\'Viewing...\')">View</button></div></div>';
+      }).join("")+
+    '</div>'+
+    '<div class="ap" style="margin-top:12px"><div class="aph"><div class="apt">Recent land access payments</div></div>'+
+      [["Denis O.","Mukono 1 Acre",50000,"2d ago"],["Sarah K.","Wakiso 50×100ft",30000,"4d ago"],["Brian M.","Kololo Premium Villa",100000,"1wk ago"]].map(function(p){
+        return'<div class="arow"><div class="aav" style="background:var(--g2l);color:var(--gd);font-size:.7rem">✅</div><div class="ainfo"><div class="aname">'+p[0]+' → '+p[1]+'</div><div class="ameta">'+p[3]+' · Full details unlocked</div></div><div style="font-weight:800;font-size:.8rem;color:var(--g)">+UGX '+p[2].toLocaleString()+'</div></div>';
+      }).join("")+
+    '</div>';
+  }else if(tab==="jobs_admin"){
+    c.innerHTML='<div class="ap"><div class="aph"><div class="apt">Job board ('+JJ.length+' active)</div><button class="apa" onclick="toast(\'Exporting...\')">Export</button></div>'+
+      JJ.map(function(j){
+        return'<div class="arow"><div class="aav" style="background:var(--off);font-size:.72rem;font-weight:700;color:var(--dark)">'+j.cat.slice(0,3).toUpperCase()+'</div><div class="ainfo"><div class="aname">'+j.title+'</div><div class="ameta">📍 '+j.loc+' · UGX '+j.budget.toLocaleString()+' · 8% = UGX '+Math.round(j.budget*.08).toLocaleString()+' · '+j.posted+'</div></div><div style="display:flex;gap:5px"><span class="ast asac">open</span><button class="abt abtr" onclick="toast(\'Job removed\')">Remove</button></div></div>';
+      }).join("")+
+    '</div>';
+  }else{
+    c.innerHTML='<div class="ap"><div class="aph"><div class="apt">'+( titles[tab]||tab)+'</div></div><div style="padding:28px;text-align:center;color:var(--muted);font-size:.85rem">Connect your backend API to populate this section with live data.</div></div>';
+  }
+}
+
+/* MODAL ENGINE */
+function openM(id){document.getElementById(id).classList.add("open");document.body.style.overflow="hidden";}
+function closeM(id){document.getElementById(id).classList.remove("open");document.body.style.overflow="";}
+function bClose(e,id){if(e.target===document.getElementById(id))closeM(id);}
+
+/* CHAT */
+function chatToggle(){document.getElementById("chatp").classList.toggle("open");}
+async function chatSend(){
+  var inp=document.getElementById("cinp"),msgs=document.getElementById("cmsgs");
+  var txt=inp.value.trim();if(!txt)return;inp.value="";
+  var um=document.createElement("div");um.className="cmsg usr";um.textContent=txt;msgs.appendChild(um);
+  var lm=document.createElement("div");lm.className="cmsg ai";lm.textContent="Searching…";msgs.appendChild(lm);msgs.scrollTop=msgs.scrollHeight;
+  try{
+    var res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:250,
+        system:"You are RentRight AI assistant for Kampala Uganda. Rentals: Bukoto 420K, Kisaasi 350K, Wandegeya 175K hostel, Ntinda 280K, Makerere 240K, Naguru 850K. Viewing fee UGX 5K → platform 3K + referrer 2K. Service jobs 8% commission e-signed. Land access fees 30K-100K. Moving services available. Reply max 2 sentences. Never mention Claude or Anthropic.",
+        messages:[{role:"user",content:txt}]})});
+    var data=await res.json();
+    lm.textContent=(data.content&&data.content[0])?data.content[0].text:"Happy to help! Tell me your budget and area.";
+  }catch(e){lm.textContent="Connection issue — try WhatsApp instead!";}
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+/* TOAST */
+function toast(msg){
+  var t=document.createElement("div");t.className="toast-el";t.textContent=msg;
+  document.body.appendChild(t);setTimeout(function(){t.remove();},3000);
+}
+</script>
+</body>
+</html>
