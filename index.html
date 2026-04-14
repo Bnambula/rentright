@@ -320,6 +320,70 @@ footer{background:var(--off);border-top:1px solid var(--bd);padding:52px 40px 34
 
 @media(max-width:1024px){.ni,.hcontent,.swrap,.tsi,.sec,.rfi,footer,.fi,.refsec{padding-left:22px;padding-right:22px}.g3,.g4{grid-template-columns:repeat(2,1fr)}.hwg{grid-template-columns:1fr;gap:36px}.hwphoto{height:340px}.hwfc{right:0;bottom:-12px}.rfi{grid-template-columns:1fr}.fg{grid-template-columns:1fr 1fr}.sg{grid-template-columns:1fr}}
 @media(max-width:680px){.ni{padding:0 16px}.navlinks{display:none}.hcontent{padding:0 18px 70px}.hstats{display:none}.swrap{padding:0}.sbody{flex-direction:column;gap:10px}.sf{min-width:0;width:100%}#btn-search{width:100%}.g3,.g4{grid-template-columns:1fr}.fg{grid-template-columns:1fr}.refsec{padding:52px 18px}.mbar{display:block}body{padding-bottom:60px}.sec{padding-top:50px;padding-bottom:50px}.fabw{bottom:72px}.frow{grid-template-columns:1fr}.esfields{grid-template-columns:1fr}}
+
+/* ADMIN */
+#admp{display:none;position:fixed;inset:0;z-index:2000;background:var(--off)}
+.adml{display:grid;grid-template-columns:215px 1fr;height:100vh;overflow:hidden}
+.adms{background:#0A0A0A;display:flex;flex-direction:column;overflow-y:auto}
+.admlogo{padding:17px 15px;border-bottom:1px solid #1E1E1E;display:flex;align-items:center;gap:8px}
+.admlogom{width:27px;height:27px;background:var(--g);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px}
+.admlogot{font-weight:800;font-size:.85rem;color:#fff}
+.admn{padding:9px 7px;flex:1;overflow-y:auto}
+.ansl{font-size:9px;font-weight:700;color:#4A4A4A;letter-spacing:.1em;text-transform:uppercase;padding:9px 8px 3px}
+.ani{display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:7px;cursor:pointer;transition:all .15s;margin-bottom:1px;border-left:3px solid transparent}
+.ani:hover,.ani.on{background:#1A1A1A}
+.ani.on{border-left-color:var(--g)}
+.anicon{font-size:13px;flex-shrink:0}
+.anlbl{font-size:12px;font-weight:600;color:#6A6A6A;white-space:nowrap}
+.ani:hover .anlbl,.ani.on .anlbl{color:#fff}
+.anbd{margin-left:auto;background:var(--rd);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:20px;min-width:18px;text-align:center}
+.anbd.am{background:var(--am)}
+.admm{background:var(--off);overflow-y:auto;display:flex;flex-direction:column}
+.admtop{background:#fff;border-bottom:1px solid var(--bd);height:52px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:10}
+.admtopt{font-weight:800;font-size:.92rem;color:var(--dark)}
+.admc{padding:20px 24px;flex:1}
+.kg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}
+.kc{background:#fff;border-radius:10px;padding:15px;border:1px solid var(--bd)}
+.ki{font-size:1.2rem;margin-bottom:7px}
+.kv{font-size:1.5rem;font-weight:900;color:var(--dark);letter-spacing:-.05em;line-height:1;margin-bottom:3px}
+.kl{font-size:10px;color:var(--muted);font-weight:600}
+.kt{font-size:10px;font-weight:700;margin-top:3px}.kup{color:var(--g)}.kdn{color:var(--rd)}
+.ap{background:#fff;border-radius:10px;border:1px solid var(--bd);overflow:hidden;margin-bottom:14px}
+.aph{padding:13px 17px;border-bottom:1px solid var(--off);display:flex;justify-content:space-between;align-items:center}
+.apt{font-size:.85rem;font-weight:800;color:var(--dark)}
+.apa{font-size:11px;font-weight:700;color:var(--g);cursor:pointer;border:none;background:none}
+.arow{display:flex;align-items:center;gap:11px;padding:11px 17px;border-bottom:1px solid var(--off);transition:background .15s}
+.arow:last-child{border-bottom:none}
+.arow:hover{background:var(--off)}
+.aav{width:31px;height:31px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;flex-shrink:0}
+.ainfo{flex:1;min-width:0}
+.aname{font-size:.8rem;font-weight:700;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ameta{font-size:.67rem;color:var(--muted);margin-top:1px}
+.ast{font-size:9px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap}
+.asp{background:var(--aml);color:#78350F}
+.asa{background:var(--g2l);color:var(--gd)}
+.asac{background:var(--bll);color:#0F4B8C}
+.asr{background:var(--rdl);color:#7f1d1d}
+.abts{display:flex;gap:5px}
+.abt{font-size:9px;font-weight:700;padding:4px 9px;border-radius:5px;cursor:pointer;border:none;transition:all .15s}
+.abta{background:var(--g2l);color:var(--gd)}.abta:hover{background:var(--g2);color:#fff}
+.abtr{background:var(--rdl);color:#7f1d1d}.abtr:hover{background:var(--rd);color:#fff}
+.abtv{background:var(--off);color:var(--body)}.abtv:hover{background:var(--bd)}
+.alrt{display:flex;align-items:flex-start;gap:9px;padding:11px 17px;border-left:3px solid transparent;border-bottom:1px solid var(--off);cursor:pointer;transition:background .15s}
+.alrt:last-child{border-bottom:none}
+.alrt:hover{background:var(--off)}
+.alc{border-left-color:var(--rd)}.alu{border-left-color:var(--am)}.aln{border-left-color:var(--g2)}
+.alicon{font-size:13px;flex-shrink:0;margin-top:1px}
+.alinfo{flex:1}.altit{font-size:.78rem;font-weight:700;color:var(--dark)}
+.aldesc{font-size:.68rem;color:var(--muted);margin-top:1px}
+.altm{font-size:.63rem;color:#C0C0C0;flex-shrink:0;margin-top:2px}
+.a2c{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}
+.feg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:13px}
+.fei label{font-size:10px;font-weight:700;color:var(--muted);display:block;margin-bottom:3px;text-transform:uppercase}
+.fei input{width:100%;padding:8px 11px;border:1.5px solid var(--bd);border-radius:7px;font-size:13px;color:var(--dark);outline:none;background:var(--off);font-family:inherit}
+.fei input:focus{border-color:var(--g);background:#fff}
+@media(max-width:680px){.adml{grid-template-columns:1fr}.adms{display:none}}
+
 </style>
 </head>
 <body>
@@ -1303,7 +1367,9 @@ function updateNav(){
 function logOut(){user=null;updateNav();toast("Signed out.");}
 
 function showAdminPanel(){
-  toast("Admin panel: Sign in with admin@rentright.ug / admin2025 to access.");
+  var el=document.getElementById("admp");
+  if(el){el.style.display="block";document.body.style.overflow="hidden";}
+  renderAdmin("overview");
 }
 
 function useGPS(){
@@ -1474,7 +1540,234 @@ document.addEventListener("DOMContentLoaded",function(){
       if(id)goTo(id);
     });
   });
+  initAdmin();
 });
+
+/* ═══ ADMIN ═══════════════════════════════════ */
+function showAdminPanel(){
+  var el = document.getElementById("admp");
+  if(el){ el.style.display = "block"; document.body.style.overflow = "hidden"; }
+  renderAdmin("overview");
+}
+
+function exitAdmin(){
+  var el = document.getElementById("admp");
+  if(el){ el.style.display = "none"; document.body.style.overflow = ""; }
+}
+
+function renderAdmin(tab){
+  var titles = {overview:"Dashboard",alerts:"Alerts",verify:"Verify Providers",agents:"Agents",listings:"Listings",jobs_admin:"Job Board",land_admin:"Land",payments:"Payments",referrals:"Referrals",users:"Users",disputes:"Disputes",settings:"Settings"};
+  var t = document.getElementById("atitle");
+  if(t) t.textContent = titles[tab] || tab;
+  var c = document.getElementById("acontent");
+  if(!c) return;
+
+  if(tab === "overview"){
+    var kpis = [["Listings",LL.length,"+3 today"],["Users","2,847","+14 today"],["Revenue MTD","UGX 4.28M","+18%"],["Pending","15","3 critical"],["Disputes","3","down from 5"],["E-signs today","24","+8 vs yesterday"]];
+    var khtml = "<div class='kg'>";
+    for(var i=0;i<kpis.length;i++) khtml += "<div class='kc'><div class='ki'>*</div><div class='kv'>"+kpis[i][1]+"</div><div class='kl'>"+kpis[i][0]+"</div><div class='kt kup'>"+kpis[i][2]+"</div></div>";
+    khtml += "</div>";
+    var txns = [["Viewing fee Bukoto Studio","UGX +5,000","Today"],["Job commission 8% Plumbing","UGX +3,600","Today"],["Referral payout","UGX -2,000","Yesterday"],["Land access fee Mukono","UGX +50,000","2d ago"],["Boost fee 7 day","UGX +25,000","3d ago"]];
+    var thtml = "<div class='ap'><div class='aph'><div class='apt'>Recent transactions</div></div>";
+    for(var j=0;j<txns.length;j++){
+      var isOut = txns[j][1].indexOf("-") > -1;
+      thtml += "<div class='arow'><div class='aav' style='background:"+(isOut?"var(--rdl)":"var(--g2l)")+";color:"+(isOut?"var(--rd)":"var(--g)")+"'>"+(isOut?"-":"+")+"</div><div class='ainfo'><div class='aname'>"+txns[j][0]+"</div><div class='ameta'>"+txns[j][2]+"</div></div><div style='font-weight:800;font-size:.8rem;color:"+(isOut?"var(--rd)":"var(--g)")+"'>"+txns[j][1]+"</div></div>";
+    }
+    thtml += "</div>";
+    var alerts = [["crit","High","Fraud: same phone 3 listings","Ntinda area auto-flagged","12m ago"],["urg","Med","15 providers pending SLA risk","3 providers past 20hr mark","1h ago"],["ok","Low","New agent verified: Grace K.","All docs confirmed","7h ago"]];
+    var ahtml = "<div class='ap'><div class='aph'><div class='apt'>Active alerts</div></div>";
+    for(var k=0;k<alerts.length;k++){
+      ahtml += "<div class='alrt al"+alerts[k][0]+"'><div class='alicon'>!</div><div class='alinfo'><div class='altit'>"+alerts[k][2]+"</div><div class='aldesc'>"+alerts[k][3]+"</div></div><div class='altm'>"+alerts[k][4]+"</div></div>";
+    }
+    ahtml += "</div>";
+    c.innerHTML = khtml + "<div class='a2c'>" + thtml + ahtml + "</div>";
+  } else if(tab === "verify"){
+    var apps = [{n:"Moses Opio",t:"Moving Provider",nin:true,lc:true,ag:true},{n:"Aisha Kamya",t:"Cleaner",nin:true,lc:false,ag:true},{n:"Patrick Muwanga",t:"Agent",nin:true,lc:true,ag:false}];
+    var html = "<div class='note na2' style='margin-bottom:14px'>SLA: Approve providers within 24 hours. "+apps.length+" pending.</div>";
+    for(var i=0;i<apps.length;i++){
+      var a = apps[i];
+      html += "<div class='ap' style='margin-bottom:12px'><div class='aph'><div><div class='apt'>"+a.n+" - "+a.t+"</div></div><span class='ast asp'>Pending</span></div>";
+      html += "<div style='display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 17px'>";
+      var docs = [["NIN",a.nin],["LC Letter",a.lc],["Agreement",a.ag]];
+      for(var d=0;d<docs.length;d++) html += "<div style='background:var(--off);border-radius:7px;padding:8px;text-align:center;border:1px solid var(--bd)'><div style='font-size:.78rem;font-weight:700;color:var(--dark)'>"+docs[d][0]+"</div><div style='font-size:10px;font-weight:700;color:"+(docs[d][1]?"var(--g)":"var(--rd)")+"'>"+(docs[d][1]?"OK":"Missing")+"</div></div>";
+      html += "</div><div style='display:flex;gap:8px;padding:12px 17px'>";
+      html += "<button class='abt abta' data-approve='"+a.n+"'>Approve</button><button class='abt abtr' data-reject='"+a.n+"'>Reject</button><button class='abt abtv' data-docs='"+a.n+"'>Request docs</button>";
+      html += "</div></div>";
+    }
+    c.innerHTML = html;
+    c.querySelectorAll("[data-approve]").forEach(function(b){ b.addEventListener("click",function(){ this.parentElement.innerHTML = "<span style='color:var(--g);font-size:12px;font-weight:700'>Approved - SMS sent</span>"; }); });
+    c.querySelectorAll("[data-reject]").forEach(function(b){ b.addEventListener("click",function(){ this.parentElement.innerHTML = "<span style='color:var(--rd);font-size:12px;font-weight:700'>Rejected - SMS sent</span>"; }); });
+    c.querySelectorAll("[data-docs]").forEach(function(b){ b.addEventListener("click",function(){ toast("Requesting more documents from " + this.getAttribute("data-docs")); }); });
+  } else if(tab === "listings"){
+    var html = "<div class='ap'><div class='aph'><div class='apt'>All listings ("+LL.length+")</div></div>";
+    for(var i=0;i<LL.length;i++){
+      var l = LL[i];
+      html += "<div class='arow'><div class='aav' style='background:var(--gl);overflow:hidden;border-radius:6px;padding:0'><img src='"+l.img+"' style='width:31px;height:31px;object-fit:cover'></div><div class='ainfo'><div class='aname'>"+l.name+" - "+l.area+"</div><div class='ameta'>UGX "+l.price.toLocaleString()+" - Trust "+l.conf+"% - "+(l.v?"Verified":"Unverified")+"</div></div><div style='display:flex;gap:5px'><span class='ast "+(l.v?"asa":"asp")+"-'>"+(l.v?"Active":"Pending")+"</span>"+(l.v?"<button class='abt abtr' data-freeze='"+i+"'>Freeze</button>":"<button class='abt abta' data-verify='"+i+"'>Verify</button>")+"</div></div>";
+    }
+    html += "</div>";
+    c.innerHTML = html;
+    c.querySelectorAll("[data-freeze]").forEach(function(b){ b.addEventListener("click",function(){ toast("Listing frozen"); }); });
+    c.querySelectorAll("[data-verify]").forEach(function(b){ b.addEventListener("click",function(){ toast("Listing verified"); }); });
+  } else if(tab === "payments"){
+    var items = [["Total MRR","UGX 4.28M"],["Viewing fees","UGX 744K"],["Job commissions","UGX 640K"],["Land access","UGX 945K"],["Referrals paid","UGX 496K"],["Boost fees","UGX 975K"]];
+    var html = "<div class='kg'>";
+    for(var i=0;i<items.length;i++) html += "<div class='kc'><div class='ki'>$</div><div class='kv' style='font-size:1rem'>"+items[i][1]+"</div><div class='kl'>"+items[i][0]+"</div></div>";
+    html += "</div>";
+    var txns2 = [["Viewing fee Bukoto Studio","UGX 5,000","Today","in"],["Job commission Plumbing","UGX 3,600","Today","in"],["Referral payout","UGX 2,000","Yesterday","out"],["Land access Mukono","UGX 50,000","2d ago","in"],["Boost fee 7 day","UGX 25,000","3d ago","in"]];
+    html += "<div class='ap'><div class='aph'><div class='apt'>All transactions</div><button id='admin-export-csv' class='apa'>Export CSV</button></div>";
+    for(var j=0;j<txns2.length;j++){
+      var isOut2 = txns2[j][3]==="out";
+      html += "<div class='arow'><div class='aav' style='background:"+(isOut2?"var(--rdl)":"var(--g2l)")+";color:"+(isOut2?"var(--rd)":"var(--g)")+"'>"+(isOut2?"out":"in")+"</div><div class='ainfo'><div class='aname'>"+txns2[j][0]+"</div><div class='ameta'>"+txns2[j][2]+"</div></div><div style='font-weight:800;font-size:.8rem;color:"+(isOut2?"var(--rd)":"var(--g)")+"'>"+(isOut2?"-":"+")+txns2[j][1]+"</div></div>";
+    }
+    html += "</div>";
+    c.innerHTML = html;
+    var ec = document.getElementById("admin-export-csv");
+    if(ec) ec.addEventListener("click",function(){ toast("Exporting CSV..."); });
+  } else if(tab === "disputes"){
+    var disps = [["D001","Provider did not show up","Aisha N vs Moses K","UGX 45,000","open"],["D002","Listing photos do not match","Brian O vs Peter M","UGX 5,000","reviewing"],["D003","Commission not paid","Grace L vs Ntinda Plumbing","UGX 8,000","resolved"]];
+    var html = "<div class='note nb' style='margin-bottom:14px'>SLA: All disputes must receive a response within 12 hours.</div>";
+    for(var i=0;i<disps.length;i++){
+      var d = disps[i];
+      html += "<div class='ap' style='margin-bottom:11px'><div class='aph'><div><div class='apt'>"+d[0]+" - "+d[1]+"</div><div style='font-size:.68rem;color:var(--muted)'>"+d[2]+" - "+d[3]+"</div></div><span class='ast "+(d[4]==="resolved"?"asa":d[4]==="reviewing"?"asac":"asp")+"'>"+d[4]+"</span></div>";
+      if(d[4]!=="resolved") html += "<div style='display:flex;gap:8px;padding:11px 17px'><button class='abt abta' data-client='"+i+"'>Client wins</button><button class='abt abtr' data-prov='"+i+"'>Provider wins</button><button class='abt abtv' data-esc='"+i+"'>Escalate</button></div>";
+      html += "</div>";
+    }
+    c.innerHTML = html;
+    c.querySelectorAll("[data-client]").forEach(function(b){ b.addEventListener("click",function(){ toast("Resolved for client"); }); });
+    c.querySelectorAll("[data-prov]").forEach(function(b){ b.addEventListener("click",function(){ toast("Resolved for provider"); }); });
+    c.querySelectorAll("[data-esc]").forEach(function(b){ b.addEventListener("click",function(){ toast("Escalated to senior team"); }); });
+  } else if(tab === "users"){
+    var users = [["Aisha Nakato","Seeker","Today","active"],["Brian Mukasa","Landlord","Yesterday","active"],["Grace Nambi","Agent","2d ago","pending"],["Moses Opio","Provider","3d ago","active"]];
+    var html = "<div class='ap'><div class='aph'><div class='apt'>Users (2,847)</div></div>";
+    for(var i=0;i<users.length;i++){
+      var u = users[i];
+      html += "<div class='arow'><div class='aav' style='background:var(--gl);color:var(--gd)'>"+u[0][0]+"</div><div class='ainfo'><div class='aname'>"+u[0]+" - "+u[1]+"</div><div class='ameta'>Joined "+u[2]+"</div></div><div style='display:flex;gap:5px;align-items:center'><span class='ast "+(u[3]==="active"?"asa":"asp")+"'>"+u[3]+"</span><button class='abt abtr' data-sus='"+i+"'>Suspend</button></div></div>";
+    }
+    html += "</div>";
+    c.innerHTML = html;
+    c.querySelectorAll("[data-sus]").forEach(function(b){ b.addEventListener("click",function(){ toast("User suspended"); }); });
+  } else if(tab === "settings"){
+    var fees = [["Viewing fee (UGX)","5,000"],["Platform keeps (UGX)","3,000"],["Referral payout (UGX)","2,000"],["Min withdrawal (UGX)","20,000"],["Job commission (%)","8"],["Land access fee (UGX)","50,000"],["Boost 7 days (UGX)","25,000"],["Boost 30 days (UGX)","50,000"],["Agent verify fee (UGX)","40,000"],["Provider SLA (hrs)","24"]];
+    var html = "<div class='ap'><div class='aph'><div class='apt'>Platform fee settings</div><button id='admin-save-settings' class='apa'>Save changes</button></div><div style='padding:16px'><div class='feg'>";
+    for(var i=0;i<fees.length;i++) html += "<div class='fei'><label>"+fees[i][0]+"</label><input type='text' value='"+fees[i][1]+"'></div>";
+    html += "</div></div></div>";
+    c.innerHTML = html;
+    var ss = document.getElementById("admin-save-settings");
+    if(ss) ss.addEventListener("click",function(){ toast("Settings saved successfully"); });
+  } else if(tab === "agents"){
+    var ags = [["Grace K.","Naguru",3,5,4.8,true],["James M.","Kisaasi",4,8,4.6,true],["Sarah O.","Ntinda",2,3,4.9,true],["Peter K.","Makerere",1,0,0,false]];
+    var html = "<div class='ap'><div class='aph'><div class='apt'>Agent roster</div></div>";
+    for(var i=0;i<ags.length;i++){
+      var ag = ags[i];
+      html += "<div class='arow'><div class='aav' style='background:"+(ag[5]?"var(--g2l)":"var(--off)")+";color:"+(ag[5]?"var(--gd)":"var(--muted)")+"'>"+(ag[5]?"V":ag[0][0])+"</div><div class='ainfo'><div class='aname'>"+ag[0]+" - "+ag[1]+"</div><div class='ameta'>"+ag[2]+" listings - "+ag[3]+" tenants"+(ag[4]?" - Rating "+ag[4]:"")+"</div></div><div style='display:flex;gap:5px'><span class='ast "+(ag[5]?"asa":"asp")+"-'>"+(ag[5]?"Active":"Pending")+"</span>"+(ag[5]?"":"<button class='abt abta' data-appr='"+i+"'>Approve</button>")+"</div></div>";
+    }
+    html += "</div>";
+    c.innerHTML = html;
+    c.querySelectorAll("[data-appr]").forEach(function(b){ b.addEventListener("click",function(){ toast("Agent approved"); }); });
+  } else if(tab === "referrals"){
+    var refs = [["Aisha N.","Brian M.","Kisaasi Room","UGX 2,000","paid","Today"],["Moses K.","Ruth A.","Makerere Bedsitter","UGX 2,000","paid","Yesterday"],["Grace N.","Denis O.","Wandegeya Hostel","UGX 2,000","pending","2d ago"]];
+    var html = "<div class='ap'><div class='aph'><div class='apt'>Referral payouts</div></div>";
+    for(var i=0;i<refs.length;i++){
+      var rf = refs[i];
+      var isPend = rf[4]==="pending";
+      html += "<div class='arow'><div class='aav' style='background:"+(isPend?"var(--aml)":"var(--g2l)")+";color:"+(isPend?"#78350F":"var(--gd)")+"'>"+(isPend?"P":"D")+"</div><div class='ainfo'><div class='aname'>"+rf[0]+" referred "+rf[1]+"</div><div class='ameta'>"+rf[2]+" - "+rf[5]+"</div></div><div style='display:flex;flex-direction:column;align-items:flex-end;gap:3px'><span style='font-weight:800;font-size:.78rem;color:"+(isPend?"var(--am)":"var(--g)")+"'>"+rf[3]+"</span><span class='ast "+(isPend?"asp":"asa")+"'>"+rf[4]+"</span></div></div>";
+    }
+    html += "</div>";
+    c.innerHTML = html;
+  } else if(tab === "land_admin"){
+    var html = "<div class='ap'><div class='aph'><div class='apt'>Land listings ("+LD.length+")</div></div>";
+    for(var i=0;i<LD.length;i++){
+      var l2 = LD[i];
+      html += "<div class='arow'><div class='aav' style='padding:0;overflow:hidden;border-radius:6px'><img src='"+l2.img+"' style='width:31px;height:31px;object-fit:cover'></div><div class='ainfo'><div class='aname'>"+l2.name+" - "+l2.area+"</div><div class='ameta'>UGX "+l2.price.toLocaleString()+" - "+l2.size+" - Access UGX "+l2.fee.toLocaleString()+"</div></div><button class='abt abtv' data-lview='"+i+"'>View</button></div>";
+    }
+    html += "</div>";
+    c.innerHTML = html;
+    c.querySelectorAll("[data-lview]").forEach(function(b){ b.addEventListener("click",function(){ toast("Viewing land details..."); }); });
+  } else if(tab === "jobs_admin"){
+    var html = "<div class='ap'><div class='aph'><div class='apt'>Job board ("+JJ.length+" active)</div></div>";
+    for(var i=0;i<JJ.length;i++){
+      var j2 = JJ[i];
+      html += "<div class='arow'><div class='aav' style='background:var(--off);font-size:.72rem;font-weight:700;color:var(--dark)'>"+j2.cat.slice(0,3).toUpperCase()+"</div><div class='ainfo'><div class='aname'>"+j2.title+"</div><div class='ameta'>"+j2.loc+" - UGX "+j2.budget.toLocaleString()+" - 8% = UGX "+Math.round(j2.budget*.08).toLocaleString()+" - "+j2.posted+"</div></div><div style='display:flex;gap:5px'><span class='ast asac'>open</span><button class='abt abtr' data-jrm='"+i+"'>Remove</button></div></div>";
+    }
+    html += "</div>";
+    c.innerHTML = html;
+    c.querySelectorAll("[data-jrm]").forEach(function(b){ b.addEventListener("click",function(){ toast("Job removed"); }); });
+  } else if(tab === "alerts"){
+    var alerts2 = [["crit","Fraud: same phone 3 listings in 2hrs","Ntinda auto-flagged by AI","12m ago"],["urg","15 providers pending SLA risk","3 providers past 20hr mark","1h ago"],["urg","Payment dispute D001 open 4 hours","UGX 45,000 SLA 12hr response","4h ago"],["ok","New agent verified: Grace K.","All documents confirmed","7h ago"]];
+    var html = "<div class='ap'><div class='aph'><div class='apt'>All system alerts</div><button id='admin-mark-read' class='apa'>Mark all read</button></div>";
+    for(var i=0;i<alerts2.length;i++){
+      var al = alerts2[i];
+      html += "<div class='alrt al"+al[0]+"'><div class='alicon'>!</div><div class='alinfo'><div class='altit'>"+al[1]+"</div><div class='aldesc'>"+al[2]+"</div></div><div><div class='altm'>"+al[3]+"</div><button class='abt abtv' data-han='"+i+"' style='margin-top:4px'>Handle</button></div></div>";
+    }
+    html += "</div>";
+    c.innerHTML = html;
+    var mr = document.getElementById("admin-mark-read");
+    if(mr) mr.addEventListener("click",function(){ toast("All alerts marked as read"); });
+    c.querySelectorAll("[data-han]").forEach(function(b){ b.addEventListener("click",function(){ toast("Handling alert..."); }); });
+  } else {
+    c.innerHTML = "<div class='ap'><div class='aph'><div class='apt'>"+(titles[tab]||tab)+"</div></div><div style='padding:28px;text-align:center;color:var(--muted);font-size:.85rem'>Connect your backend API to populate this section with live data.</div></div>";
+  }
+}
+
+/* ═══ ADMIN INIT ═══════════════════════════════ */
+function initAdmin(){
+  var exitBtn = document.getElementById("btn-exit-admin");
+  if(exitBtn) exitBtn.addEventListener("click", exitAdmin);
+
+  var exportBtn = document.getElementById("btn-admin-export");
+  if(exportBtn) exportBtn.addEventListener("click",function(){ toast("Exporting..."); });
+
+  document.querySelectorAll(".ani[data-atab]").forEach(function(item){
+    item.addEventListener("click",function(){
+      document.querySelectorAll(".ani").forEach(function(i){ i.classList.remove("on"); });
+      this.classList.add("on");
+      renderAdmin(this.getAttribute("data-atab"));
+    });
+  });
+}
+
 </script>
+
+<!-- ADMIN PANEL -->
+<div id="admp">
+  <div class="adml">
+    <div class="adms">
+      <div class="admlogo"><div class="admlogom">A</div><div class="admlogot">RentRight Admin</div></div>
+      <div class="admn">
+        <div class="ansl">Overview</div>
+        <div class="ani on" data-atab="overview"><span class="anicon">D</span><span class="anlbl">Dashboard</span></div>
+        <div class="ani" data-atab="alerts"><span class="anicon">!</span><span class="anlbl">Alerts</span><span class="anbd">7</span></div>
+        <div class="ansl">Verification</div>
+        <div class="ani" data-atab="verify"><span class="anicon">V</span><span class="anlbl">Verify Providers</span><span class="anbd am">15</span></div>
+        <div class="ani" data-atab="agents"><span class="anicon">A</span><span class="anlbl">Agents</span></div>
+        <div class="ansl">Content</div>
+        <div class="ani" data-atab="listings"><span class="anicon">L</span><span class="anlbl">Listings</span></div>
+        <div class="ani" data-atab="jobs_admin"><span class="anicon">J</span><span class="anlbl">Job Board</span></div>
+        <div class="ani" data-atab="land_admin"><span class="anicon">P</span><span class="anlbl">Land</span></div>
+        <div class="ansl">Finance</div>
+        <div class="ani" data-atab="payments"><span class="anicon">$</span><span class="anlbl">Payments</span></div>
+        <div class="ani" data-atab="referrals"><span class="anicon">R</span><span class="anlbl">Referrals</span></div>
+        <div class="ansl">Operations</div>
+        <div class="ani" data-atab="users"><span class="anicon">U</span><span class="anlbl">Users</span></div>
+        <div class="ani" data-atab="disputes"><span class="anicon">X</span><span class="anlbl">Disputes</span><span class="anbd">3</span></div>
+        <div class="ani" data-atab="settings"><span class="anicon">S</span><span class="anlbl">Settings</span></div>
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid #1A1A1A">
+          <div class="ani" id="btn-exit-admin"><span class="anicon">B</span><span class="anlbl">Back to site</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="admm">
+      <div class="admtop">
+        <div class="admtopt" id="atitle">Dashboard</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button id="btn-admin-export" style="padding:7px 12px;font-size:11px;font-weight:700;border-radius:6px;cursor:pointer;border:1px solid var(--bd);background:#fff;color:var(--body)">Export</button>
+          <div id="admin-avatar" style="width:30px;height:30px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;cursor:pointer">A</div>
+        </div>
+      </div>
+      <div class="admc" id="acontent"></div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
