@@ -399,6 +399,7 @@ footer{background:var(--off);border-top:1px solid var(--bd);padding:52px 40px 34
       <button class="na" data-goto="sec-svs">Services</button>
       <button class="na" data-goto="sec-jobs">Jobs</button>
       <button class="na" data-goto="sec-land">Land</button>
+      <button class="na" data-goto="sec-land-tips">Land guide</button>
       <button class="na" data-goto="sec-ref">Earn</button>
     </div>
     <div class="nr">
@@ -611,6 +612,26 @@ footer{background:var(--off);border-top:1px solid var(--bd);padding:52px 40px 34
   </div>
 </div>
 
+
+<!-- LAND SAFETY TIPS SECTION -->
+<div style="background:linear-gradient(135deg,#1a2a1a,#0d1a0d);padding:68px 0" id="sec-land-tips">
+<div class="sec" style="padding-top:0;padding-bottom:0">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+    <div style="font-size:10px;color:var(--g2);font-weight:700;letter-spacing:.09em;text-transform:uppercase">Safety guide</div>
+  </div>
+  <div class="stitle" style="color:#fff;margin-bottom:6px">Buying land in Uganda safely</div>
+  <p style="font-size:.88rem;color:rgba(255,255,255,.6);margin-bottom:28px;max-width:500px;line-height:1.7">Uganda land law has unique risks. Read this before paying anything. These are industry-standard checks used by licensed property lawyers.</p>
+  <div id="land-tips-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:28px"></div>
+  <div style="background:rgba(255,255,255,.05);border-radius:10px;border:1px solid rgba(255,255,255,.1);padding:18px;margin-bottom:20px">
+    <div style="font-size:.85rem;font-weight:800;color:#fff;margin-bottom:12px">Land tenure systems in Uganda</div>
+    <div id="tenure-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px"></div>
+  </div>
+  <div style="background:rgba(220,53,69,.1);border-radius:10px;border:1px solid rgba(220,53,69,.3);padding:16px">
+    <div style="font-size:.85rem;font-weight:800;color:#ff6b6b;margin-bottom:8px">&#9888; Critical warnings</div>
+    <div id="warnings-list"></div>
+  </div>
+</div>
+</div>
 <footer>
 <div class="fi">
   <div class="fg">
@@ -906,40 +927,7 @@ function doChip(chip){
   if(ti)ti.textContent=filtered.length+" properties";
 }
 
-function openListing(id){
-  var l=LL.find(function(x){return x.id===id;});
-  if(!l)return;
-  var cc=l.conf>=85?"var(--g)":l.conf>=65?"var(--bl)":"var(--am)";
-  var html="<div style='position:relative'>";
-  html+="<img src='"+l.img+"' style='width:100%;height:245px;object-fit:cover;border-radius:14px 14px 0 0' alt='"+l.name+"'>";
-  html+="<button id='btn-close-listing' style='position:absolute;top:12px;right:12px;width:27px;height:27px;border:none;background:rgba(255,255,255,.9);border-radius:50%;cursor:pointer;font-size:15px'>x</button>";
-  html+="</div>";
-  html+="<div style='padding:18px 20px 22px'>";
-  html+="<div style='display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:7px'>";
-  html+="<div><div style='font-size:1rem;font-weight:800;color:var(--dark)'>"+l.name+"</div><div style='font-size:.72rem;color:var(--muted);margin-top:3px'>"+l.area+" - "+l.type+"</div></div>";
-  html+="<div style='text-align:right'><div style='font-size:1.2rem;font-weight:900;color:var(--dark)'>UGX "+l.price.toLocaleString()+"</div><div style='font-size:10px;color:var(--muted)'>/month</div></div>";
-  html+="</div>";
-  html+="<div style='height:3px;background:var(--off);border-radius:4px;margin-bottom:4px'><div style='width:"+l.conf+"%;height:100%;background:"+cc+";border-radius:4px'></div></div>";
-  html+="<div style='font-size:10px;color:"+cc+";font-weight:700;margin-bottom:11px'>"+l.conf+"% trust score</div>";
-  html+="<p style='font-size:.83rem;color:var(--body);line-height:1.65;margin-bottom:13px'>"+l.desc+"</p>";
-  html+="<div style='background:var(--dark);border-radius:8px;padding:9px 12px;display:flex;gap:8px;align-items:center;margin-bottom:13px'>";
-  html+="<div style='font-size:1.2rem'>Lock</div><div><div style='font-weight:700;font-size:.83rem;color:#fff'>Landlord contact is locked</div><div style='font-size:.7rem;color:rgba(255,255,255,.6);margin-top:2px'>Pay UGX "+l.fee.toLocaleString()+" to unlock. Platform UGX 3,000 + Referrer UGX 2,000</div></div></div>";
-  html+="<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px'>";
-  html+="<button id='btn-listing-book' class='bp' style='margin:0'>Book viewing</button>";
-  html+="<button id='btn-listing-unlock' class='bp' style='margin:0;background:var(--bl)'>Unlock contact</button>";
-  html+="</div>";
-  html+="<button id='btn-listing-share' class='bg2' style='margin:0;font-size:12px'>Share and Earn UGX 2,000</button>";
-  html+="</div>";
-  document.getElementById("m-listing-b").innerHTML=html;
-  openM("m-listing");
-  document.getElementById("btn-close-listing").addEventListener("click",function(){closeM("m-listing");});
-  document.getElementById("btn-listing-book").addEventListener("click",function(){closeM("m-listing");openBooking(id);});
-  document.getElementById("btn-listing-unlock").addEventListener("click",function(){closeM("m-listing");openBooking(id);});
-  document.getElementById("btn-listing-share").addEventListener("click",function(){
-    if(navigator.clipboard)navigator.clipboard.writeText("rentright.ug/l/"+id);
-    toast("Link copied! Share to earn UGX 2,000");
-  });
-}
+
 
 function openBooking(id){
   if(!user){openAuth("login");return;}
@@ -1369,6 +1357,7 @@ document.addEventListener("DOMContentLoaded",function(){
       }
     });
   });
+  renderLandTips();
   document.querySelectorAll(".mtab[data-goto]").forEach(function(tab){
     tab.addEventListener("click",function(){
           var id=this.getAttribute("data-goto");
@@ -1564,61 +1553,7 @@ function initAdmin(){
 
 
 /* ═══ JOB VIEW - Provider sees full details, then accepts or counters ═══ */
-function openJobView(jid){
-  var j=JJ.find(function(x){return x.id===jid;});if(!j)return;
-  jobL=j;var comm=Math.round(j.budget*0.08);
-  var h="<div class='mhdr'><div><div class='mtit'>"+j.cat+" Job Details</div><div class='msub'>Review before accepting or making a counter offer</div></div><button id='jv-cl' class='mcl'>x</button></div>";
-  h+="<div class='mbody'>";
-  h+="<div style='background:var(--off);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--bd)'>";
-  h+="<div style='display:flex;align-items:center;gap:8px;margin-bottom:7px'><div style='width:10px;height:10px;border-radius:50%;background:"+j.col+";flex-shrink:0'></div><div style='font-size:.95rem;font-weight:800;color:var(--dark)'>"+j.title+"</div>"+(j.urgent?"<span style='background:var(--rdl);color:var(--rd);font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px'>URGENT</span>":"")+"</div>";
-  h+="<div style='font-size:.75rem;color:var(--muted);margin-bottom:8px'>Location: "+j.loc+" &nbsp; Posted: "+j.posted+"</div>";
-  h+="<div style='display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px'>"+j.tags.map(function(t){return"<span class='jtag'>"+t+"</span>";}).join("")+"</div>";
-  h+="<div style='font-size:1.2rem;font-weight:900;color:var(--dark);letter-spacing:-.04em'>UGX "+j.budget.toLocaleString()+"</div>";
-  h+="<div style='font-size:.75rem;color:var(--muted);margin-top:2px'>Platform commission (8%) = UGX "+comm.toLocaleString()+" &mdash; paid BEFORE client contact is revealed</div>";
-  h+="</div>";
-  h+="<div class='note nb'>Client contact details are revealed ONLY after you e-sign the commission agreement and pay UGX "+comm.toLocaleString()+" via MoMo.</div>";
-  h+="<div style='display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px'>";
-  h+="<button id='jv-accept' class='bp' style='margin:0;grid-column:1'>Accept job</button>";
-  h+="<button id='jv-counter' class='bg2' style='margin:0'>Counter offer</button>";
-  h+="<button id='jv-ask' class='bg2' style='margin:0'>Ask question</button>";
-  h+="</div>";
-  h+="<div id='jv-counter-box' style='display:none;background:var(--aml);border-radius:10px;padding:14px;border:1px solid rgba(212,133,58,.3);margin-bottom:10px'>";
-  h+="<div style='font-size:.85rem;font-weight:800;color:#78350F;margin-bottom:9px'>Make a counter offer</div>";
-  h+="<div class='field'><label>Your price (UGX)</label><input type='number' id='jv-cv' placeholder='e.g. "+(j.budget+15000)+"'></div>";
-  h+="<div class='field'><label>Message to client (optional)</label><input type='text' id='jv-cm' placeholder='Explain your pricing...'></div>";
-  h+="<p style='font-size:.72rem;color:#78350F;margin-bottom:8px'>If client accepts, you still pay 8% commission before contact is revealed.</p>";
-  h+="<button id='jv-send-counter' class='bp' style='background:var(--am)'>Send counter offer</button>";
-  h+="</div>";
-  h+="<div id='jv-ask-box' style='display:none;background:var(--bll);border-radius:10px;padding:14px;border:1px solid rgba(26,109,192,.2);margin-bottom:10px'>";
-  h+="<div style='font-size:.85rem;font-weight:800;color:#0F4B8C;margin-bottom:9px'>Ask the client a question</div>";
-  h+="<div class='field'><input type='text' id='jv-qtext' placeholder='e.g. What is the pipe size? Is water supply available?'></div>";
-  h+="<button id='jv-send-q' class='bp' style='background:var(--bl)'>Send question</button>";
-  h+="</div>";
-  h+="</div>";
-  document.getElementById("m-job-view-b").innerHTML=h;openM("m-job-view");
-  document.getElementById("jv-cl").addEventListener("click",function(){closeM("m-job-view");});
-  document.getElementById("jv-accept").addEventListener("click",function(){closeM("m-job-view");openAccept(jid);});
-  document.getElementById("jv-counter").addEventListener("click",function(){
-    var cb=document.getElementById("jv-counter-box"),ab=document.getElementById("jv-ask-box");
-    cb.style.display=cb.style.display==="none"?"block":"none";ab.style.display="none";
-  });
-  document.getElementById("jv-ask").addEventListener("click",function(){
-    var ab=document.getElementById("jv-ask-box"),cb=document.getElementById("jv-counter-box");
-    ab.style.display=ab.style.display==="none"?"block":"none";cb.style.display="none";
-  });
-  document.getElementById("jv-send-counter").addEventListener("click",function(){
-    var val=document.getElementById("jv-cv").value;
-    if(!val||parseInt(val)<1000){toast("Enter a valid counter offer amount");return;}
-    toast("Counter offer of UGX "+parseInt(val).toLocaleString()+" sent to client. You will be notified of their response.");
-    closeM("m-job-view");
-  });
-  document.getElementById("jv-send-q").addEventListener("click",function(){
-    var q=document.getElementById("jv-qtext").value;
-    if(!q.trim()){toast("Please type your question");return;}
-    toast("Question sent to client. They will reply shortly.");
-    closeM("m-job-view");
-  });
-}
+
 
 /* ═══ PROVIDER LIST BY SERVICE TYPE ═══ */
 function openProviderList(type){
@@ -1852,192 +1787,9 @@ function rProviderRows(){
 }
 
 /* ═══ UPDATED openAuth - role chooser then separate paths ═══ */
-function openAuth(mode){
-  buildAuthModal(mode||"choose");openM("m-auth");
-}
 
-function buildAuthModal(mode){
-  var h="<div class='mhdr'><div><div class='mtit'>Welcome to RentRight</div><div class='msub'>Uganda's verified housing marketplace</div></div><button id='auth-cl' class='mcl'>x</button></div><div class='mbody'>";
-  if(mode==="choose"){
-    h+="<div style='font-size:.85rem;font-weight:700;color:var(--body);margin-bottom:14px;text-align:center'>I am a...</div>";
-    h+="<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px'>";
-    var roles=[{id:"client",ico:"&#127968;",name:"Client",desc:"Looking for a home, hostel or service"},{id:"provider-signup",ico:"&#128295;",name:"Service Provider",desc:"Cleaner, mover, plumber etc"},{id:"landlord",ico:"&#127963;",name:"Landlord / Agent",desc:"List properties or manage tenants"},{id:"admin",ico:"&#9881;",name:"Admin",desc:"Platform administration"}];
-    for(var ri=0;ri<roles.length;ri++){var r=roles[ri];h+="<div class='auth-role-card' data-role='"+r.id+"'><div style='font-size:1.8rem;margin-bottom:7px'>"+r.ico+"</div><div style='font-size:.88rem;font-weight:800;color:var(--dark)'>"+r.name+"</div><div style='font-size:.72rem;color:var(--muted);margin-top:3px;line-height:1.4'>"+r.desc+"</div></div>";}
-    h+="</div></div>";
-    document.getElementById("m-auth-b").innerHTML=h;
-    document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
-    document.getElementById("m-auth-b").querySelectorAll(".auth-role-card").forEach(function(c){c.addEventListener("click",function(){buildAuthModal(this.getAttribute("data-role"));});});
-    return;
-  }
-  if(mode==="admin"){
-    h+="<div class='note nb' style='margin-bottom:14px'>Admin access is strictly controlled. Use your assigned admin credentials only.</div>";
-    h+="<div class='field'><label>Admin email</label><input type='email' id='adm-em' placeholder='admin@rentright.ug'></div>";
-    h+="<div class='field'><label>Admin password</label><input type='password' id='adm-pw' placeholder='Admin password'></div>";
-    h+="<div style='font-size:10px;color:var(--muted);margin-bottom:10px'>Demo: admin@rentright.ug / admin2025</div>";
-    h+="<button id='adm-login' class='bp'>Admin sign in</button><button id='adm-back' class='bg2'>Back</button></div>";
-    document.getElementById("m-auth-b").innerHTML=h;
-    document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
-    document.getElementById("adm-back").addEventListener("click",function(){buildAuthModal("choose");});
-    document.getElementById("adm-login").addEventListener("click",function(){
-      var em=document.getElementById("adm-em").value,pw=document.getElementById("adm-pw").value;
-      if(em==="admin@rentright.ug"&&pw==="admin2025"){user={name:"Admin",email:em,role:"admin"};closeM("m-auth");updateNav();setTimeout(function(){openAdminPanel();},300);}
-      else toast("Invalid admin credentials. Access denied.");
-    });
-    return;
-  }
-  if(mode==="client"){
-    h+="<div class='mttabs'><button class='mttab on' id='cl-ti'>Sign in</button><button class='mttab' id='cl-tu'>Create account</button></div>";
-    h+="<div class='field'><label>Email</label><input type='email' id='cl-em' placeholder='your@email.com'></div>";
-    h+="<div class='field'><label>Password</label><input type='password' id='cl-pw' placeholder='Password'></div>";
-    h+="<button id='cl-login' class='bp'>Sign in</button><div class='sdiv'>Or</div><button id='cl-google' class='sbtn2'>Continue with Google</button><button id='cl-back' class='bg2'>Back</button></div>";
-    document.getElementById("m-auth-b").innerHTML=h;
-    document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
-    document.getElementById("cl-back").addEventListener("click",function(){buildAuthModal("choose");});
-    document.getElementById("cl-ti").addEventListener("click",function(){buildAuthModal("client");});
-    document.getElementById("cl-tu").addEventListener("click",function(){buildAuthModal("client-signup");});
-    document.getElementById("cl-login").addEventListener("click",function(){
-      var em=document.getElementById("cl-em").value;if(!em){toast("Please enter your email");return;}
-      var btn=this;btn.textContent="Signing in...";btn.disabled=true;
-      setTimeout(function(){user={name:em.split("@")[0],email:em,role:"client",ref:"ref"+Math.random().toString(36).slice(2,8)};closeM("m-auth");updateNav();toast("Welcome back!");btn.textContent="Sign in";btn.disabled=false;},1300);
-    });
-    document.getElementById("cl-google").addEventListener("click",function(){user={name:"Google User",email:"user@gmail.com",role:"client",ref:"ref"+Math.random().toString(36).slice(2,8)};closeM("m-auth");updateNav();toast("Signed in with Google");});
-    return;
-  }
-  if(mode==="client-signup"){
-    h+="<div class='mttabs'><button class='mttab' id='cs-ti'>Sign in</button><button class='mttab on' id='cs-tu'>Create account</button></div>";
-    h+="<div class='frow'><div class='field'><label>First name</label><input type='text' id='cs-fn' placeholder='First name'></div><div class='field'><label>Last name</label><input type='text' id='cs-ln' placeholder='Last name'></div></div>";
-    h+="<div class='field'><label>Email</label><input type='email' id='cs-em' placeholder='your@email.com'></div>";
-    h+="<div class='field'><label>Phone (MTN or Airtel)</label><input type='tel' id='cs-ph' placeholder='0771 234 567'></div>";
-    h+="<div class='field'><label>Referral code (optional)</label><input type='text' placeholder='e.g. ref123abc'></div>";
-    h+="<div class='note ng'>Earn UGX 2,000 for every friend who pays a viewing fee through your referral link.</div>";
-    h+="<button id='cs-submit' class='bp'>Create client account</button><button id='cs-back' class='bg2'>Back</button></div>";
-    document.getElementById("m-auth-b").innerHTML=h;
-    document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
-    document.getElementById("cs-ti").addEventListener("click",function(){buildAuthModal("client");});
-    document.getElementById("cs-tu").addEventListener("click",function(){buildAuthModal("client-signup");});
-    document.getElementById("cs-back").addEventListener("click",function(){buildAuthModal("choose");});
-    document.getElementById("cs-submit").addEventListener("click",function(){
-      var fn=document.getElementById("cs-fn").value,em=document.getElementById("cs-em").value;
-      if(!fn||!em){toast("Please fill in your name and email");return;}
-      var btn=this;btn.textContent="Creating...";btn.disabled=true;
-      setTimeout(function(){user={name:fn,email:em,role:"client",ref:"ref"+Math.random().toString(36).slice(2,8)};closeM("m-auth");updateNav();toast("Welcome to RentRight "+fn+"!");},1300);
-    });
-    return;
-  }
-  if(mode==="landlord"){
-    h+="<div class='mttabs'><button class='mttab on' id='ll-ti'>Sign in</button><button class='mttab' id='ll-tu'>Register</button></div>";
-    h+="<div class='field'><label>Email</label><input type='email' id='ll-em' placeholder='your@email.com'></div>";
-    h+="<div class='field'><label>Password</label><input type='password' id='ll-pw' placeholder='Password'></div>";
-    h+="<div class='note ng' style='margin-bottom:8px'>Landlord and agent verification: NIN + property photos. Approved within 12 hours.</div>";
-    h+="<button id='ll-login' class='bp'>Sign in as Landlord</button><button id='ll-back' class='bg2'>Back</button></div>";
-    document.getElementById("m-auth-b").innerHTML=h;
-    document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
-    document.getElementById("ll-back").addEventListener("click",function(){buildAuthModal("choose");});
-    document.getElementById("ll-ti").addEventListener("click",function(){buildAuthModal("landlord");});
-    document.getElementById("ll-tu").addEventListener("click",function(){buildAuthModal("landlord-reg");});
-    document.getElementById("ll-login").addEventListener("click",function(){
-      var em=document.getElementById("ll-em").value;if(!em){toast("Please enter your email");return;}
-      var btn=this;btn.textContent="Signing in...";btn.disabled=true;
-      setTimeout(function(){user={name:em.split("@")[0],email:em,role:"landlord"};closeM("m-auth");updateNav();toast("Welcome back!");btn.textContent="Sign in as Landlord";btn.disabled=false;},1300);
-    });
-    return;
-  }
-  if(mode==="landlord-reg"){
-    h+="<div class='field'><label>Full name or business name</label><input type='text' id='lr-name' placeholder='Your name or business'></div>";
-    h+="<div class='frow'><div class='field'><label>Email</label><input type='email' id='lr-em'></div><div class='field'><label>Phone</label><input type='tel' id='lr-ph' placeholder='0771 234 567'></div></div>";
-    h+="<div style='background:var(--off);border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid var(--bd)'>";
-    h+="<div style='font-size:.85rem;font-weight:700;color:var(--dark);margin-bottom:11px'>National ID verification</div>";
-    h+="<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px'>";
-    h+=idUploadBox("lr-nf","NIN - Front","Upload front of NIN card");
-    h+=idUploadBox("lr-nb","NIN - Back","Upload back of NIN card");
-    h+="</div></div>";
-    h+="<button id='lr-submit' class='bp'>Submit landlord application</button><button id='lr-back' class='bg2'>Back</button></div>";
-    document.getElementById("m-auth-b").innerHTML=h;
-    document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
-    document.getElementById("lr-back").addEventListener("click",function(){buildAuthModal("landlord");});
-    wireIdBox("lr-nf","NIN Front");wireIdBox("lr-nb","NIN Back");
-    document.getElementById("lr-submit").addEventListener("click",function(){
-      var n=document.getElementById("lr-name").value;if(!n){toast("Please enter your name");return;}
-      toast("Landlord application submitted. Admin reviews within 12 hours. You will receive an SMS once approved.");closeM("m-auth");
-    });
-    return;
-  }
-  if(mode==="provider-signup"){
-    h+="<div class='note na2' style='margin-bottom:12px'><strong>Strict verification required:</strong> NIN front and back, Guarantor NIN front and back, LC letter. Admin reviews within 48 hours.</div>";
-    h+="<div class='frow'><div class='field'><label>Full legal name</label><input type='text' id='ps-name' placeholder='As on your NIN'></div><div class='field'><label>Phone</label><input type='tel' id='ps-ph' placeholder='0771 234 567'></div></div>";
-    h+="<div class='field'><label>Service type</label><select class='ss' id='ps-type' style='width:100%'><option>Laundry</option><option>Movers</option><option>Cleaners</option><option>Packing Helpers</option><option>Plumbers</option><option>Electricians</option><option>Security Guards</option><option>Gardeners</option><option>Carpentry</option><option>Painting</option></select></div>";
-    h+="<div class='frow'><div class='field'><label>Area(s) served</label><input type='text' placeholder='e.g. Kisaasi, Ntinda'></div><div class='field'><label>Your rate</label><input type='text' placeholder='e.g. UGX 20,000/session'></div></div>";
-    // Provider NIN
-    h+="<div style='background:var(--off);border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid var(--bd)'>";
-    h+="<div style='font-size:.85rem;font-weight:700;color:var(--dark);margin-bottom:11px'>Your National ID (NIN)</div>";
-    h+="<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px'>";
-    h+=idUploadBox("ps-nf","NIN - Front","Tap to upload photo");
-    h+=idUploadBox("ps-nb","NIN - Back","Tap to upload photo");
-    h+="</div></div>";
-    // Guarantor NIN
-    h+="<div style='background:var(--off);border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid var(--bd)'>";
-    h+="<div style='font-size:.85rem;font-weight:700;color:var(--dark);margin-bottom:8px'>Guarantor details</div>";
-    h+="<div class='frow'><div class='field'><label>Guarantor full name</label><input type='text' id='ps-gn' placeholder='Guarantor name'></div><div class='field'><label>Guarantor phone</label><input type='tel' id='ps-gp' placeholder='0771 234 567'></div></div>";
-    h+="<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px'>";
-    h+=idUploadBox("ps-gf","Guarantor NIN - Front","Tap to upload photo");
-    h+=idUploadBox("ps-gb","Guarantor NIN - Back","Tap to upload photo");
-    h+="</div></div>";
-    // LC Letter
-    h+="<div style='background:var(--off);border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid var(--bd)'>";
-    h+="<div style='font-size:.85rem;font-weight:700;color:var(--dark);margin-bottom:8px'>Local Council (LC) Letter</div>";
-    h+="<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px'>";
-    h+=idUploadBox("ps-lc","LC Letter","Tap to upload (photo or PDF)");
-    h+="<div style='background:var(--bll);border-radius:8px;padding:11px;font-size:.72rem;color:#0F4B8C;line-height:1.6'>Letter from your LC chairman confirming good character and residency in stated area.</div>";
-    h+="</div></div>";
-    // Physical verification option
-    h+="<div class='field'><label style='display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--body)'><input type='checkbox' id='ps-phys' style='accent-color:var(--g);margin-top:2px;width:15px;height:15px;flex-shrink:0'> Request physical verification (optional) - A RentRight agent visits your address. Pay UGX 30,000 via MoMo. Earns you a Field Verified badge.</label></div>";
-    h+="<div id='ps-phys-form' style='display:none'><div class='field'><label>MoMo number for verification fee</label><input type='tel' id='ps-pmomo' placeholder='0771 234 567'></div></div>";
-    // Agreement + signature
-    h+="<div class='esbox' style='margin-top:10px'>Provider Agreement. I agree to pay RentRight Uganda 8% commission on all jobs obtained through the platform. I confirm all documents are genuine. Submitting false documents results in permanent ban and possible criminal charges. I consent to NIN verification and guarantor contact by RentRight admin. Physical address verification may occur at any time.</div>";
-    h+="<div class='espanel'><div class='eslbl'>Electronic Signature</div><div class='esfields'><input class='esinp' id='ps-sign' placeholder='Type your full name to sign'><input class='esinp' value='"+new Date().toLocaleDateString()+"' readonly></div><label class='esch'><input type='checkbox' id='ps-agree'> I have read and agree to the Provider Agreement. This is my legal digital signature recorded with IP address, device ID and timestamp.</label><div style='font-size:9px;color:#5A5A5A;margin-top:4px'>Stored: IP address, device ID, timestamp, browser fingerprint</div></div>";
-    h+="<div id='ps-prog' style='display:none;height:3px;background:var(--bd);border-radius:4px;overflow:hidden;margin-top:10px'><div id='ps-prog-fill' style='height:100%;background:var(--g);border-radius:4px;width:0%;transition:width .4s'></div></div>";
-    h+="<button id='ps-submit' class='bp' style='margin-top:12px'>Submit Provider Application</button><button id='ps-back' class='bg2'>Back</button></div>";
-    document.getElementById("m-auth-b").innerHTML=h;
-    document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
-    document.getElementById("ps-back").addEventListener("click",function(){buildAuthModal("choose");});
-    wireIdBox("ps-nf","NIN Front");wireIdBox("ps-nb","NIN Back");
-    wireIdBox("ps-gf","Guarantor NIN Front");wireIdBox("ps-gb","Guarantor NIN Back");
-    wireIdBox("ps-lc","LC Letter");
-    document.getElementById("ps-phys").addEventListener("change",function(){
-      var f=document.getElementById("ps-phys-form");if(f)f.style.display=this.checked?"block":"none";
-    });
-    document.getElementById("ps-submit").addEventListener("click",function(){
-      var name=document.getElementById("ps-name").value,sign=document.getElementById("ps-sign").value,agreed=document.getElementById("ps-agree").checked;
-      if(!name){toast("Please enter your full legal name");return;}
-      if(!sign){toast("Please type your name in the signature field");return;}
-      if(!agreed){toast("Please accept the Provider Agreement");return;}
-      var btn=this,prog=document.getElementById("ps-prog"),fill=document.getElementById("ps-prog-fill");
-      btn.textContent="Uploading documents...";btn.disabled=true;
-      if(prog)prog.style.display="block";
-      var pct=0,interval=setInterval(function(){pct+=8;if(fill)fill.style.width=Math.min(pct,100)+"%";if(pct>=100){clearInterval(interval);closeM("m-auth");toast("Application submitted! Admin reviews within 48 hours. You will receive an SMS once approved.");}},200);
-    });
-    return;
-  }
-  if(mode==="provider-login"){
-    h+="<div class='mttabs'><button class='mttab on' id='pl-ti'>Sign in</button><button class='mttab' id='pl-tu'>Register</button></div>";
-    h+="<div class='field'><label>Email or phone</label><input type='email' id='pl-em' placeholder='your@email.com'></div>";
-    h+="<div class='field'><label>Password</label><input type='password' id='pl-pw' placeholder='Password'></div>";
-    h+="<button id='pl-login' class='bp'>Sign in as Provider</button><button id='pl-back' class='bg2'>Back</button></div>";
-    document.getElementById("m-auth-b").innerHTML=h;
-    document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
-    document.getElementById("pl-back").addEventListener("click",function(){buildAuthModal("choose");});
-    document.getElementById("pl-ti").addEventListener("click",function(){buildAuthModal("provider-login");});
-    document.getElementById("pl-tu").addEventListener("click",function(){buildAuthModal("provider-signup");});
-    document.getElementById("pl-login").addEventListener("click",function(){
-      var em=document.getElementById("pl-em").value;if(!em){toast("Please enter your email or phone");return;}
-      var btn=this;btn.textContent="Signing in...";btn.disabled=true;
-      setTimeout(function(){user={name:em.split("@")[0],email:em,role:"provider"};closeM("m-auth");updateNav();toast("Welcome back Provider!");btn.textContent="Sign in as Provider";btn.disabled=false;},1300);
-    });
-    return;
-  }
-  // Fallback
-  buildAuthModal("choose");
-}
+
+
 
 function idUploadBox(boxId,label,hint){
   return "<div id='box-"+boxId+"' data-inp='inp-"+boxId+"' style='border:1.5px dashed var(--bd);border-radius:8px;padding:13px;text-align:center;cursor:pointer;transition:all .18s;background:#fff'><div style='font-size:1.3rem;margin-bottom:4px'>&#127988;</div><div style='font-size:.75rem;font-weight:700;color:var(--body);margin-bottom:2px'>"+label+"</div><div id='st-"+boxId+"' style='font-size:.65rem;color:var(--muted)'>"+hint+"</div><input type='file' accept='image/*,.pdf' style='display:none' id='inp-"+boxId+"'></div>";
@@ -2082,26 +1834,588 @@ function showAdminPrompt(type,title,sub,desc,actions){
 }
 
 /* ═══ UPDATED rJobs - cards open job view instead of accept ═══ */
+
+
+/* ═══ UPDATED updateNav ═══ */
+
+
+
+
+
+
+
+/* ═══ ADMIN LOGIN FIX - openAdminPanel must exist ═══ */
+function openAdminPanel(){
+  var el=document.getElementById("admp");
+  if(el){el.style.display="block";document.body.style.overflow="hidden";}
+  renderAdmin("overview");
+}
+function exitAdmin(){
+  var el=document.getElementById("admp");
+  if(el){el.style.display="none";document.body.style.overflow="";}
+}
+
+/* ═══ PROPERTY CHECKLIST (10 items) ═══ */
+var CHECKLIST_DATA = {
+  1:{utils:1,title:1,fam:0,dev:1,road:1,water:1,sec:1,mkt:1,transport:1,struct:1},
+  2:{utils:1,title:1,fam:0,dev:1,road:1,water:1,sec:1,mkt:1,transport:1,struct:1},
+  3:{utils:1,title:1,fam:0,dev:1,road:1,water:0,sec:1,mkt:1,transport:1,struct:0},
+  4:{utils:0,title:0,fam:1,dev:0,road:0,water:0,sec:0,mkt:0,transport:0,struct:0},
+  5:{utils:1,title:1,fam:0,dev:1,road:1,water:1,sec:1,mkt:1,transport:1,struct:1},
+  6:{utils:1,title:1,fam:0,dev:1,road:1,water:1,sec:1,mkt:1,transport:1,struct:1},
+  7:{utils:1,title:1,fam:0,dev:1,road:1,water:1,sec:1,mkt:1,transport:1,struct:1},
+  8:{utils:1,title:1,fam:0,dev:1,road:1,water:0,sec:0,mkt:1,transport:1,struct:0}
+};
+var CHECKLIST_ITEMS=[
+  {key:"utils",label:"Utilities nearby",desc:"Electricity (UMEME), water supply on or near the plot",good:"Yes",bad:"No"},
+  {key:"title",label:"Land title verified",desc:"Registered title confirmed at Ministry of Lands",good:"Verified",bad:"Unverified"},
+  {key:"fam",label:"Family land issue",desc:"Requires spouse/family consent for valid sale",good:"None",bad:"Risk",invert:1},
+  {key:"dev",label:"Developed neighbourhood",desc:"Schools, hospitals, shops, police within reasonable distance",good:"Yes",bad:"No"},
+  {key:"road",label:"Road access",desc:"Paved or all-weather gravel access road",good:"Good",bad:"Poor"},
+  {key:"water",label:"Piped water (NWSC)",desc:"NWSC piped water on-site or nearby",good:"Available",bad:"None"},
+  {key:"sec",label:"Security",desc:"Police station, neighbourhood watch or estate security nearby",good:"Good","bad":"Poor"},
+  {key:"mkt",label:"Market and shops",desc:"Commercial centre or market within 2km",good:"Yes",bad:"No"},
+  {key:"transport",label:"Transport links",desc:"Taxi or boda stage within walking distance",good:"Good",bad:"Poor"},
+  {key:"struct",label:"Structure condition",desc:"Property structure is sound and habitable",good:"Good",bad:"Issues"}
+];
+
+function openPropertyChecklist(id){
+  var l=LL.find(function(x){return x.id===id;});if(!l)return;
+  var chk=CHECKLIST_DATA[id]||{};
+  var score=0,total=CHECKLIST_ITEMS.length;
+  var rows="";
+  for(var i=0;i<CHECKLIST_ITEMS.length;i++){
+    var item=CHECKLIST_ITEMS[i];
+    var val=chk[item.key];
+    var pass=item.invert?(val?0:1):(val?1:0);
+    if(pass)score++;
+    var color=pass?"var(--g)":"var(--rd)";
+    var icon=pass?"&#10003;":"&#10007;";
+    var statusTxt=pass?item.good:item.bad;
+    rows+="<div style='display:flex;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:1px solid var(--off)'>";
+    rows+="<div style='width:26px;height:26px;border-radius:50%;background:"+(pass?"var(--g2l)":"var(--rdl)")+";color:"+color+";display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0'>"+icon+"</div>";
+    rows+="<div style='flex:1'><div style='font-size:.85rem;font-weight:700;color:var(--dark)'>"+item.label+"</div><div style='font-size:.72rem;color:var(--muted);margin-top:1px;line-height:1.4'>"+item.desc+"</div></div>";
+    rows+="<div style='font-size:.78rem;font-weight:700;color:"+color+";white-space:nowrap;flex-shrink:0'>"+statusTxt+"</div></div>";
+  }
+  var pct=Math.round(score/total*100);
+  var overall=pct>=80?"Excellent":pct>=60?"Good":pct>=40?"Fair":"Poor";
+  var ocol=pct>=80?"var(--g)":pct>=60?"var(--bl)":pct>=40?"var(--am)":"var(--rd)";
+  var h="<div class='mhdr'><div><div class='mtit'>Property Checklist</div><div class='msub'>"+l.name+" &bull; "+l.area+"</div></div><button id='chk-cl' class='mcl'>x</button></div>";
+  h+="<div class='mbody'>";
+  h+="<div style='background:var(--off);border-radius:10px;padding:16px;margin-bottom:14px;text-align:center;border:1px solid var(--bd)'>";
+  h+="<div style='font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px'>Overall score</div>";
+  h+="<div style='font-size:2.4rem;font-weight:900;color:"+ocol+";letter-spacing:-.06em;line-height:1'>"+score+"/"+total+"</div>";
+  h+="<div style='font-size:.85rem;font-weight:700;color:"+ocol+";margin-top:3px'>"+overall+"</div>";
+  h+="<div style='height:6px;background:var(--bd);border-radius:4px;overflow:hidden;margin-top:10px'><div style='width:"+pct+"%;height:100%;background:"+ocol+";border-radius:4px;transition:width .6s ease'></div></div>";
+  h+="</div>";
+  h+=rows;
+  h+="<div class='note na2' style='margin-top:12px'><strong>Important:</strong> This checklist is based on available data. Always conduct your own physical inspection and engage a registered lawyer and surveyor before any payment.</div>";
+  h+="<button id='chk-book' class='bp' style='margin-top:10px'>Book viewing to confirm in person</button>";
+  h+="<button id='chk-cl2' class='bg2'>Close</button>";
+  h+="</div>";
+  document.getElementById("m-land-b").innerHTML=h;
+  openM("m-land");
+  document.getElementById("chk-cl").addEventListener("click",function(){closeM("m-land");});
+  document.getElementById("chk-cl2").addEventListener("click",function(){closeM("m-land");});
+  document.getElementById("chk-book").addEventListener("click",function(){closeM("m-land");openBooking(id);});
+}
+
+/* ═══ UPDATED openListing - adds checklist button ═══ */
+function openListing(id){
+  var l=LL.find(function(x){return x.id===id;});if(!l)return;
+  var cc=l.conf>=85?"var(--g)":l.conf>=65?"var(--bl)":"var(--am)";
+  var h="<div style='position:relative'>";
+  h+="<img src='"+l.img+"' style='width:100%;height:245px;object-fit:cover;border-radius:14px 14px 0 0' alt='"+l.name+"'>";
+  h+="<button id='ls-cl' style='position:absolute;top:12px;right:12px;width:27px;height:27px;border:none;background:rgba(255,255,255,.9);border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center'>x</button>";
+  h+="</div><div style='padding:18px 20px 22px'>";
+  h+="<div style='display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:7px'>";
+  h+="<div><div style='font-size:1rem;font-weight:800;color:var(--dark)'>"+l.name+"</div><div style='font-size:.72rem;color:var(--muted);margin-top:3px'>"+l.area+" &bull; "+l.type+"</div></div>";
+  h+="<div style='text-align:right'><div style='font-size:1.2rem;font-weight:900;color:var(--dark)'>UGX "+l.price.toLocaleString()+"</div><div style='font-size:10px;color:var(--muted)'>/month</div></div></div>";
+  h+="<div style='height:3px;background:var(--off);border-radius:4px;margin-bottom:4px'><div style='width:"+l.conf+"%;height:100%;background:"+cc+";border-radius:4px'></div></div>";
+  h+="<div style='font-size:10px;color:"+cc+";font-weight:700;margin-bottom:11px'>"+l.conf+"% trust score</div>";
+  h+="<p style='font-size:.83rem;color:var(--body);line-height:1.65;margin-bottom:13px'>"+l.desc+"</p>";
+  // Checklist preview strip
+  var chk=CHECKLIST_DATA[id]||{};
+  var passed=CHECKLIST_ITEMS.filter(function(it){var v=chk[it.key];return it.invert?(v?0:1):(v?1:0);}).length;
+  h+="<div style='background:var(--off);border-radius:8px;padding:11px 13px;margin-bottom:13px;display:flex;align-items:center;gap:10px;cursor:pointer;border:1px solid var(--bd)' id='ls-chk-strip'>";
+  h+="<div style='width:34px;height:34px;border-radius:50%;background:"+(passed>=8?"var(--g2l)":passed>=6?"var(--aml)":"var(--rdl)")+";display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:900;color:"+(passed>=8?"var(--gd)":passed>=6?"#78350F":"var(--rd)")+";flex-shrink:0'>"+passed+"/"+CHECKLIST_ITEMS.length+"</div>";
+  h+="<div style='flex:1'><div style='font-size:.82rem;font-weight:700;color:var(--dark)'>Property checklist: "+(passed>=8?"Excellent":passed>=6?"Good":passed>=4?"Fair":"Poor")+"</div><div style='font-size:.7rem;color:var(--muted);margin-top:1px'>"+passed+" of "+CHECKLIST_ITEMS.length+" checks passed &mdash; Tap to view all details</div></div>";
+  h+="<div style='font-size:11px;font-weight:700;color:var(--g)'>View &rsaquo;</div></div>";
+  h+="<div style='background:var(--dark);border-radius:8px;padding:9px 12px;display:flex;gap:8px;align-items:center;margin-bottom:13px'>";
+  h+="<div style='font-size:1.1rem'>&#128274;</div><div><div style='font-weight:700;font-size:.83rem;color:#fff'>Landlord contact is locked</div><div style='font-size:.7rem;color:rgba(255,255,255,.6);margin-top:2px'>Pay UGX "+l.fee.toLocaleString()+" to unlock. Platform UGX 3,000 + Referrer UGX 2,000</div></div></div>";
+  h+="<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px'>";
+  h+="<button id='ls-book' class='bp' style='margin:0'>Book viewing</button>";
+  h+="<button id='ls-unlock' class='bp' style='margin:0;background:var(--bl)'>Unlock contact</button></div>";
+  h+="<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px'>";
+  h+="<button id='ls-chk-btn' class='bg2' style='margin:0;font-size:12px'>View checklist</button>";
+  h+="<button id='ls-share' class='bg2' style='margin:0;font-size:12px'>Share &amp; Earn</button></div></div>";
+  document.getElementById("m-listing-b").innerHTML=h;openM("m-listing");
+  document.getElementById("ls-cl").addEventListener("click",function(){closeM("m-listing");});
+  document.getElementById("ls-book").addEventListener("click",function(){closeM("m-listing");openBooking(id);});
+  document.getElementById("ls-unlock").addEventListener("click",function(){closeM("m-listing");openBooking(id);});
+  document.getElementById("ls-share").addEventListener("click",function(){if(navigator.clipboard)navigator.clipboard.writeText("rentright.ug/l/"+id);toast("Link copied! Share to earn UGX 2,000");});
+  document.getElementById("ls-chk-strip").addEventListener("click",function(){closeM("m-listing");openPropertyChecklist(id);});
+  document.getElementById("ls-chk-btn").addEventListener("click",function(){closeM("m-listing");openPropertyChecklist(id);});
+}
+
+/* ═══ STEPWISE SIGNUP with doc preview ═══ */
+function openAuth(mode){buildAuthModal(mode||"choose");openM("m-auth");}
+
+function buildAuthModal(mode){
+  var h="<div class='mhdr'><div><div class='mtit'>Welcome to RentRight</div><div class='msub'>Uganda's verified housing marketplace</div></div><button id='auth-cl' class='mcl'>x</button></div><div class='mbody'>";
+  if(mode==="choose"){
+    h+="<div style='font-size:.85rem;font-weight:700;color:var(--body);margin-bottom:14px;text-align:center'>I am a...</div>";
+    h+="<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px'>";
+    var roles=[{id:"client",ico:"&#127968;",name:"Client / Tenant",desc:"Looking for a home, hostel or service"},{id:"provider-step",ico:"&#128295;",name:"Service Provider",desc:"Cleaner, mover, plumber, electrician etc"},{id:"landlord",ico:"&#127963;",name:"Landlord / Agent",desc:"List properties or manage tenants"},{id:"admin",ico:"&#9881;",name:"Admin",desc:"Platform administration only"}];
+    for(var ri=0;ri<roles.length;ri++){var r=roles[ri];h+="<div class='auth-role-card' data-role='"+r.id+"'><div style='font-size:1.8rem;margin-bottom:7px'>"+r.ico+"</div><div style='font-size:.88rem;font-weight:800;color:var(--dark)'>"+r.name+"</div><div style='font-size:.72rem;color:var(--muted);margin-top:3px;line-height:1.4'>"+r.desc+"</div></div>";}
+    h+="</div></div>";
+    document.getElementById("m-auth-b").innerHTML=h;
+    document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+    document.getElementById("m-auth-b").querySelectorAll(".auth-role-card").forEach(function(c){c.addEventListener("click",function(){buildAuthModal(this.getAttribute("data-role"));});});
+    return;
+  }
+  /* ── ADMIN ── */
+  if(mode==="admin"){
+    h+="<div class='note nb' style='margin-bottom:14px'>Admin access is strictly controlled. Use your assigned credentials only.</div>";
+    h+="<div class='field'><label>Admin email</label><input type='email' id='adm-em' placeholder='admin@rentright.ug' value='admin@rentright.ug'></div>";
+    h+="<div class='field'><label>Admin password</label><input type='password' id='adm-pw' placeholder='Admin password'></div>";
+    h+="<div style='font-size:10px;color:var(--muted);margin-bottom:10px'>Demo credentials: admin@rentright.ug / admin2025</div>";
+    h+="<button id='adm-login' class='bp'>Sign in to Admin Panel</button><button id='adm-back' class='bg2'>Back</button></div>";
+    document.getElementById("m-auth-b").innerHTML=h;
+    document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+    document.getElementById("adm-back").addEventListener("click",function(){buildAuthModal("choose");});
+    document.getElementById("adm-login").addEventListener("click",function(){
+      var em=document.getElementById("adm-em").value.trim();
+      var pw=document.getElementById("adm-pw").value;
+      if(em==="admin@rentright.ug"&&pw==="admin2025"){
+        user={name:"Admin",email:em,role:"admin"};
+        closeM("m-auth");updateNav();
+        setTimeout(function(){openAdminPanel();},300);
+      }else{
+        toast("Invalid admin credentials. Access denied.");
+        var inp=document.getElementById("adm-pw");
+        if(inp){inp.style.borderColor="var(--rd)";}
+      }
+    });
+    return;
+  }
+  /* ── CLIENT SIGN-IN ── */
+  if(mode==="client"){
+    h+="<div class='mttabs'><button class='mttab on' id='cl-ti'>Sign in</button><button class='mttab' id='cl-tu'>Create account</button></div>";
+    h+="<div class='field'><label>Email</label><input type='email' id='cl-em' placeholder='your@email.com'></div>";
+    h+="<div class='field'><label>Password</label><input type='password' id='cl-pw' placeholder='Password'></div>";
+    h+="<button id='cl-login' class='bp'>Sign in</button>";
+    h+="<div class='sdiv'>Or continue with</div><button id='cl-google' class='sbtn2'>&#128515; Google</button><button id='cl-apple' class='sbtn2'>&#127822; Apple</button>";
+    h+="<button id='cl-back' class='bg2'>Back</button></div>";
+    document.getElementById("m-auth-b").innerHTML=h;
+    document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+    document.getElementById("cl-back").addEventListener("click",function(){buildAuthModal("choose");});
+    document.getElementById("cl-ti").addEventListener("click",function(){buildAuthModal("client");});
+    document.getElementById("cl-tu").addEventListener("click",function(){buildAuthModal("client-step",1);});
+    document.getElementById("cl-login").addEventListener("click",function(){
+      var em=document.getElementById("cl-em").value.trim();if(!em){toast("Please enter your email");return;}
+      var btn=this;btn.textContent="Signing in...";btn.disabled=true;
+      setTimeout(function(){user={name:em.split("@")[0],email:em,role:"client",ref:"ref"+Math.random().toString(36).slice(2,8)};closeM("m-auth");updateNav();toast("Welcome back!");btn.textContent="Sign in";btn.disabled=false;},1200);
+    });
+    document.getElementById("cl-google").addEventListener("click",function(){user={name:"Google User",email:"user@gmail.com",role:"client",ref:"ref"+Math.random().toString(36).slice(2,8)};closeM("m-auth");updateNav();toast("Signed in with Google");});
+    document.getElementById("cl-apple").addEventListener("click",function(){user={name:"Apple User",email:"user@apple.com",role:"client",ref:"ref"+Math.random().toString(36).slice(2,8)};closeM("m-auth");updateNav();toast("Signed in with Apple");});
+    return;
+  }
+  /* ── CLIENT SIGNUP STEPS ── */
+  if(mode==="client-step"){
+    var step=arguments[1]||1;
+    var stepData=window._csData||{};
+    var stepLabels=["Account","Verify","Done"];
+    var sb=stepLabels.map(function(s,i){return"<div class='si "+(step===i+1?"on":step>i+1?"dn":"")+"'>"+(step>i+1?"&#10003; ":"")+s+"</div>";}).join("");
+    if(step===1){
+      h+="<div class='sbar'>"+sb+"</div>";
+      h+="<div style='font-size:.82rem;color:var(--muted);margin-bottom:14px'>Step 1 of 3: Basic information</div>";
+      h+="<div class='frow'><div class='field'><label>First name *</label><input type='text' id='cs-fn' placeholder='First name' value='"+(stepData.fn||"")+"'></div><div class='field'><label>Last name *</label><input type='text' id='cs-ln' placeholder='Last name' value='"+(stepData.ln||"")+"'></div></div>";
+      h+="<div class='field'><label>Email *</label><input type='email' id='cs-em' placeholder='your@email.com' value='"+(stepData.em||"")+"'></div>";
+      h+="<div class='field'><label>Phone (MTN or Airtel) *</label><input type='tel' id='cs-ph' placeholder='0771 234 567' value='"+(stepData.ph||"")+"'></div>";
+      h+="<div class='field'><label>Create password *</label><input type='password' id='cs-pw' placeholder='At least 8 characters'></div>";
+      h+="<div class='field'><label>Referral code (optional)</label><input type='text' id='cs-ref' placeholder='e.g. ref123abc'></div>";
+      h+="<div class='note ng'>Earn UGX 2,000 for every friend who pays a viewing fee through your referral link.</div>";
+      h+="<button id='cs-next' class='bp'>Continue &rarr;</button><button id='cs-back' class='bg2'>Back</button></div>";
+      document.getElementById("m-auth-b").innerHTML=h;
+      document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+      document.getElementById("cs-back").addEventListener("click",function(){buildAuthModal("client");});
+      document.getElementById("cs-next").addEventListener("click",function(){
+        var fn=document.getElementById("cs-fn").value.trim(),ln=document.getElementById("cs-ln").value.trim(),em=document.getElementById("cs-em").value.trim(),ph=document.getElementById("cs-ph").value.trim(),pw=document.getElementById("cs-pw").value;
+        if(!fn||!em||!ph){toast("Please fill in all required fields");return;}
+        if(pw.length<8){toast("Password must be at least 8 characters");return;}
+        window._csData={fn:fn,ln:ln,em:em,ph:ph,pw:pw};
+        buildAuthModal("client-step",2);
+      });
+    }else if(step===2){
+      h+="<div class='sbar'>"+sb+"</div>";
+      h+="<div style='font-size:.82rem;color:var(--muted);margin-bottom:14px'>Step 2 of 3: Verify phone number</div>";
+      h+="<div class='note nb' style='margin-bottom:14px'>An OTP has been sent to <strong>"+(stepData.ph||"your number")+"</strong>. Enter it below to verify your account.</div>";
+      h+="<div class='field'><label>OTP code *</label><input type='text' id='cs-otp' placeholder='Enter 6-digit OTP' maxlength='6' style='font-size:1.4rem;letter-spacing:.15em;text-align:center;font-weight:700'></div>";
+      h+="<div style='text-align:center;margin-bottom:10px'><span style='font-size:.78rem;color:var(--muted)'>Didn't receive it? </span><button id='cs-resend' style='font-size:.78rem;font-weight:700;color:var(--g);border:none;background:none;cursor:pointer'>Resend OTP</button></div>";
+      h+="<button id='cs-verify' class='bp'>Verify and Continue &rarr;</button><button id='cs-back2' class='bg2'>Back</button></div>";
+      document.getElementById("m-auth-b").innerHTML=h;
+      document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+      document.getElementById("cs-back2").addEventListener("click",function(){buildAuthModal("client-step",1);});
+      document.getElementById("cs-resend").addEventListener("click",function(){toast("OTP resent to "+(stepData.ph||"your number"));});
+      // Auto-focus OTP input
+      setTimeout(function(){var o=document.getElementById("cs-otp");if(o)o.focus();},100);
+      document.getElementById("cs-verify").addEventListener("click",function(){
+        var otp=document.getElementById("cs-otp").value.trim();
+        if(!otp||otp.length<4){toast("Please enter the OTP code");return;}
+        var btn=this;btn.textContent="Verifying...";btn.disabled=true;
+        setTimeout(function(){buildAuthModal("client-step",3);},1000);
+      });
+    }else{
+      h+="<div class='sbar'>"+sb+"</div>";
+      h+="<div style='text-align:center;padding:16px 0 20px'>";
+      h+="<div style='font-size:3rem;margin-bottom:10px'>&#10003;</div>";
+      h+="<div style='font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:5px'>Account created!</div>";
+      h+="<div style='font-size:.82rem;color:var(--muted)'>Welcome to RentRight, "+(stepData.fn||"there")+"!</div></div>";
+      h+="<div class='note ng' style='margin-bottom:12px'>Your referral link is ready to share. Every friend who pays a viewing fee earns you UGX 2,000.</div>";
+      h+="<button id='cs-done' class='bp'>Start searching &rarr;</button></div>";
+      document.getElementById("m-auth-b").innerHTML=h;
+      document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+      document.getElementById("cs-done").addEventListener("click",function(){
+        user={name:(stepData.fn||"User"),email:(stepData.em||""),role:"client",ref:"ref"+Math.random().toString(36).slice(2,8)};
+        window._csData={};closeM("m-auth");updateNav();toast("Welcome to RentRight "+(user.name||"")+"!");
+      });
+    }
+    return;
+  }
+  /* ── LANDLORD SIGN-IN ── */
+  if(mode==="landlord"){
+    h+="<div class='mttabs'><button class='mttab on' id='ll-ti'>Sign in</button><button class='mttab' id='ll-tu'>Register</button></div>";
+    h+="<div class='field'><label>Email</label><input type='email' id='ll-em' placeholder='your@email.com'></div>";
+    h+="<div class='field'><label>Password</label><input type='password' id='ll-pw' placeholder='Password'></div>";
+    h+="<div class='note ng' style='margin-bottom:8px'>Verification: NIN + property photos. Approved within 12 hours.</div>";
+    h+="<button id='ll-login' class='bp'>Sign in as Landlord</button><button id='ll-back' class='bg2'>Back</button></div>";
+    document.getElementById("m-auth-b").innerHTML=h;
+    document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+    document.getElementById("ll-back").addEventListener("click",function(){buildAuthModal("choose");});
+    document.getElementById("ll-ti").addEventListener("click",function(){buildAuthModal("landlord");});
+    document.getElementById("ll-tu").addEventListener("click",function(){buildAuthModal("landlord-step",1);});
+    document.getElementById("ll-login").addEventListener("click",function(){
+      var em=document.getElementById("ll-em").value.trim();if(!em){toast("Please enter your email");return;}
+      var btn=this;btn.textContent="Signing in...";btn.disabled=true;
+      setTimeout(function(){user={name:em.split("@")[0],email:em,role:"landlord"};closeM("m-auth");updateNav();toast("Welcome back Landlord!");btn.textContent="Sign in as Landlord";btn.disabled=false;},1200);
+    });
+    return;
+  }
+  /* ── LANDLORD REGISTER STEPS ── */
+  if(mode==="landlord-step"){
+    var lstep=arguments[1]||1;
+    var ldata=window._llData||{};
+    var llabels=["Info","ID Docs","Done"];
+    var lsb=llabels.map(function(s,i){return"<div class='si "+(lstep===i+1?"on":lstep>i+1?"dn":"")+"'>"+(lstep>i+1?"&#10003; ":"")+s+"</div>";}).join("");
+    if(lstep===1){
+      h+="<div class='sbar'>"+lsb+"</div>";
+      h+="<div style='font-size:.82rem;color:var(--muted);margin-bottom:14px'>Step 1 of 3: Basic information</div>";
+      h+="<div class='field'><label>Full name or business name *</label><input type='text' id='ll-name' placeholder='Your name or business'></div>";
+      h+="<div class='frow'><div class='field'><label>Email *</label><input type='email' id='ll-rnem'></div><div class='field'><label>Phone *</label><input type='tel' id='ll-ph' placeholder='0771 234 567'></div></div>";
+      h+="<div class='field'><label>Role</label><select class='ss' id='ll-role' style='width:100%'><option>Landlord</option><option>Property Agent</option><option>Hostel Owner</option><option>Property Manager</option></select></div>";
+      h+="<button id='ll-step2' class='bp'>Continue &rarr;</button><button id='ll-step-back' class='bg2'>Back</button></div>";
+      document.getElementById("m-auth-b").innerHTML=h;
+      document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+      document.getElementById("ll-step-back").addEventListener("click",function(){buildAuthModal("landlord");});
+      document.getElementById("ll-step2").addEventListener("click",function(){
+        var n=document.getElementById("ll-name").value.trim(),em=document.getElementById("ll-rnem").value.trim(),ph=document.getElementById("ll-ph").value.trim();
+        if(!n||!em||!ph){toast("Please fill in all fields");return;}
+        window._llData={n:n,em:em,ph:ph};buildAuthModal("landlord-step",2);
+      });
+    }else if(lstep===2){
+      h+="<div class='sbar'>"+lsb+"</div>";
+      h+="<div style='font-size:.82rem;color:var(--muted);margin-bottom:14px'>Step 2 of 3: Identity documents</div>";
+      h+=buildDocUploadStep("ll");
+      h+="<button id='ll-step3' class='bp'>Submit Application &rarr;</button><button id='ll-s2back' class='bg2'>Back</button></div>";
+      document.getElementById("m-auth-b").innerHTML=h;
+      document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+      document.getElementById("ll-s2back").addEventListener("click",function(){buildAuthModal("landlord-step",1);});
+      wireDocUploads("ll");
+      document.getElementById("ll-step3").addEventListener("click",function(){
+        var btn=this;btn.textContent="Uploading...";btn.disabled=true;
+        simulateUpload(function(){buildAuthModal("landlord-step",3);});
+      });
+    }else{
+      h+="<div class='sbar'>"+lsb+"</div>";
+      h+="<div style='text-align:center;padding:16px 0 20px'><div style='font-size:3rem;margin-bottom:10px'>&#10003;</div><div style='font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:5px'>Application submitted!</div></div>";
+      h+="<div class='note na2'>Admin will review your documents within 12 hours. You will receive an SMS once approved and can then start listing properties.</div>";
+      h+="<button id='ll-done' class='bp'>OK, got it</button></div>";
+      document.getElementById("m-auth-b").innerHTML=h;
+      document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+      document.getElementById("ll-done").addEventListener("click",function(){closeM("m-auth");toast("Application submitted. Watch for SMS approval within 12 hours.");});
+    }
+    return;
+  }
+  /* ── PROVIDER STEPS ── */
+  if(mode==="provider-step"){
+    var pstep=arguments[1]||1;
+    var pdata=window._psData||{};
+    var plabels=["Info","Your ID","Guarantor","LC Letter","Agreement","Done"];
+    var psb=plabels.map(function(s,i){return"<div class='si "+(pstep===i+1?"on":pstep>i+1?"dn":"")+"' style='font-size:8px;padding:11px 4px'>"+(pstep>i+1?"&#10003; ":"")+s+"</div>";}).join("");
+    if(pstep===1){
+      h+="<div class='sbar'>"+psb+"</div>";
+      h+="<div style='font-size:.82rem;color:var(--muted);margin-bottom:12px'>Step 1 of 6: Personal information</div>";
+      h+="<div class='frow'><div class='field'><label>Full legal name *</label><input type='text' id='ps-name' placeholder='As on your NIN'></div><div class='field'><label>Phone *</label><input type='tel' id='ps-ph' placeholder='0771 234 567'></div></div>";
+      h+="<div class='field'><label>Email</label><input type='email' id='ps-em' placeholder='your@email.com'></div>";
+      h+="<div class='field'><label>Service type *</label><select class='ss' id='ps-type' style='width:100%'><option>Laundry</option><option>Movers</option><option>Cleaners</option><option>Packing Helpers</option><option>Plumbers</option><option>Electricians</option><option>Security Guards</option><option>Gardeners</option><option>Carpentry</option><option>Painting</option></select></div>";
+      h+="<div class='frow'><div class='field'><label>Area(s) served *</label><input type='text' placeholder='e.g. Kisaasi, Ntinda'></div><div class='field'><label>Your rate</label><input type='text' placeholder='e.g. UGX 20,000/session'></div></div>";
+      h+="<div class='note na2' style='margin-bottom:8px'><strong>Strict verification required:</strong> NIN (front &amp; back), Guarantor NIN (front &amp; back), LC letter. Admin reviews within 48 hours.</div>";
+      h+="<button id='ps-s2' class='bp'>Continue &rarr;</button><button id='ps-back' class='bg2'>Back</button></div>";
+      document.getElementById("m-auth-b").innerHTML=h;
+      document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+      document.getElementById("ps-back").addEventListener("click",function(){buildAuthModal("choose");});
+      document.getElementById("ps-s2").addEventListener("click",function(){
+        var n=document.getElementById("ps-name").value.trim(),ph=document.getElementById("ps-ph").value.trim(),t=document.getElementById("ps-type").value;
+        if(!n||!ph){toast("Please enter your full name and phone number");return;}
+        window._psData={n:n,ph:ph,t:t};buildAuthModal("provider-step",2);
+      });
+    }else if(pstep===2){
+      h+="<div class='sbar'>"+psb+"</div>";
+      h+="<div style='font-size:.82rem;color:var(--muted);margin-bottom:12px'>Step 2 of 6: Your National ID (NIN)</div>";
+      h+="<div class='note nb' style='margin-bottom:12px'>Upload clear photos of the <strong>front and back</strong> of your National ID card. Photos must be legible.</div>";
+      h+=buildTwoPhotoUpload("ps-nf","ps-nb","Your NIN - Front","Your NIN - Back");
+      h+="<button id='ps-s3' class='bp'>Continue &rarr;</button><button id='ps-2back' class='bg2'>Back</button></div>";
+      document.getElementById("m-auth-b").innerHTML=h;
+      document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+      document.getElementById("ps-2back").addEventListener("click",function(){buildAuthModal("provider-step",1);});
+      wireTwoPhotos("ps-nf","ps-nb");
+      document.getElementById("ps-s3").addEventListener("click",function(){buildAuthModal("provider-step",3);});
+    }else if(pstep===3){
+      h+="<div class='sbar'>"+psb+"</div>";
+      h+="<div style='font-size:.82rem;color:var(--muted);margin-bottom:12px'>Step 3 of 6: Guarantor details and ID</div>";
+      h+="<div class='note nb' style='margin-bottom:12px'>Your guarantor confirms your identity. They must upload both sides of their National ID.</div>";
+      h+="<div class='frow'><div class='field'><label>Guarantor full name *</label><input type='text' id='ps-gn' placeholder='Guarantor full name'></div><div class='field'><label>Guarantor phone *</label><input type='tel' id='ps-gph' placeholder='0771 234 567'></div></div>";
+      h+=buildTwoPhotoUpload("ps-gf","ps-gb","Guarantor NIN - Front","Guarantor NIN - Back");
+      h+="<button id='ps-s4' class='bp'>Continue &rarr;</button><button id='ps-3back' class='bg2'>Back</button></div>";
+      document.getElementById("m-auth-b").innerHTML=h;
+      document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+      document.getElementById("ps-3back").addEventListener("click",function(){buildAuthModal("provider-step",2);});
+      wireTwoPhotos("ps-gf","ps-gb");
+      document.getElementById("ps-s4").addEventListener("click",function(){
+        var gn=document.getElementById("ps-gn").value.trim(),gph=document.getElementById("ps-gph").value.trim();
+        if(!gn||!gph){toast("Please enter guarantor name and phone");return;}
+        buildAuthModal("provider-step",4);
+      });
+    }else if(pstep===4){
+      h+="<div class='sbar'>"+psb+"</div>";
+      h+="<div style='font-size:.82rem;color:var(--muted);margin-bottom:12px'>Step 4 of 6: Local Council (LC) letter</div>";
+      h+="<div class='note ng' style='margin-bottom:12px'>An LC1 letter confirms your residency and character. It must be signed by your local council chairman and stamped.</div>";
+      h+="<div style='background:var(--off);border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid var(--bd)'>";
+      h+="<div style='font-size:.82rem;font-weight:700;color:var(--dark);margin-bottom:10px'>Upload LC1 letter</div>";
+      h+=singlePhotoUpload("ps-lc","LC Letter or stamped document");
+      h+="</div>";
+      h+="<div class='field'><label style='display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--body)'><input type='checkbox' id='ps-phys' style='accent-color:var(--g);margin-top:2px;width:15px;height:15px;flex-shrink:0'> Request physical verification by a RentRight field agent (optional). Pay UGX 30,000 via MoMo to earn a <strong>Field Verified</strong> badge.</label></div>";
+      h+="<div id='ps-phys-box' style='display:none'><div class='field'><label>MoMo number for verification fee</label><input type='tel' id='ps-pmomo' placeholder='0771 234 567'></div></div>";
+      h+="<button id='ps-s5' class='bp'>Continue &rarr;</button><button id='ps-4back' class='bg2'>Back</button></div>";
+      document.getElementById("m-auth-b").innerHTML=h;
+      document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+      document.getElementById("ps-4back").addEventListener("click",function(){buildAuthModal("provider-step",3);});
+      wireSinglePhoto("ps-lc","LC Letter");
+      document.getElementById("ps-phys").addEventListener("change",function(){var b=document.getElementById("ps-phys-box");if(b)b.style.display=this.checked?"block":"none";});
+      document.getElementById("ps-s5").addEventListener("click",function(){buildAuthModal("provider-step",5);});
+    }else if(pstep===5){
+      h+="<div class='sbar'>"+psb+"</div>";
+      h+="<div style='font-size:.82rem;color:var(--muted);margin-bottom:12px'>Step 5 of 6: Agreement and e-signature</div>";
+      h+="<div class='esbox'>PROVIDER AGREEMENT<br><br>I, the undersigned, agree to the following terms:<br><br>1. I will pay RentRight Uganda a commission of 8% on all jobs obtained through the platform.<br>2. All documents I have submitted are genuine and accurate. Submitting false documents is a criminal offence under Ugandan law.<br>3. I consent to verification of my NIN at NIRA, contact of my guarantor, and physical inspection of my address at any time.<br>4. I will not contact clients outside the RentRight platform before paying the agreed commission.<br>5. Bypassing this agreement results in immediate permanent ban and civil recovery of any outstanding commission.<br>6. This digital signature is legally binding under the Electronic Transactions Act, Uganda 2011.<br><br>This signature is recorded with: IP address, device fingerprint, timestamp, and full name.</div>";
+      h+="<div class='espanel'><div class='eslbl'>Your electronic signature</div>";
+      h+="<div class='esfields'><input class='esinp' id='ps-sign' placeholder='Type your full legal name to sign'><input class='esinp' value='"+new Date().toLocaleDateString()+"' readonly></div>";
+      h+="<label class='esch'><input type='checkbox' id='ps-agree'> I have read, understood and agree to the Provider Agreement above. I confirm this constitutes my legal digital signature.</label>";
+      h+="<label class='esch' style='margin-top:6px'><input type='checkbox' id='ps-nin-con'> I confirm all uploaded documents are genuine and belong to me and my named guarantor.</label>";
+      h+="<div style='background:#1A2A1A;border:1px solid #2A3A2A;border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:8px;margin-top:8px'><span style='font-size:12px'>&#128274;</span><span style='font-size:10px;color:var(--g2);font-weight:600'>Signature secured: IP address + timestamp + device ID recorded</span></div>";
+      h+="</div>";
+      h+="<div id='ps-prog' style='display:none;height:4px;background:var(--bd);border-radius:4px;overflow:hidden;margin-top:12px'><div id='ps-prog-fill' style='height:100%;background:var(--g);border-radius:4px;width:0%;transition:width .3s'></div></div>";
+      h+="<button id='ps-submit' class='bp' style='margin-top:12px'>Submit Application</button><button id='ps-5back' class='bg2'>Back</button></div>";
+      document.getElementById("m-auth-b").innerHTML=h;
+      document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+      document.getElementById("ps-5back").addEventListener("click",function(){buildAuthModal("provider-step",4);});
+      document.getElementById("ps-submit").addEventListener("click",function(){
+        var sign=document.getElementById("ps-sign").value.trim();
+        var agreed=document.getElementById("ps-agree").checked;
+        var nincon=document.getElementById("ps-nin-con").checked;
+        if(!sign){toast("Please type your full name in the signature field");return;}
+        if(!agreed||!nincon){toast("Please accept both consent checkboxes to proceed");return;}
+        var btn=this,prog=document.getElementById("ps-prog"),fill=document.getElementById("ps-prog-fill");
+        btn.textContent="Submitting application...";btn.disabled=true;
+        if(prog)prog.style.display="block";
+        var pct=0,iv=setInterval(function(){pct+=7;if(fill)fill.style.width=Math.min(pct,100)+"%";if(pct>=100){clearInterval(iv);buildAuthModal("provider-step",6);}},180);
+      });
+    }else{
+      h+="<div class='sbar'>"+psb+"</div>";
+      h+="<div style='text-align:center;padding:16px 0 20px'><div style='font-size:3rem;margin-bottom:10px'>&#10003;</div><div style='font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:5px'>Application submitted!</div><div style='font-size:.82rem;color:var(--muted)'>Reference: APP-"+Math.random().toString(36).slice(2,8).toUpperCase()+"</div></div>";
+      h+="<div class='note ng'>Your documents are under review. Admin will verify within 48 hours. You will receive an SMS to "+(window._psData&&window._psData.ph?window._psData.ph:"your number")+" once approved.</div>";
+      h+="<div class='note na2'>While waiting: You can still browse jobs and note ones you want to accept once approved.</div>";
+      h+="<button id='ps-done' class='bp'>Got it, close</button></div>";
+      document.getElementById("m-auth-b").innerHTML=h;
+      document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+      document.getElementById("ps-done").addEventListener("click",function(){window._psData={};closeM("m-auth");toast("Application submitted. Watch for SMS within 48 hours.");});
+    }
+    return;
+  }
+  if(mode==="provider-login"){
+    h+="<div class='mttabs'><button class='mttab on' id='pl-ti'>Sign in</button><button class='mttab' id='pl-tu'>Register</button></div>";
+    h+="<div class='field'><label>Email or phone</label><input type='email' id='pl-em' placeholder='your@email.com'></div>";
+    h+="<div class='field'><label>Password</label><input type='password' id='pl-pw' placeholder='Password'></div>";
+    h+="<button id='pl-login' class='bp'>Sign in as Provider</button><button id='pl-back' class='bg2'>Back</button></div>";
+    document.getElementById("m-auth-b").innerHTML=h;
+    document.getElementById("auth-cl").addEventListener("click",function(){closeM("m-auth");});
+    document.getElementById("pl-back").addEventListener("click",function(){buildAuthModal("choose");});
+    document.getElementById("pl-ti").addEventListener("click",function(){buildAuthModal("provider-login");});
+    document.getElementById("pl-tu").addEventListener("click",function(){buildAuthModal("provider-step",1);});
+    document.getElementById("pl-login").addEventListener("click",function(){
+      var em=document.getElementById("pl-em").value.trim();if(!em){toast("Please enter your email or phone");return;}
+      var btn=this;btn.textContent="Signing in...";btn.disabled=true;
+      setTimeout(function(){user={name:em.split("@")[0],email:em,role:"provider"};closeM("m-auth");updateNav();toast("Welcome back Provider!");btn.textContent="Sign in as Provider";btn.disabled=false;},1200);
+    });
+    return;
+  }
+  buildAuthModal("choose");
+}
+
+/* ── DOC UPLOAD HELPERS ── */
+function buildDocUploadStep(prefix){
+  var h="<div style='background:var(--off);border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid var(--bd)'>";
+  h+="<div style='font-size:.85rem;font-weight:700;color:var(--dark);margin-bottom:10px'>National ID (NIN)</div>";
+  h+=buildTwoPhotoUpload(prefix+"-nf",prefix+"-nb","NIN - Front","NIN - Back");
+  h+="</div>";
+  return h;
+}
+function buildTwoPhotoUpload(id1,id2,lbl1,lbl2){
+  return"<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px'>"+singlePhotoUpload(id1,lbl1)+singlePhotoUpload(id2,lbl2)+"</div>";
+}
+function singlePhotoUpload(id,label){
+  return"<div id='box-"+id+"' style='border:1.5px dashed var(--bd);border-radius:8px;overflow:hidden;background:#fff;cursor:pointer'>"+
+    "<div id='prev-"+id+"' style='display:none;position:relative'><img id='img-"+id+"' style='width:100%;height:110px;object-fit:cover;display:block'><button id='del-"+id+"' style='position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;border:none;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center'>x</button></div>"+
+    "<div id='upl-"+id+"' style='padding:14px;text-align:center'>"+
+    "<div style='font-size:1.4rem;margin-bottom:4px'>&#128247;</div>"+
+    "<div style='font-size:.75rem;font-weight:700;color:var(--body);margin-bottom:2px'>"+label+"</div>"+
+    "<div id='st-"+id+"' style='font-size:.65rem;color:var(--muted)'>Tap to upload</div></div>"+
+    "<input type='file' accept='image/*,.pdf' style='display:none' id='inp-"+id+"'></div>";
+}
+function wireTwoPhotos(id1,id2){wirePhotoBox(id1);wirePhotoBox(id2);}
+function wireSinglePhoto(id){wirePhotoBox(id);}
+function wireDocUploads(prefix){wirePhotoBox(prefix+"-nf");wirePhotoBox(prefix+"-nb");}
+function wirePhotoBox(id){
+  var box=document.getElementById("box-"+id),inp=document.getElementById("inp-"+id);if(!box||!inp)return;
+  box.addEventListener("click",function(e){if(e.target.id==="del-"+id)return;inp.click();});
+  inp.addEventListener("change",function(){
+    if(this.files&&this.files[0]){
+      var file=this.files[0];
+      var reader=new FileReader();
+      reader.onload=function(ev){
+        var prev=document.getElementById("prev-"+id),uplDiv=document.getElementById("upl-"+id),img=document.getElementById("img-"+id),st=document.getElementById("st-"+id);
+        if(img)img.src=ev.target.result;
+        if(prev)prev.style.display="block";
+        if(uplDiv)uplDiv.style.display="none";
+        if(st)st.textContent=file.name;
+        var box2=document.getElementById("box-"+id);if(box2){box2.style.borderColor="var(--g2)";box2.style.borderStyle="solid";}
+        var del=document.getElementById("del-"+id);
+        if(del)del.addEventListener("click",function(e){e.stopPropagation();if(prev)prev.style.display="none";if(uplDiv)uplDiv.style.display="block";if(box2){box2.style.borderColor="var(--bd)";box2.style.borderStyle="dashed";}inp.value="";});
+      };
+      if(file.type.startsWith("image/")){reader.readAsDataURL(file);}
+      else{var st2=document.getElementById("st-"+id);if(st2)st2.textContent=file.name+" uploaded";var box3=document.getElementById("box-"+id);if(box3){box3.style.borderColor="var(--g2)";box3.style.borderStyle="solid";}}
+    }
+  });
+}
+function simulateUpload(cb){
+  var pct=0;
+  var iv=setInterval(function(){
+    pct+=12;
+    if(pct>=100){clearInterval(iv);setTimeout(cb,200);}
+  },150);
+}
+
+/* ═══ UPDATED JOB VIEW - responsive with proper chat ═══ */
+function openJobView(jid){
+  var j=JJ.find(function(x){return x.id===jid;});if(!j)return;
+  jobL=j;var comm=Math.round(j.budget*0.08);
+  var h="<div class='mhdr'><div><div class='mtit'>"+j.cat+" Job</div><div class='msub'>Review details before accepting or making a counter offer</div></div><button id='jv-cl' class='mcl'>x</button></div>";
+  h+="<div class='mbody'>";
+  h+="<div style='background:var(--off);border-radius:10px;padding:16px;margin-bottom:13px;border:1px solid var(--bd)'>";
+  h+="<div style='display:flex;align-items:center;gap:8px;margin-bottom:8px'>";
+  h+="<div style='width:10px;height:10px;border-radius:50%;background:"+j.col+";flex-shrink:0'></div>";
+  h+="<div style='font-size:.95rem;font-weight:800;color:var(--dark);flex:1'>"+j.title+"</div>";
+  if(j.urgent)h+="<span style='background:var(--rdl);color:var(--rd);font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;flex-shrink:0'>URGENT</span>";
+  h+="</div>";
+  h+="<div style='font-size:.75rem;color:var(--muted);margin-bottom:8px'>&#128205; "+j.loc+" &nbsp;&bull;&nbsp; Posted "+j.posted+"</div>";
+  h+="<div style='display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px'>"+j.tags.map(function(t){return"<span class='jtag'>"+t+"</span>";}).join("")+"</div>";
+  h+="<div style='display:flex;justify-content:space-between;align-items:flex-end;padding-top:10px;border-top:1px solid var(--bd)'>";
+  h+="<div><div style='font-size:1.2rem;font-weight:900;color:var(--dark);letter-spacing:-.04em'>UGX "+j.budget.toLocaleString()+"</div><div style='font-size:.72rem;color:var(--muted);margin-top:2px'>Client budget</div></div>";
+  h+="<div style='text-align:right'><div style='font-size:.88rem;font-weight:800;color:var(--rd)'>UGX "+comm.toLocaleString()+"</div><div style='font-size:.72rem;color:var(--muted);margin-top:2px'>8% commission (you pay)</div></div></div></div>";
+  h+="<div class='note nb' style='margin-bottom:12px'>Client contact details are revealed <strong>ONLY</strong> after you e-sign the commission agreement and pay UGX "+comm.toLocaleString()+" via MoMo.</div>";
+  h+="<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px'>";
+  h+="<button id='jv-accept' style='padding:12px;font-size:13px;font-weight:700;background:var(--g);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .18s'>Accept job</button>";
+  h+="<button id='jv-counter' style='padding:12px;font-size:13px;font-weight:700;background:var(--am);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .18s'>Counter offer</button>";
+  h+="</div>";
+  h+="<button id='jv-ask' style='width:100%;padding:10px;font-size:12px;font-weight:600;background:none;color:var(--body);border:1.5px solid var(--bd);border-radius:8px;cursor:pointer;transition:all .18s;margin-bottom:10px'>Ask client a question</button>";
+  // Counter form
+  h+="<div id='jv-counter-box' style='display:none;background:var(--aml);border-radius:10px;padding:14px;border:1px solid rgba(212,133,58,.3);margin-bottom:10px'>";
+  h+="<div style='font-size:.85rem;font-weight:800;color:#78350F;margin-bottom:9px'>&#9997; Make a counter offer</div>";
+  h+="<div class='field'><label>Your price (UGX)</label><input type='number' id='jv-cv' placeholder='e.g. "+(j.budget+15000)+"' style='font-size:1.1rem;font-weight:700;letter-spacing:-.02em'></div>";
+  h+="<div class='field'><label>Message to client (optional)</label><input type='text' id='jv-cm' placeholder='e.g. I can do this for less because...'></div>";
+  h+="<p style='font-size:.72rem;color:#78350F;margin-bottom:10px'>If the client accepts, you still pay 8% commission before contact is revealed. Commission will be recalculated based on agreed price.</p>";
+  h+="<button id='jv-send-counter' style='width:100%;padding:11px;font-size:13px;font-weight:700;background:var(--am);color:#fff;border:none;border-radius:8px;cursor:pointer'>Send Counter Offer</button></div>";
+  // Ask form
+  h+="<div id='jv-ask-box' style='display:none;background:var(--bll);border-radius:10px;padding:14px;border:1px solid rgba(26,109,192,.2);margin-bottom:10px'>";
+  h+="<div style='font-size:.85rem;font-weight:800;color:#0F4B8C;margin-bottom:9px'>&#128172; Ask the client a question</div>";
+  h+="<div class='field'><input type='text' id='jv-qtext' placeholder='e.g. Is the pipe under the sink or in the wall? What size is it?'></div>";
+  h+="<button id='jv-send-q' style='width:100%;padding:11px;font-size:13px;font-weight:700;background:var(--bl);color:#fff;border:none;border-radius:8px;cursor:pointer'>Send Question to Client</button></div>";
+  h+="</div>";
+  document.getElementById("m-job-view-b").innerHTML=h;openM("m-job-view");
+  document.getElementById("jv-cl").addEventListener("click",function(){closeM("m-job-view");});
+  document.getElementById("jv-accept").addEventListener("click",function(){closeM("m-job-view");openAccept(jid);});
+  document.getElementById("jv-counter").addEventListener("click",function(){
+    var cb=document.getElementById("jv-counter-box"),ab=document.getElementById("jv-ask-box");
+    cb.style.display=cb.style.display==="none"?"block":"none";
+    if(ab)ab.style.display="none";
+    if(cb.style.display==="block")cb.querySelector("input").focus();
+  });
+  document.getElementById("jv-ask").addEventListener("click",function(){
+    var ab=document.getElementById("jv-ask-box"),cb=document.getElementById("jv-counter-box");
+    ab.style.display=ab.style.display==="none"?"block":"none";
+    if(cb)cb.style.display="none";
+    if(ab.style.display==="block")ab.querySelector("input").focus();
+  });
+  document.getElementById("jv-send-counter").addEventListener("click",function(){
+    var val=document.getElementById("jv-cv").value;
+    var msg=document.getElementById("jv-cm").value;
+    if(!val||parseInt(val)<1000){toast("Please enter a valid counter offer amount");return;}
+    toast("Counter offer of UGX "+parseInt(val).toLocaleString()+" sent to client. You will be notified of their response.");
+    closeM("m-job-view");
+  });
+  document.getElementById("jv-send-q").addEventListener("click",function(){
+    var q=document.getElementById("jv-qtext").value.trim();
+    if(!q){toast("Please type your question");return;}
+    toast("Question sent to client. They will reply shortly.");
+    closeM("m-job-view");
+  });
+}
+
+/* ═══ UPDATED rJobs ═══ */
 function rJobs(){
   var g=document.getElementById("jgrid");if(!g)return;
   var html="";
   for(var i=0;i<JJ.length;i++){
-    var j=JJ[i],c=Math.round(j.budget*0.08);
+    var j=JJ[i],comm=Math.round(j.budget*0.08);
     html+="<div class='jc' data-jid='"+j.id+"'>";
-    html+="<div class='jcat' style='color:"+j.col+"'>"+j.cat+(j.urgent?" &mdash; URGENT":"")+"</div>";
+    html+="<div class='jcat' style='color:"+j.col+"'>"+j.cat+(j.urgent?" &mdash; <span style=\"color:var(--rd)\">URGENT</span>":"")+"</div>";
     html+="<div class='jtitle'>"+j.title+"</div>";
-    html+="<div class='jloc'>"+j.loc+" &bull; Posted "+j.posted+"</div>";
+    html+="<div class='jloc'>&#128205; "+j.loc+" &bull; "+j.posted+"</div>";
     html+="<div class='jtags'>"+j.tags.map(function(t){return"<span class='jtag'>"+t+"</span>";}).join("")+"</div>";
-    html+="<div class='jfoot'><div><div class='jbud'>UGX "+j.budget.toLocaleString()+"</div><div class='jcomm'>Commission 8% = UGX "+c.toLocaleString()+"</div></div>";
-    html+="<div style='display:flex;gap:6px'><button class='bacc' data-jid='"+j.id+"' style='background:var(--g)'>View job</button><button class='bacc' data-jid='"+j.id+"' data-counter='1' style='background:var(--am)'>Counter</button></div></div></div>";
+    html+="<div class='jfoot'>";
+    html+="<div><div class='jbud'>UGX "+j.budget.toLocaleString()+"</div><div class='jcomm'>Commission 8% = UGX "+comm.toLocaleString()+"</div></div>";
+    html+="<div style='display:flex;gap:6px'>";
+    html+="<button class='jv-btn' data-jid='"+j.id+"' style='padding:7px 13px;font-size:11px;font-weight:700;background:var(--g);color:#fff;border:none;border-radius:6px;cursor:pointer'>View job</button>";
+    html+="<button class='jc-btn' data-jid='"+j.id+"' style='padding:7px 13px;font-size:11px;font-weight:700;background:var(--am);color:#fff;border:none;border-radius:6px;cursor:pointer'>Counter</button>";
+    html+="</div></div></div>";
   }
   g.innerHTML=html;
+  g.querySelectorAll(".jv-btn").forEach(function(b){b.addEventListener("click",function(e){e.stopPropagation();openJobView(this.getAttribute("data-jid"));});});
+  g.querySelectorAll(".jc-btn").forEach(function(b){b.addEventListener("click",function(e){e.stopPropagation();var jid=this.getAttribute("data-jid");openJobView(jid);setTimeout(function(){var cb=document.getElementById("jv-counter-box");if(cb){cb.style.display="block";var ci=cb.querySelector("input[type='number']");if(ci)ci.focus();}},250);});});
   g.querySelectorAll(".jc").forEach(function(c){c.addEventListener("click",function(){openJobView(this.getAttribute("data-jid"));});});
-  g.querySelectorAll(".bacc[data-counter]").forEach(function(b){b.addEventListener("click",function(e){e.stopPropagation();var jid=this.getAttribute("data-jid");openJobView(jid);setTimeout(function(){var cb=document.getElementById("jv-counter-box");if(cb)cb.style.display="block";},200);});});
-  g.querySelectorAll(".bacc:not([data-counter])").forEach(function(b){b.addEventListener("click",function(e){e.stopPropagation();openJobView(this.getAttribute("data-jid"));});});
 }
 
-/* ═══ UPDATED updateNav ═══ */
+/* ═══ updateNav - admin opens panel ═══ */
 function updateNav(){
   var nr=document.getElementById("nav-right");if(!nr)return;
   if(!user){
@@ -2111,20 +2425,73 @@ function updateNav(){
     return;
   }
   if(user.role==="admin"){
-    nr.innerHTML="<button id='btn-admin' class='bmore'>Admin panel</button><button id='btn-so' style='font-size:12px;font-weight:700;color:var(--body);background:none;border:1px solid var(--bd);padding:8px 16px;border-radius:6px;cursor:pointer'>Sign out</button>";
-    document.getElementById("btn-admin").addEventListener("click",openAdminPanel);
+    nr.innerHTML="<button id='btn-admin' class='bmore'>&#9881; Admin panel</button><button id='btn-so' style='font-size:12px;font-weight:700;color:var(--body);background:none;border:1px solid var(--bd);padding:8px 16px;border-radius:6px;cursor:pointer'>Sign out</button>";
+    document.getElementById("btn-admin").addEventListener("click",function(){openAdminPanel();});
     document.getElementById("btn-so").addEventListener("click",logOut);
     return;
   }
   var first=user.name?user.name.split(" ")[0]:"Me";
   nr.innerHTML="<button id='btn-me' class='bmore'>"+first+"</button><button id='btn-so' style='font-size:12px;font-weight:700;color:var(--body);background:none;border:1px solid var(--bd);padding:8px 16px;border-radius:6px;cursor:pointer'>Sign out</button>";
-  document.getElementById("btn-me").addEventListener("click",function(){toast("My dashboard: coming soon! Ref code: "+(user.ref||"N/A"));});
+  document.getElementById("btn-me").addEventListener("click",function(){toast("My dashboard coming soon. Ref: "+(user.ref||"N/A"));});
   document.getElementById("btn-so").addEventListener("click",logOut);
 }
 function logOut(){user=null;updateNav();toast("Signed out successfully.");}
+function openProvSignup(){buildAuthModal("provider-step",1);openM("m-auth");}
 
 
-function openProvSignup(){buildAuthModal('provider-signup');openM('m-auth');}
+var LAND_TIPS=[
+  {ico:"1",title:"Ministry of Lands search",desc:"Verify the title holder at the Ministry of Lands before any payment. A search costs UGX 10,000 and confirms the registered owner.",risk:"high"},
+  {ico:"2",title:"Physical inspection with surveyor",desc:"Visit with a registered surveyor to verify exact boundaries and check for flood risks and encroachments.",risk:"high"},
+  {ico:"3",title:"Spousal consent required",desc:"Under the Land Act, the sale is VOID without written consent from the seller's spouse for matrimonial property.",risk:"high"},
+  {ico:"4",title:"Verify it is not family land",desc:"Family land cannot be sold without consent of all adult family members. Check LC1 records and ask neighbours.",risk:"high"},
+  {ico:"5",title:"File a caveat immediately",desc:"Once agreed, file a caveat at Ministry of Lands to prevent further transactions during your transfer.",risk:"med"},
+  {ico:"6",title:"Hire a registered lawyer",desc:"Have a licensed Ugandan lawyer draft and witness the sale agreement. Unwitnessed agreements are hard to enforce.",risk:"high"},
+  {ico:"7",title:"Never pay everything upfront",desc:"Hold 10-20% until all paperwork is complete and the title is officially in your name.",risk:"high"},
+  {ico:"8",title:"Initiate official titling process",desc:"Land sold with only a sale agreement is vulnerable to fraud. Begin Land Registration immediately.",risk:"med"},
+  {ico:"9",title:"Consult LC1 and neighbours",desc:"Talk to the LC1 chairman and neighbours to confirm the seller's claim and check for disputes.",risk:"med"},
+  {ico:"10",title:"Beware suspiciously cheap land",desc:"Extremely cheap land is almost always in a legal dispute, flood zone, or being sold fraudulently.",risk:"high"}
+];
+var TENURE=[
+  {name:"Freehold",desc:"Full ownership with no time limit. Most secure but expensive in prime areas."},
+  {name:"Leasehold",desc:"Registered lease of 49 to 99 years. Secure if properly registered. Verify renewal terms."},
+  {name:"Kibanja",desc:"Customary occupant rights on Buganda Land Board land. Requires landlord consent and BLB registration."},
+  {name:"Mailo Land",desc:"Unique to Buganda. Registered under the 1900 Agreement. Secure if title is registered and caveat filed."}
+];
+var WARNINGS=[
+  "A land sales agreement is only a CONTRACT, not proof of ownership. Only a registered title is conclusive.",
+  "Without a title, a fraudulent seller can sell the same land to multiple buyers simultaneously.",
+  "Proving ownership in court without a registered title relies on witness testimony and is very difficult.",
+  "Never transfer full payment before the title is transferred into your name at the Ministry of Lands.",
+  "Cheap land is almost always cheap for a reason: disputes, flood risk, or outright fraud."
+];
+function renderLandTips(){
+  var g=document.getElementById("land-tips-grid");
+  if(g){
+    g.innerHTML=LAND_TIPS.map(function(tip){
+      var riskBadge=tip.risk==="high"?" <span style='font-size:8px;background:rgba(220,53,69,.3);color:#ff6b6b;border-radius:20px;padding:2px 7px;font-weight:800'>HIGH RISK</span>":"";
+      return "<div style='background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,"+(tip.risk==="high"?".2":".1")+");border-radius:10px;padding:16px'>"+
+        "<div style='display:flex;align-items:flex-start;gap:10px'>"+
+        "<div style='width:28px;height:28px;border-radius:50%;background:rgba(76,175,80,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--g2);flex-shrink:0;margin-top:1px'>"+tip.ico+"</div>"+
+        "<div><div style='font-size:.85rem;font-weight:700;color:#fff;margin-bottom:4px'>"+tip.title+riskBadge+"</div>"+
+        "<div style='font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.6'>"+tip.desc+"</div></div></div></div>";
+    }).join("");
+  }
+  var tc=document.getElementById("tenure-cards");
+  if(tc){
+    tc.innerHTML=TENURE.map(function(t){
+      return "<div style='background:rgba(255,255,255,.06);border-radius:8px;padding:13px;border:1px solid rgba(255,255,255,.12)'>"+
+        "<div style='font-size:.85rem;font-weight:800;color:var(--g2);margin-bottom:5px'>"+t.name+"</div>"+
+        "<div style='font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.5'>"+t.desc+"</div></div>";
+    }).join("");
+  }
+  var wl=document.getElementById("warnings-list");
+  if(wl){
+    wl.innerHTML=WARNINGS.map(function(w){
+      return "<div style='display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:.78rem;color:rgba(255,255,255,.8);line-height:1.5'>"+
+        "<span style='color:#ff6b6b;font-weight:800;flex-shrink:0'>!</span>"+w+"</div>";
+    }).join("");
+  }
+}
 </script>
 
 <!-- ADMIN PANEL -->
