@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth.jsx'
 import Modal from './Modal.jsx'
 
@@ -43,10 +44,11 @@ function StepBar({ steps, current }) {
 
 function RoleChooser({ onSelect }) {
   const roles = [
-    {id:'client',icon:'🏠',name:'Client / Tenant',desc:'Find homes, book services'},
-    {id:'provider',icon:'🔧',name:'Service Provider',desc:'Accept jobs, earn commissions'},
+    {id:'client',icon:'🏠',name:'Client / Tenant',desc:'Find homes, book services, hire providers'},
+    {id:'provider',icon:'🔧',name:'Service Provider',desc:'Accept jobs, negotiate, earn commissions'},
     {id:'landlord',icon:'🏗️',name:'Landlord / Agent',desc:'List and manage properties'},
-    {id:'provider-login',icon:'🔑',name:'Have an account?',desc:'Sign in to existing account'},
+    {id:'student',icon:'🎓',name:'Student',desc:'Hostel booking, jobs, campus services'},
+    {id:'provider-login',icon:'🔑',name:'Already registered?',desc:'Sign in to your existing account'},
   ]
   return (
     <>
@@ -67,10 +69,16 @@ function RoleChooser({ onSelect }) {
 function ClientSignIn({ onSwitch, onSuccess }) {
   const [em,setEm]=useState(''); const [pw,setPw]=useState(''); const [loading,setLoading]=useState(false)
   const { signIn, showToast } = useAuth()
+  const nav = useNavigate()
   const submit = () => {
     if(!em) return showToast('Please enter your email','error')
     setLoading(true)
-    setTimeout(()=>{ signIn({name:em.split('@')[0],email:em,role:'client',ref:'ref'+Math.random().toString(36).slice(2,8)}); onSuccess(); setLoading(false) },1100)
+    setTimeout(()=>{
+      const userData = {name:em.split('@')[0],email:em,role:'client',ref:'ref'+Math.random().toString(36).slice(2,8)}
+      signIn(userData, nav)
+      onSuccess()
+      setLoading(false)
+    },1100)
   }
   return (
     <>
@@ -262,9 +270,10 @@ function LandlordFlow({ onSuccess }) {
   const [tab,setTab]=useState('signin'); const [step,setStep]=useState(1)
   const [em,setEm]=useState(''); const [pw,setPw]=useState(''); const [loading,setLoading]=useState(false); const [docs,setDocs]=useState({})
   const { signIn, showToast } = useAuth()
+  const nav = useNavigate()
   const doSignIn = () => {
     if(!em) return showToast('Enter your email','error')
-    setLoading(true); setTimeout(()=>{ signIn({name:em.split('@')[0],email:em,role:'landlord'}); onSuccess(); setLoading(false) },1100)
+    setLoading(true); setTimeout(()=>{ signIn({name:em.split('@')[0],email:em,role:'landlord'},nav); onSuccess(); setLoading(false) },1100)
   }
   return (
     <>
@@ -311,12 +320,65 @@ function LandlordFlow({ onSuccess }) {
   )
 }
 
+
+function StudentSignIn({ onSuccess }) {
+  const [tab,setTab]=useState('signin')
+  const [em,setEm]=useState(''); const [pw,setPw]=useState(''); const [loading,setLoading]=useState(false)
+  const [f2,setF2]=useState({fn:'',em:'',ph:'',sid:'',uni:'Kyambogo University',yr:'Year 1'})
+  const { signIn, showToast } = useAuth()
+  const nav = useNavigate()
+
+  const doSignIn = () => {
+    if(!em) return showToast('Enter your email','error')
+    setLoading(true)
+    setTimeout(()=>{ signIn({name:em.split('@')[0],email:em,role:'student'},nav); onSuccess(); setLoading(false) },1100)
+  }
+  const upd = k => e => setF2(p=>({...p,[k]:e.target.value}))
+  const doRegister = () => {
+    if(!f2.fn||!f2.em||!f2.ph) return showToast('Fill all required fields','error')
+    setLoading(true)
+    setTimeout(()=>{ signIn({name:f2.fn,email:f2.em,role:'student'},nav); onSuccess(); setLoading(false) },1200)
+  }
+
+  return (
+    <>
+      <div className="tabs-pill mb-4">
+        <button className={`tab-pill${tab==='signin'?' active':''}`} onClick={()=>setTab('signin')}>Sign in</button>
+        <button className={`tab-pill${tab==='register'?' active':''}`} onClick={()=>setTab('register')}>Register</button>
+      </div>
+      {tab==='signin'&&<>
+        <div className="field"><label className="field-label">Email or student ID</label><input className="input" type="email" value={em} onChange={e=>setEm(e.target.value)} placeholder="your@email.com"/></div>
+        <div className="field"><label className="field-label">Password</label><input className="input" type="password" value={pw} onChange={e=>setPw(e.target.value)} placeholder="Password" onKeyDown={e=>e.key==='Enter'&&doSignIn()}/></div>
+        <button className="btn btn-forest btn-full" onClick={doSignIn} disabled={loading||!em}>{loading?'⏳ Signing in...':'Sign in to Student portal'}</button>
+      </>}
+      {tab==='register'&&<>
+        <div className="field-row">
+          <div className="field"><label className="field-label">Full name <span className="req">*</span></label><input className="input" value={f2.fn} onChange={upd('fn')} placeholder="Full name"/></div>
+          <div className="field"><label className="field-label">Phone <span className="req">*</span></label><input className="input" type="tel" value={f2.ph} onChange={upd('ph')} placeholder="0771 234 567"/></div>
+        </div>
+        <div className="field"><label className="field-label">Email <span className="req">*</span></label><input className="input" type="email" value={f2.em} onChange={upd('em')} placeholder="your@email.com"/></div>
+        <div className="field-row">
+          <div className="field"><label className="field-label">University</label><select className="input select" value={f2.uni} onChange={upd('uni')}>
+            {['Makerere University','Kyambogo University','MUBS','Uganda Martyrs University','Nkumba University','Ndejje University','MUST Mbarara','Gulu University','Muni University','ISBAT','Other'].map(u=><option key={u}>{u}</option>)}
+          </select></div>
+          <div className="field"><label className="field-label">Year of study</label><select className="input select" value={f2.yr} onChange={upd('yr')}>
+            {['Year 1','Year 2','Year 3','Year 4','Postgraduate'].map(y=><option key={y}>{y}</option>)}
+          </select></div>
+        </div>
+        <div className="note note-forest">As a student you can book hostel rooms, browse campus jobs, book laundry and transition into renting after campus — all in one dashboard.</div>
+        <button className="btn btn-forest btn-full" onClick={doRegister} disabled={loading}>{loading?'⏳ Creating account...':'Create student account'}</button>
+      </>}
+    </>
+  )
+}
+
 function ProviderSignIn({ onSwitch, onSuccess }) {
   const [em,setEm]=useState(''); const [loading,setLoading]=useState(false)
   const { signIn, showToast } = useAuth()
+  const nav = useNavigate()
   const submit = () => {
     if(!em) return showToast('Enter your email','error')
-    setLoading(true); setTimeout(()=>{ signIn({name:em.split('@')[0],email:em,role:'provider'}); onSuccess(); setLoading(false) },1100)
+    setLoading(true); setTimeout(()=>{ signIn({name:em.split('@')[0],email:em,role:'provider'},nav); onSuccess(); setLoading(false) },1100)
   }
   return (
     <>
@@ -342,6 +404,7 @@ export default function AuthModal({ open, onClose, initial='choose' }) {
     provider:{title:'Service provider signup',sub:'6-step verification process'},
     'provider-login':{title:'Provider sign in',sub:'Access your jobs and earnings'},
     landlord:{title:'Landlord / Agent',sub:'List and manage properties'},
+    student:{title:'Student account',sub:'Hostels, jobs and campus services'},
   }
   const t = titles[mode]||titles.choose
   return (
@@ -352,6 +415,7 @@ export default function AuthModal({ open, onClose, initial='choose' }) {
       {mode==='provider'&&<ProviderSignup onSuccess={done} />}
       {mode==='provider-login'&&<ProviderSignIn onSwitch={setMode} onSuccess={done} />}
       {mode==='landlord'&&<LandlordFlow onSuccess={done} />}
+      {mode==='student'&&<StudentSignIn onSuccess={done} />}
     </Modal>
   )
 }

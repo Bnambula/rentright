@@ -14,7 +14,7 @@ export default function AdminLogin() {
     setErr('')
     if ((em === 'admin@homeyo.ug' || em === 'admin@rentright.ug') && pw === 'admin2025') {
       setLoading(true)
-      setTimeout(() => { signIn({ name:'Admin', email:em, role:'admin' }); nav('/admin/dashboard') }, 900)
+      setTimeout(() => { signIn({ name:'Admin', email:em, role:'admin' }, nav) }, 900)
     } else {
       setErr('Invalid credentials. Access denied.')
       setPw('')

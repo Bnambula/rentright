@@ -112,7 +112,7 @@ function Sidebar({role, active, setActive, user}){
           <span className="dash-nav-icon">🌐</span>
           <span className="dash-nav-label">Back to site</span>
         </button>
-        <button className="dash-nav-item" onClick={signOut}>
+        <button className="dash-nav-item" onClick={()=>signOut(nav)}>
           <span className="dash-nav-icon">🚪</span>
           <span className="dash-nav-label" style={{color:'rgba(197,48,48,.8)'}}>Sign out</span>
         </button>

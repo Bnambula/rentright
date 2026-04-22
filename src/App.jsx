@@ -8,6 +8,8 @@ import Dashboard from './pages/Dashboard.jsx'
 import AdminLogin from './pages/AdminLogin.jsx'
 import AdminDashboard from './pages/AdminDashboard.jsx'
 import HostelPortal from './pages/HostelPortal.jsx'
+import WardenDashboard from './pages/WardenDashboard.jsx'
+import StudentDashboard from './pages/StudentDashboard.jsx'
 
 const fmt = n => 'UGX ' + Number(n).toLocaleString()
 const starEl = r => Array.from({length:5},(_,i)=>(
@@ -62,7 +64,11 @@ function Hero({onSearch,onAuth}){
   const [budget,setBudget]=useState('')
   const [idx,setIdx]=useState(0)
   const boosted=LISTINGS.filter(l=>l.boost)
-  const imgs=['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=85','https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1600&q=85','https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1600&q=85']
+  const imgs=[
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=85',
+    'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1600&q=85',
+    'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1600&q=85',
+  ]
   useEffect(()=>{const t=setInterval(()=>setIdx(i=>(i+1)%boosted.length),5000);return()=>clearInterval(t)},[])
   const feat=boosted[idx%boosted.length]
   const doSearch=()=>{onSearch({area,type,budget,tab});document.getElementById('sec-properties')?.scrollIntoView({behavior:'smooth'})}
@@ -73,33 +79,40 @@ function Hero({onSearch,onAuth}){
       <div className="hero-img" style={{backgroundImage:`url(${imgs[idx%3]})`}}/>
       <div className="hero-overlay"/>
       <div className="hero-content">
-        <div>
+        {/* TEXT */}
+        <div className="hero-text">
           <div className="hero-badge">
             <div className="hero-badge-dot"/>
-            <span className="label-caps" style={{color:'var(--gold-lt)'}}>Uganda's #1 verified property marketplace</span>
+            <span style={{fontSize:'9px',fontWeight:700,letterSpacing:'.1em',textTransform:'uppercase',color:'var(--gold-lt)'}}>Uganda&apos;s #1 verified property marketplace</span>
           </div>
-          <h1 className="hero-title">Find the home<br/><strong>you deserve.</strong></h1>
-          <p className="hero-sub">Verified rentals, premium land, student hostels and home services across Uganda. GPS-confirmed, no brokers, no scams.</p>
+          <h1 className="hero-title">
+            Find the home<br/><strong>you deserve.</strong>
+          </h1>
+          <p className="hero-sub">Verified rentals, land, student hostels and home services. GPS-confirmed. No brokers.</p>
 
-          {/* Search box */}
-          <div style={{background:'rgba(255,255,255,.97)',backdropFilter:'blur(20px)',borderRadius:'var(--r-xl)',overflow:'hidden',boxShadow:'var(--sh-xl)',marginBottom:24}}>
+          {/* SEARCH BOX */}
+          <div className="search-wrap">
             <div className="search-tab-bar">
-              {[['rent','🏠 Rent'],['buy','💰 Buy'],['hostel','🎓 Hostel'],['land','🌿 Land'],['services','🔧 Services']].map(([k,l])=>(
-                <button key={k} className={`search-tab${tab===k?' active':''}`} onClick={()=>setTab(k)}>{l}</button>
+              {[['rent','🏠','Rent'],['buy','💰','Buy'],['hostel','🎓','Hostel'],['land','🌿','Land'],['services','🔧','Services']].map(([k,ico,l])=>(
+                <button key={k} className={`search-tab${tab===k?' active':''}`} onClick={()=>setTab(k)}>{ico} {l}</button>
               ))}
             </div>
-            <div style={{display:'flex',alignItems:'center',padding:'8px',gap:0}}>
-              {[['Area',AREAS,area,setArea],['Type',TYPES,type,setType]].map(([lbl,opts,val,setVal])=>(
-                <div key={lbl} className="search-field">
-                  <label>{lbl}</label>
-                  <select className="select" value={val} onChange={e=>setVal(e.target.value)} style={{border:'none',outline:'none',background:'transparent',fontSize:13,color:'var(--ink)',fontWeight:500,fontFamily:'var(--font-body)',width:'100%'}}>
-                    {opts.map(o=><option key={o} value={o.startsWith('All')?'':o}>{o}</option>)}
-                  </select>
-                </div>
-              ))}
+            <div className="search-fields">
+              <div className="search-field">
+                <label>Area</label>
+                <select className="select" value={area} onChange={e=>setArea(e.target.value)} style={{border:'none',outline:'none',background:'transparent',fontSize:14,color:'var(--ink)',fontWeight:500,fontFamily:'var(--font-body)',width:'100%'}}>
+                  {AREAS.map(a=><option key={a} value={a.startsWith('All')?'':a}>{a}</option>)}
+                </select>
+              </div>
+              <div className="search-field">
+                <label>Type</label>
+                <select className="select" value={type} onChange={e=>setType(e.target.value)} style={{border:'none',outline:'none',background:'transparent',fontSize:14,color:'var(--ink)',fontWeight:500,fontFamily:'var(--font-body)',width:'100%'}}>
+                  {TYPES.map(t=><option key={t} value={t.startsWith('All')?'':t}>{t}</option>)}
+                </select>
+              </div>
               <div className="search-field">
                 <label>Budget</label>
-                <select className="select" value={budget} onChange={e=>setBudget(e.target.value)} style={{border:'none',outline:'none',background:'transparent',fontSize:13,color:'var(--ink)',fontWeight:500,fontFamily:'var(--font-body)',width:'100%'}}>
+                <select className="select" value={budget} onChange={e=>setBudget(e.target.value)} style={{border:'none',outline:'none',background:'transparent',fontSize:14,color:'var(--ink)',fontWeight:500,fontFamily:'var(--font-body)',width:'100%'}}>
                   <option value="">Any price</option>
                   <option value="0-200000">Under UGX 200K</option>
                   <option value="200000-400000">UGX 200K–400K</option>
@@ -107,25 +120,31 @@ function Hero({onSearch,onAuth}){
                   <option value="800000-9999999">Above UGX 800K</option>
                 </select>
               </div>
-              <button className="btn btn-forest" onClick={doSearch} style={{borderRadius:'var(--r-lg)',padding:'12px 24px',flexShrink:0,marginLeft:4}}>🔍 Search</button>
+            </div>
+            <div className="search-btn-row">
+              <button className="btn btn-forest" onClick={doSearch}>🔍 Search properties</button>
             </div>
           </div>
 
           <div className="hero-stats">
-            {[['500+','Verified listings'],['2,400','Happy tenants'],['98%','GPS confirmed'],['120+','Providers']].map(([n,l])=>(
-              <div key={l}><div className="hero-stat-n">{n}</div><div className="hero-stat-l">{l}</div></div>
+            {[['500+','Verified listings'],['2,400+','Happy tenants'],['98%','GPS confirmed'],['120+','Providers']].map(([n,l])=>(
+              <div key={l} className="hero-stat">
+                <div className="hero-stat-n">{n}</div>
+                <div className="hero-stat-l">{l}</div>
+              </div>
             ))}
           </div>
         </div>
 
+        {/* FEATURED CARD — only on ≥900px */}
         {feat&&(
-          <div>
-            <div className="label-caps" style={{color:'var(--gold-lt)',marginBottom:12}}>Featured property</div>
+          <div className="hero-featured" style={{display:'none'}}>
+            <div className="label-caps" style={{color:'var(--gold-lt)',marginBottom:10}}>Featured property</div>
             <div className="feat-card">
               <div className="feat-card-img">
                 <img src={feat.img} alt={feat.name} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
                 <div style={{position:'absolute',inset:0,background:'linear-gradient(to top,rgba(17,28,22,.72) 0%,transparent 60%)'}}/>
-                <div style={{position:'absolute',top:12,left:12,display:'flex',gap:5}}>
+                <div style={{position:'absolute',top:10,left:10,display:'flex',gap:4}}>
                   {feat.v&&<span className="badge badge-forest">✓ Verified</span>}
                   <span className="badge badge-gold">⭐ Featured</span>
                 </div>
@@ -135,8 +154,8 @@ function Hero({onSearch,onAuth}){
                 <div className="feat-card-name">{feat.name}</div>
                 <div className="feat-card-loc">📍 {feat.area}</div>
                 <div className="feat-card-meta">
-                  <div className="feat-card-meta-item">🛏 {feat.beds} bed</div>
-                  <div className="feat-card-meta-item">🚿 {feat.baths} bath</div>
+                  <div className="feat-card-meta-item">🛏 {feat.beds}bd</div>
+                  <div className="feat-card-meta-item">🚿 {feat.baths}ba</div>
                   <div className="feat-card-meta-item">📐 {feat.sqm}m²</div>
                   <div className="feat-card-meta-item">⭐ {feat.rating}</div>
                 </div>
@@ -148,9 +167,13 @@ function Hero({onSearch,onAuth}){
           </div>
         )}
       </div>
+
+      {/* Show featured card at ≥900px via style tag injection */}
+      <style>{`@media(min-width:900px){.hero-featured{display:block!important}}`}</style>
     </section>
   )
 }
+
 
 /* ──── PROPERTY CARD ──── */
 function PropCard({l,onView,onBook}){
@@ -423,13 +446,33 @@ function NegoModal({provider,open,onClose}){
   useEffect(()=>{if(ref.current)ref.current.scrollTop=ref.current.scrollHeight},[msgs])
   if(!provider)return null
 
+  const detectPhone=(text)=>{
+    // Detect phone numbers: 10-digit 07..., without 0 (77...), with dots (0.77.23...), with words (zero seven...)
+    const patterns=[
+      /0[67]\d{8}/,           // Standard: 0712345678
+      /[67]\d{7,8}/,          // Missing 0: 712345678
+      /\d[.\-_]\d[.\-_]\d/,// Dots/dashes: 0.77.234
+      /zero\s+seven/i,        // Text: zero seven
+      /\b[0-9]{7,10}\b/,     // Any 7-10 digit sequence
+    ]
+    return patterns.some(p=>p.test(text))
+  }
   const send=()=>{
     if(!inp.trim())return
+    if(detectPhone(inp)){
+      setMsgs(m=>[...m,{t:'sys',txt:'⚠️ This message was blocked — sharing contact numbers is not allowed. Admin has been notified. Continued violations will result in a permanent ban.'}])
+      setInp('')
+      showToast('Message blocked: phone number detected. This violation has been logged.','error')
+      return
+    }
     setMsgs(m=>[...m,{t:'me',txt:inp}]);setInp('')
     setTimeout(()=>setMsgs(m=>[...m,{t:'them',txt:'Thanks for the details! Let me check my availability and confirm.'}]),1200)
   }
   const sendOffer=()=>{
-    const amt=parseInt(offerVal)||0;if(amt<500)return showToast('Enter a valid amount','error')
+    const amt=parseInt(offerVal)||0
+    if(amt<1000) return showToast('Minimum offer is UGX 1,000','error')
+    if(amt>999999) return showToast('Offer cannot exceed UGX 999,999 (6 digits)','error')
+    if(amt%1000!==0) return showToast('Counter offer must be a round number divisible by 1,000 (e.g. 45,000 not 45,500)','error')
     setMsgs(m=>[...m,{t:'offer-me',amt}]);setShowOffer(false);setOfferVal('')
     setTimeout(()=>{
       const accept=Math.random()>0.38
@@ -597,6 +640,53 @@ function HostelModal({open,onClose}){
   )
 }
 
+
+/* ──── POST JOB MODAL ──── */
+function PostJobModal({open, onClose}){
+  const {showToast}=useAuth()
+  const [form,setForm]=useState({title:'',cat:'Plumbing',loc:'',budget:'',desc:'',urgent:false,contact:''})
+  const [submitted,setSubmitted]=useState(false)
+  const f=k=>e=>setForm(p=>({...p,[k]:e.target.value}))
+  const submit=()=>{
+    if(!form.title||!form.loc||!form.budget||!form.desc) return showToast('Please fill all required fields','error')
+    if(parseInt(form.budget)<5000) return showToast('Minimum budget is UGX 5,000','error')
+    setSubmitted(true)
+    showToast('Job submitted for admin review. It will appear on the board once approved.','success')
+  }
+  return(
+    <Modal open={open} onClose={()=>{setSubmitted(false);setForm({title:'',cat:'Plumbing',loc:'',budget:'',desc:'',urgent:false,contact:''});onClose()}} title="Post a service job" sub="Admin reviews all jobs before display on the platform">
+      {!submitted?<>
+        <div className="note note-blue" style={{marginBottom:14}}>All jobs are reviewed by admin before they appear on the platform. No contact information should be included in the description.</div>
+        <div className="field"><label className="field-label">Job title <span className="req">*</span></label><input className="input" value={form.title} onChange={f('title')} placeholder="e.g. Fix leaking pipe in kitchen"/></div>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+          <div className="field"><label className="field-label">Category <span className="req">*</span></label>
+            <select className="input select" value={form.cat} onChange={f('cat')}>
+              {['Plumbing','Electrical','Cleaning','Moving','Carpentry','Painting','Security','Gardening','Other'].map(c=><option key={c}>{c}</option>)}
+            </select>
+          </div>
+          <div className="field"><label className="field-label">Your budget (UGX) <span className="req">*</span></label><input className="input" type="number" value={form.budget} onChange={f('budget')} placeholder="e.g. 50000"/></div>
+        </div>
+        <div className="field"><label className="field-label">Location <span className="req">*</span></label><input className="input" value={form.loc} onChange={f('loc')} placeholder="e.g. Kisaasi, Wakiso"/></div>
+        <div className="field"><label className="field-label">Describe the work needed <span className="req">*</span></label>
+          <textarea className="input textarea" value={form.desc} onChange={f('desc')} rows={4} placeholder="Describe the issue, what needs to be done, any materials needed etc. DO NOT include any phone numbers - your contact will be shared with the accepted provider after commission payment."/>
+        </div>
+        <label style={{display:'flex',alignItems:'center',gap:9,marginBottom:14,cursor:'pointer',fontSize:'0.82rem',color:'var(--body)'}}>
+          <input type="checkbox" checked={form.urgent} onChange={e=>setForm(p=>({...p,urgent:e.target.checked}))} style={{accentColor:'var(--red)',width:16,height:16}}/>
+          <span>This is urgent (same day or next day needed)</span>
+        </label>
+        <div className="note note-amber">Your phone number will be shared with the accepted provider ONLY after they sign the commission agreement and pay 8% commission. Do not share it in the description.</div>
+        <button className="btn btn-forest btn-full" onClick={submit}>Submit job for review</button>
+      </>:<div style={{textAlign:'center',padding:'10px 0 16px'}}>
+        <div style={{width:70,height:70,background:'var(--forest-gl)',borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 14px',border:'3px solid var(--forest-lt)',fontSize:'2rem'}}>✓</div>
+        <div style={{fontFamily:'var(--font-display)',fontSize:'1.3rem',fontWeight:700,color:'var(--ink)',marginBottom:5}}>Job submitted!</div>
+        <p style={{fontSize:'0.82rem',color:'var(--muted)',marginBottom:18}}>Admin will review and approve your job within 2 hours. You will be notified via SMS when it goes live.</p>
+        <div className="note note-forest">Your contact will only be revealed to the accepted provider after commission payment.</div>
+        <button className="btn btn-outline btn-full" onClick={()=>{setSubmitted(false);setForm({title:'',cat:'Plumbing',loc:'',budget:'',desc:'',urgent:false,contact:''});onClose()}}>Done</button>
+      </div>}
+    </Modal>
+  )
+}
+
 /* ──── HOME PAGE ──── */
 function HomePage(){
   const {user}=useAuth()
@@ -608,6 +698,7 @@ function HomePage(){
   const [jobM,setJobM]=useState(null)
   const [negoP,setNegoP]=useState(null)
   const [hostelOpen,setHostelOpen]=useState(false)
+  const [postJobOpen,setPostJobOpen]=useState(false)
   const [activeChip,setActiveChip]=useState('all')
 
   const openAuth=m=>{setAuthMode(m);setAuthOpen(true)}
@@ -661,7 +752,7 @@ function HomePage(){
       {/* ── Jobs ── */}
       <section className="section" id="sec-jobs" style={{background:'var(--ivory)'}}>
         <div className="container">
-          <SH label="Job Board" title="Service jobs near you" sub="View full scope, accept or counter offer. Commission paid before client contact revealed." action={<button className="btn btn-gold btn-sm">+ Post a job</button>}/>
+          <SH label="Job Board" title="Service jobs near you" sub="View full scope, accept or counter offer. Commission paid before client contact revealed." action={<button className="btn btn-gold btn-sm" onClick={()=>setPostJobOpen(true)}>+ Post a job</button>}/>
           <div className="grid-auto">
             {JOBS.map(j=>{
               const comm=Math.round(j.budget*0.08)
@@ -899,29 +990,43 @@ function HomePage(){
               <button className="btn btn-wa btn-sm" style={{marginTop:16}} onClick={()=>window.open('https://wa.me/256700000000')}>WhatsApp us</button>
             </div>
             <div>
-              <div className="footer-col-title">Platform</div>
-              {['Properties','Job board','Home services','Moving services','Land for sale','Student hostels'].map(l=>(
-                <div key={l} className="footer-link">{l}</div>
+              <div className="footer-col-title">Explore</div>
+              {[['Properties','sec-properties'],['Job board','sec-jobs'],['Home services','sec-services'],['Moving services','sec-moving'],['Land for sale','sec-land'],['Student hostels','sec-hostels']].map(([l,id])=>(
+                <div key={l} className="footer-link" onClick={()=>document.getElementById(id)?.scrollIntoView({behavior:'smooth'})}>{l}</div>
               ))}
             </div>
             <div>
               <div className="footer-col-title">Popular areas</div>
-              {['Makerere','Kisaasi','Ntinda','Bukoto','Wandegeya','Naguru','Kololo'].map(a=><div key={a} className="footer-link">{a}</div>)}
+              {['Makerere','Kisaasi','Ntinda','Bukoto','Wandegeya','Naguru','Kololo','Banda','Nakawa','Mbarara'].map(a=>(
+                <div key={a} className="footer-link" onClick={()=>{window.scrollTo({top:0,behavior:'smooth'}); document.getElementById('sec-properties')?.scrollIntoView({behavior:'smooth'})}}>{a}</div>
+              ))}
             </div>
             <div>
-              <div className="footer-col-title">Contact</div>
-              <div className="footer-link">+256 700 000 000</div>
-              <div className="footer-link">hello@homeyo.ug</div>
-              <div className="footer-link">Kampala, Uganda</div>
-              <div style={{marginTop:16}}><div className="footer-col-title">Portals</div>
-                <a href="/admin" className="footer-link" style={{opacity:.45,fontSize:'0.75rem'}}>Admin</a>
-                <a href="/hostel" className="footer-link" style={{opacity:.45,fontSize:'0.75rem'}}>Hostel warden</a>
+              <div className="footer-col-title">Contact us</div>
+              <a className="footer-link" href="tel:+256700000000">📞 +256 700 000 000</a>
+              <a className="footer-link" href="mailto:hello@homeyo.ug">✉️ hello@homeyo.ug</a>
+              <a className="footer-link" href="https://wa.me/256700000000" target="_blank" rel="noreferrer">💬 WhatsApp us</a>
+              <div className="footer-link" style={{marginTop:4}}>📍 Kampala, Uganda</div>
+              <div style={{marginTop:14}}>
+                <div className="footer-col-title">Legal</div>
+                <div className="footer-link">Privacy policy</div>
+                <div className="footer-link">Terms of service</div>
+                <div className="footer-link">Cookie policy</div>
+              </div>
+              <div style={{marginTop:14}}>
+                <div className="footer-col-title" style={{opacity:.5}}>Staff portals</div>
+                <a href="/admin" className="footer-link" style={{opacity:.4,fontSize:'0.72rem'}}>Admin dashboard</a>
+                <a href="/hostel" className="footer-link" style={{opacity:.4,fontSize:'0.72rem'}}>Hostel warden</a>
               </div>
             </div>
           </div>
           <div style={{borderTop:'1px solid rgba(255,255,255,.08)',paddingTop:22,display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:10}}>
             <div className="footer-copy">© 2025 Homeyo Uganda · UGX 5K viewing fee · 8% service commission</div>
-            <div style={{display:'flex',gap:16}}><span className="footer-copy">Privacy</span><span className="footer-copy">Terms</span></div>
+            <div style={{display:'flex',gap:16}}>
+            <span className="footer-copy" style={{cursor:'pointer'}}>Privacy policy</span>
+            <span className="footer-copy" style={{cursor:'pointer'}}>Terms of service</span>
+            <span className="footer-copy" style={{cursor:'pointer'}}>Cookie settings</span>
+          </div>
           </div>
         </div>
       </footer>
@@ -944,6 +1049,7 @@ function HomePage(){
       <JobModal j={jobM} open={!!jobM} onClose={()=>setJobM(null)}/>
       <NegoModal provider={negoP} open={!!negoP} onClose={()=>setNegoP(null)}/>
       <HostelModal open={hostelOpen} onClose={()=>setHostelOpen(false)}/>
+      <PostJobModal open={postJobOpen} onClose={()=>setPostJobOpen(false)}/>
     </>
   )
 }
@@ -977,8 +1083,18 @@ function RefWidget(){
 /* ──── DASHBOARD ──── */
 
 
-function ProtectedDash(){const{user}=useAuth();if(!user)return<Navigate to="/" replace/>;if(user.role==='admin')return<Navigate to="/admin/dashboard" replace/>;return<Dashboard/>}
+function ProtectedDash(){
+  const{user}=useAuth()
+  if(!user)return<Navigate to="/" replace/>
+  if(user.role==='admin')return<Navigate to="/admin/dashboard" replace/>
+  if(user.role==='warden')return<Navigate to="/hostel/warden" replace/>
+  if(user.role==='hostel-owner')return<Navigate to="/hostel/owner" replace/>
+  if(user.role==='student')return<Navigate to="/student/dashboard" replace/>
+  return<Dashboard/>
+}
 function ProtectedAdmin(){const{user}=useAuth();if(!user||user.role!=='admin')return<Navigate to="/admin" replace/>;return<AdminDashboard/>}
+function ProtectedWarden(){const{user}=useAuth();if(!user||user.role!=='warden')return<Navigate to="/hostel" replace/>;return<WardenDashboard/>}
+function ProtectedStudent(){const{user}=useAuth();if(!user||user.role!=='student')return<Navigate to="/" replace/>;return<StudentDashboard/>}
 
 function AppRoutes(){
   return(
@@ -988,6 +1104,8 @@ function AppRoutes(){
       <Route path="/admin" element={<AdminLogin/>}/>
       <Route path="/admin/dashboard" element={<ProtectedAdmin/>}/>
       <Route path="/hostel" element={<HostelPortal/>}/>
+      <Route path="/hostel/warden" element={<ProtectedWarden/>}/>
+      <Route path="/student/dashboard" element={<ProtectedStudent/>}/>
       <Route path="*" element={<Navigate to="/" replace/>}/>
     </Routes>
   )
